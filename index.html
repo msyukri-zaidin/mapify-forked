@@ -1,12 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      bigOne();
+      $("#btn1").click(function(){
+          var question, answer, difficulty;
+          question = document.getElementById("question").value;
+          answer = document.getElementById("answer").value;
+          difficulty = document.getElementById("difficulty").value;
+          var txt1 = $("<div></div>").html(difficulty + "<br><br>QUESTION: <br>" + question + "<br><br>ANSWER: <br>" + answer);
+          txt1.addClass("list-item");
+          console.log(txt1);
+          $(".lists .list").append(txt1);
+          bigOne();
+      })
+  });
+  </script>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+
+        .center {
+            margin: auto;
+            width: 70%;
+            padding: 10px;
+        }
+
+        </style>
+<title>Admin Page</title>
+<link rel="stylesheet" href="main.css"/>
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-'''sdffff'''
+<h1>Edit Questions</h1>
+
+<div class = "inputText">
+  <!-- This is where the Question will go-->
+  <label for "question">Question:</label><br>
+  <textarea type="text" id="question" rows = "4" cols = "50"></textarea>
+  <br>
+  <br>
+  <!-- This is where the Answer will go-->
+  <label for "answer">Answer:</label><br>
+  <input type="text" id="answer">
+  <!-- This is where the Difficulty will go-->
+  <br>
+  <br>
+  <label for "difficulty">Difficulty:</label><br>
+  <input type="text" id="difficulty">
+  <br>
+  <br>
+  <button type="button" id="btn1">Submit</button>
+</div>
+
+
+<div class = "lists">
+        <div class = "list">
+            <div class = "list-item" draggable = "true">List item 1</div>
+            <div class = "list-item" draggable = "true">List item 2</div>
+            <div class = "list-item" draggable = "true">List item 3</div>
+            <div class = "list-item" draggable = "true">List item 4</div>
+            <div class = "list-item" draggable = "true">List item 5</div>
+            <div class = "list-item" draggable = "true">List item 6</div>
+        </div>
+        <div class = "question-list">
+            <div class = "question-item" id = "QI">Q1</div>
+            <div class = "question-item" id = "QI">Q2</div>
+            <div class = "question-item" id = "QI">Q3</div>
+            <div class = "question-item" id = "QI">Q4</div>
+            <div class = "question-item" id = "QI">Q5</div>
+        </div>
+
+    </div>
+
+    <script src="main.js"></script>
+
 </body>
 </html>
