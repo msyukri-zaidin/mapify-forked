@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home | Mapify</title>
+    <link rel="shortcut icon" type="image/png" href="mapify-icon.png">
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="#"><img id="logo" src="mapify-2.png"></a>
+        <nav class="tab-right">
+            <button id="header-signup-button" class="tablinks">Sign Up</button>
+            <button id="header-login-button" class="tablinks">Log In</button>
+        </nav>
+    </div>
+
+    <!-- Modal Section -->
+
+    <div class="login-modal">
+        <div class="modal-contents">
+            <div id="exitLogInModal">+</div>
+            <h2>Log In</h2>
+            <form>
+                <input id="login-username" type="username" placeholder="Name">
+                <input id="login-password" type="password" placeholder="E-Mail">
+            </form>
+            <button id="login-button" class="clicky-button">Submit</button>
+        </div>
+    </div>
+
+    <!-- Modal Section -->
+
+    <div class="container">
+        <!-- here we are going to put a JS code, where user can put in their username in -->
+        <div id="welcome-sign" class="flex-display home-box">
+            <h2 class="" id="welcome-msg">Welcome </h2>
+            <form>
+                <input type="text" id="username-input" value="" placeholder="" />
+            </form>
+        </div>
+        <div id="difficulty-setting" class="flex-display home-box">
+            <!-- When select one of these difficulties, the button will remain bottom and dark, active -->
+            <span>
+                <h2>Choose your diffulty:</h2>
+            </span>
+            <span>
+                <!-- Easy -->
+                <button id="beginner-button" class="clicky-button">
+                    <h3>Beginner</h3>
+                </button>
+            </span>
+            <span>
+                <!-- Med -->
+                <button id="medium-button" class="clicky-button">
+                    <h3>Medium</h3>
+                </button>
+            </span>
+            <span>
+                <!-- Hard -->
+                <button id="expert-button" class="clicky-button">
+                    <h3>Expert</h3>
+                </button></span>
+        </div>
+        <div id="rules" class="flex-display home-box">
+            <span>
+                <h2>How to play</h2>
+                <ul>
+                    <li>No cheating!</li>
+                </ul>
+            </span>
+            <!-- <iframe src="https://giphy.com/embed/j6SOLjGu7VQJD8t8rO" width="480" height="270" frameBorder="0"
+                class="giphy-embed" allowFullScreen></iframe> -->
+            <div id="enter-game" class="">
+                <h2>Click here to start a game:</h2>
+                <button id="enter-game-button" class="clicky-button">Enter Game!</button>
+            </div>
+        </div>
+        <div id="leaderboard-home" class="flex-display home-box">
+            <h2>Leaderboard</h2>
+            <span class='leaderboard-row'>
+                <div class="name">Player1</div>
+                <div class="score">430</div>
+            </span>
+            <span class='leaderboard-row'>
+                <div class="name">Player2</div>
+                <div class="score">360</div>
+            </span>
+            <span class='leaderboard-row'>
+                <div class="name">Player5</div>
+                <div class="score">290</div>
+            </span>
+            <span class='leaderboard-row'>
+                <div class="name">Player9</div>
+                <div class="score">230</div>
+            </span>
+        </div>
+    </div>
+    <footer>
+        <p>Created by: Danish Firdaus</p>
+    </footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+    crossorigin="anonymous"></script>
+<script src="home.js"></script>
+
+</html>
