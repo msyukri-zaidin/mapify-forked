@@ -1,82 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-    $(document).ready(function(){
-      bigOne();
-      $("#btn1").click(function(){
-          var question, answer, difficulty;
-          question = document.getElementById("question").value;
-          answer = document.getElementById("answer").value;
-          difficulty = document.getElementById("difficulty").value;
-          var txt1 = $("<div></div>").html(difficulty + "<br><br>QUESTION: <br>" + question + "<br><br>ANSWER: <br>" + answer);
-          txt1.addClass("list-item");
-          console.log(txt1);
-          $(".lists .list").append(txt1);
-          bigOne();
-      })
-  });
-  </script>
-    <style>
-        table, th, td {
-          border: 1px solid black;
-        }
-
-        .center {
-            margin: auto;
-            width: 70%;
-            padding: 10px;
-        }
-
-        </style>
-<title>Admin Page</title>
-<link rel="stylesheet" href="main.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="main.css" />
+    <title>Admin Page</title>
 </head>
-<body>
 
-<h1>Edit Questions</h1>
-
-<div class = "inputText">
-  <!-- This is where the Question will go-->
-  <label for "question">Question:</label><br>
-  <textarea type="text" id="question" rows = "4" cols = "50"></textarea>
-  <br>
-  <br>
-  <!-- This is where the Answer will go-->
-  <label for "answer">Answer:</label><br>
-  <input type="text" id="answer">
-  <!-- This is where the Difficulty will go-->
-  <br>
-  <br>
-  <label for "difficulty">Difficulty:</label><br>
-  <input type="text" id="difficulty">
-  <br>
-  <br>
-  <button type="button" id="btn1">Submit</button>
-</div>
-
-
-<div class = "lists">
-        <div class = "list">
-            <div class = "list-item" draggable = "true">List item 1</div>
-            <div class = "list-item" draggable = "true">List item 2</div>
-            <div class = "list-item" draggable = "true">List item 3</div>
-            <div class = "list-item" draggable = "true">List item 4</div>
-            <div class = "list-item" draggable = "true">List item 5</div>
-            <div class = "list-item" draggable = "true">List item 6</div>
-        </div>
-        <div class = "question-list">
-            <div class = "question-item" id = "QI">Q1</div>
-            <div class = "question-item" id = "QI">Q2</div>
-            <div class = "question-item" id = "QI">Q3</div>
-            <div class = "question-item" id = "QI">Q4</div>
-            <div class = "question-item" id = "QI">Q5</div>
+    <body>
+        <div class="header">
+            <a href="#"><img id="logo" src="mapify-2.png" style="width:100px"></a>
+            <nav class="tab-right">
+                <button id="header-signup-button" class="headerButton">Sign Up</button>
+                <button id="header-login-button" class="headerButton">Log In</button>
+            </nav>
         </div>
 
+    <div class="headerBox">
+        <h1>Edit Questions</h1>
+        <p>This is a place where you can edit questions! Simply drag and drop to the desired question number and save changes!</p>
     </div>
+
+    <div class="container">
+        <div class="questionPool">
+            <div class="questionPool-item" draggable="true">List item 1</div>
+            <div class="questionPool-item" draggable="true">List item 2</div>
+            <div class="questionPool-item" draggable="true">List item 3</div>
+            <div class="questionPool-item" draggable="true">List item 4</div>
+            <div class="questionPool-item" draggable="true">List item 5</div>
+            <div class="questionPool-item" draggable="true">List item 6</div>
+        </div>
+        <div class="question-list">
+            <div class="question-item" id="QI">Q1</div>
+            <div class="question-item" id="QI">Q2</div>
+            <div class="question-item" id="QI">Q3</div>
+            <div class="question-item" id="QI">Q4</div>
+            <div class="question-item" id="QI">Q5</div>
+        </div>
+    </div>
+
+
+    
+    <div class="inputContainer">
+        <!-- This is where the Question will go-->
+        <label for "question" class="inputLabel">Question</label><br>
+        <textarea type="text" id="question"></textarea>
+        <br>
+        <br>
+        <!-- This is where the Answer will go-->
+        <label for "answer" class="inputLabel">Answer</label><br>
+        <input type="text" id="answer">
+        <!-- This is where the Difficulty will go-->
+        <br>
+        <br>
+        <label for "difficulty" class="inputLabel">Difficulty</label><br>
+        <input type="radio" id="easy" name="difficulty">
+        <label for="easy" class="inputLabel">Easy</label>
+        <br/>
+        <input type="radio" id="medium" name="difficulty">
+        <label for="medium" class="inputLabel">Medium</label>
+        <br/>
+        <input type="radio" id="hard" name="difficulty">
+        <label for="hard" class="inputLabel">Hard</label>
+        <br>
+        <br>
+        <button type="button" id="btn1">Submit</button>
+    </div>
+
 
     <script src="main.js"></script>
 
-</body>
+    </body>
+
 </html>
