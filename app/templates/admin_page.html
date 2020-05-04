@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
+    <title>Admin Page</title>
+</head>
+
+    <body>
+        <div class="header">
+            <a href="#"><img id="logo" src="{{url_for('static',filename='css/images/mapify-2.png')}}" style="width:100px"></a>
+            <nav class="tab-right">
+                <button id="header-signup-button" class="headerButton">Sign Up</button>
+                <button id="header-login-button" class="headerButton">Log In</button>
+            </nav>
+        </div>
+
+    <div class="headerBox">
+        <h1>Edit Questions</h1>
+        <p>This is a place where you can edit questions! Simply drag and drop to the desired question number and save changes!</p>
+    </div>
+
+    <div class="container">
+        <div class="questionPool">
+            {% for question in questionPool %}
+                <div class="questionPool-item" draggable="true">{{ question }}</div>
+            {% endfor %}
+        </div>
+        <div class="question-list">
+            <div class="question-item" id="QI">Q1</div>
+            <div class="question-item" id="QI">Q2</div>
+            <div class="question-item" id="QI">Q3</div>
+            <div class="question-item" id="QI">Q4</div>
+            <div class="question-item" id="QI">Q5</div>
+        </div>
+    </div>
+
+
+
+    <div class="inputContainer">
+        <form action="" method="POST">
+            <!--
+            {%if form.errors %}
+            {{form.errors}}
+            {%endif%}<br>
+            -->
+            {{ form.hidden_tag() }}
+            <!-- This is where the Question will go-->
+            {{ form.question.label }} <br>
+            {{ form.question(class="inputLabel")}}
+            <br>
+            <br>
+            <!-- This is where the Answer will go-->
+            {{ form.answer.label }} <br>
+            {{ form.answer(class="inputLabel")}}
+            <!-- This is where the Difficulty will go-->
+            <br>
+            <br>
+            {% for subfield in form.difficulty %}
+                <tr>
+                    <td>{{ subfield }}</td>
+                    <td>{{ subfield.label }}</td><br>
+                </tr>
+            {% endfor %}
+            <br>
+            <p> {{ form.submit(class="inputLabel") }}</p>
+                       <!--
+            <label for "difficulty" class="inputLabel">Difficulty</label><br>
+            <input type="radio" id="easy" name="difficulty">
+            <label for="easy" class="inputLabel">Easy</label>
+            <br/>
+            <input type="radio" id="medium" name="difficulty">
+            <label for="medium" class="inputLabel">Medium</label>
+            <br/>
+            <input type="radio" id="hard" name="difficulty">
+            <label for="hard" class="inputLabel">Hard</label>
+            <br>
+            <br>
+            <button type="button" id="btn1">Submit</button>
+    -->
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li> {{message}}</li>
+        {% endfor%}
+    </ul>
+    {%endif%}
+    {%endwith%}
+
+
+    <script src="{{ url_for('static', filename='admin_page.js') }}"></script>
+
+    </body>
+
+</html>
