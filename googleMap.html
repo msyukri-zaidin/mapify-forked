@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Simple Google Map</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css"> -->
+
+        <!-- Page Logo -->
+        <link rel="icon" type="image/png" href="images/mapify-2.png" >
+
+        <!-- Link the css sytlesheet -->
+        <link rel="stylesheet" href="css/main.css">
+
+        <!-- Link the script files for java script and for the google api-->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+
+    </head>
+
+    <body>
+
+        <!-- Navigation Bar -->
+        <div class="nav_area">
+            <div class="inner_nav">
+                <div class="logo_container">
+                    <img src="images/mapify-2.png" alt="mapify_logo" height="70">
+                </div>
+
+                    <ul class="nav">
+                        <!-- Top right navigation buttons -->
+                        <a href="#"><li>Login</li></a>
+                        <a href="#"><li>Sign up</li></a>
+
+                    </ul>
+            </div>
+        </div>
+
+        <!-- Body of the webpage -->
+        <div class="body_container">
+
+            <div class="side">
+                <div class="buttons">
+                    <button class="myBtn unclicked" id="Q1Button">Question 1</button><br><br>
+                    <button class="myBtn unclicked" id="Q2Button">Question 2</button><br><br>
+                    <button class="myBtn unclicked" id="Q3Button">Question 3</button><br><br>
+                    <button class="myBtn unclicked" id="Q4Button">Question 4</button><br><br>
+                    <button class="myBtn unclicked" id="Q5Button">Question 5</button>
+
+                </div>
+                
+            </div>
+
+            <div id="Q1" class="main">
+                <h1>Question 1</h1>
+                <p>
+                    What is the capital of Australia?
+                </p>
+
+                <div class="map_container" id="map">
+                </div>
+
+                <div class="code_container">
+
+                    <input style="padding: 10px; text-align: center; border: solid 2px #1aa4bc;" type="text" id="address">
+                    <button id="sendInput" class="showCodeButton" type="button" onclick="getLatLong()">Submit</button>
+        
+                </div>
+            
+            </div>
+
+            <div id="Q2" class="main" >
+                <h1>Question 2</h1>
+            
+            </div>
+
+            <div id="Q3" class="main">
+                <h1>Question 3</h1>
+
+            </div>
+
+            <div id="Q4" class="main">
+                <h1>Question 4</h1>
+
+            </div>
+
+            <div id="Q5" class="main">
+                <h1>Question 5</h1>
+
+        </div>
+        <script>
+            $(function(){
+                $('#HTML1Button').click();
+            });
+        </script>
+
+
+        <script>
+            $(document).ready(function(){
+                $('button.myBtn').click(function() {
+                    $('button.myBtn').removeClass('clicked');
+                    $('button.myBtn').addClass('unclicked');
+                    $(this).removeClass('unclicked')
+                    $(this).addClass("clicked");
+                });
+            });
+
+
+            $("#Q1Button").on('click', function() {
+                $("#Q1").show();
+                $("#Q2,#Q3,#Q4, #Q5").hide();
+            });
+
+            $("#Q2Button").on('click', function() {
+                $("#Q2").show();
+                $("#Q1,#Q3,#Q4, #Q5").hide();
+            });
+
+            $("#Q3Button").on('click', function() {
+                $("#Q3").show();
+                $("#Q1,#Q2,#Q4, #Q5").hide();
+            });
+
+            $("#Q4Button").on('click', function() {
+                $("#Q4").show();
+                $("#Q1,#Q2,#Q3, #Q5").hide();
+            });
+
+            $("#Q5Button").on('click', function() {
+                $("#Q5").show();
+                $("#Q1,#Q2,#Q3, #Q4").hide();
+            });
+        </script>
+
+
+        
+
+        <!-- <div>
+            <input type="text" id="address">
+            <button type="button" onclick="getLatLong()">Click Me!</button>
+        </div>
+    
+        <p id="ShowLat"></p>
+        <p id="ShowLong"></p>
+
+        <div id="map"></div> -->
+    
+    </body>
+  
+</html>
+
+
