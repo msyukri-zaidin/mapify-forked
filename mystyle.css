@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css?family=Sniglet&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Sniglet";
+  font-size: 22px;
+}
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
+/* ------------------------------------------- */
+/* Header */
+.header {
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+#logo {
+  background-color: rgba(0, 0, 0, 0.01);
+  color: aliceblue;
+  margin-left: 20px;
+  float: left;
+  max-width: 170px;
+}
+.tab-right {
+  background-color: rgba(0, 0, 0, 0.01);
+  margin: 10px 20px;
+  float: right;
+}
+.tab-right button {
+  background-color: rgb(90, 218, 73);
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  transition: 0.3s;
+  font-size: 1em;
+}
+.tab-right button:hover {
+  background-color: rgb(63, 190, 46);
+  color: white;
+}
+.container {
+  margin: 50px 0px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.flex-display {
+  display: flex;
+  justify-content: space-between;
+}
+.box-title {
+  flex: 0 0 100%;
+  margin-bottom: 20px;
+}
+
+/* ------------------------------------------- */
+/* Button */
+.clicky-button {
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 7px 0 0 #6b2a4a;
+  background: #a47;
+  color: #eee;
+  padding: 0.4em 3em;
+  border: 0;
+  font-size: 0.7em;
+  opacity: 0.9;
+  border-radius: 8px;
+}
+.clicky-button:hover {
+  opacity: 1;
+}
+.clicky-button:active {
+  box-shadow: none;
+  top: 7px;
+  margin-bottom: 0;
+  outline: 0;
+}
+
+/* ------------------------------------------- */
+/* Home Page Specific */
+#welcome-msg {
+  font-size: 6em;
+  text-align: left;
+  padding-top: 50px;
+  display: inline-block;
+}
+.home-box {
+  background-color: rgba(185, 185, 185, 0.212);
+  box-sizing: border-box;
+  border-radius: 7px;
+  padding: 30px;
+  margin: 30px 0;
+}
+#welcome-sign form {
+  padding-left: 10%;
+  margin-top: 60px;
+  display: inline-block;
+}
+#username-input {
+  border: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border-bottom: 4px solid red;
+  font-size: 6em;
+  width: 100%;
+  height: 100%;
+}
+#difficulty-setting span {
+  /* border: 1px solid #000; */
+  width: 100%;
+  margin: 0px 10px;
+}
+#difficulty-setting span h2 {
+  padding: 20px 0;
+  font-size: 1.5em;
+  flex-grow: 2;
+}
+#difficulty-setting span button {
+  font-size: 1em;
+  padding: 20px 0;
+  width: 100%;
+}
+#difficulty-setting button:active {
+  box-shadow: none;
+  top: 7px;
+  margin-bottom: 0;
+  outline: 0;
+}
+#beginner-button {
+  box-shadow: 0 7px 0 0 #2a7c35;
+  background: #3ba849;
+}
+#medium-button {
+  box-shadow: 0 7px 0 0 #255db8;
+  background: #3678e4;
+}
+#expert-button {
+  box-shadow: 0 7px 0 0 #a81d1d;
+  background: #d62929;
+}
+#rules ul {
+  margin: 10px 20px;
+}
+#enter-game h2 {
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+#enter-game-button {
+  font-size: 1.5em;
+}
+#leaderboard-home {
+  flex-direction: column;
+}
+.leaderboard-row {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 10px 0px;
+  border-bottom: 1px solid #afafaf;
+}
+.leaderboard-row .name {
+  position: relative;
+  display: inline-block;
+  width: 75%;
+}
+.leaderboard-row .score {
+  position: relative;
+  width: 25%;
+  background-color: #255db8;
+  float: right;
+}
+
+/* MODAL STARTS HERE */
+.login-modal {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.modal-contents {
+  height: 300px;
+  width: 500px;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  border-radius: 7px;
+}
+.modal-contents h2 {
+  margin: 30px 0px;
+  font-size: 30px;
+}
+.modal-contents input {
+  margin: 20px auto;
+  display: block;
+  width: 80%;
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 7px;
+  font-size: 15px;
+}
+#login-button {
+  font-size: 1em;
+}
+#exitLogInModal {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 42px;
+  color: #333;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+/* ------------------------------------------- */
+/* Result Page Specific */
+#result-msg {
+  font-size: 4em;
+}
+#score-msg {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 1.5em;
+  margin: 20px 0;
+}
+#result-username {
+  color: red;
+}
+#user-score {
+  font-size: 12em;
+  flex-basis: 0;
+  right: 20px;
+  background: white;
+  border-radius: 15px;
+  padding: 0 50px;
+  text-align: center;
+}
+#box-vertical-line {
+  border-left: 6px solid rgb(216, 216, 216);
+  border-radius: 3px;
+}
+#restart-button {
+  font-size: 2em;
+  margin: 20px 0px;
+  width: 80%;
+}
+#stat-box {
+  flex-direction: row;
+  justify-content: space-between;
+}
+#question-review {
+  flex-direction: column;
+}
+
+/* ------------------------------------------- */
+/* Footer */
+footer {
+  background-color: rgba(0, 0, 0, 0.1);
+  position: relative;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  overflow: hidden;
+  border: none;
+  padding: 20px 160px 10px 150px;
+}
+footer p {
+  background-color: rgba(0, 0, 0, 0.01);
+  color: aliceblue;
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  color: black;
+}
