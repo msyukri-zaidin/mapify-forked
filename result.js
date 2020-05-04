@@ -1,18 +1,11 @@
-<<<<<<< Updated upstream
-$(document).ready(function () {
-=======
+
 $(document).ready(function () { 
->>>>>>> Stashed changes
     $.fn.showResult = function () {
         showUserPoints();
         showUserStats();
         showScoreboard();
         showQuestionReviews();
-<<<<<<< Updated upstream
-    }
-=======
     } 
->>>>>>> Stashed changes
 
     $.fn.showUserPoints = function () {
         let scoreArea = $('#user-score').val();
