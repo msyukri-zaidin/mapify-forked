@@ -20,7 +20,6 @@
     </div>
 
     <!-- Modal Section -->
-
     <div class="login-modal">
         <div class="modal-contents">
             <div id="exitLogInModal">+</div>
@@ -32,16 +31,34 @@
             <button id="login-button" class="clicky-button">Submit</button>
         </div>
     </div>
-
     <!-- Modal Section -->
 
     <div class="container">
+        <!-- Part where explains what Mapify is, the intro -->
+        <div id="home-intro" class="flex-display home-box">
+            <h2 id="welcome-msg" class="">Welcome</h2>
+            <span>
+                <p>Mapify is a geography quiz that will test your ability of mapping a location based on the snapshot
+                    given as the clue.
+                </p>
+            </span>
+        </div>
         <!-- here we are going to put a JS code, where user can put in their username in -->
-        <div id="welcome-sign" class="flex-display home-box">
-            <h2 class="" id="welcome-msg">Welcome </h2>
-            <form>
+        <div class="flex-display home-box">
+            <form id="username-form">
                 <input type="text" id="username-input" value="" placeholder="" />
             </form>
+        </div>
+        <div class="flex-display home-box">
+            <!-- Select game set or difficulty -->
+            <span>
+                <h2 class="box-title">Select a game set</h2>
+            </span>
+            <span>
+                <!-- The sure can select a game set using either:
+                        - a dropdown menu
+                        - list of famous ones, and can press a button that will load more game sets -->
+            </span>
         </div>
         <div id="difficulty-setting" class="flex-display home-box">
             <!-- When select one of these difficulties, the button will remain bottom and dark, active -->
