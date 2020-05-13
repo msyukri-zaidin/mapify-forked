@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     // Failed attempt at having exclusive header file, might need to use php
     $("#header").load("header.html");
@@ -26,9 +25,12 @@ $(document).ready(function () {
 
 
     $('#header-login-button').click(function () {
-        $('.login-modal').css("display","flex");
+        $('.login-modal').css("display", "flex");
     });
     $('#exitLogInModal').click(function () {
-        $('.login-modal').css("display","none");
+        $('.login-modal').css("display", "none");
     });
+
+    /* var cw = $('.mini-card').width();
+    $('.mini-card').css({ 'height': cw + 'px' }); */
 });
