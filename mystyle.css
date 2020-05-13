@@ -142,11 +142,12 @@ button:focus {
   margin: 20px 40px;
   padding: 10px;
 }
-.suggestion {
+#suggestion {
   background-color: rgb(233, 145, 31);
   border-radius: 10px;
-  margin-right: 20px;
+  margin-right: 30px;
   padding: 10px 30px;
+  font-size: 1em;
   cursor: pointer;
   opacity: 0.9;
 }
@@ -172,11 +173,11 @@ button:focus {
   text-align: center;
   margin-top: 30px;
 }
-#loadMore {
+#load-more {
   border-top: solid 4px rgb(233, 145, 31);
   margin: 10px 0 50px 0;
 }
-#loadMore button {
+#load-more button {
   background-color: rgb(233, 145, 31);
   color: #fff;
   border: none;
@@ -190,8 +191,7 @@ button:focus {
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
-#difficulty-setting span {
-  /* border: 1px solid #000; */
+/* #difficulty-setting span {
   width: 100%;
   margin: 0px 10px;
 }
@@ -222,7 +222,7 @@ button:focus {
 #expert-button {
   box-shadow: 0 7px 0 0 #a81d1d;
   background: #d62929;
-}
+} */
 #home-start {
 }
 #home-start h2 {
@@ -238,10 +238,10 @@ button:focus {
   padding-top: 30px;
 }
 #rules ul {
-  margin: 10px 20px;
+  margin: 10px 40px;
 }
 #rules ul li{
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   font-size: 1em;
 }
 #leaderboard-home {
@@ -364,12 +364,14 @@ footer {
   height: 40px;
   overflow: hidden;
   border: none;
-  padding: 20px 160px 10px 150px;
+  padding: 20px 1300px 10px 150px;
+  text-align: center;
 }
 footer p {
   background-color: rgba(0, 0, 0, 0.01);
   color: aliceblue;
   position: absolute;
   bottom: 20px;
-  text-align: center;
+  display: inline-block;
+  font-size: 0.9em;
 }
