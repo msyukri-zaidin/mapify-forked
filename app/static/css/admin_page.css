@@ -51,14 +51,6 @@ textarea[type=text] {
     max-width: 900px;
 }
 
-input[type=text] {
-    background-color: white;
-}
-
-button[type=button] {
-    background-color: white;
-}
-
 .headerBox {
     border-style: solid;
     border-width: 2px;
@@ -106,7 +98,7 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.container .questionPool {
+.questionPool {
     display: flex;
     flex-flow: column;
     flex: 1;
@@ -115,7 +107,7 @@ body{
     min-width: 250px;
     max-width: 350px;
     height: 100%;
-    min-height: 150px;
+    min-height: 350px;
 
     background-color: #bd3ffc;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -124,10 +116,24 @@ body{
     border-width: 2px;
     margin: 20px;
     padding: 8px;
+    padding-bottom: 100px;
     transition: all 0.2s linear;
 }
 
-.questionPool-item { /*A question in the pool of questions */
+.question-slot {
+    background-color: #eb8034;
+    color: white;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 4px 0px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    word-wrap: break-word;
+    user-select:none;
+}
+
+.question-item { /*A question in the pool of questions */
     background-color: #eb8034;
     color: white;
     border-radius: 8px;
@@ -139,7 +145,7 @@ body{
     word-wrap: break-word;
 }
 
-.container .question-list { /* Actual questions list */
+.question-list { /* Actual questions list */
     display: flex;
     flex-flow: column;
     flex: 1;
@@ -158,17 +164,6 @@ body{
     margin: 20px;
     padding: 8px;
     transition: all 0.2s linear;
-}
-
-.question-item { /*A question in the questions list */
-    background-color: #eb8034;
-    color: white;
-    border-radius: 8px;
-    border-style: solid;
-    border-width: 2px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 15px 20px;
-    margin: 4px 0px;
 }
 
 table, th, td {
