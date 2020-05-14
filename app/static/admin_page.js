@@ -1,143 +1,171 @@
-const pool_items = document.querySelectorAll('.questionPool-item');
-const container = document.querySelectorAll('.questionPool');
-const questions = document.querySelectorAll('.question-item');
-const questionBox = document.querySelectorAll('.question-list');
+const container = document.querySelectorAll('.container');
+const question_slot = document.querySelectorAll('.question-slot');
 
 let draggedItem = null;
-let replacedItem = null;
-let draggingItem = null;
 let dragIndex = 0;
 let replaceIndex = 0;
 
+const pool = container[0].children[0];
+const slots = container[0].children[1];
 
-function bigOne () { 
-    for( let i = 0; i < container[0].children.length; i++) {
-        let item = container[0].children[i];
-        //console.log(item.hasAttribute("draggable"));
-        item.setAttribute("draggable", true);
+//For loop iterates through all question items on the page
+for( let i = 0; i < container[0].children.length; i++) {
+    for( let j = 0; j < container[0].children[i].children.length; j++) {
 
-        item.addEventListener('dragstart', function() {
+        //Initialisation and declaration of question item
+        let item = container[0].children[i].children[j];
+        //Question slots need to be reassigned to their child which is a question item
+        if(item.className == "question-slot") {
+            item = item.children[0];
+        }
+
+        //Empty question slots are undefined so we continue the loop to prevent adding events to it
+        if(typeof item == 'undefined') {
+            continue;
+        }
+
+        item.setAttribute('draggable', true);
+        item.addEventListener('dragstart', function(e) {
             draggedItem = item;
-            console.log(draggedItem);
-            for( let k = 0; k < container[0].children.length; k++) {
-                if( container[0].children[k] == draggedItem) {
-                    dragIndex = k;
+            //For loop for identifying the position of the dragged question item
+            for( let m = 0; m < item.parentNode.children.length; m++) {
+                if(item.parentNode.children[m] == item) {
+                    dragIndex = m;
                 }
+            }
+            //console.log("Drag source: " + dragIndex);
+        })
+
+
+        //In this function, item signifies the question item you are dropping the 'draggedItem' on to
+        item.addEventListener('drop', function(e) {
+            e.preventDefault();
+            //For loop for identifying the position of the replacing question item
+            for( let m = 0; m < item.parentNode.children.length; m++) {
+                if(item.parentNode.children[m] == item) {
+                    replaceIndex = m;
+                    //console.log("Replacing to: " + replaceIndex);
+                }
+            }
+
+            //If the question item you are dropping the 'draggedItem' is on the pool of questions
+            if(item.parentNode.className == "questionPool") {
+                //If the draggedItem came from a question slot
+                if( draggedItem.parentNode.className == "question-slot") { 
+                    draggedItem.parentNode.replaceChild(item, draggedItem);
+                    pool.insertBefore(draggedItem, pool.children[replaceIndex])
+                }
+                //If the draggedItem came from the pool of questions
+                else if (draggedItem.parentNode.className == "questionPool") {
+                    //These if-else statements are for swapping question items that are both located on the pool of questions
+                    if( dragIndex < replaceIndex) {
+                        item.parentNode.insertBefore(item.parentNode.children[dragIndex], item.parentNode.children[replaceIndex]);
+                        item.parentNode.insertBefore(item.parentNode.children[replaceIndex], item.parentNode.children[dragIndex]);
+                    }
+                    else if (dragIndex > replaceIndex) {
+                        item.parentNode.insertBefore(item.parentNode.children[replaceIndex], item.parentNode.children[dragIndex]);
+                        item.parentNode.insertBefore(item.parentNode.children[dragIndex], item.parentNode.children[replaceIndex]);
+                    }
+                    //Does nothing if dragIndex == replaceIndex
+                }
+            }
+            //If you are dropping the 'draggedItem' on a question slot and it is a FILLED question slot
+            else if(item.parentNode.className == "question-slot" && item.parentNode.children.length >= 1) { 
+                //If the draggedItem is from the pool of questions
+                if(draggedItem.parentNode.className == "questionPool") { 
+                    item.parentNode.replaceChild(draggedItem, item);
+                    pool.insertBefore(item, pool.children[dragIndex]);
+                }
+                //If the draggedItem is from another question slot
+                else if(draggedItem.parentNode.className =="question-slot") {
+                    var temp = draggedItem.cloneNode(true);
+                    draggedItem.parentNode.append(temp);
+                    item.parentNode.replaceChild(draggedItem, item);
+                    temp.parentNode.replaceChild(item, temp);
+                }
+            }
+
+        
+        })
+
+        pool.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        })
+        pool.addEventListener('dragenter', function(e) {
+            e.preventDefault();
+        })
+        //Listener for question pool
+        pool.addEventListener('drop',function(e){
+            //Adds to question pool list if dragged item came from question slot
+            if(draggedItem.parentNode.className == "question-slot") {
+                this.append(draggedItem);
             }
         });
 
-        item.addEventListener('dragend', function() {
-            console.log('dragend');
-            setTimeout(function(){
-                draggedItem.style.display = 'block';
-                draggedItem = null;
-            }, 0)
-        })
-
-        //dd
         item.addEventListener('dragover', function(e) {
             e.preventDefault();
         })
-
+    
         item.addEventListener('dragenter', function(e) {
             e.preventDefault();
         })
 
-        item.addEventListener('drop', function(e) {
-            replacedItem = item;
-            for( let k = 0; k < container[0].children.length; k++) {
-                if( container[0].children[k] == replacedItem) {
-                    replaceIndex = k;
-                }
-            }
-            if( dragIndex < replaceIndex) {
-                container[0].insertBefore(container[0].children[dragIndex], container[0].children[replaceIndex]);
-                container[0].insertBefore(container[0].children[replaceIndex], container[0].children[dragIndex]);
-            }
-            else {
-                container[0].insertBefore(container[0].children[replaceIndex], container[0].children[dragIndex]);
-                container[0].insertBefore(container[0].children[dragIndex], container[0].children[replaceIndex]);
-            }
-        })
-
-        //dd
-        
-
-        const questionPool = container[0];
-        //console.log(questionPool.childNodes);
-
-        questionPool.addEventListener('dragover', function(e) {
-            e.preventDefault();
-        })
-
-        questionPool.addEventListener('dragenter', function(e) {
-            e.preventDefault();
-        })
-
-        questionPool.addEventListener('drop', function(e) {
-            if(draggedItem.parentNode.id == "QI") {
-                this.append(draggedItem);
-            }
-            console.log(draggedItem.parentNode.id);
-        })
-
-
-        ;
-        //for(let j = 0; j < container.length; j++) {
-            //const list = container[j];
-
-        for(let j = 0; j < questions.length; j++) {
-            const questionContainer = questions[j];
-            questionContainer.addEventListener('dragover', function(e) {
+        //Listener for empty question slot
+        for(let k = 0; k < question_slot.length; k++) {
+            question_slot[k].addEventListener('dragover', function(e) {
                 e.preventDefault();
             })
-            questionContainer.addEventListener('dragenter', function(e) {
+            question_slot[k].addEventListener('dragenter', function(e) {
                 e.preventDefault();
             })
-            questionContainer.addEventListener('drop', function(e) {
-                if( this.childNodes.length == 2) {
-                    const parent = draggedItem.parentNode;
-                    parent.replaceChild(this.childNodes[1], draggedItem);
+            question_slot[k].addEventListener('drop', function(e) {
+                if (question_slot[k].children.length >= 1) { 
+                    //Prevents 2 question items from being in the same question slot                   
+                }
+                //Adds question item to EMPTY question slot
+                else if (draggedItem != null){
                     this.append(draggedItem);
                 }
-                else {
-                    this.append(draggedItem);
-                }
-                //console.log(this.childNodes.length);
-                //console.log(this.childNodes);
-                //console.log(this.contains(draggedItem));
-
+                
             })
         
         }
+
     }
 }
 
+
+
 $(document).ready(function(){
-    bigOne();
-    $("#btn1").click(function(){
-        var question, answer, difficulty;
-        question = document.getElementById("question").value;
-        answer = document.getElementById("answer").value;
-        if(document.getElementById("easy").checked == true) {
-            difficulty = "Easy";
+    $("#saveButton").click(function() {
+        //This function looks at each of the question items and checks if there is any question in it
+        for(var i = 1; i < 6; i++) { 
+            var questionNumber = "Q" + i;
+            var question;
+            if(question = document.getElementById(questionNumber).firstElementChild) {
+                questionElements = question.innerHTML.split("<br>");
+                //Sends question details to the flask application
+                $.post("/postmethod", {     
+                    questionNumber:i,
+                    questionID:questionElements[0],
+                    questionContent:questionElements[1],
+                    questionAnswer:questionElements[2]
+            
+                });
+            }
+                //Empty questions get sent too as well
+            else {
+                $.post("/postmethod", {
+                    questionNumber:i,
+                    questionID:'',
+                    questionContent:'',
+                    questionAnswer:''
+            
+                });
+            }
 
         }
-        if(document.getElementById("medium").checked == true) {
-            difficulty = "Medium";
-
-        }
-        if(document.getElementById("hard").checked == true) {
-            difficulty = "Hard";
-
-        }
-        //difficulty = document.getElementById("difficulty").value;
-        var txt1 = $("<div></div>").html(difficulty + "<br><br>QUESTION: <br>" + question + "<br><br>ANSWER: <br>" + answer);
-        txt1.addClass("questionPool-item");
-        console.log(txt1);
-        $(".container .questionPool").append(txt1);
-        //Temp implementation
-
-        bigOne();
     })
 });
+
+
