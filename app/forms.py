@@ -7,5 +7,4 @@ class QuestionForm(FlaskForm):
     question = StringField("Question")
     answer = StringField("Answer")
 #, validators = [DataRequired()]
-    difficulty = RadioField("Difficulty", choices=[('Easy',"Easy"),('Medium',"Medium"),('Hard',"Hard")])
-    submit = SubmitField("Submit")
+    submit = SubmitField("Submit"
