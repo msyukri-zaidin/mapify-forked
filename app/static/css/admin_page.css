@@ -25,20 +25,19 @@
     float: left;
 }
 
-.headerButton {
+.header-button {
     background-color: #bd3ffc;
     border: 1px solid #d383f7;
     color: white;
     padding: 4px 16px;
     text-align: center;
     text-decoration: none;
-    font-size: 13px;
     cursor: pointer;
     font-size: 16px;
 
 }
 
-.headerButton:hover {
+.header-button:hover {
     background-color: #d383f7;
   }
 
@@ -51,7 +50,7 @@ textarea[type=text] {
     max-width: 900px;
 }
 
-.headerBox {
+.header-box {
     border-style: solid;
     border-width: 2px;
     border-radius: 16px;
@@ -65,12 +64,71 @@ textarea[type=text] {
     padding: 10px 10px 10px 10px;
 }
 
+.container-nav {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    background-color: #333;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    min-width: 600px;
+    max-width: 900px;
+}
+
+.container-nav .questionset {
+    float: left;
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: inherit;
+}
+
+.container-nav .questionset-dropdown-content {
+    display: none;
+    position: absolute;
+    left: 125px;
+    top: 48px;
+    background-color: whitesmoke;
+    width: 139px;
+    z-index: 10;
+}
+
+.container-nav .questionset-dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.container-nav .questionset-dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.container-nav a {
+    float: left;
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: inherit;
+}
+
+.container-nav a:hover {
+    background-color: whitesmoke;
+    color: #444;
+}
+
 h1 {
     margin-top: 20px;
     margin-bottom: 10px;
     background: none;
     color: white;
-    font-size: 40x;
+    font-size: 40px;
 }
 
 p {
@@ -98,7 +156,7 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.questionPool {
+.question-pool {
     display: flex;
     flex-flow: column;
     flex: 1;
@@ -176,15 +234,50 @@ table, th, td {
     padding: 10px;
 }
 
-.inputContainer {
+.form-input {
+    position: relative;
     margin: auto;
     min-width: 600px;
     max-width: 860px;
-    background-color: #ebbfff;
     padding: 20px;
+    border: solid;
 }
 
-.inputLabel {
-    background-color: #ebbfff;
-    font-size: 20px;
+.form-input-box {
+    font-size: 16px;
+}
+
+#form-short-answer {
+    display: none;
+}
+
+.multiple-choice-number {
+    display: flex;
+    flex-flow: row;
+}
+
+.gg-add {
+    cursor: pointer;
+}
+
+.gg-add:active {
+    color: red;
+}
+
+.gg-remove {
+    cursor: pointer;
+}
+
+.gg-remove:active {
+    color: red;
+}
+
+#form-multiple-choice-answer {
+    display: none;
+}
+
+.option-input {
+    position: absolute;
+    left: 150px;
+    font-size: 16px;
 }
