@@ -8,6 +8,66 @@ let replaceIndex = 0;
 const pool = container[0].children[0];
 const slots = container[0].children[1];
 
+
+function showAnswerField() {
+    var questionType = document.getElementsByClassName('questionType');
+
+    //questionType[0] is multiple-choice
+    if(questionType[0].checked == true) {
+        document.getElementById('form-short-answer').style.display = 'none';
+        document.getElementById('form-multiple-choice-answer').style.display = 'block';
+    }
+    //questionType[1] is short-answer
+    else if(questionType[1].checked == true) {
+        document.getElementById('form-multiple-choice-answer').style.display = 'none';
+        document.getElementById('form-short-answer').style.display = 'block';
+    }
+}
+
+//Deduction for multiple choice field
+function deductNum() {
+    var num = document.getElementById('multiple-choice-num');
+    if(num.innerHTML > 2 ) {
+        num.innerHTML--;
+        var optionList = document.getElementById('multiple-choice-option-list');
+        optionList.removeChild(optionList.lastChild);
+    }
+}
+
+//Addition for multiple choice field
+function addNum() {
+    var num = document.getElementById('multiple-choice-num');
+    if(num.innerHTML < 5) {
+        num.innerHTML++;
+        var optionList = document.getElementById('multiple-choice-option-list');
+        var option = document.getElementsByClassName('multiple-choice-option')[0].cloneNode(true);
+        option.innerHTML = "<br>Possible Option " + "<input type='text' class='option-input'>";
+        optionList.appendChild(option);
+    }
+}
+
+//Function for triggering the question set dropdown menu
+function dropdown() {
+    var elem = document.getElementById("dropdown");
+    var questionSetName = document.getElementById("questionset-name");
+    //If menu already triggered
+    if(elem.style.display == 'block') {
+        //Hide the dropdown menu
+        elem.style.display = 'none';
+        //Reset styles
+        questionSetName.style.color = ''
+        questionSetName.style.backgroundColor = ''
+    }
+    //Else -> menu not triggered
+    else {
+        //Show the dropdown menu
+        elem.style.display = 'block';
+        //Reverse styling
+        questionSetName.style.color = '#444'
+        questionSetName.style.backgroundColor = 'whitesmoke'
+    }
+}
+
 //For loop iterates through all question items on the page
 for( let i = 0; i < container[0].children.length; i++) {
     for( let j = 0; j < container[0].children[i].children.length; j++) {
@@ -49,14 +109,14 @@ for( let i = 0; i < container[0].children.length; i++) {
             }
 
             //If the question item you are dropping the 'draggedItem' is on the pool of questions
-            if(item.parentNode.className == "questionPool") {
+            if(item.parentNode.className == "question-pool") {
                 //If the draggedItem came from a question slot
                 if( draggedItem.parentNode.className == "question-slot") { 
                     draggedItem.parentNode.replaceChild(item, draggedItem);
                     pool.insertBefore(draggedItem, pool.children[replaceIndex])
                 }
                 //If the draggedItem came from the pool of questions
-                else if (draggedItem.parentNode.className == "questionPool") {
+                else if (draggedItem.parentNode.className == "question-pool") {
                     //These if-else statements are for swapping question items that are both located on the pool of questions
                     if( dragIndex < replaceIndex) {
                         item.parentNode.insertBefore(item.parentNode.children[dragIndex], item.parentNode.children[replaceIndex]);
@@ -72,7 +132,7 @@ for( let i = 0; i < container[0].children.length; i++) {
             //If you are dropping the 'draggedItem' on a question slot and it is a FILLED question slot
             else if(item.parentNode.className == "question-slot" && item.parentNode.children.length >= 1) { 
                 //If the draggedItem is from the pool of questions
-                if(draggedItem.parentNode.className == "questionPool") { 
+                if(draggedItem.parentNode.className == "question-pool") { 
                     item.parentNode.replaceChild(draggedItem, item);
                     pool.insertBefore(item, pool.children[dragIndex]);
                 }
@@ -137,30 +197,25 @@ for( let i = 0; i < container[0].children.length; i++) {
 
 
 $(document).ready(function(){
-    $("#saveButton").click(function() {
+    $("#save-button").click(function() {
         //This function looks at each of the question items and checks if there is any question in it
         for(var i = 1; i < 6; i++) { 
             var questionNumber = "Q" + i;
-            var question;
-            if(question = document.getElementById(questionNumber).firstElementChild) {
+            var question = document.getElementById(questionNumber).firstElementChild;
+            if(question) {
                 questionElements = question.innerHTML.split("<br>");
                 //Sends question details to the flask application
-                $.post("/postmethod", {     
+                $.post("/postquestion", {     
                     questionNumber:i,
-                    questionID:questionElements[0],
-                    questionContent:questionElements[1],
-                    questionAnswer:questionElements[2]
+                    questionID:questionElements[0]
             
                 });
             }
                 //Empty questions get sent too as well
             else {
-                $.post("/postmethod", {
+                $.post("/postquestion", {
                     questionNumber:i,
-                    questionID:'',
-                    questionContent:'',
-                    questionAnswer:''
-            
+                    questionID:''
                 });
             }
 
