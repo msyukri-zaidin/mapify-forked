@@ -8,7 +8,7 @@ import json
 
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/admin', methods=['GET', 'POST'])
 def index():
     form = QuestionForm()
 
@@ -36,12 +36,22 @@ def index():
 def base():
     return render_template('base.html')
 
-@app.route('/postmethod', methods = ['POST'])
+@app.route('/postquestion', methods = ['POST'])
 def get_question_data():
     convertedQuestionNumber = int(request.form['questionNumber'])
-    questionData = {convertedQuestionNumber : (request.form['questionID'], request.form['questionContent'], request.form['questionAnswer'])}
-    CurrentQuestion.query.get(convertedQuestionNumber).id = request.form['questionID']
-    CurrentQuestion.query.get(convertedQuestionNumber).question = request.form['questionContent']
-    CurrentQuestion.query.get(convertedQuestionNumber).answer = request.form['questionAnswer']
+
+    questionID = request.form['questionID']
+    newQuestion = ''
+    newAnswer = ''
+    #If question slot is filled, newQuestion & newAnswer gets initialised accordingly
+    if(questionID != ''):
+        print("questionID: ", questionID, "is present")
+        newQuestion =  Question.query.get(questionID).question
+        newAnswer = Question.query.get(questionID).answer
+
+    #Question slots get initalised accordingly
+    CurrentQuestion.query.get(convertedQuestionNumber).id = questionID
+    CurrentQuestion.query.get(convertedQuestionNumber).question = newQuestion
+    CurrentQuestion.query.get(convertedQuestionNumber).answer = newAnswer
     db.session.commit()
     return redirect(url_for('index'))
