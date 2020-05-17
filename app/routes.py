@@ -33,3 +33,5 @@ def index():
 @app.route('/base')
 def base():
     return render_template('base.html')
+
+
