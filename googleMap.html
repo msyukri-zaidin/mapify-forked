@@ -17,9 +17,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 
+        <script>
+            function showElement(elementID) {
+                var x = document.getElementById(elementID);
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                }
+            }
+            
+        </script>
+
     </head>
 
     <body>
+
 
         <!-- Navigation Bar -->
         <div class="nav_area">
@@ -52,24 +63,31 @@
                 
             </div>
 
+
             <div id="Q1" class="main">
                 <h1>Question 1</h1>
                 <p>
                     What is the capital of Australia?
                 </p>
 
-                <div class="map_container" id="map">
+                
+                <!-- This is a div set to display none which will show
+                iff the button is clicked -->
+                
+                <div id="map_container" class="map_container">
+                    <div id="map"></div>
                 </div>
+                
 
-                <div class="code_container">
+                <div class="input_container">
 
-                    <input style="padding: 10px; text-align: center; border: solid 2px #1aa4bc;" type="text" id="address">
-                    <button id="sendInput" class="showCodeButton" type="button" onclick="getLatLong()">Submit</button>
+                    <input class="inputAns" type="text" id="address">
+                    <button class="submitQ" type="button" onclick="showElement('map_container');getLatLong();">Submit</button>
         
                 </div>
             
             </div>
-
+            
             <div id="Q2" class="main" >
                 <h1>Question 2</h1>
             
@@ -89,12 +107,6 @@
                 <h1>Question 5</h1>
 
         </div>
-        <script>
-            $(function(){
-                $('#HTML1Button').click();
-            });
-        </script>
-
 
         <script>
             $(document).ready(function(){
@@ -104,6 +116,11 @@
                     $(this).removeClass('unclicked')
                     $(this).addClass("clicked");
                 });
+            });
+
+            
+            $(function(){
+                $('#Q1Button').click();
             });
 
 
