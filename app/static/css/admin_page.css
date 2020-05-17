@@ -92,23 +92,24 @@ textarea[type=text] {
     top: 48px;
     background-color: whitesmoke;
     width: 139px;
-    z-index: 10;
+    z-index: 1;
 }
 
-.container-nav .questionset-dropdown-content a {
+.questionset-dropdown-option {
     float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
+    cursor: pointer;
 }
 
-.container-nav .questionset-dropdown-content a:hover {
+.questionset-dropdown-option:hover {
     background-color: #ddd;
 }
 
-.container-nav a {
+.container-nav .questionset-dropdown {
     float: left;
     display: block;
     color: whitesmoke;
@@ -116,11 +117,64 @@ textarea[type=text] {
     padding: 14px 16px;
     text-decoration: none;
     background-color: inherit;
+    cursor: pointer;
 }
 
-.container-nav a:hover {
+.container-nav .questionset-dropdown:hover {
     background-color: whitesmoke;
     color: #444;
+}
+
+#new-questionset {
+    cursor: pointer;
+}
+
+#new-questionset:hover {
+    background-color: whitesmoke;
+    color: #444;
+}
+
+#new-questionset-form {
+    display: none;
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    border: solid;
+    left: 50%;
+    margin-left: -200px;
+    top: 75px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+#new-questionset-form-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    margin-bottom:10px;
+    margin-top: 200px;
+}
+
+#new-questionset-form-submit:hover {
+    background-color: #6bed71;
+}
+
+#new-questionset-form-cancel {
+    background-color: red;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    margin-bottom:10px;
+    text-align: center;
+}
+
+#new-questionset-form-cancel:hover {
+    background-color: #ff5c77;
 }
 
 h1 {
@@ -222,6 +276,47 @@ body{
     margin: 20px;
     padding: 8px;
     transition: all 0.2s linear;
+}
+
+#question-item-buttons {
+    display: flex;
+    flex-flow: row;
+    background-color: inherit;
+    justify-content: space-between;
+}
+
+#reset-button {
+    background-color: red;
+    color: white;
+    padding: auto;
+    cursor: pointer;
+    margin-top:10px;
+    margin-bottom:10px;
+    flex-grow: 1;
+    border-width: 2px;
+    height: 40px;
+}
+
+#reset-button:hover {
+    background-color: #ff5c77;
+}
+
+
+#save-button {
+    background-color: #52bf57;
+    color: white;
+    padding: auto;
+    cursor: pointer;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left: 10px;
+    flex-grow: 1;
+    border-width: 2px;
+    height: 40px;
+}
+
+#save-button:hover {
+    background-color: #6bed71;
 }
 
 table, th, td {
