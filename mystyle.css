@@ -54,6 +54,13 @@ button:focus {
   display: flex;
   justify-content: space-between;
 }
+.home-box {
+  background-color: rgba(185, 185, 185, 0.212);
+  box-sizing: border-box;
+  border-radius: 7px;
+  padding: 30px;
+  margin: 30px 0;
+}
 .box-title {
   flex: 0 0 100%;
   margin-bottom: 20px;
@@ -85,20 +92,16 @@ button:focus {
 
 /* ------------------------------------------- */
 /* Home Page Specific */
+#home-intro {
+  
+}
 #welcome-msg {
   font-size: 6em;
   text-align: left;
   padding-top: 50px;
   display: inline-block;
 }
-.home-box {
-  background-color: rgba(185, 185, 185, 0.212);
-  box-sizing: border-box;
-  border-radius: 7px;
-  padding: 30px;
-  margin: 30px 0;
-}
-#welcome-sign form {
+#username-form {
   padding-left: 10%;
   margin-top: 60px;
   display: inline-block;
