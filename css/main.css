@@ -145,20 +145,25 @@ button:focus {outline:0;}
 }
 
 .myBtn.unclicked:hover {
-    background-color: whitesmoke;
-    color:  #1abc9c;
-}
-
-
-.myBtn.clicked {
-    background-color: #1abc9c;
     color: whitesmoke;
+    background-color:  rgb(68, 114, 116);
 }
 
 .myBtn.unclicked {
     background-color: #aaa;
     color: whitesmoke;
 }
+
+.myBtn.clicked {
+    background-color: rgb(95, 158, 160);
+    color: whitesmoke;
+}
+
+.myBtn.clicked:hover {
+    background-color: rgb(95, 158, 160, 0.5);
+    color: whitesmoke;
+}
+
 
 /*-----------------------------------------------------*/
 
@@ -212,8 +217,8 @@ button:focus {outline:0;}
 }
 
 .submitQ:hover {
-    background-color: #fff;
-    color: #1abc9c;
+    background-color: cadetblue;
+    color: whitesmoke;
 }
 
 
