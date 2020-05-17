@@ -8,6 +8,19 @@ let replaceIndex = 0;
 const pool = container[0].children[0];
 const slots = container[0].children[1];
 
+function reset() {
+    var setID = document.getElementById("questionset-name").getAttribute('value')
+    var link = '/admin?questionsetID=' + setID;
+    window.location = link;
+}
+
+function showQuestionsetForm() {
+    document.getElementById("new-questionset-form").style.display = 'block';
+}
+
+function hideQuestionsetForm() {
+    document.getElementById("new-questionset-form").style.display = 'none';
+}
 
 function showAnswerField() {
     var questionType = document.getElementsByClassName('questionType');
@@ -195,32 +208,87 @@ for( let i = 0; i < container[0].children.length; i++) {
 }
 
 
+$(document).ready(function(){
+    for(var i = 0; i < questionSetTotal; i++) {
+        const count = i;
+        $("#questionset-dropdown-option-" + count).click(function() {
+            var dropdownID = "questionset-dropdown-option-" + count;
+            var setID = document.getElementById(dropdownID).getAttribute('value');
+            var myJSON = {
+                questionsetID:setID
+            }
+            var myJSON = JSON.stringify(myJSON);
+            $.ajax({
+                type: "POST",
+                url: '/loadquestionset',
+                data: myJSON,
+                error: function (jqXHR, textStatus, errorThrown) {
+                     console.log(textStatus); 
+                    },
+                success: function(data, textStatus) {
+                    var link = "/admin?questionsetID=" + setID
+                    window.location = link;
+                }
+            })
+            /*
+            if(q) {
+                console.log("Afirm")
+                $.post("/loadquestionset", {
+                    questionsetID:q.innerHTML[0]
+                });
+            }
+            */
+        })
+    }
+})
 
 $(document).ready(function(){
     $("#save-button").click(function() {
-        //This function looks at each of the question items and checks if there is any question in it
-        for(var i = 1; i < 6; i++) { 
+        //This function looks at each of the question slots and checks if there is any question in it
+        var myObj = {
+            0:
+            {
+                questionNumber:0,
+                questionID:0,
+                questionSetID:0
+            }
+        }
+        for(var i = 1; i <= questionSetNumberOfQuestions; i++) { 
             var questionNumber = "Q" + i;
             var question = document.getElementById(questionNumber).firstElementChild;
+            //Sends question details to the flask application
             if(question) {
                 questionElements = question.innerHTML.split("<br>");
-                //Sends question details to the flask application
-                $.post("/postquestion", {     
-                    questionNumber:i,
-                    questionID:questionElements[0]
-            
-                });
+                myObj[i] = {questionNumber: i, questionID:questionElements[0], questionSetID:document.getElementById("questionset-name").getAttribute('value')}
             }
                 //Empty questions get sent too as well
             else {
-                $.post("/postquestion", {
-                    questionNumber:i,
-                    questionID:''
-                });
+                myObj[i] = {questionNumber:i, questionID:'', questionSetID:document.getElementById("questionset-name").getAttribute('value')}
             }
+            
 
         }
+        var myJSON = JSON.stringify(myObj);
+        //console.log(myJSON);
+        $.ajax({
+            type: "POST",
+            url: '/postquestion',
+            data: myJSON,
+
+            error: function (jqXHR, textStatus, errorThrown) {
+                 console.log(textStatus); 
+                },
+            success: function(data, textStatus) {
+                var setID = document.getElementById("questionset-name").getAttribute('value')
+                var link = '/admin?questionsetID=' + setID;
+                window.location = link;
+            }
+        })
+        
+        
+ 
     })
 });
+
 
 
