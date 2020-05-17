@@ -1,5 +1,6 @@
 /*
     This JS file builds the quiz page
+    Author: Ahbar Sakib
     
 */
 
