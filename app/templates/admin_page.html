@@ -3,6 +3,10 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var questionSetNumberOfQuestions = '{{ questionSetNumberOfQuestions }}';
+        var questionSetTotal = '{{ questionSetTotal }}';
+    </script>
     <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
     <link href="https://css.gg/css?=|add|remove" rel="stylesheet">
     <title>Admin Page</title>
@@ -25,12 +29,30 @@
     <div class="container-nav">
         
         <div class="questionset">Question Set: </div>
-        <a href="#" class="questionset-dropdown" id="questionset-name" onclick="dropdown()">[NAME OF SET]</a>
+        {% set currentSet = questionSet[currentQuestionset] %}
+        <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">{{ currentSet.name }}</div>
         <div class="questionset-dropdown-content"id= "dropdown" >
-            <a href='#'>[Question Set]</a>
-            <a href='#'>[Question Set]</a>
-            <a href='#'>[Question Set]</a>
+            {% for i in range(0, questionSet|length) %}
+                {% if questionSet[i] != currentSet %}
+                    <div class="questionset-dropdown-option"  id="questionset-dropdown-option-{{ i }}" value="{{ questionSet[i].id }}">{{ questionSet[i].name }}</div>
+                {% endif %}
+            {% endfor %}
         </div>
+
+        <div class="questionset" id="new-questionset" onclick="showQuestionsetForm()">New Question Set</div>
+        <form action="" method="POST">
+        <div id="new-questionset-form">
+            {{ questionset_form.hidden_tag() }}
+
+            {{ questionset_form.name.label }}<br>
+            {{ questionset_form.name(class="form-input-box")}}<br>
+            <br>
+            {{ questionset_form.number_of_questions.label }}<br>
+            {{ questionset_form.number_of_questions(class="form-input-box")}} <br>
+            {{ questionset_form.submit(id="new-questionset-form-submit") }}
+            <div id="new-questionset-form-cancel" onclick="hideQuestionsetForm()">Cancel</div>
+        </div>
+        </form>
     </div>
 
     <div class="container" id="container">
@@ -42,13 +64,16 @@
         </div>
         <div class="question-list">
             {% for question in currentQuestion %}
-                <div class="question-slot" id="Q{{ question.number }}">Q{{ question.number }}
-                {% if question.id != '' %}
-                    <div class="question-item" draggable="true">{{ question.id }}<br>{{ question }}<br>{{ question.answer }}</div>
+                <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }}
+                {% if question.question_id != '' %}
+                    <div class="question-item" draggable="true">{{ question.question_id }}<br>{{ question.parent.question }}<br>{{ question.parent.question_type }}<br>{{ question.parent.answer}}</div>
                 {% endif %}
             </div>
             {% endfor %}
-            <button type="button" id="save-button">Save Changes</button>
+            <div id="question-item-buttons">
+                <button type="button" id="reset-button" onclick="reset()">Reset</button>
+                <button type="button" id="save-button">Save Changes</button>
+            </div>
         </div>
 
     </div>
