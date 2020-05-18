@@ -126,7 +126,7 @@ function createQuiz() {
 
     // Change the innerHTML of the container to quiz page body
     quizContainer.innerHTML = side + mainBody.join('');
-})
+});
 }
 
 /**
@@ -160,6 +160,7 @@ function wrongAns(qNum) {
     
     // Change the colour of the side buttons to be green
     // On the question div show that it is correct
+
     $('#Q'+qNum+'Button').removeClass('clicked');
 
     // Chnage the side button styling
@@ -168,10 +169,13 @@ function wrongAns(qNum) {
     sideButton.style.color = 'whitesmoke';
 
     // Tell the user they got the question incorrect and what the correct answer is
-    let message = document.getElementById('msg'+qNum);
-    message.innerHTML = `<b>Correct Answer : </b> ${questions[qNum-1].answer}`;
-    message.style.color = '#f56161';
-    message.style.display = 'block';
+    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
+        let message = document.getElementById('msg'+qNum);
+        message.innerHTML = `<b>Correct Answer : </b> ${questions[qNum-1].answer}`;
+        message.style.color = '#f56161';
+        message.style.display = 'block';
+    
+    });
     
 
 }
@@ -203,6 +207,8 @@ function validateAns(qNum) {
     $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
     let currentAns = document.getElementById('ans'+qNum).querySelector('input').value;
+
+    let correct = questions[qNum -1].answer;
 
     // Check if the 
     if (currentAns == '') {
@@ -242,7 +248,7 @@ function validateAns(qNum) {
         }
         
     }
-})
+});
 
 }
 
@@ -265,7 +271,7 @@ function getLatLong(qNum, setZoom, setRadius) {
         }
 
     });
-})
+});
 }
 
 // Creates the map with the a specified latitude (lat) and longitude (lang)
