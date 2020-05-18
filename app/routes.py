@@ -132,6 +132,7 @@ def admin():
 #Test function
 @app.route('/base')
 def base():
+
     #return render_template('base.html')
     return redirect(url_for('admin', questionsetID = 2))
 
@@ -175,3 +176,4 @@ def questionset():
     setDict = request.get_json(force=True)
     questionsetID = setDict['questionsetID']
     return redirect(url_for('admin', questionsetID = questionsetID))
+
