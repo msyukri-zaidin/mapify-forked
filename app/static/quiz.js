@@ -200,15 +200,9 @@ function disableButton(qNum) {
  * @param {String} qNum - Question Number 
  */
 function validateAns(qNum) {
-<<<<<<< HEAD:app/static/quiz.js
-    // Gets the user input for the question and get the lowercase of everything so thats its uniform
-    let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
-    let correct = questions[qNum-1].answer.toLowerCase();
-=======
     $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
     let currentAns = document.getElementById('ans'+qNum).querySelector('input').value;
->>>>>>> master:app/static/quiz.js
 
     // Check if the 
     if (currentAns == '') {

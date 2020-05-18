@@ -7,14 +7,10 @@
         <!-- <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css"> -->
 
         <!-- Page Logo -->
-        <link rel="icon" type="image/png" href="../../photos/mapify-icon.png" >
+        <link rel="icon" type="image/png" href="{{url_for('static',filename='css/images/mapify-icon.png')}}" >
 
         <!-- Link the css sytlesheet -->
-<<<<<<< HEAD:app/templates/quiz.html
-        <link rel="stylesheet" href="../static/css/quiz.css">
-=======
         <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
->>>>>>> master:app/templates/quiz.html
 
         <!-- Link the script files for java script and for the google api-->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
@@ -33,11 +29,7 @@
         <div class="nav_area">
             <div class="inner_nav">
                 <div class="logo_container">
-<<<<<<< HEAD:app/templates/quiz.html
-                    <img src="../static/css/images/mapify-2.png" alt="mapify_logo" height="70">
-=======
                     <a href="/"><img src="{{url_for('static',filename='css/images/mapify-2.png')}}" alt="mapify_logo" height="70"></a>
->>>>>>> master:app/templates/quiz.html
                 </div>
 
                     <ul class="nav">
@@ -54,11 +46,7 @@
 
         </div>
 
-<<<<<<< HEAD:app/templates/quiz.html
-        <script type="text/javascript" src="../static/quiz.js"></script>
-=======
         <script type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
->>>>>>> master:app/templates/quiz.html
 
         <script>
             $(document).ready(function(){
