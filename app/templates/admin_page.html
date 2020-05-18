@@ -26,6 +26,7 @@
         <p>This is a place where you can edit questions! Simply drag and drop to the desired question number and save changes!</p>
     </div>
 
+    <!-- Container navigation bar -->
     <div class="container-nav">
         
         <div class="questionset">Question Set: </div>
@@ -39,34 +40,42 @@
             {% endfor %}
         </div>
 
-        <div class="questionset" id="new-questionset" onclick="showQuestionsetForm()">New Question Set</div>
-        <form action="" method="POST">
-        <div id="new-questionset-form">
-            {{ questionset_form.hidden_tag() }}
+        <div class="questionset" id="new-questionset">New Question Set</div>
 
-            {{ questionset_form.name.label }}<br>
-            {{ questionset_form.name(class="form-input-box")}}<br>
-            <br>
-            {{ questionset_form.number_of_questions.label }}<br>
-            {{ questionset_form.number_of_questions(class="form-input-box")}} <br>
-            {{ questionset_form.submit(id="new-questionset-form-submit") }}
-            <div id="new-questionset-form-cancel" onclick="hideQuestionsetForm()">Cancel</div>
-        </div>
-        </form>
     </div>
 
+    <!-- Container is the main body of the page, holding both the pool of questions and question slots-->
     <div class="container" id="container">
        
         <div class="question-pool">
             {% for question in questionPool %}
-                <div class="question-item" draggable="true">{{ question.id }}<br>{{ question }}<br>{{ question.answer }}</div>
+                <div class="question-item" id="question-item-{{ question.id }}" value="{{ question.id }}" draggable="true" onclick="currentlySelected(this.id)">
+                    {{ question.id }}<br>
+                    {{ question }}<br>
+                    {{ question.question_type }}<br>
+                    {{ question.answer }}
+                    <div class="question-item-options">
+                        <button type="button" id="edit-button">Edit</button>
+                        <button type="button" class="delete-button">Delete</button>
+                    </div>
+                </div>
             {% endfor %}
         </div>
+
         <div class="question-list">
             {% for question in currentQuestion %}
                 <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }}
                 {% if question.question_id != '' %}
-                    <div class="question-item" draggable="true">{{ question.question_id }}<br>{{ question.parent.question }}<br>{{ question.parent.question_type }}<br>{{ question.parent.answer}}</div>
+                    <div class="question-item" draggable="true" id="question-item-{{ question.question_id }}" value="{{ question.question_id }}" onclick="currentlySelected(this.id)">
+                        {{ question.question_id }}<br>
+                        {{ question.parent.question }}<br>
+                        {{ question.parent.question_type }}<br>
+                        {{ question.parent.answer}}
+                        <div class="question-item-options">
+                            <button type="button" id="edit-button">Edit</button>
+                            <button type="button" class="delete-button">Delete</button>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
             {% endfor %}
@@ -76,10 +85,36 @@
             </div>
         </div>
 
+        <!--    Container popup boxes   -->
+        <div id="deleteModal" class="modal">
+            <div id="delete-popup">
+                <p>Are you sure?</p><br>
+                <p>Deleting a question will remove it from all question sets</p>
+                <button type="button" id="cancel-button">Cancel</button>
+                <button type="button" id="confirm-button">Confirm</button>
+            </div>
+        </div>
+
+        <div id="questionset-modal" class="modal">
+            <div id="new-questionset-form">
+                <form action="" method="POST">
+                    {{ questionset_form.hidden_tag() }}
+
+                    {{ questionset_form.name.label }}<br>
+                    {{ questionset_form.name(class="form-input-box")}}<br>
+                    <br>
+                    {{ questionset_form.number_of_questions.label }}<br>
+                    {{ questionset_form.number_of_questions(class="form-input-box")}} <br>
+                        <button type="button" id="new-questionset-form-cancel">Cancel</button>
+                    {{ questionset_form.submit(id="new-questionset-form-submit") }}
+                    
+                </form>
+            </div>
+        </div>
+
     </div>
 
-
-
+    <!-- Form for entering new questions -->
     <div class="form-input">
         <form action="" method="POST">
             {{ form.hidden_tag() }}
@@ -96,12 +131,13 @@
                 </tr>
             {% endfor %}
             <br>
-            <!-- This is where the Answer will go-->
+            <!-- If short answer was selected, the following HTML handles the structure for that-->
             <div id="form-short-answer">
-                {{ form.answer.label }} <br>
-                {{ form.answer(class="form-input-box")}}
+                {{ form.short_answer.label }} <br>
+                {{ form.short_answer(class="form-input-box")}}
             </div>
 
+            <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
             <div id="form-multiple-choice-answer">
                 Choices
                 <div class="multiple-choice-number">
@@ -112,14 +148,18 @@
             
                 <br>
                 <div id="multiple-choice-option-list">
-                    <div class= "multiple-choice-option" id="multiple-choice-correct-option">Correct Option<input type="text" class="option-input"></div><br>
-                    <div class= "multiple-choice-option">Possible Option<input type="text" class="option-input"></div>
+                    <div class= "multiple-choice-option" id="multiple-choice-correct-option">{{ form.multiple_choice_answer.label }}{{ form.multiple_choice_answer(class="option-input")}}<br><br>
+                        <div class= "multiple-choice-option" id="multiple-choice-option-1">Possible Option{{ form.option_value_1(class="option-input")}}</div><br>
+                        <div class= "multiple-choice-option" id="multiple-choice-option-2">Possible Option{{ form.option_value_2(class="option-input")}}</div><br>
+                        <div class= "multiple-choice-option" id="multiple-choice-option-3">Possible Option{{ form.option_value_3(class="option-input")}}</div><br>
+                        <div class= "multiple-choice-option" id="multiple-choice-option-4">Possible Option{{ form.option_value_4(class="option-input")}}</div>
                 </div>
             </div>
-        
+        </div>
             <br>
-            <p> {{ form.submit(class="form-input-label") }}</p>
+            <p> {{ form.submit(id="form-question-submit", class="form-input-label") }}</p>
         </form>
+        
     </div>
 
 
