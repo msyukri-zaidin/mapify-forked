@@ -202,11 +202,3 @@ def questionset():
     setDict = request.get_json(force=True)
     questionsetID = setDict['questionsetID']
     return redirect(url_for('admin', questionsetID = questionsetID))
-
-
-@app.route('/quizPage', methods = ['GET','POST'])
-def quizPage():
-    questionsetID = request.args.get('questionsetID')
-    print("Link triggered setID: ", questionsetID)
-    #questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
-    return render_template('quizPage.html', questionsetID = questionsetID)
