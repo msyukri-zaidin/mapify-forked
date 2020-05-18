@@ -10,11 +10,15 @@
         <link rel="icon" type="image/png" href="photos/mapify-icon.png" >
 
         <!-- Link the css sytlesheet -->
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
 
         <!-- Link the script files for java script and for the google api-->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            let questionsetID = '{{ questionsetID }}';
+            
+        </script>
 
     </head>
 
@@ -25,7 +29,7 @@
         <div class="nav_area">
             <div class="inner_nav">
                 <div class="logo_container">
-                    <img src="images/mapify-2.png" alt="mapify_logo" height="70">
+                    <a href="/"><img src="{{url_for('static',filename='css/images/mapify-2.png')}}" alt="mapify_logo" height="70"></a>
                 </div>
 
                     <ul class="nav">
@@ -36,13 +40,13 @@
                     </ul>
             </div>
         </div>
-
         <!-- Body of the webpage -->
         <div id="quiz" class="body_container">
 
+
         </div>
 
-        <script type="text/javascript" src="js/quiz.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
 
         <script>
             $(document).ready(function(){
