@@ -206,9 +206,9 @@ function disableButton(qNum) {
 function validateAns(qNum) {
     $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
-    let currentAns = document.getElementById('ans'+qNum).querySelector('input').value;
+    let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
 
-    let correct = questions[qNum -1].answer;
+    let correct = questions[qNum -1].answer.toLowerCase();
 
     // Check if the 
     if (currentAns == '') {
