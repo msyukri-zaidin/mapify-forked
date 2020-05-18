@@ -1,10 +1,36 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app
 from app import db
 from app.models import Question, CurrentQuestion, QuestionSet, Option
 from app.forms import QuestionForm, QuestionsetForm
 import sys
 import json
+
+@app.route('/', methods = ['GET','POST'])
+def home():
+    questionSet = QuestionSet.query.all()
+    return render_template('base.html', questionSet = questionSet)
+
+@app.route('/quiz', methods = ['GET','POST'])
+def generate_quiz():
+    questionsetID = request.args.get('questionsetID')
+    print("Link triggered setID: ", questionsetID)
+    #questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
+    return render_template('quiz.html', questionsetID = questionsetID)
+
+@app.route('/loadquiz', methods = ['GET'])
+def load_quiz():
+    questionsetID = request.args.get('questionsetID')
+    print("/loadquiz setID: ", questionsetID)
+    questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
+    myJSON = []
+    for i in range(0, len(questionList)):
+        if questionList[i].question_id != '':
+            myJSON.append({'question':questionList[i].parent.question, 'answer':questionList[i].parent.answer})
+        else:
+            myJSON.append({'question':'', 'answer':''})
+    print(myJSON)
+    return jsonify(myJSON)
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
