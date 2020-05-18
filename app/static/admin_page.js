@@ -5,64 +5,61 @@ let draggedItem = null;
 let dragIndex = 0;
 let replaceIndex = 0;
 
+
+
 const pool = container[0].children[0];
 const slots = container[0].children[1];
 
+//Refreshes the page
 function reset() {
-    var setID = document.getElementById("questionset-name").getAttribute('value')
-    var link = '/admin?questionsetID=' + setID;
+    let setID = document.getElementById("questionset-name").getAttribute('value')
+    let link = '/admin?questionsetID=' + setID;
     window.location = link;
 }
 
-function showQuestionsetForm() {
-    document.getElementById("new-questionset-form").style.display = 'block';
-}
-
-function hideQuestionsetForm() {
-    document.getElementById("new-questionset-form").style.display = 'none';
-}
-
+//Function for question form radio buttons
+//Selecting a radio button will trigger this function and show the appropriate form fields
 function showAnswerField() {
-    var questionType = document.getElementsByClassName('questionType');
+    let questionType = document.getElementsByClassName('questionType');
 
     //questionType[0] is multiple-choice
     if(questionType[0].checked == true) {
         document.getElementById('form-short-answer').style.display = 'none';
         document.getElementById('form-multiple-choice-answer').style.display = 'block';
+        document.getElementById('form-question-submit').style.display = 'block';
     }
     //questionType[1] is short-answer
     else if(questionType[1].checked == true) {
         document.getElementById('form-multiple-choice-answer').style.display = 'none';
         document.getElementById('form-short-answer').style.display = 'block';
+        document.getElementById('form-question-submit').style.display = 'block';
     }
 }
 
 //Deduction for multiple choice field
 function deductNum() {
-    var num = document.getElementById('multiple-choice-num');
+    let num = document.getElementById('multiple-choice-num');
     if(num.innerHTML > 2 ) {
         num.innerHTML--;
-        var optionList = document.getElementById('multiple-choice-option-list');
-        optionList.removeChild(optionList.lastChild);
+        let option_num = parseInt(num.innerHTML,10);
+        document.getElementById('multiple-choice-option-' + option_num).style.display = 'none';
     }
 }
 
 //Addition for multiple choice field
 function addNum() {
-    var num = document.getElementById('multiple-choice-num');
+    let num = document.getElementById('multiple-choice-num');
     if(num.innerHTML < 5) {
         num.innerHTML++;
-        var optionList = document.getElementById('multiple-choice-option-list');
-        var option = document.getElementsByClassName('multiple-choice-option')[0].cloneNode(true);
-        option.innerHTML = "<br>Possible Option " + "<input type='text' class='option-input'>";
-        optionList.appendChild(option);
+        let option_num = num.innerHTML - 1;
+        document.getElementById('multiple-choice-option-' + option_num).style.display = 'block';
     }
 }
 
 //Function for triggering the question set dropdown menu
 function dropdown() {
-    var elem = document.getElementById("dropdown");
-    var questionSetName = document.getElementById("questionset-name");
+    let elem = document.getElementById("dropdown");
+    let questionSetName = document.getElementById("questionset-name");
     //If menu already triggered
     if(elem.style.display == 'block') {
         //Hide the dropdown menu
@@ -78,6 +75,34 @@ function dropdown() {
         //Reverse styling
         questionSetName.style.color = '#444'
         questionSetName.style.backgroundColor = 'whitesmoke'
+    }
+}
+
+//Function for question selection
+let itemSelected = false;   //Checks if an item has been selected
+let previousItem;           //The previously selected question item
+function currentlySelected(questionItemID) {
+    questionItem = document.getElementById(questionItemID);
+    //If first time selecting on page
+    if( itemSelected == false) {
+        questionItem.style.borderColor = 'black';
+        questionItem.children[3].style.display = 'block'; //Makes the edit and delete buttons appear
+        itemSelected = true;
+        previousItem = questionItem;
+    }
+    //If selecting same item as previous
+    else if (itemSelected == true && questionItem == previousItem){
+        questionItem.style.borderColor = '';
+        questionItem.children[3].style.display = 'none';
+        itemSelected = false;
+    }
+    //If an item has been selected but a selection has been made on another question item
+    else {
+        previousItem.style.borderColor = '';
+        previousItem.children[3].style.display = 'none';
+        questionItem.style.borderColor = 'black';
+        questionItem.children[3].style.display = 'block';
+        previousItem = questionItem;
     }
 }
 
@@ -151,7 +176,7 @@ for( let i = 0; i < container[0].children.length; i++) {
                 }
                 //If the draggedItem is from another question slot
                 else if(draggedItem.parentNode.className =="question-slot") {
-                    var temp = draggedItem.cloneNode(true);
+                    let temp = draggedItem.cloneNode(true);
                     draggedItem.parentNode.append(temp);
                     item.parentNode.replaceChild(draggedItem, item);
                     temp.parentNode.replaceChild(item, temp);
@@ -208,16 +233,19 @@ for( let i = 0; i < container[0].children.length; i++) {
 }
 
 
+//jQuery for question set dropdown selection
+//Selecting a question set sends the appropriate selection to the flask web app via an AJAX call. Upon success, a page refresh is initiated
 $(document).ready(function(){
-    for(var i = 0; i < questionSetTotal; i++) {
+    for(let i = 0; i < questionSetTotal; i++) {
+        //count corresponds to question set ID
         const count = i;
         $("#questionset-dropdown-option-" + count).click(function() {
-            var dropdownID = "questionset-dropdown-option-" + count;
-            var setID = document.getElementById(dropdownID).getAttribute('value');
-            var myJSON = {
+            let dropdownID = "questionset-dropdown-option-" + count;
+            let setID = document.getElementById(dropdownID).getAttribute('value');
+            let myJSON = {
                 questionsetID:setID
             }
-            var myJSON = JSON.stringify(myJSON);
+            myJSON = JSON.stringify(myJSON);
             $.ajax({
                 type: "POST",
                 url: '/loadquestionset',
@@ -226,26 +254,58 @@ $(document).ready(function(){
                      console.log(textStatus); 
                     },
                 success: function(data, textStatus) {
-                    var link = "/admin?questionsetID=" + setID
+                    //Page refresh
+                    let link = "/admin?questionsetID=" + setID
                     window.location = link;
                 }
             })
-            /*
-            if(q) {
-                console.log("Afirm")
-                $.post("/loadquestionset", {
-                    questionsetID:q.innerHTML[0]
-                });
-            }
-            */
         })
     }
 })
 
 $(document).ready(function(){
+    $(".delete-button").click(function() {
+        let modal = document.getElementById("deleteModal");
+        modal.style.display = 'block';
+    })
+    $("#confirm-button").click(function() {
+        //In-progress
+        //console.log(previousItem.getAttribute('value'));
+        /*
+        let myJSON = {
+            questionID:previousItem.getAttribute('value')
+        }
+        myJSON = JSON.stringify(myJSON);
+        $.ajax({
+            type:'POST',
+            url:'/deletequestion',
+            data: myJSON,
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus); 
+            },
+           success: function(data, textStatus) {
+                let setID = document.getElementById("questionset-name").getAttribute('value')
+                let link = "/admin?questionsetID=" + setID
+                window.location = link;
+           }
+        })
+        */
+    })
+        
+    
+    $("#cancel-button").click(function() {
+        let modal = document.getElementById("deleteModal");
+        modal.style.display = 'none';
+    })
+    $("#new-questionset").click(function() {
+        document.getElementById("questionset-modal").style.display = 'block';
+    })
+    $("#new-questionset-form-cancel").click(function() {
+        document.getElementById("questionset-modal").style.display = 'none';
+    })
     $("#save-button").click(function() {
-        //This function looks at each of the question slots and checks if there is any question in it
-        var myObj = {
+        
+        let myObj = {
             0:
             {
                 questionNumber:0,
@@ -253,23 +313,24 @@ $(document).ready(function(){
                 questionSetID:0
             }
         }
-        for(var i = 1; i <= questionSetNumberOfQuestions; i++) { 
-            var questionNumber = "Q" + i;
-            var question = document.getElementById(questionNumber).firstElementChild;
-            //Sends question details to the flask application
+        //This for loop looks at each of the question slots and checks if there is any question in it
+        for(let i = 1; i <= questionSetNumberOfQuestions; i++) { 
+            let questionNumber = "Q" + i;
+            let question = document.getElementById(questionNumber).firstElementChild;
+            //Initialises question details to an object
             if(question) {
                 questionElements = question.innerHTML.split("<br>");
                 myObj[i] = {questionNumber: i, questionID:questionElements[0], questionSetID:document.getElementById("questionset-name").getAttribute('value')}
             }
-                //Empty questions get sent too as well
+            //Empty question details get initialised too
             else {
                 myObj[i] = {questionNumber:i, questionID:'', questionSetID:document.getElementById("questionset-name").getAttribute('value')}
             }
             
 
         }
-        var myJSON = JSON.stringify(myObj);
-        //console.log(myJSON);
+        let myJSON = JSON.stringify(myObj);
+        //AJAX call sends the JSON object and refreshes the webpage upon success
         $.ajax({
             type: "POST",
             url: '/postquestion',
@@ -279,8 +340,8 @@ $(document).ready(function(){
                  console.log(textStatus); 
                 },
             success: function(data, textStatus) {
-                var setID = document.getElementById("questionset-name").getAttribute('value')
-                var link = '/admin?questionsetID=' + setID;
+                let setID = document.getElementById("questionset-name").getAttribute('value')
+                let link = '/admin?questionsetID=' + setID;
                 window.location = link;
             }
         })
