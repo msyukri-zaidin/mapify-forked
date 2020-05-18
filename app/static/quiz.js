@@ -9,6 +9,7 @@ var radiusOptions = [3005000, 3005000/2, 3005000/4, 3005000/8];
 var MAX_ATTEMPTS = 5;
 
 // This is a container of questions replicating a JSON object
+/*
 const questions = [
     {
         question: "What is the capital of Australia?",
@@ -42,11 +43,15 @@ const questions = [
         answer: "Glasgow"
     }
 
-];
+];*/
+
+
 
 // This function is responsible for rendering the basic template of the HTML quiz page
-function createQuiz() {
 
+
+
+function createQuiz() {
     /* 
         'MainBody' an array which will contain all the main HTML divs' code for each question
         It includes the Question Number, the question, map, input answers and submit buttons    
@@ -58,8 +63,10 @@ function createQuiz() {
         and its corresposing question
     */
     let sideBody = [];
-
+    
     // For each question, make the necessary divs and side buttons
+    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
+        console.log(questions);
     questions.forEach(
         (currentQuestion, questionNum) => {
             //Since questionNum is initialised as 0 we need to increment it, so we dont have a Question 0
@@ -101,6 +108,7 @@ function createQuiz() {
         }
     );
 
+
     // side contains some HTML code which contains classes to style and format the container
     // which houses the side buttons
     let side = `<div class="side">
@@ -114,7 +122,7 @@ function createQuiz() {
 
     // Change the innerHTML of the container to quiz page body
     quizContainer.innerHTML = side + mainBody.join('');
-
+})
 }
 
 /**
@@ -165,6 +173,7 @@ function disableButton(qNum) {
  * @param {String} qNum - Question Number 
  */
 function validateAns(qNum) {
+    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
     let currentAns = document.getElementById('ans'+qNum).querySelector('input').value;
 
@@ -202,6 +211,7 @@ function validateAns(qNum) {
         }
         
     }
+})
 
 }
 
@@ -210,6 +220,7 @@ function validateAns(qNum) {
  * Function to get the latitude and longitude of a location
  * **/
 function getLatLong(qNum, setZoom, setRadius) {
+    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
 
     let location = questions[qNum-1].answer;
 
@@ -223,6 +234,7 @@ function getLatLong(qNum, setZoom, setRadius) {
         }
 
     });
+})
 }
 
 // Creates the map with the a specified latitude (lat) and longitude (lang)
