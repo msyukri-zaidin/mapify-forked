@@ -189,11 +189,11 @@ button:focus {outline:0;}
   }
 
   .main h2 {
+    font-weight: 300;
     display: none;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 20px;
     text-align: center;
-    padding-bottom: 10px;
+    padding: 10px;
   }
 
   .main  p, p1 {

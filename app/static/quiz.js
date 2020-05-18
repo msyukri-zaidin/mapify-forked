@@ -4,9 +4,10 @@
     
 */
 
-var zoomOptions = [1.6, 3.2, 4, 5];
-var radiusOptions = [3005000, 3005000/2, 3005000/4, 3005000/8];
-var MAX_ATTEMPTS = 5;
+// Constants to to specify the map settings and number of attempts
+const zoomOptions = [1.6, 3.2, 4, 5];
+const radiusOptions = [3005000, 3005000/2, 3005000/4, 3005000/8];
+const MAX_ATTEMPTS = 5;
 
 // This is a container of questions replicating a JSON object
 const questions = [
@@ -86,7 +87,10 @@ function createQuiz() {
                     </div>
 
                     <!-- This is hidden right now but will contain information of how many times a button is clicked -->
-                    <h2 id="info${questionNum}">0</h2>
+                    <h2>0</h2>
+
+                    <h2 id="msg${questionNum}"></h2>
+
 
                 </div>
                 `
@@ -133,6 +137,12 @@ function correctAns(qNum) {
     sideButton.style.backgroundColor = '#1abc9c';
     sideButton.style.color = 'whitesmoke';
 
+    // Tell the user they got the question correct
+    let message = document.getElementById('msg'+qNum);
+    message.innerHTML = "Correct!";
+    message.style.color = '#1abc9c';
+    message.style.display = 'block';
+
     // Disable the enter button
     // document.getElementById('ans'+qNum).querySelector('button').disabled = true;
 }
@@ -148,6 +158,23 @@ function wrongAns(qNum) {
     let sideButton = document.getElementById('Q'+qNum+'Button');
     sideButton.style.backgroundColor = '#f56161';
     sideButton.style.color = 'whitesmoke';
+
+    // Tell the user they got the question incorrect and what the correct answer is
+    let message = document.getElementById('msg'+qNum);
+    message.innerHTML = `<b>Correct Answer : </b> ${questions[qNum-1].answer}`;
+    message.style.color = '#f56161';
+    message.style.display = 'block';
+    
+
+}
+
+function wrongAttempt(qNum, attemptNum) {
+        // Tell the user they got the question incorrect and what the correct answer is
+        let message = document.getElementById('msg'+qNum);
+        message.innerHTML = `Incorrect...Please try again!<br>
+                            Attempts Remaining : <b>${MAX_ATTEMPTS-attemptNum}</b>`;
+        message.style.color = '#f56161';
+        message.style.display = 'block';
 
 }
 
@@ -165,8 +192,9 @@ function disableButton(qNum) {
  * @param {String} qNum - Question Number 
  */
 function validateAns(qNum) {
-    // Gets the user input for the question
-    let currentAns = document.getElementById('ans'+qNum).querySelector('input').value;
+    // Gets the user input for the question and get the lowercase of everything so thats its uniform
+    let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
+    let correct = questions[qNum-1].answer.toLowerCase();
 
     // Check if the 
     if (currentAns == '') {
@@ -174,8 +202,9 @@ function validateAns(qNum) {
         return;
     }
     else {
-        if (currentAns == questions[qNum-1].answer) {
+        if (currentAns == correct) {
             correctAns(qNum);
+            disableButton(qNum);
             // go to next slide
             // show map with a marker
         }
@@ -191,11 +220,14 @@ function validateAns(qNum) {
                 // go to next slide
             }
             else {
+                
                 let setZoom = zoomOptions[numAttempts-1];
                 let setRadius = radiusOptions[numAttempts-1];
                 getLatLong(qNum, setZoom, setRadius);
                 // initMap(lat, lng, zoom[numAttempts], radius[numAttempts], qNum);
                 document.getElementById("mapCon"+qNum).style.display = "block";
+
+                wrongAttempt(qNum, numAttempts);
 
             }
             
