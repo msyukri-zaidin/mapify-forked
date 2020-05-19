@@ -15,10 +15,7 @@
         <!-- Link the script files for java script and for the google api-->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script>
-            let questionsetID = '{{ questionsetID }}';
-            
-        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
 
     </head>
 
@@ -76,12 +73,18 @@
 
                         <input class="inputAns" type="text">
                         <!-- button used to validate answer and generate the map of the location if incorrect -->
-                        <button class="submitQ" type="button" onclick="validateAns('{{ questionNum+1 }}','{{ questions[questionNum].answer }}');">Enter</button>
+                        <button
+                          class="submitQ"
+                          type="button" 
+                          onclick="validateAns('{{ questionNum+1 }}');">
+                            Enter
+                        </button>
         
                     </div>
 
                     <!-- This is hidden right now but will contain information of how many times a button is clicked -->
                     <h2>0</h2>
+                    <h2 id="answer{{ questionNum+1 }}">{{ questions[questionNum].answer }}</h2>
 
                     <h2 id="msg{{ questionNum+1 }}"></h2>
 
@@ -89,8 +92,6 @@
             {% endfor %}
 
         </div>
-
-        <script type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
 
         <script>
             $(document).ready(function(){
