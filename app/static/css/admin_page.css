@@ -75,7 +75,7 @@ textarea[type=text] {
     max-width: 900px;
 }
 
-.container-nav .questionset {
+.container-nav .nav-item {
     float: left;
     display: block;
     color: whitesmoke;
@@ -118,9 +118,25 @@ textarea[type=text] {
     text-decoration: none;
     background-color: inherit;
     cursor: pointer;
+    display: flex;
+    flex-flow: row;
+}
+
+#questionset-dropdown-name {
+    color: inherit;
+    background-color: inherit;
 }
 
 .container-nav .questionset-dropdown:hover {
+    background-color: whitesmoke;
+    color: #444;
+}
+
+.nav-item {
+    cursor: pointer;
+}
+
+.nav-item:hover {
     background-color: whitesmoke;
     color: #444;
 }
@@ -177,8 +193,8 @@ body{
     width: 100%;
     min-width: 250px;
     max-width: 350px;
-    height: 100%;
-    min-height: 350px;
+
+
 
     background-color: #bd3ffc;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -189,6 +205,7 @@ body{
     padding: 8px;
     padding-bottom: 100px;
     transition: all 0.2s linear;
+
 }
 
 .question-slot {
@@ -202,6 +219,8 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     word-wrap: break-word;
     user-select:none;
+
+
 }
 
 .question-item { /*A question in the pool of questions */
@@ -244,6 +263,9 @@ body{
     margin: 20px;
     padding: 8px;
     transition: all 0.2s linear;
+    
+    max-height: 500px;
+    overflow-y:scroll;
 }
 
 #question-item-buttons {
@@ -308,7 +330,7 @@ body{
     border: 1px solid #888;
     width: 50%;
     height: 50%;
-    margin-top: 200px;
+    margin-top: 10%;
     text-align: center;
 }
 
@@ -326,7 +348,7 @@ body{
     background-color: #fefefe;
     margin-right: auto;
     margin-left:auto;
-    margin-top: 200px;
+    margin-top: 10%;
     padding: 20px 20px 20px 20px;
     border: 1px solid #888;
     height: 50%;
@@ -383,10 +405,10 @@ table, th, td {
 .form-input {
     position: relative;
     margin: auto;
-    min-width: 600px;
-    max-width: 860px;
+    width: 50%;
     padding: 20px;
     border: solid;
+    top: 10%;
 }
 
 .form-input-box {
@@ -418,6 +440,10 @@ table, th, td {
     display: none;
 }
 
+#form-question-cancel {
+    display: none;
+}
+
 .gg-add {
     cursor: pointer;
 }
@@ -434,6 +460,17 @@ table, th, td {
     color: red;
 }
 
+.gg-chevron-down {
+    color: inherit;
+    background-color: inherit;
+    display: inline-block;
+}
+
+.gg-chevron-down:hover {
+    color: inherit;
+    background-color: inherit;
+}
+
 #form-multiple-choice-answer {
     display: none;
 }
@@ -443,3 +480,4 @@ table, th, td {
     left: 150px;
     font-size: 16px;
 }
+

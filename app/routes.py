@@ -189,10 +189,21 @@ def get_question_data():
     return redirect(url_for('admin'))
 
 #INCOMPLETE: Function for deleting a question
-@app.route('/deletequestion', methods = ['GET','POST'])
+@app.route('/deletequestion', methods = ['POST'])
 def delete_question():
     questionDict = request.get_json(force=True)
-    print("Server has: ", questionDict['questionID'])
+    questionID = questionDict['questionID']
+    #print("Server has: ", questionDict['questionID'])
+
+    #Deletes the question in Question table
+    Question.query.filter_by(id=questionID).delete()
+
+    #Deletes any options the question might have had
+    Option.query.filter_by(question_id=questionID).delete()
+
+    #Deletes rows in CurrentQuestion which have this question
+    CurrentQuestion.query.filter_by(question_id=questionID).delete()
+    db.session.commit()
     return redirect(url_for('admin'))
 
 #Function that is initiated by an AJAX call that comes from selecting a new question set from the dropdown menu

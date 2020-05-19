@@ -8,7 +8,7 @@
         var questionSetTotal = '{{ questionSetTotal }}';
     </script>
     <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
-    <link href="https://css.gg/css?=|add|remove" rel="stylesheet">
+    <link href="https://css.gg/css?=|add|remove|chevron-down" rel="stylesheet">
     <title>Admin Page</title>
 </head>
 
@@ -29,9 +29,13 @@
     <!-- Container navigation bar -->
     <div class="container-nav">
         
-        <div class="questionset">Question Set: </div>
+        <div class="nav-item">Question Set: </div>
         {% set currentSet = questionSet[currentQuestionset] %}
-        <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">{{ currentSet.name }}</div>
+        <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">
+            
+            <div id="questionset-dropdown-name">{{ currentSet.name }}</div>
+            <i class="gg-chevron-down"></i>
+        </div>
         <div class="questionset-dropdown-content"id= "dropdown" >
             {% for i in range(0, questionSet|length) %}
                 {% if questionSet[i] != currentSet %}
@@ -40,7 +44,8 @@
             {% endfor %}
         </div>
 
-        <div class="questionset" id="new-questionset">New Question Set</div>
+        <div class="nav-item" id="new-questionset">New Question Set</div>
+        <div class="nav-item" id="create-new-question">Create New Question</div>
 
     </div>
 
@@ -49,14 +54,14 @@
        
         <div class="question-pool">
             {% for question in questionPool %}
-                <div class="question-item" id="question-item-{{ question.id }}" value="{{ question.id }}" draggable="true" onclick="currentlySelected(this.id)">
+                <div class="question-item" id="question-item-{{ question.id }}" value="{{ question.id }}" draggable="true" onmousedown="currentlySelected(this.id)">
                     {{ question.id }}<br>
                     {{ question }}<br>
                     {{ question.question_type }}<br>
                     {{ question.answer }}
                     <div class="question-item-options">
-                        <button type="button" id="edit-button">Edit</button>
-                        <button type="button" class="delete-button">Delete</button>
+                        <button type="button" id="edit-button-{{ question.id }}"  onmousedown="editQuestion(this.id)" value="{{ question.id }},{{ question.question }},{{ question.question_type }},{{ question.answer }}">Edit</button>
+                        <button type="button" id="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
                     </div>
                 </div>
             {% endfor %}
@@ -66,14 +71,14 @@
             {% for question in currentQuestion %}
                 <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }}
                 {% if question.question_id != '' %}
-                    <div class="question-item" draggable="true" id="question-item-{{ question.question_id }}" value="{{ question.question_id }}" onclick="currentlySelected(this.id)">
+                    <div class="question-item" draggable="true" id="question-item-{{ question.question_id }}" value="{{ question.question_id }}" onmousedown="currentlySelected(this.id)">
                         {{ question.question_id }}<br>
                         {{ question.parent.question }}<br>
                         {{ question.parent.question_type }}<br>
                         {{ question.parent.answer}}
                         <div class="question-item-options">
-                            <button type="button" id="edit-button">Edit</button>
-                            <button type="button" class="delete-button">Delete</button>
+                            <button type="button" id="edit-button-{{ question.question_id }}" onmousedown="editQuestion(this.id)" value="{{ question.question_id }},{{ question.parent.question }},{{ question.parent.question_type }},{{ question.parent.answer }}">Edit</button>
+                            <button type="button" class="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
                         </div>
                     </div>
                 {% endif %}
@@ -112,55 +117,59 @@
             </div>
         </div>
 
-    </div>
+        <div id="create-new-question-modal" class="modal">
+                <!-- Form for entering new questions -->
+            <div class="form-input">
+                <form action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    <!-- This is where the Question will go-->
+                    {{ form.question.label }} <br>
+                    {{ form.question(rows="4", cols="50", id="question-input", class="form-input-box")}}
+                    <br>
+                    <br>
+                    <!-- This is where the question type will go-->
+                    {% for subfield in form.questionType %}
+                        <tr>
+                            <td >{{ subfield(class="questionType", onclick="showAnswerField()") }}</td>
+                            <td>{{ subfield.label }}</td><br>
+                        </tr>
+                    {% endfor %}
+                    <br>
+                    <!-- If short answer was selected, the following HTML handles the structure for that-->
+                    <div id="form-short-answer">
+                        {{ form.short_answer.label }} <br>
+                        {{ form.short_answer(class="form-input-box")}}
+                    </div>
 
-    <!-- Form for entering new questions -->
-    <div class="form-input">
-        <form action="" method="POST">
-            {{ form.hidden_tag() }}
-            <!-- This is where the Question will go-->
-            {{ form.question.label }} <br>
-            {{ form.question(rows="4", cols="50", class="form-input-box")}}
-            <br>
-            <br>
-            <!-- This is where the question type will go-->
-            {% for subfield in form.questionType %}
-                <tr>
-                    <td >{{ subfield(class="questionType",onclick="showAnswerField()") }}</td>
-                    <td>{{ subfield.label }}</td><br>
-                </tr>
-            {% endfor %}
-            <br>
-            <!-- If short answer was selected, the following HTML handles the structure for that-->
-            <div id="form-short-answer">
-                {{ form.short_answer.label }} <br>
-                {{ form.short_answer(class="form-input-box")}}
-            </div>
-
-            <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
-            <div id="form-multiple-choice-answer">
-                Choices
-                <div class="multiple-choice-number">
-                    <i class="gg-remove" onclick="deductNum()"></i>
-                    <pre>     </pre><pre id="multiple-choice-num">2</pre><pre>     </pre> 
-                    <i class="gg-add" onclick="addNum()"></i>
+                    <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
+                    <div id="form-multiple-choice-answer">
+                        Choices
+                        <div class="multiple-choice-number">
+                            <i class="gg-remove" onclick="deductNum()"></i>
+                            <pre>     </pre><pre id="multiple-choice-num">2</pre><pre>     </pre> 
+                            <i class="gg-add" onclick="addNum()"></i>
+                        </div>
+                    
+                        <br>
+                        <div id="multiple-choice-option-list">
+                            <div class= "multiple-choice-option" id="multiple-choice-correct-option">{{ form.multiple_choice_answer.label }}{{ form.multiple_choice_answer(class="option-input")}}<br><br>
+                                <div class= "multiple-choice-option" id="multiple-choice-option-1">Possible Option{{ form.option_value_1(class="option-input")}}</div><br>
+                                <div class= "multiple-choice-option" id="multiple-choice-option-2">Possible Option{{ form.option_value_2(class="option-input")}}</div><br>
+                                <div class= "multiple-choice-option" id="multiple-choice-option-3">Possible Option{{ form.option_value_3(class="option-input")}}</div><br>
+                                <div class= "multiple-choice-option" id="multiple-choice-option-4">Possible Option{{ form.option_value_4(class="option-input")}}</div>
+                        </div>
+                    </div>
                 </div>
-            
-                <br>
-                <div id="multiple-choice-option-list">
-                    <div class= "multiple-choice-option" id="multiple-choice-correct-option">{{ form.multiple_choice_answer.label }}{{ form.multiple_choice_answer(class="option-input")}}<br><br>
-                        <div class= "multiple-choice-option" id="multiple-choice-option-1">Possible Option{{ form.option_value_1(class="option-input")}}</div><br>
-                        <div class= "multiple-choice-option" id="multiple-choice-option-2">Possible Option{{ form.option_value_2(class="option-input")}}</div><br>
-                        <div class= "multiple-choice-option" id="multiple-choice-option-3">Possible Option{{ form.option_value_3(class="option-input")}}</div><br>
-                        <div class= "multiple-choice-option" id="multiple-choice-option-4">Possible Option{{ form.option_value_4(class="option-input")}}</div>
-                </div>
+                    <br>
+                    {{ form.submit(id="form-question-submit", class="form-input-label") }}
+                </form>
+                <button id="form-question-cancel">Cancel</button>
             </div>
         </div>
-            <br>
-            <p> {{ form.submit(id="form-question-submit", class="form-input-label") }}</p>
-        </form>
-        
+
     </div>
+
+
 
 
     <script src="{{ url_for('static', filename='admin_page.js') }}"></script>

@@ -26,14 +26,15 @@ function showAnswerField() {
     if(questionType[0].checked == true) {
         document.getElementById('form-short-answer').style.display = 'none';
         document.getElementById('form-multiple-choice-answer').style.display = 'block';
-        document.getElementById('form-question-submit').style.display = 'block';
+
     }
     //questionType[1] is short-answer
     else if(questionType[1].checked == true) {
         document.getElementById('form-multiple-choice-answer').style.display = 'none';
         document.getElementById('form-short-answer').style.display = 'block';
-        document.getElementById('form-question-submit').style.display = 'block';
     }
+    document.getElementById('form-question-submit').style.display = 'block';
+    document.getElementById('form-question-cancel').style.display = 'block';
 }
 
 //Deduction for multiple choice field
@@ -104,6 +105,27 @@ function currentlySelected(questionItemID) {
         questionItem.children[3].style.display = 'block';
         previousItem = questionItem;
     }
+}
+
+function questionDeletionPopup() {
+    let modal = document.getElementById("deleteModal");
+    modal.style.display = 'block';
+}
+
+function editQuestion(questionID) {
+    let questionContent = document.getElementById(questionID).getAttribute('value').split(',');
+    console.log(questionContent);
+    //[0] is id, [1] is question, [2] is question type [3] is answer
+    document.getElementById("create-new-question-modal").style.display = 'block';
+    document.getElementById('question-input').value = questionContent[1];
+    if( questionContent[2] == 'Short-Answer' || 'short-answer') {
+        document.getElementById('questionType-1').checked = true;
+    }
+    else {
+        document.getElementById('questionType-0').checked = true;
+    }
+
+
 }
 
 //For loop iterates through all question items on the page
@@ -264,17 +286,22 @@ $(document).ready(function(){
 })
 
 $(document).ready(function(){
-    $(".delete-button").click(function() {
-        let modal = document.getElementById("deleteModal");
-        modal.style.display = 'block';
+    $("#create-new-question").click(function() {
+        document.getElementById("create-new-question-modal").style.display = 'block';
     })
+    $('#form-question-cancel').click(function() {
+        let modal = document.getElementById("create-new-question-modal");
+        modal.style.display = 'none';
+    })
+
     $("#confirm-button").click(function() {
         //In-progress
-        //console.log(previousItem.getAttribute('value'));
-        /*
+        console.log(previousItem.getAttribute('value'));
+        
         let myJSON = {
             questionID:previousItem.getAttribute('value')
         }
+
         myJSON = JSON.stringify(myJSON);
         $.ajax({
             type:'POST',
@@ -289,7 +316,7 @@ $(document).ready(function(){
                 window.location = link;
            }
         })
-        */
+        
     })
         
     
@@ -350,6 +377,5 @@ $(document).ready(function(){
  
     })
 });
-
 
 
