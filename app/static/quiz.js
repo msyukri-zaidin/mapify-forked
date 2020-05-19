@@ -5,7 +5,7 @@
 */
 
 // Constants to to specify the map settings and number of attempts
-const zoomOptions = [1.6, 3.2, 4, 5, 8];
+const zoomOptions = [1.6, 3.2, 4, 5, 6.5];
 const radiusOptions = [3005000, 3005000/2, 3005000/4, 3005000/8];
 const MAX_ATTEMPTS = 5;
 
@@ -68,7 +68,7 @@ function wrongAttempt(qNum, attemptNum) {
 }
 
 function incrementAttempts(qNum) {
-    return ++document.getElementById('Q'+qNum).querySelectorALL('h2')[0].innerHTML;
+    return ++document.getElementById('Q'+qNum).querySelector('h2').innerHTML;
 }
 
 function disableButton(qNum) {
