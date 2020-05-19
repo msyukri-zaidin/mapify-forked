@@ -203,12 +203,12 @@ function disableButton(qNum) {
  * Function to validate the user input and check the answer
  * @param {String} qNum - Question Number 
  */
-function validateAns(qNum) {
-    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
+function validateAns(qNum, correctLocation) {
+    // $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
     let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
 
-    let correct = questions[qNum -1].answer.toLowerCase();
+    correctLocation = correctLocation.toLowerCase();
 
     // Check if the 
     if (currentAns == '') {
@@ -216,7 +216,7 @@ function validateAns(qNum) {
         return;
     }
     else {
-        if (currentAns == correct) {
+        if (currentAns == correctLocation) {
             correctAns(qNum);
             disableButton(qNum);
             // go to next slide
@@ -237,7 +237,7 @@ function validateAns(qNum) {
                 
                 let setZoom = zoomOptions[numAttempts-1];
                 let setRadius = radiusOptions[numAttempts-1];
-                getLatLong(qNum, setZoom, setRadius);
+                getLatLong(qNum, correctLocation, setZoom, setRadius);
                 // initMap(lat, lng, zoom[numAttempts], radius[numAttempts], qNum);
                 document.getElementById("mapCon"+qNum).style.display = "block";
 
@@ -248,20 +248,20 @@ function validateAns(qNum) {
         }
         
     }
-});
-
+// });
 }
 
 
 /**
  * Function to get the latitude and longitude of a location
  * **/
-function getLatLong(qNum, setZoom, setRadius) {
-    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
+function getLatLong(qNum, location, setZoom, setRadius) {
+    // $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
 
-    let location = questions[qNum-1].answer;
+    // let location = questions[qNum-1].answer;
 
     var geocoder = new google.maps.Geocoder();
+    console.log(location);
     geocoder.geocode( { 'address': location}, function(results, status) {
         
         if (status == google.maps.GeocoderStatus.OK) {
@@ -271,7 +271,7 @@ function getLatLong(qNum, setZoom, setRadius) {
         }
 
     });
-});
+// });
 }
 
 // Creates the map with the a specified latitude (lat) and longitude (lang)
@@ -335,5 +335,3 @@ function generatePoint(lat, lng, radius) {
 
     return {newLat, newLng};
 }
-
-createQuiz();
