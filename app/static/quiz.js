@@ -9,126 +9,6 @@ const zoomOptions = [1.6, 3.2, 4, 5];
 const radiusOptions = [3005000, 3005000/2, 3005000/4, 3005000/8];
 const MAX_ATTEMPTS = 5;
 
-// This is a container of questions replicating a JSON object
-/*
-const questions = [
-    {
-        question: "What is the capital of Australia?",
-        answer: "Canberra"
-    },
-    {
-        question: "What is the capital of Bangladesh?",
-        answer: "Dhaka"
-    },
-    {
-        question: "What is the capital of Afghanistan?",
-        answer: "Kabul"
-    },
-
-    {
-        question: "Which city is the Eiffel Tower located?",
-        answer: "Paris"
-    },
-
-    {
-        question: "What is the capital of India?",
-        answer: "New Delhi"
-    },
-
-    {
-        question: "Which city is the Statue of Liberty located in?",
-        answer: "New York"
-    },
-    {
-        question: "What is the capital of Scotland?",
-        answer: "Glasgow"
-    }
-
-];*/
-
-
-
-// This function is responsible for rendering the basic template of the HTML quiz page
-
-
-
-function createQuiz() {
-    /* 
-        'MainBody' an array which will contain all the main HTML divs' code for each question
-        It includes the Question Number, the question, map, input answers and submit buttons    
-    */
-    let mainBody = [];
-
-    /*
-        'SideBody' is an array that will contain the sidebar with all the questions 
-        and its corresposing question
-    */
-    let sideBody = [];
-    
-    // For each question, make the necessary divs and side buttons
-    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
-        console.log(questions);
-    questions.forEach(
-        (currentQuestion, questionNum) => {
-            //Since questionNum is initialised as 0 we need to increment it, so we dont have a Question 0
-            questionNum++;
-            mainBody.push(
-                // HTML code for each question
-                `
-                <div id="Q${questionNum}" class="main">
-                    <h1>Question ${questionNum}</h1>
-                    <p>
-                        ${currentQuestion.question}
-                    </p>
-
-                    <div id="mapCon${questionNum}" class="map_container">
-                        <div id="map${questionNum}" class="googleMap"></div>
-                    </div>
-
-                    <div id="ans${questionNum}" class="input_container">
-
-                        <input class="inputAns" type="text">
-                        <!-- button used to validate answer and generate the map of the location if incorrect -->
-                        <button class="submitQ" type="button" onclick="validateAns('${questionNum}');">Enter</button>
-        
-                    </div>
-
-                    <!-- This is hidden right now but will contain information of how many times a button is clicked -->
-                    <h2>0</h2>
-
-                    <h2 id="msg${questionNum}"></h2>
-
-
-                </div>
-                `
-            );
-
-            // HTML code to create the side buttons for each corresponding question
-            sideBody.push(
-                ` 
-                <button class="myBtn unclicked" id="Q${questionNum}Button">Q${questionNum}</button><br><br>
-                `
-            );
-        }
-    );
-
-
-    // side contains some HTML code which contains classes to style and format the container
-    // which houses the side buttons
-    let side = `<div class="side">
-                    <div class="buttons">
-                        ${sideBody.join('')}
-                    </div>
-                </div>`;
-
-    // get the container with the 'quiz' ID inside the body
-    let quizContainer = document.getElementById('quiz');
-
-    // Change the innerHTML of the container to quiz page body
-    quizContainer.innerHTML = side + mainBody.join('');
-});
-}
-
 /**
  * Function to change the styling of the quiz page if the user answers the question correctly
  * @param {int} qNum - Question Number 
@@ -203,12 +83,12 @@ function disableButton(qNum) {
  * Function to validate the user input and check the answer
  * @param {String} qNum - Question Number 
  */
-function validateAns(qNum) {
-    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
+function validateAns(qNum, correctLocation) {
+    // $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
     let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
 
-    let correct = questions[qNum -1].answer.toLowerCase();
+    correctLocation = correctLocation.toLowerCase();
 
     // Check if the 
     if (currentAns == '') {
@@ -216,7 +96,7 @@ function validateAns(qNum) {
         return;
     }
     else {
-        if (currentAns == correct) {
+        if (currentAns == correctLocation) {
             correctAns(qNum);
             disableButton(qNum);
             // go to next slide
@@ -237,7 +117,7 @@ function validateAns(qNum) {
                 
                 let setZoom = zoomOptions[numAttempts-1];
                 let setRadius = radiusOptions[numAttempts-1];
-                getLatLong(qNum, setZoom, setRadius);
+                getLatLong(qNum, correctLocation, setZoom, setRadius);
                 // initMap(lat, lng, zoom[numAttempts], radius[numAttempts], qNum);
                 document.getElementById("mapCon"+qNum).style.display = "block";
 
@@ -248,20 +128,20 @@ function validateAns(qNum) {
         }
         
     }
-});
-
+// });
 }
 
 
 /**
  * Function to get the latitude and longitude of a location
  * **/
-function getLatLong(qNum, setZoom, setRadius) {
-    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
+function getLatLong(qNum, location, setZoom, setRadius) {
+    // $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
 
-    let location = questions[qNum-1].answer;
+    // let location = questions[qNum-1].answer;
 
     var geocoder = new google.maps.Geocoder();
+    console.log(location);
     geocoder.geocode( { 'address': location}, function(results, status) {
         
         if (status == google.maps.GeocoderStatus.OK) {
@@ -271,7 +151,7 @@ function getLatLong(qNum, setZoom, setRadius) {
         }
 
     });
-});
+// });
 }
 
 // Creates the map with the a specified latitude (lat) and longitude (lang)
@@ -335,5 +215,3 @@ function generatePoint(lat, lng, radius) {
 
     return {newLat, newLng};
 }
-
-createQuiz();
