@@ -16,7 +16,16 @@ def generate_quiz():
     questionsetID = request.args.get('questionsetID')
     print("Link triggered setID: ", questionsetID)
     #questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
-    return render_template('quiz.html', questionsetID = questionsetID)
+
+    questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
+    myJSON = []
+    for i in range(0, len(questionList)):
+        if questionList[i].question_id != '':
+            myJSON.append({'question':questionList[i].parent.question, 'answer':questionList[i].parent.answer})
+        else:
+            myJSON.append({'question':'', 'answer':''})
+    print(myJSON)
+    return render_template('quizPage.html', questions = myJSON)
 
 @app.route('/loadquiz', methods = ['GET'])
 def load_quiz():
