@@ -68,7 +68,7 @@ function wrongAttempt(qNum, attemptNum) {
 }
 
 function incrementAttempts(qNum) {
-    return ++document.getElementById('Q'+qNum).querySelector('h2').innerHTML;
+    return ++document.getElementById('Q'+qNum).querySelectorALL('h2')[0].innerHTML;
 }
 
 function disableButton(qNum) {
