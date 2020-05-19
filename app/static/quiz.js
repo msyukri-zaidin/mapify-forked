@@ -35,7 +35,7 @@ function correctAns(qNum) {
     // document.getElementById('ans'+qNum).querySelector('button').disabled = true;
 }
 
-function wrongAns(qNum) {
+function wrongAns(qNum, correctAnswer) {
     // If the user gets the question right without using multiple attempts
     
     // Change the colour of the side buttons to be green
@@ -49,14 +49,11 @@ function wrongAns(qNum) {
     sideButton.style.color = 'whitesmoke';
 
     // Tell the user they got the question incorrect and what the correct answer is
-    $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
-        let message = document.getElementById('msg'+qNum);
-        message.innerHTML = `<b>Correct Answer : </b> ${questions[qNum-1].answer}`;
-        message.style.color = '#f56161';
-        message.style.display = 'block';
-    
-    });
-    
+    let message = document.getElementById('msg'+qNum);
+    message.innerHTML = `<b>Correct Answer : </b> ${correctAnswer}`;
+    message.style.color = '#f56161';
+    message.style.display = 'block';
+     
 
 }
 
@@ -83,12 +80,12 @@ function disableButton(qNum) {
  * Function to validate the user input and check the answer
  * @param {String} qNum - Question Number 
  */
-function validateAns(qNum, correctLocation) {
+function validateAns(qNum, correctAnswer) {
     // $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
     let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
 
-    correctLocation = correctLocation.toLowerCase();
+    let correctLocation = correctAnswer.toLowerCase();
 
     // Check if the 
     if (currentAns == '') {
@@ -104,9 +101,8 @@ function validateAns(qNum, correctLocation) {
         }
         else {
             numAttempts = incrementAttempts(qNum);
-            console.log(numAttempts);
             if (numAttempts == MAX_ATTEMPTS) {
-                wrongAns(qNum);
+                wrongAns(qNum, correctAnswer);
                 //disable button
                 disableButton(qNum);
                 return;
@@ -141,7 +137,6 @@ function getLatLong(qNum, location, setZoom, setRadius) {
     // let location = questions[qNum-1].answer;
 
     var geocoder = new google.maps.Geocoder();
-    console.log(location);
     geocoder.geocode( { 'address': location}, function(results, status) {
         
         if (status == google.maps.GeocoderStatus.OK) {
