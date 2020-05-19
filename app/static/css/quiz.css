@@ -196,10 +196,17 @@ button:focus {outline:0;}
     padding: 10px;
   }
 
-  .main  p, p1 {
+  .main  p {
     font-size: 25px;
     text-align: center;
     padding: 20px;
+}
+
+.infoMarker {
+    font-size: 15px;
+    text-align: center;
+    color: #f56161;
+
 }
 
 /*-----------------------------------------------------*/
