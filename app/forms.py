@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, RadioField, TextAreaField, IntegerField
+from wtforms import StringField, SubmitField, RadioField, TextAreaField, IntegerField, PasswordField
 from wtforms.validators import DataRequired
 from wtforms.validators import InputRequired
 
@@ -19,3 +19,8 @@ class QuestionsetForm(FlaskForm):
     name = StringField("Name")
     number_of_questions = IntegerField("Number of Questions")
     submit = SubmitField("Submit")
+    
+class LoginForm(FlaskForm):
+    username = StringField("Username", validators = [DataRequired()])
+    password = PasswordField("Password", validators = [DataRequired()])
+    submit = SubmitField('Log In')

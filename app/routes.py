@@ -2,14 +2,19 @@ from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app
 from app import db
 from app.models import Question, CurrentQuestion, QuestionSet, Option
-from app.forms import QuestionForm, QuestionsetForm
+from app.forms import QuestionForm, QuestionsetForm, LoginForm
 import sys
 import json
 
 @app.route('/', methods = ['GET','POST'])
 def home():
     questionSet = QuestionSet.query.all()
-    return render_template('base.html', questionSet = questionSet)
+    loginForm = LoginForm()
+    # need to do what happens if the user has laready logged in, would the login button appear differently
+    # not too sure on what this success does
+    if loginForm.validate_on_submit():
+        return redirect(url_for('success'))
+    return render_template('home.html', loginForm=loginForm, questionSet = questionSet)
 
 @app.route('/quiz', methods = ['GET','POST'])
 def generate_quiz():

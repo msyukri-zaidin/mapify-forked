@@ -98,7 +98,7 @@ button:focus {
 /* ------------------------------------------- */
 /* Home Page Specific */
 #home-intro {
-  background-image: url("./photos/pointingToMap.jpg");
+  background-image: url("../css/images/background.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
