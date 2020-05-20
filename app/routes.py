@@ -152,6 +152,7 @@ def admin():
     questionPool = Question.query.filter(Question.id.in_(filterList)).all()
 
 
+
     questionset_number_of_questions = questionSet[questionsetID - 1].number_of_questions    #ID deducted by 1 to get position
     return render_template(
         'admin_page.html', 
@@ -210,8 +211,11 @@ def delete_question():
     #Deletes any options the question might have had
     Option.query.filter_by(question_id=questionID).delete()
 
-    #Deletes rows in CurrentQuestion which have this question
-    CurrentQuestion.query.filter_by(question_id=questionID).delete()
+    #Clears question ID rows in CurrentQuestion which have this question
+    c = CurrentQuestion.query.filter_by(question_id=questionID).all()
+    for row in c:
+        row.question_id = ''
+    
     db.session.commit()
     return redirect(url_for('admin'))
 
@@ -222,3 +226,27 @@ def questionset():
     setDict = request.get_json(force=True)
     questionsetID = setDict['questionsetID']
     return redirect(url_for('admin', questionsetID = questionsetID))
+
+#Function that is initiated by an AJAX call that comes from editing a question
+@app.route('/editquestion', methods= ['POST'])
+def edit_question():
+    questionDict = request.get_json(force=True)
+    print(questionDict)
+
+    questionID = questionDict['questionID']
+    questionType = questionDict['questionType']
+    question = questionDict['question']
+    questionAnswer = questionDict['questionAnswer']
+
+    if questionType == 'multiple-choice':
+        optionList = questionDict['optionList']
+        for option in optionList:
+            optionID = option.split(':')[0] #ID
+            optionValue = option.split(':')[1] #Value
+            Option.query.filter_by(id = optionID).first().option_value = optionValue
+        
+    elif questionType == 'short-answer':
+        Question.query.filter_by(id=questionID).first().question = question
+        Question.query.filter_by(id=questionID).first().answer = questionAnswer
+    db.session.commit()
+    return redirect(url_for('admin'))
