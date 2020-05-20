@@ -117,12 +117,94 @@ function editQuestion(questionID) {
     console.log(questionContent);
     //[0] is id, [1] is question, [2] is question type [3] is answer
     document.getElementById("create-new-question-modal").style.display = 'block';
+    
     document.getElementById('question-input').value = questionContent[1];
-    if( questionContent[2] == 'Short-Answer' || 'short-answer') {
+    if( questionContent[2] == 'Short-Answer' || questionContent[2] == 'short-answer') {
         document.getElementById('questionType-1').checked = true;
+        document.getElementById('questionType-1').disabled = true;
+        document.getElementById('questionType-0').disabled = true;
+        showAnswerField();
+        document.getElementById('form-question-submit').style.display = 'none'; //Hide the form submit button (we use a different 'submit' button instead)
+        document.getElementById('form-question-edit').style.display= 'block'; //This is the submit button we want
+        document.getElementById('form-question-short-answer-input').value = questionContent[3];
+        $('#form-question-edit').click(function() {
+            let myJSON = {
+                questionID:questionContent[0],
+                questionType:questionContent[2],
+                question:document.getElementById('question-input').value,
+                questionAnswer:document.getElementById('form-question-short-answer-input').value
+            }
+            myJSON = JSON.stringify(myJSON);
+            $.ajax({
+                type: "POST",
+                url: '/editquestion',
+                data: myJSON,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus); 
+                    },
+                success: function(data, textStatus) {
+                    //Page refresh
+                    //let setID = document.getElementById(dropdownID).getAttribute('value');
+                    //let link = "/admin?questionsetID=" + setID
+                    window.location.reload();
+                }
+            })
+        })
+
     }
+    //Multiple choice
+    //[4] is number of options, [5] onwards are the options
     else {
-        document.getElementById('questionType-0').checked = true;
+        console.log('multiple-choice');
+        document.getElementById('questionType-0').checked = true; //Check appropriate button
+        document.getElementById('questionType-1').disabled = true; //Disable radio buttons
+        document.getElementById('questionType-0').disabled = true;
+        showAnswerField();
+        document.getElementById('form-question-submit').style.display = 'none'; //Hide the form submit button (we use a different 'submit' button instead)
+        document.getElementById('form-question-edit').style.display= 'block'; //This is the submit button we want
+
+        document.getElementById('multiple_choice_answer').value = questionContent[3]
+        //Manual assignment for first option
+        document.getElementById('option_value_1').value = questionContent[5].split(':')[1];
+        document.getElementById('multiple-choice-option-1').style.display = 'block';
+        //For loop assigns the rest of the possible options
+        for(let i = 2; i <= parseInt(questionContent[4],10); i++) {
+            optionID = 'option_value_' + (i);
+            document.getElementById(optionID).value = questionContent[i+4].split(':')[1];
+            document.getElementById('multiple-choice-option-' + i).style.display = 'block';
+            document.getElementById('multiple-choice-num').innerHTML++;
+        }
+        //AJAX call to send newly edited contents
+        $('#form-question-edit').click(function() {
+            let optionList = [];
+            for(let i = 1; i < parseInt(document.getElementById('multiple-choice-num').innerHTML, 10); i++)
+                optionList.push(questionContent[i+4].split(':')[0] + ':' + document.getElementById('option_value_' + i).value);
+            //console.log(optionList);
+            
+            let myJSON = {
+                questionID:questionContent[0],
+                questionType:questionContent[2],
+                question:document.getElementById('question-input').value,
+                questionAnswer:document.getElementById('multiple_choice_answer').value,
+                optionList:optionList
+            }
+            myJSON = JSON.stringify(myJSON);
+            $.ajax({
+                type: "POST",
+                url: '/editquestion',
+                data: myJSON,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus); 
+                    },
+                success: function(data, textStatus) {
+                    //Page refresh
+                    //let setID = document.getElementById(dropdownID).getAttribute('value');
+                    //let link = "/admin?questionsetID=" + setID
+                    window.location.reload();
+                }
+            })
+        })
+
     }
 
 
@@ -292,6 +374,20 @@ $(document).ready(function(){
     $('#form-question-cancel').click(function() {
         let modal = document.getElementById("create-new-question-modal");
         modal.style.display = 'none';
+        //Clear all entered values
+        $('#question-form').trigger('reset');
+        document.getElementById('form-question-submit').style.display = 'none';
+        document.getElementById('form-short-answer').style.display = '';
+        document.getElementById('form-multiple-choice-answer').style.display = '';
+        document.getElementById('questionType-1').disabled = false;
+        document.getElementById('questionType-0').disabled = false;
+        document.getElementById('form-question-edit').style.display = 'none';
+
+        //Reset multiple choice fields
+        document.getElementById('multiple-choice-num').innerHTML = 2;
+        document.getElementById('multiple-choice-option-2').style.display = '';
+        document.getElementById('multiple-choice-option-3').style.display = '';
+        document.getElementById('multiple-choice-option-4').style.display = '';
     })
 
     $("#confirm-button").click(function() {
@@ -331,7 +427,7 @@ $(document).ready(function(){
         document.getElementById("questionset-modal").style.display = 'none';
     })
     $("#save-button").click(function() {
-        
+
         let myObj = {
             0:
             {
@@ -340,6 +436,7 @@ $(document).ready(function(){
                 questionSetID:0
             }
         }
+        console.log(questionSetNumberOfQuestions);
         //This for loop looks at each of the question slots and checks if there is any question in it
         for(let i = 1; i <= questionSetNumberOfQuestions; i++) { 
             let questionNumber = "Q" + i;
