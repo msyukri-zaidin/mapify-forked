@@ -5,6 +5,7 @@ from app.models import Question, CurrentQuestion, QuestionSet, Option
 from app.forms import QuestionForm, QuestionsetForm
 import sys
 import json
+import random
 
 @app.route('/', methods = ['GET','POST'])
 def home():
@@ -20,11 +21,26 @@ def generate_quiz():
     questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
     myJSON = []
     for i in range(0, len(questionList)):
+        #Check if there is a question assigned to the questionSet even if the questionSet is missing
+        #question from the admin page
         if questionList[i].question_id != '':
-            myJSON.append({'question':questionList[i].parent.question, 'answer':questionList[i].parent.answer})
-        else:
-            myJSON.append({'question':'', 'answer':''})
-    print(myJSON)
+            # Check the type of the question
+            if questionList[i].parent.question_type.lower() == 'short-answer':
+                myJSON.append({'question':questionList[i].parent.question,
+                               'qType':'short',
+                               'answer':questionList[i].parent.answer})
+
+            elif questionList[i].parent.question_type.lower() == 'multiple-choice':
+                answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
+                answerOptions.append(questionList[i].parent.answer)
+
+                # shuffles the answer options so that it randomises the options on the quiz page
+                random.shuffle(answerOptions)
+                
+                myJSON.append({'question':questionList[i].parent.question,
+                               'qType':'multiple',
+                               'answerOptions': answerOptions,
+                               'answer':questionList[i].parent.answer})
     return render_template('quizPage.html', questions = myJSON)
 
 @app.route('/admin', methods=['GET', 'POST'])

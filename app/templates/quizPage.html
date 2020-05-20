@@ -65,6 +65,8 @@
                         {{questions[questionNum].question}}
                     </p>
 
+                    <!-- Check the type of question and render the webpage accordingly -->
+                    {% if questions[questionNum].qType == 'short' %}
                     <div id="mapCon{{ questionNum+1 }}" class="map_container">
                         <div id="map{{ questionNum+1 }}" class="googleMap"></div>
                     </div>
@@ -82,7 +84,30 @@
         
                     </div>
 
-                    <!-- This is hidden right now but will contain information of how many times a button is clicked -->
+                    {% elif questions[questionNum].qType == 'multiple' %}
+                    <div id="mcq{{ questionNum+1 }}" class="mcqContainer">
+                        {% for option in questions[questionNum].answerOptions %}
+                        <label class="radioContainer">
+                            <input type="radio" name="Q{{ questionNum+1 }}" value="{{option}}">
+                            <span class="checkmark"></span>
+                            {{option}}
+                        </label>
+
+
+                        {% endfor %}
+                        <button
+                            class="submitQ"
+                            type="button" 
+                            onclick="validateMCQ('{{ questionNum+1 }}')">
+                            Enter
+                        </button>
+                    </div>
+
+                    {% endif %}
+
+                    <!-- This is hidden right now but will contain information of how many times a button is clicked
+                        The answer to the question
+                        Verification message if they got the question right or wrong -->
                     <h2>0</h2>
                     <h2 id="answer{{ questionNum+1 }}">{{ questions[questionNum].answer }}</h2>
 
