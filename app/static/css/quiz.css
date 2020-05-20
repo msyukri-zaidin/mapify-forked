@@ -16,7 +16,7 @@ Set the background image*/
 
 body {
     background-color: cadetblue;
-    text-align: center;
+    /* text-align: center; */
 }
 
 /*-----------------------------------------------------*/
@@ -173,12 +173,9 @@ button:focus {outline:0;}
     flex: 85%;
     padding: 20px;
     border-radius: 0 25px 25px 0;
+    display: none;
   }
   
-  div.main {
-      display: none;
-  }
-
   /* Defining all the different types of tags here */
   .main  h1 {
       color: #1abc9c;
@@ -193,7 +190,7 @@ button:focus {outline:0;}
     display: none;
     font-size: 20px;
     text-align: center;
-    padding: 10px;
+    padding: 0px 10px;
   }
 
   .main  p {
@@ -214,6 +211,7 @@ button:focus {outline:0;}
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .inputAns {
@@ -224,13 +222,14 @@ button:focus {outline:0;}
 }
 
 .submitQ:hover {
-    background-color: cadetblue;
+    /* background-color: cadetblue; */
+    filter: brightness(80%);
     color: whitesmoke;
 }
 
 
 .submitQ {
-    margin:10px;
+    margin:0px 20px;
     border-radius: 25px;
     font-size: 20px;
     font-weight: bold;
@@ -259,10 +258,81 @@ button:focus {outline:0;}
 
 /*-----------------------------------------------------*/
 
-.inputCenter {
-    text-align:center;
-}
-.inputCenter > input {
-    text-align: left;
+/* Custom radio button for MCQ questions */
+
+.mcqContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    
 }
 
+.mcqContainer label:nth-last-child(2) {
+    padding-bottom: 20px;
+}
+
+.radioContainer {
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .radioContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .radioContainer:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .radioContainer input:checked ~ .checkmark {
+    background-color: #1aa4bc;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .radioContainer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .radioContainer .checkmark:after {
+      top: 9px;
+      left: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+  }
+
+  /*-----------------------------------------------------*/
