@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Page</title>
+</head>
+
+    <body>
+        <h1>Temporary home page</h1>
+        <h2>Available question sets</h2>
+        {% for set in questionSet %}
+            <a href='quiz?questionsetID={{ set.id }}'>{{ set }}</a><br><br>
+        {% endfor %}
+        <a href='admin'>Admin page</a>
+    </body>
+
+</html>

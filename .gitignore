@@ -1,0 +1,8 @@
+venv/*
+*.db
+*.sql
+.vscode/*
+app/__pycache__
+__pycache__/*
+migrations/*
+app/__init__.pyc

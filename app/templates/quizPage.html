@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Simple Google Map</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css"> -->
+
+        <!-- Page Logo -->
+        <link rel="icon" type="image/png" href="{{url_for('static',filename='css/images/mapify-icon.png')}}" >
+
+        <!-- Link the css sytlesheet -->
+        <link rel="stylesheet" href="{{url_for('static',filename='css/quiz.css')}}">
+
+        <!-- Link the script files for java script and for the google api-->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
+
+    </head>
+
+    <body>
+
+
+        <!-- Navigation Bar -->
+        <div class="nav_area">
+            <div class="inner_nav">
+                <div class="logo_container">
+                    <a href="/"><img src="{{url_for('static',filename='css/images/mapify-2.png')}}" alt="mapify_logo" height="70"></a>
+                </div>
+
+                    <ul class="nav">
+                        <!-- Top right navigation buttons -->
+                        <a href="#"><li>Login</li></a>
+                        <a href="#"><li>Sign up</li></a>
+
+                    </ul>
+            </div>
+        </div>
+
+        <!-- Body of the webpage -->
+        
+        <!-- {% for question in questions %}
+            <p>{{ question.question }}</p>
+            <p>{{ question.answer }}</p>
+        {% endfor %} -->
+        
+        <div id="quiz" class="body_container">
+            <!-- This part of the webpage is rendered by a quiz.js file -->
+
+            <div class="side">
+                <div class="buttons">
+                    <!-- Generates the side buttons for the coresponding questions -->
+                    {% for questionNum in range(1, (questions|length)+1) %}
+                    <button class="myBtn unclicked" id="Q{{ questionNum }}Button">Q{{ questionNum }}</button><br><br>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Generates the divs for the questions -->
+            {% for questionNum in range(questions|length) %}
+                <div id="Q{{ questionNum+1 }}" class="main">
+                    <h1>Question {{ questionNum+1 }}</h1>
+                    <p>
+                        {{questions[questionNum].question}}
+                    </p>
+
+                    <div id="mapCon{{ questionNum+1 }}" class="map_container">
+                        <div id="map{{ questionNum+1 }}" class="googleMap"></div>
+                    </div>
+
+                    <div id="ans{{ questionNum+1 }}" class="input_container">
+
+                        <input class="inputAns" type="text">
+                        <!-- button used to validate answer and generate the map of the location if incorrect -->
+                        <button
+                          class="submitQ"
+                          type="button" 
+                          onclick="validateAns('{{ questionNum+1 }}');">
+                            Enter
+                        </button>
+        
+                    </div>
+
+                    <!-- This is hidden right now but will contain information of how many times a button is clicked -->
+                    <h2>0</h2>
+                    <h2 id="answer{{ questionNum+1 }}">{{ questions[questionNum].answer }}</h2>
+
+                    <h2 id="msg{{ questionNum+1 }}"></h2>
+
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $('button.myBtn').click(function() {
+                    $('button.myBtn').removeClass('clicked');
+                    $('button.myBtn').addClass('unclicked');
+                    $(this).removeClass('unclicked')
+                    $(this).addClass("clicked");
+                    
+                    let showDiv = (this.id).replace('Button', '');
+                    
+                    $('div.main').hide();
+                    $('#'+ showDiv).show();
+
+                });
+            });
+            
+            $(function(){
+                $('#Q1Button').click();
+            });
+
+        </script>
+
+    </body>
+  
+</html>
+
+
