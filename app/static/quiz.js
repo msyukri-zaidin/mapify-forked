@@ -72,11 +72,37 @@ function incrementAttempts(qNum) {
 }
 
 function disableButton(qNum) {
-    document.getElementById('ans'+qNum).querySelector('button').disabled = true;
+    let button = document.getElementById('ans'+qNum).querySelector('button');
+    button.style.display = 'none';
+
+    //Change the colour of the button to show that it has been disabled
+    // button.disabled = true;
+    // button.style.color = 'whitesmoke';
+    // button.style.backgroundColor = '#f1f1f1'
+
 }
 
-function getAnswer(ans) {
-    return ans;
+
+function disableMCQButton(qNum) {
+    console.log(qNum);
+    document.getElementById('mcq'+qNum).querySelector('button').style.display = 'none';
+}
+
+function validateMCQ(qNum) {
+
+    let selector =  `input[name=Q${qNum}]:checked`
+    let userAnswer = (document.querySelector(selector) || {}).value
+
+    let correctAnswer = document.getElementById('answer'+qNum).innerHTML;
+
+    if (userAnswer == correctAnswer) {
+        correctAns(qNum);
+        disableMCQButton(qNum);
+    } else {
+        wrongAns(qNum, correctAnswer);
+        disableMCQButton(qNum);
+    }
+    
 }
 
 /**
