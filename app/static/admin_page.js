@@ -114,10 +114,9 @@ function questionDeletionPopup() {
 
 function editQuestion(questionID) {
     let questionContent = document.getElementById(questionID).getAttribute('value').split(',');
-    console.log(questionContent);
+
     //[0] is id, [1] is question, [2] is question type [3] is answer
     document.getElementById("create-new-question-modal").style.display = 'block';
-    
     document.getElementById('question-input').value = questionContent[1];
     if( questionContent[2] == 'Short-Answer' || questionContent[2] == 'short-answer') {
         document.getElementById('questionType-1').checked = true;
@@ -154,7 +153,7 @@ function editQuestion(questionID) {
     }
     //Multiple choice
     //[4] is number of options, [5] onwards are the options
-    else {
+    else if ( questionContent[2] == 'multiple-choice') {
         console.log('multiple-choice');
         document.getElementById('questionType-0').checked = true; //Check appropriate button
         document.getElementById('questionType-1').disabled = true; //Disable radio buttons
@@ -225,6 +224,9 @@ for( let i = 0; i < container[0].children.length; i++) {
         if(typeof item == 'undefined') {
             continue;
         }
+        else if(item.tagName == 'BR') {
+            continue;
+        }
 
         item.setAttribute('draggable', true);
         item.addEventListener('dragstart', function(e) {
@@ -272,7 +274,7 @@ for( let i = 0; i < container[0].children.length; i++) {
                 }
             }
             //If you are dropping the 'draggedItem' on a question slot and it is a FILLED question slot
-            else if(item.parentNode.className == "question-slot" && item.parentNode.children.length >= 1) { 
+            else if(item.parentNode.className == "question-slot" && item.parentNode.children.length > 1) { 
                 //If the draggedItem is from the pool of questions
                 if(draggedItem.parentNode.className == "question-pool") { 
                     item.parentNode.replaceChild(draggedItem, item);
@@ -300,7 +302,9 @@ for( let i = 0; i < container[0].children.length; i++) {
         pool.addEventListener('drop',function(e){
             //Adds to question pool list if dragged item came from question slot
             if(draggedItem.parentNode.className == "question-slot") {
+                draggedItem.parentNode.children[1].style.display ='block';
                 this.append(draggedItem);
+                
             }
         });
 
@@ -321,11 +325,19 @@ for( let i = 0; i < container[0].children.length; i++) {
                 e.preventDefault();
             })
             question_slot[k].addEventListener('drop', function(e) {
-                if (question_slot[k].children.length >= 1) { 
-                    //Prevents 2 question items from being in the same question slot                   
+                if (question_slot[k].children.length > 2) { 
+                    //Prevents 2 question items from being in the same question slot    
+                    question_slot[k].children[1].style.display ='none'; //Remove placeholder
+                    if(question_slot[k].children.length < 3) {
+                        this.append(draggedItem);
+                    }
+                    
                 }
                 //Adds question item to EMPTY question slot
                 else if (draggedItem != null){
+                    if(draggedItem.parentNode.className == 'question-slot') {
+                        draggedItem.parentNode.children[1].style.display ='block'; //Add placeholder back into empty question slot
+                    }
                     this.append(draggedItem);
                 }
                 
@@ -368,9 +380,30 @@ $(document).ready(function(){
 })
 
 $(document).ready(function(){
+    $("#more-options").click(function() {
+        if(document.getElementById('more-dropdown-content').style.display == 'block') {
+            document.getElementById('more-dropdown-content').style.display = '';
+        }
+        else {
+            document.getElementById('more-dropdown-content').style.display = 'block';
+        }
+    })
     $("#create-new-question").click(function() {
         document.getElementById("create-new-question-modal").style.display = 'block';
     })
+    $(".create-new-question-in-list").click(function() {
+        document.getElementById("create-new-question-modal").style.display = 'block';
+        let setID = document.getElementById("questionset-name").getAttribute('value');
+        let questionNumber = document.getElementById(this.id).getAttribute('value');
+        let myJSON = {
+            setID:setID,
+            questionNumber:questionNumber
+        }
+        console.log(document.getElementById('id-list').getAttribute('value'));
+        myJSON = JSON.stringify(myJSON);
+        document.getElementById('id-list').value = myJSON;
+        console.log(document.getElementById('id-list').value);
+    });
     $('#form-question-cancel').click(function() {
         let modal = document.getElementById("create-new-question-modal");
         modal.style.display = 'none';
