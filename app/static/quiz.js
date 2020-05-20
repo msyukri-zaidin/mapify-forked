@@ -77,14 +77,13 @@ function disableButton(qNum) {
 
     //Change the colour of the button to show that it has been disabled
     // button.disabled = true;
-    // button.style.color = 'whitesmoke';
-    // button.style.backgroundColor = '#f1f1f1'
+    // button.style.color = '#e0e0e0';
+    // button.style.backgroundColor = '#c7c7c7'
 
 }
 
 
 function disableMCQButton(qNum) {
-    console.log(qNum);
     document.getElementById('mcq'+qNum).querySelector('button').style.display = 'none';
 }
 
@@ -97,12 +96,10 @@ function validateMCQ(qNum) {
 
     if (userAnswer == correctAnswer) {
         correctAns(qNum);
-        disableMCQButton(qNum);
     } else {
         wrongAns(qNum, correctAnswer);
-        disableMCQButton(qNum);
     }
-    
+    disableMCQButton(qNum);
 }
 
 /**
