@@ -27,20 +27,6 @@ def generate_quiz():
     print(myJSON)
     return render_template('quizPage.html', questions = myJSON)
 
-@app.route('/loadquiz', methods = ['GET'])
-def load_quiz():
-    questionsetID = request.args.get('questionsetID')
-    print("/loadquiz setID: ", questionsetID)
-    questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
-    myJSON = []
-    for i in range(0, len(questionList)):
-        if questionList[i].question_id != '':
-            myJSON.append({'question':questionList[i].parent.question, 'answer':questionList[i].parent.answer})
-        else:
-            myJSON.append({'question':'', 'answer':''})
-    print(myJSON)
-    return jsonify(myJSON)
-
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     form = QuestionForm()
@@ -64,7 +50,7 @@ def admin():
             form.option_value_3.data,
             form.option_value_4.data,
         ]
-        
+
         #As the answer field for multiple choice and short answer are different, the following if-else statement takes that into account
         if form.questionType.data == 'short-answer':
             answer = form.short_answer.data
@@ -83,7 +69,12 @@ def admin():
         db.session.commit()
 
         #To get the question ID, we query the id of the latest commit to the server
-        questionID = Question.query.all()[-1].id    
+        questionID = Question.query.all()[-1].id  
+
+        #If form was submitted form active question list
+        idDict = json.loads(form.id_list.data)
+        if idDict != '':
+            CurrentQuestion.query.filter_by(question_number=3,questionset_id=4).first().question_id = idDict['questionNumber']
 
         #Entering option values into option table
         for i in range(0, len(option_value_list)):

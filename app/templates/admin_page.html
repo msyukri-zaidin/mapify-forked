@@ -29,11 +29,11 @@
     <!-- Container navigation bar -->
     <div class="container-nav">
         
-        <div class="nav-item">Question Set: </div>
+
         {% set currentSet = questionSet[currentQuestionset] %}
         <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">
             
-            <div id="questionset-dropdown-name">{{ currentSet.name }}</div>
+            <div id="questionset-dropdown-name"><span id='q-span'>Question Set:</span> {{ currentSet.name }}</div>
             <i class="gg-chevron-down"></i>
         </div>
         <div class="questionset-dropdown-content"id= "dropdown" >
@@ -44,8 +44,12 @@
             {% endfor %}
         </div>
 
-        <div class="nav-item" id="new-questionset">New Question Set</div>
-        <div class="nav-item" id="create-new-question">Create New Question</div>
+
+        <div id="more-dropdown-content">
+            <div class="questionset-dropdown-option" id="new-questionset">New Question Set</div>
+            <div class="questionset-dropdown-option" id="create-new-question">Create New Question</div>
+        </div>
+        <div class="nav-item" id="more-options"><div>More</div><i class="gg-chevron-down"></i></div>
 
     </div>
 
@@ -74,7 +78,7 @@
         <div class="question-list">
 
             {% for question in currentQuestion %}
-                <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }}
+                <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }} 
                 {% if question.question_id != '' %}
                     <div class="question-item" draggable="true" id="question-item-{{ question.question_id }}" value="{{ question.question_id }}" onmousedown="currentlySelected(this.id)">
                         {{ question.question_id }}<br>
@@ -86,7 +90,12 @@
                             <button type="button" class="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
                         </div>
                     </div>
+                {% else %}
+                <br><div class="question-slot-placeholder" id="placeholder-{{ question.question_number }}">(Drag question here) or <button class="create-new-question-in-list" id="slot-button-{{ question.question_number }}" value="{{ question.question_number }}" >Create Question</button></div>
+                        
+                    
                 {% endif %}
+
             </div>
             {% endfor %}
 
@@ -124,7 +133,7 @@
                 <!-- Form for entering new questions -->
             <div class="form-input">
                 <form id="question-form" action="" method="POST">
-                    {{ form.hidden_tag() }}
+                    {{ form.csrf_token() }}
                     <!-- This is where the Question will go-->
                     {{ form.question.label }} <br>
                     {{ form.question(rows="4", cols="50", id="question-input", class="form-input-box")}}
@@ -162,8 +171,10 @@
                                 <div class= "multiple-choice-option" id="multiple-choice-option-4">Possible Option{{ form.option_value_4(class="option-input")}}</div>
                         </div>
                     </div>
+                    {{ form.id_list(id="id-list") }}
                 </div>
                     <br>
+                    
                     {{ form.submit(id="form-question-submit", class="form-input-label") }}
                 </form>
                 <button id="form-question-cancel">Cancel</button>
