@@ -8,7 +8,7 @@
         var questionSetTotal = '{{ questionSetTotal }}';
     </script>
     <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
-    <link href="https://css.gg/css?=|add|remove|chevron-down" rel="stylesheet">
+    <link href="https://css.gg/css?=|add|remove|chevron-down|math-plus" rel="stylesheet">
     <title>Admin Page</title>
 </head>
 
@@ -60,7 +60,11 @@
                     {{ question.question_type }}<br>
                     {{ question.answer }}
                     <div class="question-item-options">
-                        <button type="button" id="edit-button-{{ question.id }}"  onmousedown="editQuestion(this.id)" value="{{ question.id }},{{ question.question }},{{ question.question_type }},{{ question.answer }}">Edit</button>
+                        <button 
+                        type="button" 
+                        id="edit-button-{{ question.id }}"  
+                        onmousedown="editQuestion(this.id)" 
+                        value="{{ question.id }},{{ question.question }},{{ question.question_type }},{{ question.answer }},{{ question.option_child|length }},{% for option in question.option_child %}{{ option.id }}:{{ option }},{% endfor %}">Edit</button>
                         <button type="button" id="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
                     </div>
                 </div>
@@ -68,6 +72,7 @@
         </div>
 
         <div class="question-list">
+
             {% for question in currentQuestion %}
                 <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }}
                 {% if question.question_id != '' %}
@@ -84,12 +89,10 @@
                 {% endif %}
             </div>
             {% endfor %}
-            <div id="question-item-buttons">
-                <button type="button" id="reset-button" onclick="reset()">Reset</button>
-                <button type="button" id="save-button">Save Changes</button>
-            </div>
+
         </div>
 
+        
         <!--    Container popup boxes   -->
         <div id="deleteModal" class="modal">
             <div id="delete-popup">
@@ -120,7 +123,7 @@
         <div id="create-new-question-modal" class="modal">
                 <!-- Form for entering new questions -->
             <div class="form-input">
-                <form action="" method="POST">
+                <form id="question-form" action="" method="POST">
                     {{ form.hidden_tag() }}
                     <!-- This is where the Question will go-->
                     {{ form.question.label }} <br>
@@ -138,7 +141,7 @@
                     <!-- If short answer was selected, the following HTML handles the structure for that-->
                     <div id="form-short-answer">
                         {{ form.short_answer.label }} <br>
-                        {{ form.short_answer(class="form-input-box")}}
+                        {{ form.short_answer(id="form-question-short-answer-input", class="form-input-box")}}
                     </div>
 
                     <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
@@ -164,10 +167,17 @@
                     {{ form.submit(id="form-question-submit", class="form-input-label") }}
                 </form>
                 <button id="form-question-cancel">Cancel</button>
+                <button id="form-question-edit">Submit Edit</button>
             </div>
         </div>
+        <div id="question-item-buttons">
+            <button type="button" id="reset-button" onclick="reset()">Reset</button>
+            <button type="button" id="save-button">Save Changes</button>
+        </div>
+
 
     </div>
+
 
 
 
