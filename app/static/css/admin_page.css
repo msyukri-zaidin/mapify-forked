@@ -173,6 +173,7 @@ body{
 }
 
 .container {
+    position: relative;
     display: flex;
     justify-content: center;
     flex: 1;
@@ -202,6 +203,7 @@ body{
     border-style: solid;
     border-width: 2px;
     margin: 20px;
+    margin-top: 75px;
     padding: 8px;
     padding-bottom: 100px;
     transition: all 0.2s linear;
@@ -245,6 +247,7 @@ body{
 }
 
 .question-list { /* Actual questions list */
+    position: relative;
     display: flex;
     flex-flow: column;
     flex: 1;
@@ -261,21 +264,29 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #bd3ffc;
     margin: 20px;
+    margin-top: 75px;
     padding: 8px;
     transition: all 0.2s linear;
     
-    max-height: 500px;
+    max-height: 800px;
     overflow-y:scroll;
 }
 
 #question-item-buttons {
+    position: absolute;
     display: flex;
     flex-flow: row;
     background-color: inherit;
     justify-content: space-between;
+    top:0;
+
+
+    min-width: 500px;
+    max-width: 500px;
 }
 
 #reset-button {
+    position: relative;
     background-color: red;
     color: white;
     padding: auto;
@@ -440,10 +451,9 @@ table, th, td {
     display: none;
 }
 
-#form-question-cancel {
+#form-question-edit {
     display: none;
 }
-
 .gg-add {
     cursor: pointer;
 }
