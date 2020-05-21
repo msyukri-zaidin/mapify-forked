@@ -271,3 +271,4 @@ function generatePoint(lat, lng, radius) {
 
     return {newLat, newLng};
 }
+

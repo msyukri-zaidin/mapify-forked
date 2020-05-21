@@ -16,6 +16,7 @@
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
+        
 
     </head>
 
@@ -47,7 +48,8 @@
         
         <div id="quiz" class="body_container">
             <!-- This part of the webpage is rendered by a quiz.js file -->
-
+            <div id="timer"></div>
+            <script type="text/javascript" src="{{ url_for('static', filename='timer.js') }}"></script>
             <div class="side">
                 <div class="buttons">
                     <!-- Generates the side buttons for the coresponding questions -->
