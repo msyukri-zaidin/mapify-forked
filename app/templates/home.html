@@ -42,7 +42,9 @@
             {% for set in questionSet %}
             <span class="mini-card hoverable">
                 <img>
-                <h3 class="card-title">{{ set }}</h3>
+                <h3 class="card-title">
+                    <a href='quiz?questionsetID={{ set.id }}'>{{ set }}</a>
+                </h3>
             </span>
             {% endfor %}
         </section>
