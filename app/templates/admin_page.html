@@ -1,26 +1,18 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% block head %}
+<title>Admin | Mapify</title>
+<head></head>
     <script>
         var questionSetNumberOfQuestions = '{{ questionSetNumberOfQuestions }}';
         var questionSetTotal = '{{ questionSetTotal }}';
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
     <link href="https://css.gg/css?=|add|remove|chevron-down|math-plus" rel="stylesheet">
-    <title>Admin Page</title>
 </head>
-
-    <body>
-        <div class="header">
-            <a href="/"><img id="logo" src="{{url_for('static',filename='css/images/mapify-2.png')}}" style="width:100px"></a>
-            <nav class="tab-right">
-                <button id="header-signup-button" class="header-button">Sign Up</button>
-                <button id="header-login-button" class="header-button">Log In</button>
-            </nav>
-        </div>
-
+{% endblock %}
+{% block body %}
     <div class="header-box">
         <h1>Edit Questions</h1>
         <p>This is a place where you can edit questions! Simply drag and drop to the desired question number and save changes!</p>
@@ -28,9 +20,6 @@
 
     <!-- Container navigation bar -->
     <div class="container-nav">
-        
-
-        
         <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">
             
             <div id="questionset-dropdown-name"><span id='q-span'>Question Set:</span> {{ currentSet.name }}</div>
@@ -213,7 +202,4 @@
     {% endfor %}
 
 
-
-    </body>
-
-</html>
+{% endblock %}

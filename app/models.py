@@ -1,5 +1,12 @@
-from app import db
+from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+
+#Allows login to get user from database, given name
+@login.user_loader
+def load_user(id):
+    return User.query.get(id)
+
 
 class Question(db.Model):
     __tablename__ = 'question'
@@ -47,3 +54,16 @@ class Option(db.Model):
 
     def __repr__(self):
         return self.option_value
+
+class User(UserMixin, db.Model):
+    __tablename__ = 'user_table'
+    id = db.Column(db.Integer, primary_key = True)
+    user_type = db.Column(db.String(64))
+    username = db.Column(db.String(64))
+    password_hash = db.Column(db.String(128))
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)

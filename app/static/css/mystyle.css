@@ -363,6 +363,16 @@ button:focus {
   flex-direction: column;
 }
 
+/* Login page */
+.form-container {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 15%;
+    border: solid;
+    padding: 25px;
+
+}
+
 /* ------------------------------------------- */
 /* Footer */
 footer {

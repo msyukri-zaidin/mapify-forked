@@ -5,12 +5,7 @@
     background-color: white;
     padding: 0;
     margin: 0;
-}
 
-.header {
-    background-color: #ffe5b8;
-    overflow: hidden;
-    height: 40px;
 }
 
 .tab-right {
@@ -212,6 +207,7 @@ body{
 }
 
 .container {
+    font-size: 14px;
     position: relative;
     display: flex;
     justify-content: center;
