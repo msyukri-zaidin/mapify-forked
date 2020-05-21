@@ -2,16 +2,74 @@
 <html>
 
 <head>
-    <title>Test Page</title>
+    <link rel="shortcut icon" type="image/png" href="../static/css/images/mapify-icon.png">
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css"
+        href="{{url_for('static',filename='css/mystyle.css')}}">
+    {% block head %}{% endblock %}
 </head>
 
-    <body>
-        <h1>Temporary home page</h1>
-        <h2>Available question sets</h2>
-        {% for set in questionSet %}
-            <a href='quiz?questionsetID={{ set.id }}'>{{ set }}</a><br><br>
-        {% endfor %}
-        <a href='admin'>Admin page</a>
-    </body>
+<body>
+    <div class="header">
+        <a href="#"><img id="logo" src="../static/css/images/mapify-2.png"></a>
+        <nav class="tab-right">
+            <button id="header-signup-button" class="tablinks">Sign Up</button>
+            <button id="header-login-button" class="tablinks">Log In</button>
+        </nav>
+    </div>
+
+    <!-- Modal Section -->
+    <div class="login-modal">
+        <div class="modal-contents">
+            <div id="exitLogInModal">+</div>
+            <h2>Log In</h2>
+            <form>
+                {{loginForm.hidden_tag()}}
+                <!-- The login form Username Area -->
+                {{loginForm.username.label}}
+                {{loginForm.username(size=16)}}
+                <!-- Username error checking -->
+                {% for error in loginForm.username.errors %}
+                <span style="color:red">[{{error}}]</span>
+                {% endfor %}
+                <!-- The login form Password Area -->
+                {{loginForm.password.label}}
+                {{loginForm.password(size=16)}}
+                <!-- Passwords error checking -->
+                {% for error in loginForm.password.errors %}
+                <span style="color:red">[{{error}}]</span>
+                {% endfor %}
+                <!-- The login form submit button -->
+                {{loginForm.submit()}}
+                <!-- <input id="login-username" type="username" placeholder="Name">
+                <input id="login-password" type="password" placeholder="E-Mail"> -->
+            </form>
+            <!-- <button id="login-button" class="clicky-button">Submit</button> -->
+        </div>
+    </div>
+    <!-- Modal Section -->
+
+    {% block body %}{% endblock %}
+    <!-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+    <!-- Syukri's example -->
+
+    <!-- <h1>Temporary home page</h1>
+    <h2>Available question sets</h2>
+    {% for set in questionSet %}
+    <a href='quiz?questionsetID={{ set.id }}'>{{ set }}</a><br><br>
+    {% endfor %}
+    <a href='admin'>Admin page</a> -->
+
+    <!-- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+
+    <footer>
+        <p>This website is made by Ahbar, Danish and Syukri, for the purpose of CITS3403 group assignment. &nbsp;<a
+                href="https://github.com/msyukri-zaidin/CITS3403-Project-1" target="_blank">Click here</a> &nbsp;for
+            more details.</p>
+    </footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+    crossorigin="anonymous"></script>
+<script src="../static/home.js"></script>
 
 </html>

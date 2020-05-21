@@ -65,6 +65,7 @@ $(document).ready(function () {
     $.fn.createListOfNames();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    // url for getting photos on pixabay = https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
     // For choosing the game set and loading more game set into the screen
     var gameSetChosen = "";
     $(document).on('click', '.mini-card', function () {
