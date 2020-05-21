@@ -88,11 +88,24 @@ textarea[type=text] {
 .container-nav .questionset-dropdown-content {
     display: none;
     position: absolute;
-    left: 125px;
-    top: 48px;
+    left: 115px;
+    top: 60px;
     background-color: whitesmoke;
-    width: 139px;
+    width: 180px;
     z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+}
+
+.container-nav #more-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: whitesmoke;
+    width: 180px;
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .questionset-dropdown-option {
@@ -106,7 +119,8 @@ textarea[type=text] {
 }
 
 .questionset-dropdown-option:hover {
-    background-color: #ddd;
+    background-color: blue;
+    color: white;
 }
 
 .container-nav .questionset-dropdown {
@@ -120,6 +134,13 @@ textarea[type=text] {
     cursor: pointer;
     display: flex;
     flex-flow: row;
+    width: 250px;
+    border: solid;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
 }
 
 #questionset-dropdown-name {
@@ -132,25 +153,43 @@ textarea[type=text] {
     color: #444;
 }
 
-.nav-item {
+.container-nav .nav-item {
+    float: left;
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: inherit;
     cursor: pointer;
+    display: flex;
+    flex-flow: row;
+    border:solid;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+ 
+}
+
+.container-nav .nav-item:last-of-type {
+    margin-left: auto;
+}
+
+#q-span {
+    color: grey;
+    background-color: inherit;
+}
+
+.nav-item div {
+    background-color: inherit;
 }
 
 .nav-item:hover {
     background-color: whitesmoke;
     color: #444;
 }
-
-#new-questionset {
-    cursor: pointer;
-}
-
-#new-questionset:hover {
-    background-color: whitesmoke;
-    color: #444;
-}
-
-
 
 h1 {
     margin-top: 20px;
@@ -194,7 +233,7 @@ body{
     width: 100%;
     min-width: 250px;
     max-width: 350px;
-
+    height: 500px;
 
 
     background-color: #bd3ffc;
@@ -207,7 +246,11 @@ body{
     padding: 8px;
     padding-bottom: 100px;
     transition: all 0.2s linear;
+    overflow-y:scroll;
 
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
 }
 
 .question-slot {
@@ -221,9 +264,24 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     word-wrap: break-word;
     user-select:none;
-
-
 }
+
+.question-slot .question-slot-placeholder {
+    background-color: inherit;
+}
+
+.question-slot .question-slot-placeholder .create-new-question-in-list {
+    border: solid;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.question-slot .question-slot-placeholder .create-new-question-in-list:hover {
+    color: whitesmoke;
+    background-color: black;
+    cursor: pointer;
+}
+
 
 .question-item { /*A question in the pool of questions */
     position: relative;
@@ -248,6 +306,7 @@ body{
 
 .question-list { /* Actual questions list */
     position: relative;
+
     display: flex;
     flex-flow: column;
     flex: 1;
@@ -256,7 +315,7 @@ body{
     min-width: 250px;
     max-width: 350px;
     height: 100%;
-    min-height: 150px;
+
 
     border-radius: 8px;
     border-style: solid;
@@ -268,8 +327,7 @@ body{
     padding: 8px;
     transition: all 0.2s linear;
     
-    max-height: 800px;
-    overflow-y:scroll;
+
 }
 
 #question-item-buttons {
@@ -332,7 +390,7 @@ body{
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal #delete-popup {
+.modal .delete-popup {
     font-size: 20px;
     color: black;
     background-color: #fefefe;
@@ -345,11 +403,11 @@ body{
     text-align: center;
 }
 
-.modal #delete-popup #cancel-button {
+.modal .delete-popup .cancel-button {
 
 }
 
-.modal #delete-popup #confirm-button {
+.modal .delete-popup .confirm-button {
 
 }
 
