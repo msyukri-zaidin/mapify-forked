@@ -390,7 +390,7 @@ body{
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal #delete-popup {
+.modal .delete-popup {
     font-size: 20px;
     color: black;
     background-color: #fefefe;
@@ -403,11 +403,11 @@ body{
     text-align: center;
 }
 
-.modal #delete-popup #cancel-button {
+.modal .delete-popup .cancel-button {
 
 }
 
-.modal #delete-popup #confirm-button {
+.modal .delete-popup .confirm-button {
 
 }
 
