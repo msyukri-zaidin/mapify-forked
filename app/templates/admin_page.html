@@ -30,7 +30,7 @@
     <div class="container-nav">
         
 
-        {% set currentSet = questionSet[currentQuestionset] %}
+        
         <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">
             
             <div id="questionset-dropdown-name"><span id='q-span'>Question Set:</span> {{ currentSet.name }}</div>
@@ -47,7 +47,8 @@
 
         <div id="more-dropdown-content">
             <div class="questionset-dropdown-option" id="new-questionset">New Question Set</div>
-            <div class="questionset-dropdown-option" id="create-new-question">Create New Question</div>
+            <div class="questionset-dropdown-option" id="create-new-question">New Question</div>
+            <div class="questionset-dropdown-option" id="delete-questionset">Delete Question Set</div>
         </div>
         <div class="nav-item" id="more-options"><div>More</div><i class="gg-chevron-down"></i></div>
 
@@ -88,7 +89,7 @@
                         {{ question.parent.question_type }}<br>
                         {{ question.parent.answer}}
                         <div class="question-item-options">
-                            <button type="button" id="edit-button-{{ question.question_id }}" onmousedown="editQuestion(this.id)" value="{{ question.question_id }},{{ question.parent.question }},{{ question.parent.question_type }},{{ question.parent.answer }}">Edit</button>
+                            <button type="button" id="edit-button-{{ question.question_id }}" onmousedown="editQuestion(this.id)" value="{{ question.question_id }},{{ question.parent.question }},{{ question.parent.question_type }},{{ question.parent.answer }},{{ question.parent.option_child|length }},{% for option in question.parent.option_child %}{{ option.id }}:{{ option }},{% endfor %}">Edit</button>
                             <button type="button" class="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
                         </div>
                     </div>
@@ -107,11 +108,20 @@
         
         <!--    Container popup boxes   -->
         <div id="deleteModal" class="modal">
-            <div id="delete-popup">
+            <div class="delete-popup">
                 <p>Are you sure?</p><br>
                 <p>Deleting a question will remove it from all question sets</p>
-                <button type="button" id="cancel-button">Cancel</button>
-                <button type="button" id="confirm-button">Confirm</button>
+                <button type="button" class="cancel-button" id="question-cancel-button">Cancel</button>
+                <button type="button" class="confirm-button" id="question-confirm-button">Confirm</button>
+            </div>
+        </div>
+
+        <div id="delete-set-modal" class="modal">
+            <div class="delete-popup">
+                <p>Are you sure?</p><br>
+                <p>You are deleting the current question set, '{{ currentSet.name }}'.</p>
+                <button type="button" class="cancel-button"  id="set-cancel-button">Cancel</button>
+                <button type="button" class="confirm-button" id="set-confirm-button">Confirm</button>
             </div>
         </div>
 
@@ -124,7 +134,7 @@
                     {{ questionset_form.name(class="form-input-box")}}<br>
                     <br>
                     {{ questionset_form.number_of_questions.label }}<br>
-                    {{ questionset_form.number_of_questions(class="form-input-box")}} <br>
+                    {{ questionset_form.number_of_questions }} <br>
                         <button type="button" id="new-questionset-form-cancel">Cancel</button>
                     {{ questionset_form.submit(id="new-questionset-form-submit") }}
                     
