@@ -104,19 +104,22 @@ def admin():
                 db.session.add(o)
 
         db.session.commit()
-        return redirect(url_for('admin'))
+        return redirect(url_for('admin', questionsetID = idDict['setID']))
 
     #Validates to true if question set form was submitted
     if questionset_form.validate_on_submit():
+        print(questionset_form.name.data)
+        print(questionset_form.number_of_questions.data)
         q = QuestionSet(
             name = questionset_form.name.data, 
             number_of_questions = questionset_form.number_of_questions.data)
         db.session.add(q)
         db.session.commit()
+    
 
         #Initialise new empty questions into question set
         q = QuestionSet.query.filter(QuestionSet.name==questionset_form.name.data).all()[0]
-        for i in range(1, questionset_form.number_of_questions.data+1):
+        for i in range(1, int(questionset_form.number_of_questions.data)+1):
             CQ = CurrentQuestion(question_id = '', questionset_id = q.id, question_number = i)
             db.session.add(CQ)
         db.session.commit()
@@ -160,8 +163,8 @@ def admin():
     questionPool = Question.query.filter(Question.id.in_(filterList)).all()
 
 
-
-    questionset_number_of_questions = questionSet[questionsetID - 1].number_of_questions    #ID deducted by 1 to get position
+    #print("variable: ", currentQuestion[4].option_child)
+    questionset_number_of_questions = QuestionSet.query.filter_by(id=questionsetID).first().number_of_questions
     return render_template(
         'admin_page.html', 
         questionPool = questionPool, 
@@ -169,7 +172,7 @@ def admin():
         questionset_form = questionset_form, 
         currentQuestion = currentQuestion, 
         questionSet = questionSet, 
-        currentQuestionset = questionsetID - 1,                         #ID deducted by 1 to get position
+        currentSet = QuestionSet.query.filter_by(id=questionsetID).first(),                         #ID deducted by 1 to get position
         questionSetNumberOfQuestions = questionset_number_of_questions, #Number of questions in the question set
         questionSetTotal = len(questionSet))                            #Total number of question sets
 
@@ -256,5 +259,20 @@ def edit_question():
     elif questionType == 'short-answer':
         Question.query.filter_by(id=questionID).first().question = question
         Question.query.filter_by(id=questionID).first().answer = questionAnswer
+    db.session.commit()
+    return redirect(url_for('admin'))
+
+#Function that is initiated by an AJAX call that comes from deleting a question set
+@app.route('/deleteset', methods=['POST'])
+def delete_set():
+    setDict = request.get_json(force=True)
+
+    questionsetID = setDict['setID']
+    #Deletes all  questions related to the set ID in CurrentQuestion table
+    CurrentQuestion.query.filter_by(questionset_id = questionsetID).delete()
+
+    #Deletes the set
+    QuestionSet.query.filter_by(id = questionsetID).delete()
+
     db.session.commit()
     return redirect(url_for('admin'))
