@@ -217,16 +217,14 @@ for( let i = 0; i < container[0].children.length; i++) {
         let item = container[0].children[i].children[j];
         //Question slots need to be reassigned to their child which is a question item
         if(item.className == "question-slot") {
-            item = item.children[0];
+            item = item.children[2];
         }
 
         //Empty question slots are undefined so we continue the loop to prevent adding events to it
         if(typeof item == 'undefined') {
             continue;
         }
-        else if(item.tagName == 'BR') {
-            continue;
-        }
+        
 
         item.setAttribute('draggable', true);
         item.addEventListener('dragstart', function(e) {
@@ -325,19 +323,22 @@ for( let i = 0; i < container[0].children.length; i++) {
                 e.preventDefault();
             })
             question_slot[k].addEventListener('drop', function(e) {
-                if (question_slot[k].children.length > 2) { 
-                    //Prevents 2 question items from being in the same question slot    
-                    question_slot[k].children[1].style.display ='none'; //Remove placeholder
-                    if(question_slot[k].children.length < 3) {
+                if (question_slot[k].children.length >= 3) { 
+                    //Prevents 2 question items from being in the same question slot  
+                    /*  
+                    question_slot[k].children[1].style.display ='none'; //Disable placeholder
+                    if(question_slot[k].children.length < 4) {
                         this.append(draggedItem);
-                    }
+                    }*/
+                    //Do nothing
                     
                 }
                 //Adds question item to EMPTY question slot
-                else if (draggedItem != null){
+                else {
                     if(draggedItem.parentNode.className == 'question-slot') {
-                        draggedItem.parentNode.children[1].style.display ='block'; //Add placeholder back into empty question slot
+                        draggedItem.parentNode.children[1].style.display ='block'; //Enable placeholder again
                     }
+                    this.children[1].style.display = 'none'; //Disable placeholder
                     this.append(draggedItem);
                 }
                 
@@ -399,10 +400,10 @@ $(document).ready(function(){
             setID:setID,
             questionNumber:questionNumber
         }
-        console.log(document.getElementById('id-list').getAttribute('value'));
+        //console.log(document.getElementById('id-list').getAttribute('value'));
         myJSON = JSON.stringify(myJSON);
         document.getElementById('id-list').value = myJSON;
-        console.log(document.getElementById('id-list').value);
+        //console.log(document.getElementById('id-list').value);
     });
     $('#form-question-cancel').click(function() {
         let modal = document.getElementById("create-new-question-modal");
@@ -421,6 +422,7 @@ $(document).ready(function(){
         document.getElementById('multiple-choice-option-2').style.display = '';
         document.getElementById('multiple-choice-option-3').style.display = '';
         document.getElementById('multiple-choice-option-4').style.display = '';
+        document.getElementById('id-list').value = '';
     })
 
     $("#confirm-button").click(function() {
@@ -473,7 +475,7 @@ $(document).ready(function(){
         //This for loop looks at each of the question slots and checks if there is any question in it
         for(let i = 1; i <= questionSetNumberOfQuestions; i++) { 
             let questionNumber = "Q" + i;
-            let question = document.getElementById(questionNumber).firstElementChild;
+            let question = document.getElementById(questionNumber).children[2];
             //Initialises question details to an object
             if(question) {
                 questionElements = question.innerHTML.split("<br>");

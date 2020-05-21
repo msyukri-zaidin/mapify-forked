@@ -79,7 +79,9 @@
 
             {% for question in currentQuestion %}
                 <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }} 
+                <!--If a question exists in that slot-->
                 {% if question.question_id != '' %}
+                <br><div class="question-slot-placeholder" id="placeholder-{{ question.question_number }}" style='display: none;'>(Drag question here) or <button class="create-new-question-in-list" id="slot-button-{{ question.question_number }}" value="{{ question.question_number }}" >Create Question</button></div>
                     <div class="question-item" draggable="true" id="question-item-{{ question.question_id }}" value="{{ question.question_id }}" onmousedown="currentlySelected(this.id)">
                         {{ question.question_id }}<br>
                         {{ question.parent.question }}<br>
@@ -90,6 +92,7 @@
                             <button type="button" class="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
                         </div>
                     </div>
+               
                 {% else %}
                 <br><div class="question-slot-placeholder" id="placeholder-{{ question.question_number }}">(Drag question here) or <button class="create-new-question-in-list" id="slot-button-{{ question.question_number }}" value="{{ question.question_number }}" >Create Question</button></div>
                         
