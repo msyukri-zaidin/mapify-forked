@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, RadioField, TextAreaField, IntegerField, PasswordField
+from wtforms import StringField, SubmitField, RadioField, TextAreaField, IntegerField, PasswordField, HiddenField
 from wtforms.validators import DataRequired
 from wtforms.validators import InputRequired
+#from wtforms.widgets.core import HiddenInput
 
 class QuestionForm(FlaskForm):
     question = TextAreaField("Question")
@@ -12,8 +13,12 @@ class QuestionForm(FlaskForm):
     option_value_2 = StringField("Option")
     option_value_3 = StringField("Option")
     option_value_4 = StringField("Option")
+    #current_list used if question is created from the active question list
+    #id_list = IntegerField(widget=HiddenInput())
+    id_list = HiddenField("TEST")
 #, validators = [DataRequired()]
     submit = SubmitField("Submit")
+
 
 class QuestionsetForm(FlaskForm):
     name = StringField("Name")

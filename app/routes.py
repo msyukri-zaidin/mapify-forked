@@ -5,6 +5,7 @@ from app.models import Question, CurrentQuestion, QuestionSet, Option
 from app.forms import QuestionForm, QuestionsetForm, LoginForm
 import sys
 import json
+import random
 
 @app.route('/', methods = ['GET','POST'])
 def home():
@@ -29,26 +30,27 @@ def generate_quiz():
     questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
     myJSON = []
     for i in range(0, len(questionList)):
+        #Check if there is a question assigned to the questionSet even if the questionSet is missing
+        #question from the admin page
         if questionList[i].question_id != '':
-            myJSON.append({'question':questionList[i].parent.question, 'answer':questionList[i].parent.answer})
-        else:
-            myJSON.append({'question':'', 'answer':''})
-    print(myJSON)
-    return render_template('quizPage.html', questions = myJSON)
+            # Check the type of the question
+            if questionList[i].parent.question_type.lower() == 'short-answer':
+                myJSON.append({'question':questionList[i].parent.question,
+                               'qType':'short',
+                               'answer':questionList[i].parent.answer})
 
-@app.route('/loadquiz', methods = ['GET'])
-def load_quiz():
-    questionsetID = request.args.get('questionsetID')
-    print("/loadquiz setID: ", questionsetID)
-    questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
-    myJSON = []
-    for i in range(0, len(questionList)):
-        if questionList[i].question_id != '':
-            myJSON.append({'question':questionList[i].parent.question, 'answer':questionList[i].parent.answer})
-        else:
-            myJSON.append({'question':'', 'answer':''})
-    print(myJSON)
-    return jsonify(myJSON)
+            elif questionList[i].parent.question_type.lower() == 'multiple-choice':
+                answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
+                answerOptions.append(questionList[i].parent.answer)
+
+                # shuffles the answer options so that it randomises the options on the quiz page
+                random.shuffle(answerOptions)
+                
+                myJSON.append({'question':questionList[i].parent.question,
+                               'qType':'multiple',
+                               'answerOptions': answerOptions,
+                               'answer':questionList[i].parent.answer})
+    return render_template('quizPage.html', questions = myJSON)
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
@@ -73,7 +75,7 @@ def admin():
             form.option_value_3.data,
             form.option_value_4.data,
         ]
-        
+
         #As the answer field for multiple choice and short answer are different, the following if-else statement takes that into account
         if form.questionType.data == 'short-answer':
             answer = form.short_answer.data
@@ -92,7 +94,13 @@ def admin():
         db.session.commit()
 
         #To get the question ID, we query the id of the latest commit to the server
-        questionID = Question.query.all()[-1].id    
+        questionID = Question.query.all()[-1].id  
+
+        #If form was submitted from active question list
+        if(form.id_list.data):
+            idDict = json.loads(form.id_list.data)
+            print(idDict)
+            CurrentQuestion.query.filter_by(question_number=idDict['questionNumber'],questionset_id=idDict['setID']).first().question_id = questionID
 
         #Entering option values into option table
         for i in range(0, len(option_value_list)):
