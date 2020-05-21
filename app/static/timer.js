@@ -3,6 +3,7 @@
  * Progress countdown timer for the quiz
  */
 
+const TIME_LIMIT = 20;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
 
@@ -20,7 +21,6 @@ const COLOR_CODES = {
     }
 };
 
-const TIME_LIMIT = 20;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;

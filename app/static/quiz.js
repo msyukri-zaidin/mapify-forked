@@ -155,6 +155,30 @@ function validateAns(qNum) {
 // });
 }
 
+function showNextQ(qNum) {
+    // dont show next question if its the last question
+    // let button = document.getElementById();
+    // $(document).on
+    $(`#Q${parseInt(qNum)+1}Button`).click();
+
+}
+
+function showPreviousQ(qNum) {
+    // dont show previous question if its the first question
+    $(`#Q${parseInt(qNum)-1}Button`).click();
+
+}
+
+function submitQuiz() {
+    var userPreference;
+    if (confirm("Do you want to submit the quiz?") == true) {
+        userPreference = "Quiz Submitted sucessfully!";
+        alert(userPreference);
+        window.location.href = "/";
+    }
+
+}
+
 function getMapWithMarker(qNum, location, setZoom, setRadius) {
     getLatLong(qNum, location, setZoom, setRadius, true);
     document.getElementById("mapCon"+qNum).style.display = "block";
