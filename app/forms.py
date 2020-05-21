@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, RadioField, TextAreaField, IntegerField, HiddenField, SelectField
+from wtforms import StringField, SubmitField, RadioField, TextAreaField, IntegerField, PasswordField, HiddenField, SelectField
 from wtforms.validators import DataRequired
 from wtforms.validators import InputRequired
 #from wtforms.widgets.core import HiddenInput
@@ -25,6 +25,10 @@ class QuestionForm(FlaskForm):
 
 class QuestionsetForm(FlaskForm):
     name = StringField("Name")
-    #number_of_questions = IntegerField("Number of Questions")
     number_of_questions = SelectField(label="Number of Questions", choices=[(str(num), str(num)) for num in NUMBER_OF_QUESTIONS])
     submit = SubmitField("Submit")
+    
+class LoginForm(FlaskForm):
+    username = StringField("Username", validators = [DataRequired()])
+    password = PasswordField("Password", validators = [DataRequired()])
+    submit = SubmitField('Log In')
