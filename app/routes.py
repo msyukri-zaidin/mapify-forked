@@ -87,10 +87,11 @@ def admin():
         #To get the question ID, we query the id of the latest commit to the server
         questionID = Question.query.all()[-1].id  
 
-        #If form was submitted form active question list
-        idDict = json.loads(form.id_list.data)
-        if idDict != '':
-            CurrentQuestion.query.filter_by(question_number=3,questionset_id=4).first().question_id = idDict['questionNumber']
+        #If form was submitted from active question list
+        if(form.id_list.data):
+            idDict = json.loads(form.id_list.data)
+            print(idDict)
+            CurrentQuestion.query.filter_by(question_number=idDict['questionNumber'],questionset_id=idDict['setID']).first().question_id = questionID
 
         #Entering option values into option table
         for i in range(0, len(option_value_list)):
