@@ -1,8 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, RadioField, TextAreaField, IntegerField, HiddenField
+from wtforms import StringField, SubmitField, RadioField, TextAreaField, IntegerField, HiddenField, SelectField
 from wtforms.validators import DataRequired
 from wtforms.validators import InputRequired
 #from wtforms.widgets.core import HiddenInput
+
+NUMBER_OF_QUESTIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+                        11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
 class QuestionForm(FlaskForm):
     question = TextAreaField("Question")
@@ -22,5 +25,6 @@ class QuestionForm(FlaskForm):
 
 class QuestionsetForm(FlaskForm):
     name = StringField("Name")
-    number_of_questions = IntegerField("Number of Questions")
+    #number_of_questions = IntegerField("Number of Questions")
+    number_of_questions = SelectField(label="Number of Questions", choices=[(str(num), str(num)) for num in NUMBER_OF_QUESTIONS])
     submit = SubmitField("Submit")
