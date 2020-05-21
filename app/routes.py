@@ -13,8 +13,12 @@ def home():
     # need to do what happens if the user has laready logged in, would the login button appear differently
     # not too sure on what this success does
     if loginForm.validate_on_submit():
-        return redirect(url_for('success'))
-    return render_template('home.html', loginForm=loginForm, questionSet = questionSet)
+    # if request.method == 'POST':
+        flash('Loging requested for user ()'.format(loginForm.username.data))
+        # return 'hello'
+        return redirect('../templates/admin_page.html')
+    else:
+        return render_template('home.html', loginForm=loginForm, questionSet = questionSet)
 
 @app.route('/quiz', methods = ['GET','POST'])
 def generate_quiz():
