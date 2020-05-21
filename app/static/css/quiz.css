@@ -259,6 +259,7 @@ button:focus {outline:0;}
 /*-----------------------------------------------------*/
 
 /* Custom radio button for MCQ questions */
+/* Using example from W3Schools */
 
 .mcqContainer {
     display: flex;
