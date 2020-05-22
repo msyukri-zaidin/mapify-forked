@@ -8,6 +8,9 @@
         var questionSetTotal = '{{ questionSetTotal }}';
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Link the script files for java script and for the google api-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
+    <script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
 
 
@@ -165,10 +168,16 @@
                     {{ form.short_answer(id="form-question-short-answer-input", class="answer-input-box") }}<br>
                     <br>
                     {{ form.reference_value.label }}<br>
+<<<<<<< HEAD
                     {{ form.reference_value(id='form-reference-value',class="answer-input-box") }} <button type='button'>Check location</button>
                     <div class="map-container">
                         [MAP]
                     </div>
+=======
+                    {{ form.reference_value(id='form-reference-value',class="answer-input-box") }}
+                    <button onclick="createFormMap()" type='button'>Check location</button>
+                    <div id="map0" class="map-container"></div>
+>>>>>>> ahbar_branch
                 </div>
 
                 <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
@@ -193,8 +202,8 @@
                 </div>
                 <br>
 
-                <div class='button-group'>
-                    <button type='button' class='cancel-button' id="form-question-cancel">Cancel</button>
+                <div style="margin-top: 20px" class='button-group'>
+                    <button type='button' class='cancel-button' onclick="hideMap()" id="form-question-cancel">Cancel</button>
                     <button type='button' class='confirm-button' id="form-question-edit">Submit Edit</button>
                     {{ form.submit(class='confirm-button', id="form-question-submit") }}
                 </div>

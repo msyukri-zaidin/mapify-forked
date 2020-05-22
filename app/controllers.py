@@ -251,7 +251,8 @@ class QuizController():
                 if questionList[i].parent.question_type.lower() == 'short-answer':
                     myJSON.append({'question':questionList[i].parent.question,
                                 'qType':'short',
-                                'answer':questionList[i].parent.answer})
+                                'answer':questionList[i].parent.answer,
+                                'reference':questionList[i].parent.reference_value})
                     totalTime += 45;
 
                 elif questionList[i].parent.question_type.lower() == 'multiple-choice':
@@ -266,5 +267,6 @@ class QuizController():
                                 'answerOptions': answerOptions,
                                 'answer':questionList[i].parent.answer})
                     totalTime += 15;
-                    
+            
+        print(myJSON)
         return render_template('quizPage.html', questions = myJSON, timer = totalTime)
