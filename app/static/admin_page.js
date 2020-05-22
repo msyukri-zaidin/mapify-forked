@@ -409,8 +409,7 @@ $(document).ready(function(){
     $('#form-question-cancel').click(function() {
         let modal = document.getElementById("create-new-question-modal");
         modal.style.display = 'none';
-        //Clear all entered values
-        console.log("Should clear");
+        //Clear all entered values;
         $('#question-form').trigger('reset');
         document.getElementById('form-question-submit').style.display = 'none';
         document.getElementById('form-short-answer').style.display = '';

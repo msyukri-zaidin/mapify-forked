@@ -73,10 +73,12 @@ def admin():
 
     QuestionController.create_question(form)
     QuestionSetController.create_questionset(questionset_form)
-    #For some unusual reason, these 2 fields keep getting initialised to some random data after declaration
+    #For some unusual reason, these 4 fields keep getting initialised to some random data after declaration
     #Force resetting values
     form.question.data = ''
     form.short_answer.data = ''
+    form.reference_value.data = ''
+    form.questionType.data = None
 
     #These 3 if statements are temporary. Only used when database is initally empty
     """if len(Question.query.all()) == 0:

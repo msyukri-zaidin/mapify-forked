@@ -116,8 +116,10 @@
         <div class="delete-popup">
             <p>Are you sure?</p><br>
             <p>You are deleting the current question set, '{{ currentSet.name }}'.</p>
-            <button class="cancel-button"  id="set-cancel-button">Cancel</button>
-            <button class="confirm-button" id="set-confirm-button">Confirm</button>
+            <div class='button-group'>
+                <button class="cancel-button"  id="set-cancel-button">Cancel</button>
+                <button class="confirm-button" id="set-confirm-button">Confirm</button>
+            </div>
         </div>
     </div>
 
@@ -131,9 +133,10 @@
                 <br>
                 {{ questionset_form.number_of_questions.label }}<br>
                 {{ questionset_form.number_of_questions }} <br>
+                <div class='button-group'>
                     <button type='button' class="cancel-button" id="new-questionset-form-cancel">Cancel</button>
                 {{ questionset_form.submit(class='confirm-button',id="new-questionset-form-submit") }}
-                
+                </div>
             </form>
         </div>
     </div>
@@ -145,7 +148,7 @@
                 {{ form.csrf_token() }}
                 <!-- This is where the Question will go-->
                 {{ form.question.label }} <br>
-                {{ form.question(rows="4", cols="50", id="question-input", class="form-input-box")}}
+                {{ form.question(rows="4", cols="50", id="question-input", class="question-input-box")}}
                 <br>
                 <br>
                 <!-- This is where the question type will go-->
@@ -159,8 +162,13 @@
                 <!-- If short answer was selected, the following HTML handles the structure for that-->
                 <div id="form-short-answer">
                     {{ form.short_answer.label }} <br>
-                    {{ form.short_answer(id="form-question-short-answer-input", class="form-input-box") }}
-
+                    {{ form.short_answer(id="form-question-short-answer-input", class="answer-input-box") }}<br>
+                    <br>
+                    {{ form.reference_value.label }}<br>
+                    {{ form.reference_value(id='form-reference-value',class="answer-input-box") }} <button type='button'>Check location</button>
+                    <div class="map-container">
+                        [MAP]
+                    </div>
                 </div>
 
                 <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
