@@ -240,6 +240,7 @@ class QuizController():
 
         questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
         myJSON = []
+        totalTime = 0;
         for i in range(0, len(questionList)):
             #Check if there is a question assigned to the questionSet even if the questionSet is missing
             #question from the admin page
@@ -249,6 +250,7 @@ class QuizController():
                     myJSON.append({'question':questionList[i].parent.question,
                                 'qType':'short',
                                 'answer':questionList[i].parent.answer})
+                    totalTime += 45;
 
                 elif questionList[i].parent.question_type.lower() == 'multiple-choice':
                     answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
@@ -261,4 +263,6 @@ class QuizController():
                                 'qType':'multiple',
                                 'answerOptions': answerOptions,
                                 'answer':questionList[i].parent.answer})
-        return render_template('quizPage.html', questions = myJSON)
+                    totalTime += 15;
+                    
+        return render_template('quizPage.html', questions = myJSON, timer = totalTime)

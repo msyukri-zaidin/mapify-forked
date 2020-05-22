@@ -16,11 +16,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
     <script async type="text/javascript" src="{{ url_for('static', filename='timer.js') }}"></script>
+
     
 
 {% endblock %}
 
 {% block body %}
+    
     <!-- Navigation Bar -->
     <!-- <div class="nav_area">
         <div class="inner_nav">
@@ -35,7 +37,6 @@
                 </ul>
         </div>
     </div> -->
-
     <!-- Body of the webpage -->
     <div id="quiz" class="body_container">
         <!-- This part of the webpage is rendered by a quiz.js file -->
@@ -49,7 +50,7 @@
                 {% endfor %}
             </div>
         </div>
-
+        
         <!-- Generates the divs for the questions -->
         {% for questionNum in range(questions|length) %}
             <div id="Q{{ questionNum+1 }}" class="main">
@@ -102,6 +103,7 @@
                     The answer to the question
                     Verification message if they got the question right or wrong -->
                 <h2>0</h2>
+                <h2 id="totalTime">{{ timer }}</h2>
                 <h2 id="answer{{ questionNum+1 }}">{{ questions[questionNum].answer }}</h2>
 
                 <h2 id="msg{{ questionNum+1 }}"></h2>
@@ -158,6 +160,7 @@
                 </div>
             </div>
         {% endfor %}
+        <p>{{count}}</p>
 
     </div>
 
