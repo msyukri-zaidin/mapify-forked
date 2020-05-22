@@ -21,6 +21,8 @@ class QuestionForm(FlaskForm):
     id_list = HiddenField("TEST")
 #, validators = [DataRequired()]
     submit = SubmitField("Submit")
+    def __repr__(self):
+        return self.question
 
 
 class QuestionsetForm(FlaskForm):
