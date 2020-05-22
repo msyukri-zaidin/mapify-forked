@@ -56,6 +56,32 @@ class UserController():
             print("invalid")
         return render_template('register.html', title='Register', form=form)
 
+    def user_list():
+        userList = User.query.all()
+        return userList
+
+    def delete_user():
+        userDict = request.get_json(force=True)
+        userID = int(userDict['userID'])
+        print("Deleting user ID: ", userID)
+        User.query.filter_by(id=userID).delete()
+        db.session.commit()
+        return redirect(url_for('user_list'))
+
+    def promote_user():
+        userDict = request.get_json(force=True)
+        userID = int(userDict['userID'])
+        User.query.filter_by(id=userID).first().user_type = 'admin'
+        db.session.commit()
+        return redirect(url_for('user_list'))   
+
+    def demote_user():
+        userDict = request.get_json(force=True)
+        userID = int(userDict['userID'])
+        User.query.filter_by(id=userID).first().user_type = 'regular'
+        db.session.commit()
+        return redirect(url_for('user_list'))   
+
 class QuestionController():
     def create_question(form):
         #Validates to true if the question form was submitted
@@ -106,7 +132,7 @@ class QuestionController():
                     db.session.add(o)
 
             db.session.commit()
-            return redirect(url_for('admin', questionsetID = questionsetID, form=form))
+            return redirect(url_for('admin', questionsetID = questionsetID))
 
     def edit_question():
         #Function that is initiated by an AJAX call that comes from editing a question
