@@ -26,6 +26,22 @@ def logout():
 def register():
     return UserController.register()
 
+@app.route('/user-list', methods=['GET', 'POST'])
+def user_list():
+    return render_template('edit_user_page.html', userList = UserController.user_list())
+
+@app.route('/delete-user', methods=['POST'])
+def delete_user():
+    return UserController.delete_user()
+
+@app.route('/promote-user', methods=['POST'])
+def promote_user():
+    return UserController.promote_user()
+
+@app.route('/demote-user', methods=['POST'])
+def demote_user():
+    return UserController.demote_user()
+
 @app.route('/', methods = ['GET','POST'])
 def home():
     questionSet = QuestionSet.query.all()
@@ -43,6 +59,8 @@ def admin():
 
     questionset_form = QuestionsetForm()
     form = QuestionForm()
+
+
     
     questionsetID = request.args.get('questionsetID')
     #questionsetID will be true only if function was called by questionset()
@@ -55,7 +73,10 @@ def admin():
 
     QuestionController.create_question(form)
     QuestionSetController.create_questionset(questionset_form)
-
+    #For some unusual reason, these 2 fields keep getting initialised to some random data after declaration
+    #Force resetting values
+    form.question.data = ''
+    form.short_answer.data = ''
 
     #These 3 if statements are temporary. Only used when database is initally empty
     """if len(Question.query.all()) == 0:

@@ -17,6 +17,7 @@ class Question(db.Model):
     answer = db.Column(db.String(128))
     child = db.relationship("CurrentQuestion", backref="parent")
     option_child = db.relationship("Option", backref="parent")
+    reference_value = db.Column(db.String(128))
 
     #Print current question
     def __repr__(self):
