@@ -153,7 +153,7 @@ button:focus {
 }
 #game-sets {
   padding: 20px;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
 }
 .mini-card {
   margin: 30px 40px;

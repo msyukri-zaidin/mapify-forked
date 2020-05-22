@@ -15,14 +15,14 @@
                 given as the clue.
             </p>
         </span>
-        <!-- <img src="./photos/worldMapSample.jpg"> -->
     </div>
-    <!-- here we are going to put a JS code, where user can put in their username in -->
+    <!-- Area for where the user can put in their desired username for the game -->
     <div id="home-username" class="flex-display home-box">
         <h2 class="box-title">Choose a username:</h2>
         <form>
             <input type="text" id="username-input" value="" placeholder="eg: Tim Winton" />
         </form>
+        <!-- This area gives teh viewer some suggestions for game username-->
         <span id="username-list" class="flex-display">
             <p style="font-size: 1.2em;">Suggestions: &nbsp; &nbsp;</p>
         </span>
@@ -30,11 +30,8 @@
     <div class="home-box">
         <!-- Select game set or difficulty -->
         <h2 class="box-title">Select a game set</h2>
-        <!-- The sure can select a game set using either:
-                        - a dropdown menu
-                        - list of famous ones, and can press a button that will load more game sets -->
         <section id="game-sets" class="flex-display">
-            <!-- This random game set button should be special, everytime a person clink on it, a new game set will be choosen wihtout the user knows until the game starts -->
+            <!-- ADD: This random game set button should be special, everytime a person clink on it, a new game set will be choosen wihtout the user knows until the game starts -->
             <span class="mini-card hoverable">
                 <img>
                 <h3 id="random-game-set" class="card-title">Random</h3>
@@ -46,6 +43,7 @@
             </span>
             {% endfor %}
         </section>
+        <!-- ADD: only when u press 'load more' then it will show another 6 game sets -->
         <div id="load-more">
             <button>Load More</button>
         </div>
