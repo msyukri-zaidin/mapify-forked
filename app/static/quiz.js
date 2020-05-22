@@ -68,7 +68,7 @@ function wrongAttempt(qNum, attemptNum) {
 }
 
 function incrementAttempts(qNum) {
-    return ++document.getElementById('Q'+qNum).querySelector('h2').innerHTML;
+    return ++document.getElementById('attempts'+qNum).innerHTML;
 }
 
 function disableButton(qNum) {
@@ -110,9 +110,12 @@ function validateAns(qNum) {
     // $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
     let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
-
     let answer = document.getElementById('answer'+qNum).innerHTML;
-    let location = answer.toLowerCase();
+    let location = document.getElementById('reference'+qNum).innerHTML;
+    if (location == 'None') {
+        location = answer;
+    }
+    
 
     // Check if the 
     if (currentAns == '') {
@@ -123,7 +126,7 @@ function validateAns(qNum) {
         numAttempts = incrementAttempts(qNum);
         let setZoom = zoomOptions[numAttempts-1];
         let setRadius = radiusOptions[numAttempts-1];
-        if (currentAns == location) {
+        if (currentAns == answer.toLowerCase()) {
             getMapWithMarker(qNum, location, setZoom, setRadius);
             correctAns(qNum);
             disableButton(qNum);
@@ -190,6 +193,19 @@ function getMapWithRadius(qNum, location, setZoom, setRadius) {
     document.getElementById("mapCon"+qNum).style.display = "block";
 }
 
+// Implementation for admin form page
+function createFormMap() {
+    let location  = document.getElementById('form-reference-value').value;
+    console.log(location);
+    getLatLong(0, location, 8, 0, true);
+    document.getElementById("map0").style.display = 'block';
+}
+
+function hideMap() {
+    document.getElementById("map0").style.display = 'none';
+}
+
+
 /**
  * Function to get the latitude and longitude of a location
  * **/
@@ -241,8 +257,15 @@ function initMap(lat, lng, qNum, setZoom, setRadius, isMarker) {
 
     if (isMarker) {
 
-        var answer = document.getElementById("answer"+qNum).innerHTML;
-        var contentString = `<p1 class="infoMarker">${answer}</p1>`
+        // This gets the answer from the quiz page
+        if (qNum == 0) {
+            let location = document.getElementById('form-reference-value').value;
+            var contentString = `<p1 class="infoMarker">${location}</p1>`
+        } else {
+            var answer = document.getElementById("answer"+qNum).innerHTML;
+            var contentString = `<p1 class="infoMarker">${answer}</p1>`
+        }
+        
 
         var infowindow = new google.maps.InfoWindow ({
             content: contentString

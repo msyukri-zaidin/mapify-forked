@@ -102,9 +102,10 @@
                 <!-- This is hidden right now but will contain information of how many times a button is clicked
                     The answer to the question
                     Verification message if they got the question right or wrong -->
-                <h2>0</h2>
+                <h2 id='attempts{{ questionNum+1 }}'>0</h2>
                 <h2 id="totalTime">{{ timer }}</h2>
                 <h2 id="answer{{ questionNum+1 }}">{{ questions[questionNum].answer }}</h2>
+                <h2 id="reference{{ questionNum+1 }}">{{ questions[questionNum].reference }}</h2>
 
                 <h2 id="msg{{ questionNum+1 }}"></h2>
 
