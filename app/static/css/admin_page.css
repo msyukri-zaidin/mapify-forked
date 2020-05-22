@@ -537,10 +537,6 @@ button[type=button] {
 }
 
 .map-container {
-<<<<<<< HEAD
-    height: 300px;
-}
-=======
     padding-top: 10px;
     height: 250px;
 }
@@ -551,4 +547,3 @@ button[type=button] {
     color: #f56161;
 
 }
->>>>>>> ahbar_branch
