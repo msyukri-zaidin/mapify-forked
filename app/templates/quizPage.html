@@ -15,7 +15,9 @@
         <!-- Link the script files for java script and for the google api-->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
+        <script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
+        <script async type="text/javascript" src="{{ url_for('static', filename='timer.js') }}"></script>
+        
 
     </head>
 
@@ -47,7 +49,8 @@
         
         <div id="quiz" class="body_container">
             <!-- This part of the webpage is rendered by a quiz.js file -->
-
+            <div id="timer"></div>
+            
             <div class="side">
                 <div class="buttons">
                     <!-- Generates the side buttons for the coresponding questions -->
@@ -113,6 +116,56 @@
 
                     <h2 id="msg{{ questionNum+1 }}"></h2>
 
+                    <div id="nextPrevious{{ questionNum+1 }}" class="test">
+                        <div class="nextPrevious_container">
+                            {% if questionNum == 0 %}
+                                <button
+                                    class="submitQ"
+                                    type="button"
+                                    onclick="showNextQ('{{ questionNum+1 }}')"
+                                >
+                                    Next Question
+                                </button>
+
+                            {% elif questionNum == questions|length -1 %}
+
+                                <button
+                                class="submitQ"
+                                type="button"
+                                onclick="showPreviousQ('{{ questionNum+1 }}')"
+                                >
+                                    Previous Question
+                                </button>
+                                <button
+                                    onclick="submitQuiz()"
+                                    class="submitQ"
+                                    type="button" 
+                                >
+                                    Finish
+                                </button>
+                            
+                            {% else %}
+
+                                <button
+                                    
+                                    class="submitQ"
+                                    type="button"
+                                    onclick="showPreviousQ('{{ questionNum+1 }}')"
+                                >
+                                    Previous Question
+                                </button>
+
+                                <button
+                                    class="submitQ"
+                                    type="button"
+                                    onclick="showNextQ('{{ questionNum+1 }}')"
+                                >
+                                    Next Question
+                                </button>
+                            {% endif %}
+                        </div>
+
+                    </div>
                 </div>
             {% endfor %}
 

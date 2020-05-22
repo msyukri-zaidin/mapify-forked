@@ -5,47 +5,34 @@
     <link rel="shortcut icon" type="image/png" href="../static/css/images/mapify-icon.png">
     <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css"
         href="{{url_for('static',filename='css/mystyle.css')}}">
+        <link href="https://css.gg/css?=|add|remove|chevron-down|math-plus|close|chevron-double-up|chevron-double-down" rel="stylesheet">
     {% block head %}{% endblock %}
 </head>
 
 <body>
     <div class="header">
-        <a href="#"><img id="logo" src="../static/css/images/mapify-2.png"></a>
+        <a href="/"><img id="logo" src="../static/css/images/mapify-2.png"></a>
+        {% if current_user.is_authenticated and current_user.user_type == 'regular' %}
+            Welcome {{ current_user.username }}!
+            <nav class="tab-right">
+                <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
+            </nav>
+        {% elif current_user.is_authenticated and current_user.user_type == 'admin' %}
+            Welcome {{ current_user.username }}!
+            <nav class="tab-right">
+                <a href='user-list'><button id="header-user-button" class="tablinks">Edit Users</button></a>
+                <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
+                <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
+            </nav>
+        {% else %}
         <nav class="tab-right">
-            <button id="header-signup-button" class="tablinks">Sign Up</button>
-            <button id="header-login-button" class="tablinks">Log In</button>
+            <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
+            <a href='login'><button id="header-login-button" class="tablinks">Log In</button></a>
         </nav>
+        {% endif %}
     </div>
 
-    <!-- Modal Section -->
-    <div class="login-modal">
-        <div class="modal-contents">
-            <div id="exitLogInModal">+</div>
-            <h2>Log In</h2>
-            <form>
-                {{loginForm.hidden_tag()}}
-                <!-- The login form Username Area -->
-                {{loginForm.username.label}}
-                {{loginForm.username(size=16)}}
-                <!-- Username error checking -->
-                {% for error in loginForm.username.errors %}
-                <span style="color:red">[{{error}}]</span>
-                {% endfor %}
-                <!-- The login form Password Area -->
-                {{loginForm.password.label}}
-                {{loginForm.password(size=16)}}
-                <!-- Passwords error checking -->
-                {% for error in loginForm.password.errors %}
-                <span style="color:red">[{{error}}]</span>
-                {% endfor %}
-                <!-- The login form submit button -->
-                {{loginForm.submit()}}
-                <!-- <input id="login-username" type="username" placeholder="Name">
-                <input id="login-password" type="password" placeholder="E-Mail"> -->
-            </form>
-            <!-- <button id="login-button" class="clicky-button">Submit</button> -->
-        </div>
-    </div>
+ 
     <!-- Modal Section -->
 
     {% block body %}{% endblock %}

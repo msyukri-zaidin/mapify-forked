@@ -77,14 +77,13 @@ function disableButton(qNum) {
 
     //Change the colour of the button to show that it has been disabled
     // button.disabled = true;
-    // button.style.color = 'whitesmoke';
-    // button.style.backgroundColor = '#f1f1f1'
+    // button.style.color = '#e0e0e0';
+    // button.style.backgroundColor = '#c7c7c7'
 
 }
 
 
 function disableMCQButton(qNum) {
-    console.log(qNum);
     document.getElementById('mcq'+qNum).querySelector('button').style.display = 'none';
 }
 
@@ -97,12 +96,10 @@ function validateMCQ(qNum) {
 
     if (userAnswer == correctAnswer) {
         correctAns(qNum);
-        disableMCQButton(qNum);
     } else {
         wrongAns(qNum, correctAnswer);
-        disableMCQButton(qNum);
     }
-    
+    disableMCQButton(qNum);
 }
 
 /**
@@ -156,6 +153,30 @@ function validateAns(qNum) {
         
     }
 // });
+}
+
+function showNextQ(qNum) {
+    // dont show next question if its the last question
+    // let button = document.getElementById();
+    // $(document).on
+    $(`#Q${parseInt(qNum)+1}Button`).click();
+
+}
+
+function showPreviousQ(qNum) {
+    // dont show previous question if its the first question
+    $(`#Q${parseInt(qNum)-1}Button`).click();
+
+}
+
+function submitQuiz() {
+    var userPreference;
+    if (confirm("Do you want to submit the quiz?") == true) {
+        userPreference = "Quiz Submitted sucessfully!";
+        alert(userPreference);
+        window.location.href = "/";
+    }
+
 }
 
 function getMapWithMarker(qNum, location, setZoom, setRadius) {
@@ -274,3 +295,4 @@ function generatePoint(lat, lng, radius) {
 
     return {newLat, newLng};
 }
+

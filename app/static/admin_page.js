@@ -155,6 +155,7 @@ function editQuestion(questionID) {
     //[4] is number of options, [5] onwards are the options
     else if ( questionContent[2] == 'multiple-choice') {
         console.log('multiple-choice');
+        console.log(questionContent);
         document.getElementById('questionType-0').checked = true; //Check appropriate button
         document.getElementById('questionType-1').disabled = true; //Disable radio buttons
         document.getElementById('questionType-0').disabled = true;
@@ -409,6 +410,7 @@ $(document).ready(function(){
         let modal = document.getElementById("create-new-question-modal");
         modal.style.display = 'none';
         //Clear all entered values
+        console.log("Should clear");
         $('#question-form').trigger('reset');
         document.getElementById('form-question-submit').style.display = 'none';
         document.getElementById('form-short-answer').style.display = '';
@@ -425,8 +427,7 @@ $(document).ready(function(){
         document.getElementById('id-list').value = '';
     })
 
-    $("#confirm-button").click(function() {
-        //In-progress
+    $("#question-confirm-button").click(function() {
         console.log(previousItem.getAttribute('value'));
         
         let myJSON = {
@@ -449,14 +450,45 @@ $(document).ready(function(){
         })
         
     })
+    $(".move-button").mousedown(function() {
+        this.parentNode.parentNode.parentNode.children[1].style.display ='block';
+        document.getElementsByClassName('question-pool')[0].append(this.parentNode.parentNode);
+    })
         
     
-    $("#cancel-button").click(function() {
+    $("#question-cancel-button").click(function() {
         let modal = document.getElementById("deleteModal");
         modal.style.display = 'none';
     })
     $("#new-questionset").click(function() {
         document.getElementById("questionset-modal").style.display = 'block';
+    })
+    $("#delete-questionset").click(function () {
+        document.getElementById("delete-set-modal").style.display = 'block';
+    })
+    $("#set-cancel-button").click(function() {
+        let modal = document.getElementById("delete-set-modal");
+        modal.style.display = 'none';
+    })
+    $("#set-confirm-button").click(function() {
+        let setID = document.getElementById("questionset-name").getAttribute('value')
+        let myJSON = {
+            setID:setID
+        }
+
+        myJSON = JSON.stringify(myJSON);
+        $.ajax({
+            type:'POST',
+            url:'/deleteset',
+            data: myJSON,
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus); 
+            },
+           success: function(data, textStatus) {
+                window.location = '/admin';
+           }
+        })
+        
     })
     $("#new-questionset-form-cancel").click(function() {
         document.getElementById("questionset-modal").style.display = 'none';
@@ -499,9 +531,7 @@ $(document).ready(function(){
                  console.log(textStatus); 
                 },
             success: function(data, textStatus) {
-                let setID = document.getElementById("questionset-name").getAttribute('value')
-                let link = '/admin?questionsetID=' + setID;
-                window.location = link;
+                window.location.reload();
             }
         })
         

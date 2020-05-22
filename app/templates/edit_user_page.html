@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit User | Mapify</title>
+<link rel="stylesheet" type="text/css" href="../static/css/edit_user_page.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% endblock %}
+{% block body %}
+
+<h1>Edit User</h1>
+
+<div class="table-title">
+    <h3>User Table</h3>
+</div>
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th class="text-left">User ID</th>
+            <th class="text-left">User Type</th>
+            <th class="text-left">Username</th>
+            <th class="text-left">Delete</th>
+            <th class="text-left">Promote/ Demote</th>
+        </tr>
+    </thead>
+    <tbody class="table-hover">
+        {% for user in userList %}
+        <tr>
+            <td class="text-left">{{ user.id }}</td>
+            <td class="text-left">{{ user.user_type }}</td>
+            <td class="text-left">{{ user.username }}</td>
+            <td class="text-left"><i class="gg-close"></i></td>
+            <td class="text-left">
+                {% if user.user_type == 'regular' %}
+                    <i class="gg-chevron-double-up"></i>
+                {% elif user.user_type == 'admin' %}
+                    <i class="gg-chevron-double-down"></i>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+<div id="user-delete-modal" class="modal">
+    <div class="delete-popup">
+        <h2>Are you sure?</h2><p>This action will delete the user permanently.</p>
+        <div class='button-group'>
+            <button class='cancel-button'>Cancel</button>
+            <button class='confirm-button'>Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='edit_user_page.js') }}"></script>
+
+{% endblock %}
