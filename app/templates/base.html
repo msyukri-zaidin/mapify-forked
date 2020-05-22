@@ -5,6 +5,7 @@
     <link rel="shortcut icon" type="image/png" href="../static/css/images/mapify-icon.png">
     <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css"
         href="{{url_for('static',filename='css/mystyle.css')}}">
+        <link href="https://css.gg/css?=|add|remove|chevron-down|math-plus|close|chevron-double-up|chevron-double-down" rel="stylesheet">
     {% block head %}{% endblock %}
 </head>
 
@@ -19,7 +20,8 @@
         {% elif current_user.is_authenticated and current_user.user_type == 'admin' %}
             Welcome {{ current_user.username }}!
             <nav class="tab-right">
-                <a href='admin'><button id="header-admin-button" class="tablinks">Admin Page</button></a>
+                <a href='user-list'><button id="header-user-button" class="tablinks">Edit Users</button></a>
+                <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
         {% else %}
