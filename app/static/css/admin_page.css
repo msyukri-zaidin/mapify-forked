@@ -537,5 +537,13 @@ button[type=button] {
 }
 
 .map-container {
-    height: 300px;
+    padding-top: 10px;
+    height: 250px;
+}
+
+.infoMarker {
+    font-size: 15px;
+    text-align: center;
+    color: #f56161;
+
 }
