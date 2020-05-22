@@ -20,6 +20,7 @@ class QuestionForm(FlaskForm):
     #id_list = IntegerField(widget=HiddenInput())
     id_list = HiddenField("TEST")
 #, validators = [DataRequired()]
+    reference_value = StringField("Location Search")
     submit = SubmitField("Submit")
     def __repr__(self):
         return self.question

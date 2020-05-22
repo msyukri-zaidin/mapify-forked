@@ -5,6 +5,7 @@ from app.models import Question, CurrentQuestion, QuestionSet, Option, User
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db, login
 import random
+import json
 
 class UserController():
     def login():
@@ -104,7 +105,8 @@ class QuestionController():
             q = Question(
                 question = form.question.data, 
                 answer = answer,
-                question_type = form.questionType.data)
+                question_type = form.questionType.data,
+                reference_value = form.reference_value.data)
 
             #print("OPTION VALUE LIST: ", option_value_list)
 
