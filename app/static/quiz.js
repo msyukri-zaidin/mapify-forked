@@ -215,7 +215,29 @@ function submitQuiz() {
     let points = document.getElementById('points').querySelector('b');
     points.innerHTML = parseInt(parseInt(points.innerHTML) * parseFloat(multiplier));
 
-
+    timeTaken = totalTime - timeLeft;
+    
+    let myJSON = {
+        userID: userID,
+        questionsetID: questionsetID,
+        score: points.innerHTML,
+        timeTaken: formatTime(timeTaken)
+    }
+    myJSON = JSON.stringify(myJSON);
+    $.ajax({
+        type: "POST",
+        url: '/submit-results',
+        data: myJSON,
+        error: function (jqXHR, textStatus, errorThrown) {
+             console.log(textStatus); 
+            },
+        success: function(data, textStatus) {
+            //Page redirect on success
+            let link = 'result';
+            window.location.href = link;
+        }
+    })
+    
     // var userPreference;
     // if (confirm("Do you want to submit the quiz?") == true) {
     //     // userPreference = "Quiz Submitted sucessfully!";
@@ -225,6 +247,16 @@ function submitQuiz() {
     // }
 
 }
+function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    
+    if (seconds < 10) {
+        seconds = `0${seconds}`;
+    }
+    
+    return `${minutes}:${seconds}`;
+    }
 
 function convertStringToTime(timeID) {
     let timer = document.getElementById(timeID).innerHTML;
