@@ -420,3 +420,27 @@ button:focus {outline:0;}
 }
 
 /*-----------------------------------------------------*/
+
+.points {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0 auto;
+}
+
+.points p {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    transition: 0.6s ease-in;
+}
+
+
+
+/*-----------------------------------------------------*/
