@@ -5,7 +5,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <script>
+        var authenticated = '{{ current_user.is_authenticated }}'
+    </script>
     <link rel="shortcut icon" type="image/png" href="../static/css/images/mapify-icon.png">
     <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css"
         href="{{url_for('static',filename='css/mystyle.css')}}">
