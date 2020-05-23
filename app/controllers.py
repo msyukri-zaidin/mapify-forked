@@ -6,6 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app import db, login
 import random
 import json
+from datetime import time
 
 class UserController():
     def login():
@@ -103,6 +104,28 @@ class UserController():
         User.query.filter_by(id=userID).first().user_type = 'regular'
         db.session.commit()
         return redirect(url_for('user_list'))   
+
+    def submit_results():
+
+        resultDict = request.get_json(force=True)
+        userID = int(resultDict['userID'])
+        questionsetID = resultDict['questionsetID']
+        score = resultDict['score']
+        seconds = resultDict['timeTaken']
+        time_obj = seconds.split(':')
+        timeTaken = time(minute = int(time_obj[0]), second = int(time_obj[1]))
+        
+        s = Score(
+            user_id = userID,
+            questionset_id = questionsetID,
+            score = score,
+            time_taken = timeTaken
+        )
+        
+        db.session.add(s)
+        db.session.commit()
+        
+        return redirect(url_for('result'))
 
 class QuestionController():
     def create_question(form):
@@ -265,7 +288,7 @@ class QuizController():
 
         questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
         myJSON = []
-        totalTime = 0;
+        totalTime = 0
         for i in range(0, len(questionList)):
             #Check if there is a question assigned to the questionSet even if the questionSet is missing
             #question from the admin page
@@ -276,7 +299,7 @@ class QuizController():
                                 'qType':'short',
                                 'answer':questionList[i].parent.answer,
                                 'reference':questionList[i].parent.reference_value})
-                    totalTime += 45;
+                    totalTime += 45
 
                 elif questionList[i].parent.question_type.lower() == 'multiple-choice':
                     answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
@@ -289,5 +312,5 @@ class QuizController():
                                 'qType':'multiple',
                                 'answerOptions': answerOptions,
                                 'answer':questionList[i].parent.answer})
-                    totalTime += 15;
-        return render_template('quizPage.html', questions = myJSON, timer = totalTime)
+                    totalTime += 15
+        return render_template('quizPage.html', questions = myJSON, timer = totalTime, questionsetID = questionsetID)
