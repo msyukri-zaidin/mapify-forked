@@ -28,7 +28,11 @@
             <td class="text-left">{{ user.id }}</td>
             <td class="text-left">{{ user.user_type }}</td>
             <td class="text-left">{{ user.username }}</td>
-            <td class="text-left"><i class="gg-close"></i></td>
+            {% if current_user.id == user.id %}
+                <td class='text-left'></td>
+            {% else %}
+                <td class="text-left"><i class="gg-close"></i></td>
+            {% endif %}
             <td class="text-left">
                 {% if user.user_type == 'regular' %}
                     <i class="gg-chevron-double-up"></i>
