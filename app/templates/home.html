@@ -6,26 +6,7 @@
 
 {% block body %}
 <div class="container">
-
-    {% if current_user.is_authenticated and current_user.user_type == 'regular' %}
-    <!-- Welcome banner for Regular Users -->
-    <div id="home-user" class="flex-display home-box">
-        <span id="text">
-            <h2>Welcome {{ current_user.username }}!</h2>
-        </span>
-    </div>
-
-    {% elif current_user.is_authenticated and current_user.user_type == 'admin' %}
-    <!-- Welcome banner for Admin Users -->
-    <div id="home-user" class="flex-display home-box">
-        <span id="text">
-            <h2>Welcome {{ current_user.username }}!</h2>
-            <a href='user-list'><button id="header-user-button" class="tablinks">Edit Users</button></a>
-            <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
-        </span>
-    </div>
-    {% else %}
-    <!-- Part where explains what Mapify is, for those that does not have personal account -->
+    <!-- Part where explains what Mapify is, the intro -->
     <div id="home-intro" class="flex-display home-box">
         <span id="text">
             <p>Welcome to</p>
@@ -34,32 +15,33 @@
                 given as the clue.
             </p>
         </span>
+        <!-- <img src="./photos/worldMapSample.jpg"> -->
     </div>
-    <!-- Area for where the user can put in their desired username for the game -->
+    <!-- here we are going to put a JS code, where user can put in their username in -->
     <div id="home-username" class="flex-display home-box">
         <h2 class="box-title">Choose a username:</h2>
         <form>
             <input type="text" id="username-input" value="" placeholder="eg: Tim Winton" />
         </form>
-        <!-- This area gives teh viewer some suggestions for game username-->
         <span id="username-list" class="flex-display">
             <p style="font-size: 1.2em;">Suggestions: &nbsp; &nbsp;</p>
         </span>
     </div>
-    {% endif %}
-
     <div class="home-box">
         <!-- Select game set or difficulty -->
         <h2 class="box-title">Select a game set</h2>
+        <!-- The sure can select a game set using either:
+                        - a dropdown menu
+                        - list of famous ones, and can press a button that will load more game sets -->
         <section id="game-sets" class="flex-display">
-            <!-- ADD: This random game set button should be special, everytime a person clink on it, a new game set will be choosen wihtout the user knows until the game starts -->
+            <!-- This random game set button should be special, everytime a person clink on it, a new game set will be choosen wihtout the user knows until the game starts -->
             <span class="mini-card hoverable">
                 <img>
                 <h3 id="random-game-set" class="card-title">Random</h3>
             </span>
             {% for set in questionSet %}
-
-            <span class="mini-card hoverable" id='{{ set.id }}' onclick='saveSet(this.id)'>
+            
+            <span class="mini-card hoverable"id='{{ set.id }}' onclick='saveSet(this.id)' >
                 <img>
                 <h3 class="card-title">
                     {{ set }}
@@ -67,7 +49,6 @@
             </span>
             {% endfor %}
         </section>
-        <!-- ADD: only when u press 'load more' then it will show another 6 game sets -->
         <div id="load-more">
             <button>Load More</button>
         </div>

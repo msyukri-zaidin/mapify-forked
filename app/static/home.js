@@ -1,6 +1,4 @@
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-// Should we move this part to the delegates area? Inside the jQuery area
 let setID; //The set ID that is currently selected
 function saveSet(id) {
     if(setID == undefined) {
