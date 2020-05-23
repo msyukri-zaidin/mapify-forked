@@ -37,7 +37,11 @@
                 {% if user.user_type == 'regular' %}
                     <i class="gg-chevron-double-up"></i>
                 {% elif user.user_type == 'admin' %}
-                    <i class="gg-chevron-double-down"></i>
+                    {% if current_user.id == user.id %}
+                         <!--Does not include the promote/demote button-->
+                    {% else %}
+                        <i class="gg-chevron-double-down"></i>
+                    {% endif %}
                 {% endif %}
             </td>
         </tr>
