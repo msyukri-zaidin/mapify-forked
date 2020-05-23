@@ -6,7 +6,26 @@
 
 {% block body %}
 <div class="container">
-    <!-- Part where explains what Mapify is, the intro -->
+
+    {% if current_user.is_authenticated and current_user.user_type == 'regular' %}
+    <!-- Welcome banner for Regular Users -->
+    <div id="home-user" class="flex-display home-box">
+        <span id="text">
+            <h2>Welcome {{ current_user.username }}!</h2>
+        </span>
+    </div>
+
+    {% elif current_user.is_authenticated and current_user.user_type == 'admin' %}
+    <!-- Welcome banner for Admin Users -->
+    <div id="home-user" class="flex-display home-box">
+        <span id="text">
+            <h2>Welcome {{ current_user.username }}!</h2>
+            <a href='user-list'><button id="header-user-button" class="tablinks">Edit Users</button></a>
+            <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
+        </span>
+    </div>
+    {% else %}
+    <!-- Part where explains what Mapify is, for those that does not have personal account -->
     <div id="home-intro" class="flex-display home-box">
         <span id="text">
             <p>Welcome to</p>
@@ -27,6 +46,8 @@
             <p style="font-size: 1.2em;">Suggestions: &nbsp; &nbsp;</p>
         </span>
     </div>
+    {% endif %}
+
     <div class="home-box">
         <!-- Select game set or difficulty -->
         <h2 class="box-title">Select a game set</h2>
@@ -37,8 +58,8 @@
                 <h3 id="random-game-set" class="card-title">Random</h3>
             </span>
             {% for set in questionSet %}
-            
-            <span class="mini-card hoverable"id='{{ set.id }}' onclick='saveSet(this.id)' >
+
+            <span class="mini-card hoverable" id='{{ set.id }}' onclick='saveSet(this.id)'>
                 <img>
                 <h3 class="card-title">
                     {{ set }}
