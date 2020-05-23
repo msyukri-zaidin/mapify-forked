@@ -37,8 +37,11 @@
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
         {% elif current_user.is_authenticated and current_user.user_type == 'temp' %}
-            Welcome {{ current_user.username }}!
+            <div class="welcomeUser">Welcome {{ current_user.username }}!</div>
             <nav class="tab-right">
+                <div class="points" id="points">
+                    <p>Points : <b>0</b></p>
+                </div>
                 <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
