@@ -1,7 +1,7 @@
 from app.forms import QuestionForm, QuestionsetForm, LoginForm, RegistrationForm
 from app.models import load_user
 from flask import render_template, flash, redirect, url_for, request, jsonify
-from app.models import Question, CurrentQuestion, QuestionSet, Option, User
+from app.models import Question, CurrentQuestion, QuestionSet, Option, User, Score
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db, login
 import random
@@ -13,7 +13,7 @@ class UserController():
         if form.validate_on_submit():
             user = User.query.filter_by(username = form.username.data).first()
             if user is None or not user.check_password(form.password.data):
-                flash('invalid username or data')
+                flash('invalid username or password')
                 return redirect(url_for('login'))
             else:
                 #Login successful
@@ -22,8 +22,6 @@ class UserController():
                 if not next_page or url_parse(next_page).netloc !='':
                     next_page = 'home'
                 return redirect(url_for(next_page))
-        else:
-            flash('invalid')
 
         return render_template('login.html', title="Log In", form=form)
 
@@ -35,15 +33,21 @@ class UserController():
         form = RegistrationForm()
         if form.validate_on_submit():
             #Form succeeds
-            user = User.query.filter_by(username=form.username.data).first()
-            if user is not None:
+            user = User.query.filter_by(username=form.username.data).all()
+            if user[0].user_type == 'regular':
                 #Username already taken
-                return redirect(url_for('home'))
+                flash('Username already taken')
+                return redirect(url_for('register'))
+            #If statement validates to true if current user is an anon registering after submission of quiz
             if current_user.is_authenticated:
-                if not user.check_password(form.password.data):
-                    #Incorrect password
-                    return redirect(url_for('home'))
+                user = User.query.filter_by(id=current_user.id).first()
+                user.user_type = 'regular'
+                user.set_password(form.password.data)
+                db.session.commit()
+                login_user(user, remember=False)
+                return redirect(url_for('home'))
             
+            #New user registration
             user = User(
                 user_type = 'regular',
                 username = form.username.data,
@@ -53,9 +57,22 @@ class UserController():
             db.session.commit()
             login_user(user, remember=False)
             return redirect(url_for('home'))
-        else:
-            print("invalid")
+        
+
         return render_template('register.html', title='Register', form=form)
+
+    def register_anon():
+        anonDict = request.get_json(force=True)
+        username = anonDict['username']
+        #Register temporary user
+        user = User(
+            user_type = 'temp',
+            username = username
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user, remember=False)
+        return redirect(url_for('home'))
 
     def user_list():
         userList = User.query.all()
@@ -65,6 +82,9 @@ class UserController():
         userDict = request.get_json(force=True)
         userID = int(userDict['userID'])
         print("Deleting user ID: ", userID)
+
+        #Delete related scores
+        Score.query.filter_by(user_id=userID).delete()
         User.query.filter_by(id=userID).delete()
         db.session.commit()
         return redirect(url_for('user_list'))
@@ -119,7 +139,7 @@ class QuestionController():
             #If form was submitted from active question list
             if(form.id_list.data):
                 idDict = json.loads(form.id_list.data)
-                print(idDict)
+                #print(idDict)
                 CurrentQuestion.query.filter_by(question_number=idDict['questionNumber'],questionset_id=idDict['setID']).first().question_id = questionID
                 questionsetID = idDict['setID']
 
@@ -270,5 +290,5 @@ class QuizController():
                                 'answer':questionList[i].parent.answer})
                     totalTime += 15;
             
-        print(myJSON)
+        #print(myJSON)
         return render_template('quizPage.html', questions = myJSON, timer = totalTime)
