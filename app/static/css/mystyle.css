@@ -4,13 +4,12 @@
   margin: 0;
 }
 body {
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
   font-family: "Sniglet";
   font-size: 22px;
   background-color: #232233;
   color: rgb(255, 246, 238);
-  position: relative;
-  padding-bottom: 50px;
 }
 input:focus,
 textarea:focus,
@@ -21,16 +20,14 @@ button:focus {
 /* ------------------------------------------- */
 /* Header */
 .header {
-  width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 #logo {
   background-color: rgba(0, 0, 0, 0.01);
   color: aliceblue;
-  margin-left: 20px;
-  float: left;
-  max-width: 170px;
+  margin: 5px 0 0 20px;
+  max-width: 140px;
 }
 .tab-right {
   background-color: rgba(0, 0, 0, 0.01);
@@ -116,6 +113,12 @@ button:focus {
   background-color: aliceblue;
   width: 40%;
 }
+#home-user {
+}
+#home-user #text h2 {
+  font-size: 3em;
+  border-bottom: solid 4px rgb(233, 145, 31);
+}
 #mapify-slogan {
   font-size: 10em;
   margin-bottom: 30px;
@@ -155,7 +158,7 @@ button:focus {
 }
 #game-sets {
   padding: 20px;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
 }
 .mini-card {
   margin: 30px 40px;
@@ -177,11 +180,10 @@ button:focus {
 }
 /* This removes underlining on anchor tag */
 .mini-card .card-title a {
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
-  }
-
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
 
 #load-more {
   border-top: solid 4px rgb(233, 145, 31);
@@ -250,7 +252,7 @@ button:focus {
 #rules ul {
   margin: 10px 40px;
 }
-#rules ul li{
+#rules ul li {
   padding-bottom: 15px;
   font-size: 1em;
 }
@@ -259,8 +261,7 @@ button:focus {
 }
 .leaderboard-row {
   position: relative;
-  display: flex;
-  flex-flow: row;
+  display: block;
   width: 100%;
   height: 40px;
   margin: 10px 0px;
@@ -271,21 +272,12 @@ button:focus {
   display: inline-block;
   width: 75%;
 }
-
-.leaderboard-row .time-taken {
-    position: relative;
-    display: inline-block;
-    width: 50%;
-}
-
 .leaderboard-row .score {
   position: relative;
   width: 25%;
   background-color: #255db8;
   float: right;
 }
-
-
 
 /* MODAL STARTS HERE */
 .login-modal {
@@ -354,7 +346,6 @@ button:focus {
   flex-basis: 0;
   right: 20px;
   background: white;
-  color: orange;
   border-radius: 15px;
   padding: 0 50px;
   text-align: center;
@@ -378,58 +369,30 @@ button:focus {
 
 /* Login page */
 .form-container {
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 15%;
-    border: solid;
-    padding: 25px;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 15%;
+  border: solid;
+  padding: 25px;
 }
-
-#anon-register a{
-    color: white;
-}
-
-#anon-register a:hover{
-    color: red;
-}
-
-
- 
 
 /* ------------------------------------------- */
 /* Footer */
-/* Footer */
 footer {
-    color: aliceblue;
-    background-color: rgba(0, 0, 0, 0.4);
-    overflow: hidden; 
-    padding: 20px 0px;
-    text-align: center;
-    font-size: 17px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;
+  bottom: 0;
+  height: 40px;
+  overflow: hidden;
+  border: none;
+  padding: 20px 1400px 10px 150px;
+  text-align: center;
 }
-
-/*
-  footer p {
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.01);
-    color: aliceblue;
-    font-size: 0.9em;
-  } */
-
-  .points {
-    display: inline-block;
-    margin: 10px 20px;
-    font-size: 25px;
-    color: aliceblue;
-  }
-
-  .welcomeUser {
-    text-align: left;
-    display: inline-block;
-    margin: 20px 20px;
-    font-size: 25px;
-    color: aliceblue;
-  }
+footer p {
+  background-color: rgba(0, 0, 0, 0.01);
+  color: aliceblue;
+  position: absolute;
+  bottom: 20px;
+  display: inline-block;
+  font-size: 1.2vw;
+}

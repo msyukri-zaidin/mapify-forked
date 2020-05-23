@@ -5,13 +5,12 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>
-        var authenticated = '{{ current_user.is_authenticated }}'
-    </script>
+
     <link rel="shortcut icon" type="image/png" href="../static/css/images/mapify-icon.png">
     <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css"
         href="{{url_for('static',filename='css/mystyle.css')}}">
-        <link href="https://css.gg/css?=|add|remove|chevron-down|math-plus|close|chevron-double-up|chevron-double-down" rel="stylesheet">
+    <link href="https://css.gg/css?=|add|remove|chevron-down|math-plus|close|chevron-double-up|chevron-double-down"
+        rel="stylesheet">
     {% block head %}{% endblock %}
 </head>
 
@@ -19,45 +18,22 @@
     <div class="header">
         <a href="/"><img id="logo" src="../static/css/images/mapify-2.png"></a>
         {% if current_user.is_authenticated and current_user.user_type == 'regular' %}
-            <div class="welcomeUser">Welcome {{ current_user.username }}!</div>
-            <nav class="tab-right">
-                <div class="points" id="points">
-                    <p>Points : <b>0</b></p>
-                </div>
-                <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
-            </nav>
+        <nav class="tab-right">
+            <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
+        </nav>
         {% elif current_user.is_authenticated and current_user.user_type == 'admin' %}
-            <div class="welcomeUser">Welcome {{ current_user.username }}!</div>
-            <nav class="tab-right">
-                <div class="points" id="points">
-                    <p>Points : <b>0</b></p>
-                </div>
-                <a href='user-list'><button id="header-user-button" class="tablinks">Edit Users</button></a>
-                <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
-                <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
-            </nav>
-        {% elif current_user.is_authenticated and current_user.user_type == 'temp' %}
-            <div class="welcomeUser">Welcome {{ current_user.username }}!</div>
-            <nav class="tab-right">
-                <div class="points" id="points">
-                    <p>Points : <b>0</b></p>
-                </div>
-                <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
-                <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
-            </nav>
+        <nav class="tab-right">
+            <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
+        </nav>
         {% else %}
         <nav class="tab-right">
-            <div class="points" id="points">
-                <p>Points : <b>0</b></p>
-            </div>
-            <!-- <a href='#'><button id="header-signup-button" class="tablinks">Points</button></a> -->
             <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
             <a href='login'><button id="header-login-button" class="tablinks">Log In</button></a>
         </nav>
         {% endif %}
     </div>
 
- 
+
     <!-- Modal Section -->
 
     {% block body %}{% endblock %}
@@ -80,6 +56,8 @@
     </footer>
 </body>
 
-
+<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+    crossorigin="anonymous"></script>
+<script src="../static/home.js"></script>
 
 </html>
