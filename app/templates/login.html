@@ -19,6 +19,15 @@
         {{form.submit()}}
         <!-- <input id="login-username" type="username" placeholder="Name">
         <input id="login-password" type="password" placeholder="E-Mail"> -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     </form>
 </div>
 {% endblock %}
