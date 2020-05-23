@@ -12,7 +12,11 @@
         {{form.hidden_tag()}}
         <!-- The login form Username Area -->
         {{form.username.label}}<br>
-        {{form.username(size=16)}}
+        {% if current_user.is_authenticated %}
+            {{form.username(size=16, value=current_user.username)}}
+        {% else %}
+            {{form.username(size=16)}}
+        {% endif %}
         <br>
         <!-- The login form Password Area -->
         {{form.password.label}}<br>
@@ -22,6 +26,15 @@
         {{form.submit()}}
         <!-- <input id="login-username" type="username" placeholder="Name">
         <input id="login-password" type="password" placeholder="E-Mail"> -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
     </form>
 </div>
 {% endblock %}

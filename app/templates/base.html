@@ -5,7 +5,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <script>
+        var authenticated = '{{ current_user.is_authenticated }}'
+    </script>
     <link rel="shortcut icon" type="image/png" href="../static/css/images/mapify-icon.png">
     <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css"
         href="{{url_for('static',filename='css/mystyle.css')}}">
@@ -32,6 +34,12 @@
                 </div>
                 <a href='user-list'><button id="header-user-button" class="tablinks">Edit Users</button></a>
                 <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
+                <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
+            </nav>
+        {% elif current_user.is_authenticated and current_user.user_type == 'temp' %}
+            Welcome {{ current_user.username }}!
+            <nav class="tab-right">
+                <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
         {% else %}
