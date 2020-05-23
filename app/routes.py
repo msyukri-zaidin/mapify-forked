@@ -68,9 +68,6 @@ def home():
     questionSet = QuestionSet.query.all()
     newestSet = QuestionSet.query.all()[-1]
     scoreSorted = Score.query.filter_by(questionset_id=newestSet.id).order_by(Score.score.desc()).all()
-    # need to do what happens if the user has laready logged in, would the login button appear differently
-    # not too sure on what this success does
-
     return render_template('home.html', questionSet = questionSet, newestSet = newestSet, scoreSorted = scoreSorted)
 
 @app.route('/quiz', methods = ['GET','POST'])

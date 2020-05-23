@@ -6,7 +6,23 @@
 
 {% block body %}
 <div class="container">
-    <!-- Part where explains what Mapify is, the intro -->
+    {% if current_user.is_authenticated and current_user.user_type == 'regular' %}
+    <!-- Welcome banner for Regular Users -->
+    <div id="home-user" class="flex-display home-box">
+        <span id="text">
+            <h2>Welcome {{ current_user.username }}!</h2>
+        </span>
+    </div>
+
+    {% elif current_user.is_authenticated and current_user.user_type == 'admin' %}
+    <!-- Welcome banner for Admin Users -->
+    <div id="home-user" class="flex-display home-box">
+        <span id="text">
+            <h2>Welcome {{ current_user.username }}!</h2>
+        </span>
+    </div>
+    {% else %}
+    <!-- Part where explains what Mapify is, for those that does not have personal account -->
     <div id="home-intro" class="flex-display home-box">
         <span id="text">
             <p>Welcome to</p>
@@ -15,18 +31,20 @@
                 given as the clue.
             </p>
         </span>
-        <!-- <img src="./photos/worldMapSample.jpg"> -->
     </div>
-    <!-- here we are going to put a JS code, where user can put in their username in -->
+    <!-- Area for where the user can put in their desired username for the game -->
     <div id="home-username" class="flex-display home-box">
         <h2 class="box-title">Choose a username:</h2>
         <form>
             <input type="text" id="username-input" value="" placeholder="eg: Tim Winton" />
         </form>
+        <!-- This area gives teh viewer some suggestions for game username-->
         <span id="username-list" class="flex-display">
             <p style="font-size: 1.2em;">Suggestions: &nbsp; &nbsp;</p>
         </span>
     </div>
+    {% endif %}
+
     <div class="home-box">
         <!-- Select game set or difficulty -->
         <h2 class="box-title">Select a game set</h2>
@@ -40,8 +58,8 @@
                 <h3 id="random-game-set" class="card-title">Random</h3>
             </span>
             {% for set in questionSet %}
-            
-            <span class="mini-card hoverable"id='{{ set.id }}' onclick='saveSet(this.id)' >
+
+            <span class="mini-card hoverable" id='{{ set.id }}' onclick='saveSet(this.id)'>
                 <img>
                 <h3 class="card-title">
                     {{ set }}
@@ -53,25 +71,6 @@
             <button>Load More</button>
         </div>
     </div>
-    <!-- <div id="difficulty-setting" class="flex-display home-box">
-            <span>
-                <h2>Choose your diffulty:</h2>
-            </span>
-            <span>
-                <button id="beginner-button" class="clicky-button">
-                    <h3>Beginner</h3>
-                </button>
-            </span>
-            <span>
-                <button id="medium-button" class="clicky-button">
-                    <h3>Medium</h3>
-                </button>
-            </span>
-            <span>
-                <button id="expert-button" class="clicky-button">
-                    <h3>Expert</h3>
-                </button></span>
-        </div> -->
     <div class="home-box">
         <div id="home-start" class="flex-display">
             <h2>Click here to start a game:</h2>
@@ -98,14 +97,14 @@
             <div class="score">Score</div>
         </span>
         {% for score in scoreSorted %}
-            {%  if loop.index < 6  %}
-                <span class='leaderboard-row'>
-                    <div class="name">{{ score.user_parent.username }}</div>
-                    <div class='time-taken'>{{ score.time_taken }}</div>
-                    <div class="score">{{ score.score }}</div>
-                </span>
-            {% else %}
-            {% endif %}
+        {%  if loop.index < 6  %}
+        <span class='leaderboard-row'>
+            <div class="name">{{ score.user_parent.username }}</div>
+            <div class='time-taken'>{{ score.time_taken }}</div>
+            <div class="score">{{ score.score }}</div>
+        </span>
+        {% else %}
+        {% endif %}
         {% endfor %}
     </div>
 </div>
