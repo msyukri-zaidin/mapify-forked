@@ -91,23 +91,22 @@
         </div>
     </div>
     <div id="leaderboard-home" class="flex-display home-box">
-        <h2 class="box-title">Leaderboard</h2>
+        <h2 class="box-title">Scoreboard - {{ newestSet.name }}</h2>
         <span class='leaderboard-row'>
-            <div class="name">Player1</div>
-            <div class="score">430</div>
+            <div class="name">Username</div>
+            <div class='time-taken'>Time Taken</div>
+            <div class="score">Score</div>
         </span>
-        <span class='leaderboard-row'>
-            <div class="name">Player2</div>
-            <div class="score">360</div>
-        </span>
-        <span class='leaderboard-row'>
-            <div class="name">Player5</div>
-            <div class="score">290</div>
-        </span>
-        <span class='leaderboard-row'>
-            <div class="name">Player9</div>
-            <div class="score">230</div>
-        </span>
+        {% for score in scoreSorted %}
+            {%  if loop.index < 6  %}
+                <span class='leaderboard-row'>
+                    <div class="name">{{ score.user_parent.username }}</div>
+                    <div class='time-taken'>{{ score.time_taken }}</div>
+                    <div class="score">{{ score.score }}</div>
+                </span>
+            {% else %}
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
