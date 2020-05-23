@@ -28,6 +28,12 @@
                 <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
+        {% elif current_user.is_authenticated and current_user.user_type == 'temp' %}
+            Welcome {{ current_user.username }}!
+            <nav class="tab-right">
+                <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
+                <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
+            </nav>
         {% else %}
         <nav class="tab-right">
             <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
