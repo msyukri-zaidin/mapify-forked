@@ -43,7 +43,7 @@ class QuestionSet(db.Model):
     name = db.Column(db.String(64))
     number_of_questions = db.Column(db.Integer)
     child = db.relationship("CurrentQuestion")
-    score_child = db.relationship('Score')
+    score_child = db.relationship('Score', backref= 'questionset_parent')
 
     def __repr__(self):
         return self.name
@@ -63,7 +63,7 @@ class User(UserMixin, db.Model):
     user_type = db.Column(db.String(64))
     username = db.Column(db.String(64))
     password_hash = db.Column(db.String(128))
-    score_child = db.relationship("Score", backref = 'parent')
+    score_child = db.relationship("Score", backref = 'user_parent')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -77,4 +77,5 @@ class Score(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     questionset_id = db.Column(db.Integer, db.ForeignKey('questionset.id'))
     score = db.Column(db.Integer)
+    time_taken = db.Column(db.Time)
     feedback = db.Column(db.String(128))

@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app
 from app import db
-from app.models import Question, CurrentQuestion, QuestionSet, Option, User
+from app.models import Question, CurrentQuestion, QuestionSet, Option, User, Score
 from app.forms import QuestionForm, QuestionsetForm, LoginForm, RegistrationForm
 import sys
 import json
@@ -26,8 +26,14 @@ def logout():
 def register():
     return UserController.register()
 
+@app.route('/register-anon', methods=['POST'])
+def register_anon():
+    return UserController.register_anon()
+
 @app.route('/user-list', methods=['GET', 'POST'])
 def user_list():
+    if current_user.is_anonymous or current_user.user_type != 'admin':
+        return redirect(url_for('home'))
     return render_template('edit_user_page.html', userList = UserController.user_list())
 
 @app.route('/delete-user', methods=['POST'])
@@ -42,13 +48,30 @@ def promote_user():
 def demote_user():
     return UserController.demote_user()
 
+@app.route('/result', methods=['GET'])
+def result():
+    latestScore = Score.query.filter_by(user_id=current_user.id).all()[-1]
+    questionsetID = latestScore.questionset_id
+    scoreSorted = Score.query.filter_by(questionset_id=questionsetID).order_by(Score.score.desc()).all()
+    return render_template(
+        'result.html',
+        latestScore = latestScore,
+        scoreSorted = scoreSorted
+    )
+
+@app.route('/submit-results', methods=['POST'])
+def submit_results():
+    return UserController.submit_results()
+
 @app.route('/', methods = ['GET','POST'])
 def home():
     questionSet = QuestionSet.query.all()
+    newestSet = QuestionSet.query.all()[-1]
+    scoreSorted = Score.query.filter_by(questionset_id=newestSet.id).order_by(Score.score.desc()).all()
     # need to do what happens if the user has laready logged in, would the login button appear differently
     # not too sure on what this success does
 
-    return render_template('home.html', questionSet = questionSet)
+    return render_template('home.html', questionSet = questionSet, newestSet = newestSet, scoreSorted = scoreSorted)
 
 @app.route('/quiz', methods = ['GET','POST'])
 def generate_quiz():
@@ -56,6 +79,8 @@ def generate_quiz():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    if current_user.is_anonymous or current_user.user_type != 'admin':
+        return redirect(url_for('home'))
 
     questionset_form = QuestionsetForm()
     form = QuestionForm()

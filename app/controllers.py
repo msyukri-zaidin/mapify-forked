@@ -1,11 +1,12 @@
 from app.forms import QuestionForm, QuestionsetForm, LoginForm, RegistrationForm
 from app.models import load_user
 from flask import render_template, flash, redirect, url_for, request, jsonify
-from app.models import Question, CurrentQuestion, QuestionSet, Option, User
+from app.models import Question, CurrentQuestion, QuestionSet, Option, User, Score
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db, login
 import random
 import json
+from datetime import time
 
 class UserController():
     def login():
@@ -13,7 +14,7 @@ class UserController():
         if form.validate_on_submit():
             user = User.query.filter_by(username = form.username.data).first()
             if user is None or not user.check_password(form.password.data):
-                flash('invalid username or data')
+                flash('invalid username or password')
                 return redirect(url_for('login'))
             else:
                 #Login successful
@@ -22,8 +23,6 @@ class UserController():
                 if not next_page or url_parse(next_page).netloc !='':
                     next_page = 'home'
                 return redirect(url_for(next_page))
-        else:
-            flash('invalid')
 
         return render_template('login.html', title="Log In", form=form)
 
@@ -35,15 +34,22 @@ class UserController():
         form = RegistrationForm()
         if form.validate_on_submit():
             #Form succeeds
-            user = User.query.filter_by(username=form.username.data).first()
-            if user is not None:
-                #Username already taken
-                return redirect(url_for('home'))
+            user = User.query.filter_by(username=form.username.data).all()
+            if user is not None and len(user) > 0:
+                if user[0].user_type =='regular': #Users have to be of type regular in order to be sure its taken
+                    #Username already taken
+                    flash('Username already taken')
+                    return redirect(url_for('register'))
+            #If statement validates to true if current user is an anon registering after submission of quiz
             if current_user.is_authenticated:
-                if not user.check_password(form.password.data):
-                    #Incorrect password
-                    return redirect(url_for('home'))
+                user = User.query.filter_by(id=current_user.id).first()
+                user.user_type = 'regular'
+                user.set_password(form.password.data)
+                db.session.commit()
+                login_user(user, remember=False)
+                return redirect(url_for('home'))
             
+            #New user registration
             user = User(
                 user_type = 'regular',
                 username = form.username.data,
@@ -53,9 +59,22 @@ class UserController():
             db.session.commit()
             login_user(user, remember=False)
             return redirect(url_for('home'))
-        else:
-            print("invalid")
+        
+
         return render_template('register.html', title='Register', form=form)
+
+    def register_anon():
+        anonDict = request.get_json(force=True)
+        username = anonDict['username']
+        #Register temporary user
+        user = User(
+            user_type = 'temp',
+            username = username
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user, remember=False)
+        return redirect(url_for('home'))
 
     def user_list():
         userList = User.query.all()
@@ -65,6 +84,9 @@ class UserController():
         userDict = request.get_json(force=True)
         userID = int(userDict['userID'])
         print("Deleting user ID: ", userID)
+
+        #Delete related scores
+        Score.query.filter_by(user_id=userID).delete()
         User.query.filter_by(id=userID).delete()
         db.session.commit()
         return redirect(url_for('user_list'))
@@ -82,6 +104,28 @@ class UserController():
         User.query.filter_by(id=userID).first().user_type = 'regular'
         db.session.commit()
         return redirect(url_for('user_list'))   
+
+    def submit_results():
+
+        resultDict = request.get_json(force=True)
+        userID = int(resultDict['userID'])
+        questionsetID = resultDict['questionsetID']
+        score = resultDict['score']
+        seconds = resultDict['timeTaken']
+        time_obj = seconds.split(':')
+        timeTaken = time(minute = int(time_obj[0]), second = int(time_obj[1]))
+        
+        s = Score(
+            user_id = userID,
+            questionset_id = questionsetID,
+            score = score,
+            time_taken = timeTaken
+        )
+        
+        db.session.add(s)
+        db.session.commit()
+        
+        return redirect(url_for('result'))
 
 class QuestionController():
     def create_question(form):
@@ -119,7 +163,7 @@ class QuestionController():
             #If form was submitted from active question list
             if(form.id_list.data):
                 idDict = json.loads(form.id_list.data)
-                print(idDict)
+                #print(idDict)
                 CurrentQuestion.query.filter_by(question_number=idDict['questionNumber'],questionset_id=idDict['setID']).first().question_id = questionID
                 questionsetID = idDict['setID']
 
@@ -244,7 +288,7 @@ class QuizController():
 
         questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
         myJSON = []
-        totalTime = 0;
+        totalTime = 0
         for i in range(0, len(questionList)):
             #Check if there is a question assigned to the questionSet even if the questionSet is missing
             #question from the admin page
@@ -255,7 +299,7 @@ class QuizController():
                                 'qType':'short',
                                 'answer':questionList[i].parent.answer,
                                 'reference':questionList[i].parent.reference_value})
-                    totalTime += 45;
+                    totalTime += 45
 
                 elif questionList[i].parent.question_type.lower() == 'multiple-choice':
                     answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
@@ -268,7 +312,5 @@ class QuizController():
                                 'qType':'multiple',
                                 'answerOptions': answerOptions,
                                 'answer':questionList[i].parent.answer})
-                    totalTime += 15;
-            
-        print(myJSON)
-        return render_template('quizPage.html', questions = myJSON, timer = totalTime)
+                    totalTime += 15
+        return render_template('quizPage.html', questions = myJSON, timer = totalTime, questionsetID = questionsetID)

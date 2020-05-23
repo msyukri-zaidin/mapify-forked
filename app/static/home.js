@@ -14,6 +14,8 @@ function saveSet(id) {
     }
 }
 
+$('#points').hide();
+
 $(document).ready(function () {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -31,8 +33,12 @@ $(document).ready(function () {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // Function for when info is validifide and ready to move  into game
+    /* Danish Code
     $.fn.enterGame = function () {
         // Need to store all the information and guide to the next page
+        let link = 'quiz?questionsetID=' + setID;
+        window.location.href = link;
+        $('#points').show();
     }
     // Button pressing when starting the game
     $.fn.validateGame = function () {
@@ -47,10 +53,40 @@ $(document).ready(function () {
             $.fn.enterGame();
         }
     }
+    */
     $('#start-button').click(function () {
-        $.fn.validateGame();
-        let link = 'quiz?questionsetID=' + setID;
-        window.location.href = link;
+        //$.fn.validateGame();
+        if(document.getElementById('username-input').value == '' && authenticated == 'False') {
+            alert("Please insert a username");
+            return '';
+        }
+        else if(setID == undefined) {
+            alert("Select a question set");
+            return '';
+        }
+        let myJSON = {
+            username:document.getElementById('username-input').value
+        }
+        if(authenticated == 'True') {
+            let link = 'quiz?questionsetID=' + setID;
+            window.location.href = link;
+        }
+        else {
+        myJSON = JSON.stringify(myJSON);
+            $.ajax({
+                type: "POST",
+                url: '/register-anon',
+                data: myJSON,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus); 
+                    },
+                success: function(data, textStatus) {
+                    //Page redirect on success
+                    let link = 'quiz?questionsetID=' + setID;
+                    window.location.href = link;
+                }
+            })
+        }
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

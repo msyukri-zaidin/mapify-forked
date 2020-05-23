@@ -38,6 +38,10 @@
         </div>
     </div> -->
     <!-- Body of the webpage -->
+    <!-- <div id="points" class="points">
+        <p>Points : <b>0</b></p>
+    </div> -->
+    
     <div id="quiz" class="body_container">
         <!-- This part of the webpage is rendered by a quiz.js file -->
         <div id="timer"></div>
@@ -98,7 +102,6 @@
                 </div>
 
                 {% endif %}
-
                 <!-- This is hidden right now but will contain information of how many times a button is clicked
                     The answer to the question
                     Verification message if they got the question right or wrong -->
@@ -117,7 +120,7 @@
                                 type="button"
                                 onclick="showNextQ('{{ questionNum+1 }}')"
                             >
-                                Next Question
+                                Next →
                             </button>
 
                         {% elif questionNum == questions|length -1 %}
@@ -127,7 +130,7 @@
                             type="button"
                             onclick="showPreviousQ('{{ questionNum+1 }}')"
                             >
-                                Previous Question
+                                ← Previous
                             </button>
                             <button
                                 onclick="submitQuiz()"
@@ -145,7 +148,7 @@
                                 type="button"
                                 onclick="showPreviousQ('{{ questionNum+1 }}')"
                             >
-                                Previous Question
+                                ← Previous
                             </button>
 
                             <button
@@ -153,7 +156,7 @@
                                 type="button"
                                 onclick="showNextQ('{{ questionNum+1 }}')"
                             >
-                                Next Question
+                                Next →
                             </button>
                         {% endif %}
                     </div>
@@ -166,6 +169,9 @@
     </div>
 
     <script>
+        var userID = '{{ current_user.id }}'
+        var questionsetID = '{{ questionsetID }}'
+
         $(document).ready(function(){
             $('button.myBtn').click(function() {
                 $('button.myBtn').removeClass('clicked');
