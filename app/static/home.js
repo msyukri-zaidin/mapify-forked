@@ -47,8 +47,23 @@ $(document).ready(function () {
     }
     $('#start-button').click(function () {
         $.fn.validateGame();
-        let link = 'quiz?questionsetID=' + setID;
-        window.location.href = link;
+        let myJSON = {
+            username:document.getElementById('username-input').value
+        }
+        myJSON = JSON.stringify(myJSON);
+        $.ajax({
+            type: "POST",
+            url: '/register-anon',
+            data: myJSON,
+            error: function (jqXHR, textStatus, errorThrown) {
+                 console.log(textStatus); 
+                },
+            success: function(data, textStatus) {
+                //Page redirect on success
+                let link = 'quiz?questionsetID=' + setID;
+                window.location.href = link;
+            }
+        })
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
