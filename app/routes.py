@@ -53,13 +53,15 @@ def result():
     latestScore = Score.query.filter_by(user_id=current_user.id).all()[-1]
     questionsetID = latestScore.questionset_id
     scoreSorted = Score.query.filter_by(questionset_id=questionsetID).order_by(Score.score.desc()).all()
-    print(questionsetID)
-    print(scoreSorted)
     return render_template(
         'result.html',
         latestScore = latestScore,
         scoreSorted = scoreSorted
     )
+
+@app.route('/submit-results', methods=['POST'])
+def submit_results():
+    return UserController.submit_results()
 
 @app.route('/', methods = ['GET','POST'])
 def home():
