@@ -269,6 +269,5 @@ class QuizController():
                                 'answerOptions': answerOptions,
                                 'answer':questionList[i].parent.answer})
                     totalTime += 15;
-            
-        print(myJSON)
+
         return render_template('quizPage.html', questions = myJSON, timer = totalTime)

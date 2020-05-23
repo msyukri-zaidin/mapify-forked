@@ -31,8 +31,35 @@ function correctAns(qNum) {
     message.style.color = '#1abc9c';
     message.style.display = 'block';
 
-    // Disable the enter button
-    // document.getElementById('ans'+qNum).querySelector('button').disabled = true;
+    //Update the points with respect to how many tries they used
+    updatePoints(qNum, true);
+
+}
+
+// $({ countNum: $('#points').html() }).animate({ countNum: 999 }, {
+//     duration: 8000,
+//     easing: 'linear',
+//     step: function () {
+//     $('#points').html(Math.floor(this.countNum) + "+");
+// },
+// complete: function () {
+//     $('#points').html(this.countNum + "+");
+//     //alert('finished');
+// }
+// });
+
+function updatePoints(qNum, isQuestionCorrect) {
+    
+    let points = document.getElementById('points').querySelector('b');
+    let attemptNum = document.getElementById('attempts'+qNum).innerHTML;
+    // if the question is multiple choice make a fixed increment
+    if (attemptNum==0 && isQuestionCorrect) {
+        points.innerHTML = parseInt(points.innerHTML) + 25;
+        return;
+    }
+    //this statement below will only occur if the question is short answer
+    let pointsAddition = (MAX_ATTEMPTS+1-attemptNum)*10;
+    points.innerHTML = parseInt(points.innerHTML)+pointsAddition;
 }
 
 function wrongAns(qNum, answer) {
@@ -53,7 +80,9 @@ function wrongAns(qNum, answer) {
     message.innerHTML = `<b>Correct Answer : </b> ${answer}`;
     message.style.color = '#f56161';
     message.style.display = 'block';
-     
+    
+    //Update the points with respect to how many tries they used
+    updatePoints(qNum, false);
 
 }
 
@@ -173,13 +202,34 @@ function showPreviousQ(qNum) {
 }
 
 function submitQuiz() {
+    //implement the time bonus
     var userPreference;
-    if (confirm("Do you want to submit the quiz?") == true) {
-        userPreference = "Quiz Submitted sucessfully!";
-        alert(userPreference);
-        window.location.href = "/";
-    }
 
+    
+    let timeLeft = convertStringToTime('timer_label');
+    let totalTime = parseInt(document.getElementById('totalTime').innerHTML);
+    let multiplier = (1+(timeLeft/totalTime)).toFixed(2);
+
+    console.log(parseFloat(multiplier));
+
+    let points = document.getElementById('points').querySelector('b');
+    points.innerHTML = parseInt(parseInt(points.innerHTML) * parseFloat(multiplier));
+
+
+    // var userPreference;
+    // if (confirm("Do you want to submit the quiz?") == true) {
+    //     // userPreference = "Quiz Submitted sucessfully!";
+    //     // alert(userPreference);
+    //     // window.location.href = "/";
+        
+    // }
+
+}
+
+function convertStringToTime(timeID) {
+    let timer = document.getElementById(timeID).innerHTML;
+    let timeArray = timer.split(":");
+    return parseInt(timeArray[0])*60 + parseInt(timeArray[1]);
 }
 
 function getMapWithMarker(qNum, location, setZoom, setRadius) {
@@ -193,6 +243,7 @@ function getMapWithRadius(qNum, location, setZoom, setRadius) {
     document.getElementById("mapCon"+qNum).style.display = "block";
 }
 
+/****************************************************************** */
 // Implementation for admin form page
 function createFormMap() {
     let location  = document.getElementById('form-reference-value').value;
@@ -204,6 +255,8 @@ function createFormMap() {
 function hideMap() {
     document.getElementById("map0").style.display = 'none';
 }
+
+/****************************************************************** */
 
 
 /**
