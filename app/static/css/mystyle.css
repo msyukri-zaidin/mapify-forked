@@ -4,7 +4,6 @@
   margin: 0;
 }
 body {
-  width: 100%;
   min-height: 100vh;
   font-family: "Sniglet";
   font-size: 22px;
@@ -22,6 +21,7 @@ button:focus {
 /* ------------------------------------------- */
 /* Header */
 .header {
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
@@ -385,13 +385,14 @@ footer {
     color: aliceblue;
     background-color: rgba(0, 0, 0, 0.4);
     overflow: hidden; 
-    padding: 20px;
+    padding: 20px 0px;
     text-align: center;
     font-size: 17px;
     position: absolute;
     bottom: 0;
     width: 100%;
 }
+
 /*
   footer p {
     padding: 20px;
