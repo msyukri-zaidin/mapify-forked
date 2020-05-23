@@ -399,3 +399,18 @@ footer {
     color: aliceblue;
     font-size: 0.9em;
   } */
+
+  .points {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 25px;
+    color: aliceblue;
+  }
+
+  .welcomeUser {
+    text-align: left;
+    display: inline-block;
+    margin: 20px 20px;
+    font-size: 25px;
+    color: aliceblue;
+  }
