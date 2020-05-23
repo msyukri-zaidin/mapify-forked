@@ -58,7 +58,13 @@ function updatePoints(qNum, isQuestionCorrect) {
         return;
     }
     //this statement below will only occur if the question is short answer
-    let pointsAddition = (MAX_ATTEMPTS+1-attemptNum)*10;
+    let pointsAddition;
+    if (attemptNum==1 && isQuestionCorrect) {
+        pointsAddition = 50;
+    }
+    else {
+        pointsAddition = (MAX_ATTEMPTS-attemptNum)*10;
+    }
     points.innerHTML = parseInt(points.innerHTML)+pointsAddition;
 }
 
@@ -103,11 +109,6 @@ function incrementAttempts(qNum) {
 function disableButton(qNum) {
     let button = document.getElementById('ans'+qNum).querySelector('button');
     button.style.display = 'none';
-
-    //Change the colour of the button to show that it has been disabled
-    // button.disabled = true;
-    // button.style.color = '#e0e0e0';
-    // button.style.backgroundColor = '#c7c7c7'
 
 }
 
