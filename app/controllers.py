@@ -34,10 +34,11 @@ class UserController():
         if form.validate_on_submit():
             #Form succeeds
             user = User.query.filter_by(username=form.username.data).all()
-            if user[0].user_type == 'regular':
-                #Username already taken
-                flash('Username already taken')
-                return redirect(url_for('register'))
+            if user is not None and len(user) > 0:
+                if user[0].user_type =='regular': #Users have to be of type regular in order to be sure its taken
+                    #Username already taken
+                    flash('Username already taken')
+                    return redirect(url_for('register'))
             #If statement validates to true if current user is an anon registering after submission of quiz
             if current_user.is_authenticated:
                 user = User.query.filter_by(id=current_user.id).first()
