@@ -170,6 +170,9 @@
     </div>
 
     <script>
+        var userID = '{{ current_user.id }}'
+        var questionsetID = '{{ questionsetID }}'
+
         $(document).ready(function(){
             $('button.myBtn').click(function() {
                 $('button.myBtn').removeClass('clicked');
