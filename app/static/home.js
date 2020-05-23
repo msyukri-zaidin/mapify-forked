@@ -1,15 +1,13 @@
-let setID;
+
+let setID; //The set ID that is currently selected
 function saveSet(id) {
-    console.log("TSEST");
     if(setID == undefined) {
-        console.log("is undefined");
-        document.getElementById(id).parentNode.style.color = 'black';
+        document.getElementById(id).style.color = 'black';
         setID = id;
     }
     else {
-        console.log("is not undefined");
-        document.getElementById(setID).parentNode.style.color = '';
-        document.getElementById(id).parentNode.style.color = 'black';
+        document.getElementById(setID).style.color = '';
+        document.getElementById(id).style.color = 'black';
         setID = id;
     }
 }
