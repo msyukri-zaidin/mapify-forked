@@ -143,6 +143,7 @@ class QuestionController():
         questionType = questionDict['questionType']
         question = questionDict['question']
         questionAnswer = questionDict['questionAnswer']
+        referenceValue = questionDict['referenceValue']
 
         if questionType == 'multiple-choice':
             optionList = questionDict['optionList']
@@ -151,9 +152,10 @@ class QuestionController():
                 optionValue = option.split(':')[1] #Value
                 Option.query.filter_by(id = optionID).first().option_value = optionValue
             
-        elif questionType == 'short-answer':
-            Question.query.filter_by(id=questionID).first().question = question
-            Question.query.filter_by(id=questionID).first().answer = questionAnswer
+        #elif questionType == 'short-answer':
+        Question.query.filter_by(id=questionID).first().question = question
+        Question.query.filter_by(id=questionID).first().answer = questionAnswer
+        Question.query.filter_by(id=questionID).first().reference_value = referenceValue
         db.session.commit()
         return redirect(url_for('admin'))
 
