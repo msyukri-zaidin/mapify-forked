@@ -5,6 +5,7 @@ from app.models import Question, CurrentQuestion, QuestionSet, Option, User
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db, login
 import random
+import json
 
 class UserController():
     def login():
@@ -104,7 +105,8 @@ class QuestionController():
             q = Question(
                 question = form.question.data, 
                 answer = answer,
-                question_type = form.questionType.data)
+                question_type = form.questionType.data,
+                reference_value = form.reference_value.data)
 
             #print("OPTION VALUE LIST: ", option_value_list)
 
@@ -141,6 +143,7 @@ class QuestionController():
         questionType = questionDict['questionType']
         question = questionDict['question']
         questionAnswer = questionDict['questionAnswer']
+        referenceValue = questionDict['referenceValue']
 
         if questionType == 'multiple-choice':
             optionList = questionDict['optionList']
@@ -149,9 +152,10 @@ class QuestionController():
                 optionValue = option.split(':')[1] #Value
                 Option.query.filter_by(id = optionID).first().option_value = optionValue
             
-        elif questionType == 'short-answer':
-            Question.query.filter_by(id=questionID).first().question = question
-            Question.query.filter_by(id=questionID).first().answer = questionAnswer
+        #elif questionType == 'short-answer':
+        Question.query.filter_by(id=questionID).first().question = question
+        Question.query.filter_by(id=questionID).first().answer = questionAnswer
+        Question.query.filter_by(id=questionID).first().reference_value = referenceValue
         db.session.commit()
         return redirect(url_for('admin'))
 
@@ -240,6 +244,7 @@ class QuizController():
 
         questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
         myJSON = []
+        totalTime = 0;
         for i in range(0, len(questionList)):
             #Check if there is a question assigned to the questionSet even if the questionSet is missing
             #question from the admin page
@@ -248,7 +253,9 @@ class QuizController():
                 if questionList[i].parent.question_type.lower() == 'short-answer':
                     myJSON.append({'question':questionList[i].parent.question,
                                 'qType':'short',
-                                'answer':questionList[i].parent.answer})
+                                'answer':questionList[i].parent.answer,
+                                'reference':questionList[i].parent.reference_value})
+                    totalTime += 45;
 
                 elif questionList[i].parent.question_type.lower() == 'multiple-choice':
                     answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
@@ -261,4 +268,7 @@ class QuizController():
                                 'qType':'multiple',
                                 'answerOptions': answerOptions,
                                 'answer':questionList[i].parent.answer})
-        return render_template('quizPage.html', questions = myJSON)
+                    totalTime += 15;
+            
+        print(myJSON)
+        return render_template('quizPage.html', questions = myJSON, timer = totalTime)

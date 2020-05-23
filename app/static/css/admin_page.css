@@ -7,7 +7,7 @@ body {
 }
 
 textarea[type=text] {
-    background-color: white;
+    background-color: #cccac8;
     border-style: solid;
     border-width: 2px;
     height: 50px;
@@ -164,12 +164,6 @@ h1 {
     font-size: 40px;
 }
 
-p {
-    background: none;
-    color: #8c8ea1;
-}
-
-
 .container {
     font-size: 14px;
     position: relative;
@@ -250,8 +244,8 @@ p {
 .question-item { /*A question in the pool of questions */
     position: relative;
     background-color: rgb(233, 145, 31);
-    color: white;
-    border-color: white;
+    color: #f5f3f0;
+    border-color: #cccac8;
     border-radius: 8px;
     padding: 15px 20px;
     margin: 4px 0px;
@@ -299,59 +293,11 @@ p {
 
 }
 
-#question-item-buttons {
-    position: absolute;
-    display: flex;
-    flex-flow: row;
-    background-color: inherit;
-    justify-content: space-between;
-    top:0;
-
-
-    min-width: 500px;
-    max-width: 500px;
-}
-
-#reset-button {
-    position: relative;
-    background-color: red;
-    color: white;
-    padding: auto;
-    cursor: pointer;
-    margin-top:10px;
-    margin-bottom:10px;
-    flex-grow: 1;
-    border-width: 2px;
-    height: 40px;
-}
-
-#reset-button:hover {
-    background-color: #ff5c77;
-}
-
-
-#save-button {
-    background-color: #52bf57;
-    color: white;
-    padding: auto;
-    cursor: pointer;
-    margin-top:10px;
-    margin-bottom:10px;
-    margin-left: 10px;
-    flex-grow: 1;
-    border-width: 2px;
-    height: 40px;
-}
-
-#save-button:hover {
-    background-color: #6bed71;
-}
-
 /* Modal styles */
 .modal {
     font-family: 'Arial';
     display: none;
-    color: #333027;
+
     position: fixed;
     z-index: 10;
     left: 0;
@@ -363,16 +309,19 @@ p {
 }
 
 .modal .delete-popup {
+    position: relative;
     font-size: 20px;
-    color: black;
-    background-color: #fefefe;
+    background-color: #333;
+    color: #cccac8;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    height: 50%;
+    min-width: 400px;
+    max-width: 500px;
+    height: 20%;
     margin-top: 10%;
     text-align: center;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .modal .delete-popup .cancel-button {
@@ -383,38 +332,7 @@ p {
 
 }
 
-.modal #new-questionset-form {
-    font-size: 20px;
-    color: black;
-    background-color: #fefefe;
-    margin-right: auto;
-    margin-left:auto;
-    margin-top: 10%;
-    padding: 20px 20px 20px 20px;
-    border: 1px solid #888;
-    height: 50%;
-    width: 50%;
-}
 
-.modal #new-questionset-form form {
-    margin: auto;
-}
-
-.modal #new-questionset-form form #new-questionset-form-submit {
-
-}
-
-.modal #new-questionset-form form #new-questionset-form-submit:hover {
-
-}
-
-.modal #new-questionset-form form #new-questionset-form-cancel {
-
-}
-
-.modal #new-questionset-form form #new-questionset-form-cancel:hover {
-
-}
 
 table, th, td {
     border: 1px solid black;
@@ -426,18 +344,58 @@ table, th, td {
     padding: 10px;
 }
 
-.form-input {
-    position: relative;
-    background-color: white;
-    margin: auto;
-    width: 50%;
-    padding: 20px;
-    border: solid;
-    top: 10%;
+.gg-add {
+    cursor: pointer;
 }
 
-.form-input-box {
+.gg-add:active {
+    color: red;
+}
+
+.gg-remove {
+    cursor: pointer;
+}
+
+.gg-remove:active {
+    color: red;
+}
+
+.gg-chevron-down {
+    color: inherit;
+    background-color: inherit;
+    display: inline-block;
+}
+
+.gg-chevron-down:hover {
+    color: inherit;
+    background-color: inherit;
+}
+
+/*Form styles */
+/* Question Form */
+
+.form-input {
+    position: relative;
+    background-color: #333;
+    color: #cccac8;
+    margin: auto;
+    width: 50%;
+    height: 80%;
+    padding: 20px;
+    border: 1px solid #888;
+    top: 10%;
+    min-width: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.question-input-box {
     font-size: 16px;
+    width: 90%;
+}
+
+.answer-input-box {
+    font-size: 16px;
+    width: 50%;
 }
 
 #form-short-answer {
@@ -469,33 +427,6 @@ table, th, td {
 #form-question-edit {
     display: none;
 }
-.gg-add {
-    cursor: pointer;
-}
-
-.gg-add:active {
-    color: red;
-}
-
-.gg-remove {
-    cursor: pointer;
-}
-
-.gg-remove:active {
-    color: red;
-}
-
-.gg-chevron-down {
-    color: inherit;
-    background-color: inherit;
-    display: inline-block;
-}
-
-.gg-chevron-down:hover {
-    color: inherit;
-    background-color: inherit;
-}
-
 #form-multiple-choice-answer {
     display: none;
 }
@@ -506,21 +437,42 @@ table, th, td {
     font-size: 16px;
 }
 
+/* Question set form */
+#new-questionset-form {
+    position: relative;
+    font-size: 20px;
+    color: #cccac8;
+    background-color: #333;
+    padding: 20px;
+    border: 1px solid #888;
+    height: 30%;
+    width: 50%;
+    top: 10%;
+    margin: auto;
+    min-width: 400px;
+    max-width: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* Buttons */
 button[type=button] {
     font-size: 18px;
 }
 
 .cancel-button {
     font-size: 18px;
-    margin-left: 0;
-    margin-top: 50%;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .confirm-button {
     font-size: 18px;
-    margin-left: 0;
-    margin-top: 50%;
+    margin-left: 5px;
+}
+
+.confirm-button:hover {
+    color:#000000;
+    background-color:#FFFFFF;
 }
 
 #new-questionset-form form {
@@ -528,6 +480,70 @@ button[type=button] {
 }
 
 .button-group {
+    position: absolute;
     display: flex;
     flex-flow: row;
+    height: 30px;
+    bottom: 10px;
+    margin: auto;
+}
+
+
+#question-item-buttons {
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    background-color: inherit;
+    justify-content: space-between;
+    top:0;
+
+
+    min-width: 500px;
+    max-width: 500px;
+}
+
+#reset-button {
+    position: relative;
+    background-color: red;
+    color: white;
+    padding: auto;
+    cursor: pointer;
+    margin-top:10px;
+    margin-bottom:10px;
+    flex-grow: 1;
+    border-width: 2px;
+    height: 40px;
+}
+
+#reset-button:hover {
+    background-color: #ff5c77;
+}
+
+#save-button {
+    background-color: #52bf57;
+    color: white;
+    padding: auto;
+    cursor: pointer;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left: 10px;
+    flex-grow: 1;
+    border-width: 2px;
+    height: 40px;
+}
+
+#save-button:hover {
+    background-color: #6bed71;
+}
+
+.map-container {
+    padding-top: 10px;
+    height: 250px;
+}
+
+.infoMarker {
+    font-size: 15px;
+    text-align: center;
+    color: #f56161;
+
 }

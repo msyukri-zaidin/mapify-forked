@@ -113,9 +113,8 @@ function questionDeletionPopup() {
 }
 
 function editQuestion(questionID) {
-    let questionContent = document.getElementById(questionID).getAttribute('value').split(',');
-
-    //[0] is id, [1] is question, [2] is question type [3] is answer
+    let questionContent = document.getElementById(questionID).getAttribute('value').split(';');
+    //[0] is id, [1] is question, [2] is question type [3] is answer [4] is reference value
     document.getElementById("create-new-question-modal").style.display = 'block';
     document.getElementById('question-input').value = questionContent[1];
     if( questionContent[2] == 'Short-Answer' || questionContent[2] == 'short-answer') {
@@ -126,12 +125,14 @@ function editQuestion(questionID) {
         document.getElementById('form-question-submit').style.display = 'none'; //Hide the form submit button (we use a different 'submit' button instead)
         document.getElementById('form-question-edit').style.display= 'block'; //This is the submit button we want
         document.getElementById('form-question-short-answer-input').value = questionContent[3];
+        document.getElementById('form-reference-value').value = questionContent[4];
         $('#form-question-edit').click(function() {
             let myJSON = {
                 questionID:questionContent[0],
                 questionType:questionContent[2],
                 question:document.getElementById('question-input').value,
-                questionAnswer:document.getElementById('form-question-short-answer-input').value
+                questionAnswer:document.getElementById('form-question-short-answer-input').value,
+                referenceValue:document.getElementById('form-reference-value').value
             }
             myJSON = JSON.stringify(myJSON);
             $.ajax({
@@ -168,9 +169,9 @@ function editQuestion(questionID) {
         document.getElementById('option_value_1').value = questionContent[5].split(':')[1];
         document.getElementById('multiple-choice-option-1').style.display = 'block';
         //For loop assigns the rest of the possible options
-        for(let i = 2; i <= parseInt(questionContent[4],10); i++) {
+        for(let i = 2; i <= parseInt(questionContent[5],10); i++) {
             optionID = 'option_value_' + (i);
-            document.getElementById(optionID).value = questionContent[i+4].split(':')[1];
+            document.getElementById(optionID).value = questionContent[i+5].split(':')[1];
             document.getElementById('multiple-choice-option-' + i).style.display = 'block';
             document.getElementById('multiple-choice-num').innerHTML++;
         }
@@ -178,7 +179,7 @@ function editQuestion(questionID) {
         $('#form-question-edit').click(function() {
             let optionList = [];
             for(let i = 1; i < parseInt(document.getElementById('multiple-choice-num').innerHTML, 10); i++)
-                optionList.push(questionContent[i+4].split(':')[0] + ':' + document.getElementById('option_value_' + i).value);
+                optionList.push(questionContent[i+5].split(':')[0] + ':' + document.getElementById('option_value_' + i).value);
             //console.log(optionList);
             
             let myJSON = {
@@ -188,6 +189,7 @@ function editQuestion(questionID) {
                 questionAnswer:document.getElementById('multiple_choice_answer').value,
                 optionList:optionList
             }
+
             myJSON = JSON.stringify(myJSON);
             $.ajax({
                 type: "POST",
@@ -409,8 +411,7 @@ $(document).ready(function(){
     $('#form-question-cancel').click(function() {
         let modal = document.getElementById("create-new-question-modal");
         modal.style.display = 'none';
-        //Clear all entered values
-        console.log("Should clear");
+        //Clear all entered values;
         $('#question-form').trigger('reset');
         document.getElementById('form-question-submit').style.display = 'none';
         document.getElementById('form-short-answer').style.display = '';

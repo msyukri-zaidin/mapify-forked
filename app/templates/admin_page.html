@@ -8,6 +8,9 @@
         var questionSetTotal = '{{ questionSetTotal }}';
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Link the script files for java script and for the google api-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
+    <script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
 
 
@@ -59,7 +62,7 @@
                         type="button" 
                         id="edit-button-{{ question.id }}"  
                         onmousedown="editQuestion(this.id)" 
-                        value="{{ question.id }},{{ question.question }},{{ question.question_type }},{{ question.answer }},{{ question.option_child|length }},{% for option in question.option_child %}{{ option.id }}:{{ option }},{% endfor %}">Edit</button>
+                        value="{{ question.id }};{{ question.question }};{{ question.question_type }};{{ question.answer }};{{ question.reference_value}};{{ question.option_child|length }};{% for option in question.option_child %}{{ option.id }}:{{ option }};{% endfor %}">Edit</button>
                         <button type="button" id="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
                     </div>
                 </div>
@@ -80,7 +83,7 @@
                         {{ question.parent.answer}}
                         <div class="question-item-options">
                             <button type="button" class="move-button">&lt;&lt;&lt;</button>
-                            <button type="button" id="edit-button-{{ question.question_id }}" onmousedown="editQuestion(this.id)" value="{{ question.question_id }},{{ question.parent.question }},{{ question.parent.question_type }},{{ question.parent.answer }},{{ question.parent.option_child|length }},{% for option in question.parent.option_child %}{{ option.id }}:{{ option }},{% endfor %}">Edit</button>
+                            <button type="button" id="edit-button-{{ question.question_id }}" onmousedown="editQuestion(this.id)" value="{{ question.question_id }};{{ question.parent.question }};{{ question.parent.question_type }};{{ question.parent.answer }};{{ question.parent.reference_value}};{{ question.parent.option_child|length }};{% for option in question.parent.option_child %}{{ option.id }}:{{ option }};{% endfor %}">Edit</button>
                             <button type="button" class="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
                         </div>
                     </div>
@@ -116,8 +119,10 @@
         <div class="delete-popup">
             <p>Are you sure?</p><br>
             <p>You are deleting the current question set, '{{ currentSet.name }}'.</p>
-            <button class="cancel-button"  id="set-cancel-button">Cancel</button>
-            <button class="confirm-button" id="set-confirm-button">Confirm</button>
+            <div class='button-group'>
+                <button class="cancel-button"  id="set-cancel-button">Cancel</button>
+                <button class="confirm-button" id="set-confirm-button">Confirm</button>
+            </div>
         </div>
     </div>
 
@@ -131,9 +136,10 @@
                 <br>
                 {{ questionset_form.number_of_questions.label }}<br>
                 {{ questionset_form.number_of_questions }} <br>
+                <div class='button-group'>
                     <button type='button' class="cancel-button" id="new-questionset-form-cancel">Cancel</button>
                 {{ questionset_form.submit(class='confirm-button',id="new-questionset-form-submit") }}
-                
+                </div>
             </form>
         </div>
     </div>
@@ -145,7 +151,7 @@
                 {{ form.csrf_token() }}
                 <!-- This is where the Question will go-->
                 {{ form.question.label }} <br>
-                {{ form.question(rows="4", cols="50", id="question-input", class="form-input-box")}}
+                {{ form.question(rows="4", cols="50", id="question-input", class="question-input-box")}}
                 <br>
                 <br>
                 <!-- This is where the question type will go-->
@@ -159,8 +165,12 @@
                 <!-- If short answer was selected, the following HTML handles the structure for that-->
                 <div id="form-short-answer">
                     {{ form.short_answer.label }} <br>
-                    {{ form.short_answer(id="form-question-short-answer-input", class="form-input-box") }}
-
+                    {{ form.short_answer(id="form-question-short-answer-input", class="answer-input-box") }}<br>
+                    <br>
+                    {{ form.reference_value.label }}<br>
+                    {{ form.reference_value(id='form-reference-value',class="answer-input-box") }}
+                    <button onclick="createFormMap()" type='button'>Check location</button>
+                    <div id="map0" class="map-container"></div>
                 </div>
 
                 <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
@@ -185,8 +195,8 @@
                 </div>
                 <br>
 
-                <div class='button-group'>
-                    <button type='button' class='cancel-button' id="form-question-cancel">Cancel</button>
+                <div style="margin-top: 20px" class='button-group'>
+                    <button type='button' class='cancel-button' onclick="hideMap()" id="form-question-cancel">Cancel</button>
                     <button type='button' class='confirm-button' id="form-question-edit">Submit Edit</button>
                     {{ form.submit(class='confirm-button', id="form-question-submit") }}
                 </div>

@@ -1,3 +1,17 @@
+
+let setID; //The set ID that is currently selected
+function saveSet(id) {
+    if(setID == undefined) {
+        document.getElementById(id).style.color = 'black';
+        setID = id;
+    }
+    else {
+        document.getElementById(setID).style.color = '';
+        document.getElementById(id).style.color = 'black';
+        setID = id;
+    }
+}
+
 $(document).ready(function () {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -33,6 +47,8 @@ $(document).ready(function () {
     }
     $('#start-button').click(function () {
         $.fn.validateGame();
+        let link = 'quiz?questionsetID=' + setID;
+        window.location.href = link;
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -76,7 +92,7 @@ $(document).ready(function () {
             'border-style' : 'solid',
             'border-color' : '#blue'
         });
-        alert("game set: " + gameSetChosen);
+        
     });
     $(document).on('click', '#load-more', function () {
         alert("load more button pressed");

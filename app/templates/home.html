@@ -37,10 +37,11 @@
                 <h3 id="random-game-set" class="card-title">Random</h3>
             </span>
             {% for set in questionSet %}
-            <span class="mini-card hoverable">
+            
+            <span class="mini-card hoverable"id='{{ set.id }}' onclick='saveSet(this.id)' >
                 <img>
                 <h3 class="card-title">
-                    <a href='quiz?questionsetID={{ set.id }}'>{{ set }}</a>
+                    {{ set }}
                 </h3>
             </span>
             {% endfor %}

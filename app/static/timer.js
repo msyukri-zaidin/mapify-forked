@@ -3,9 +3,10 @@
  * Progress countdown timer for the quiz
  */
 
-const TIME_LIMIT = 20;
-const WARNING_THRESHOLD = 10;
-const ALERT_THRESHOLD = 5;
+const TIME_LIMIT = parseInt(document.getElementById('totalTime').innerHTML);
+let timeLeft = TIME_LIMIT;
+const WARNING_THRESHOLD = 30;
+const ALERT_THRESHOLD = 10;
 
 const COLOR_CODES = {
     info: {
@@ -22,7 +23,6 @@ const COLOR_CODES = {
 };
 
 let timePassed = 0;
-let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
@@ -38,6 +38,10 @@ document.getElementById("timer").innerHTML =
 `;
 
 startTimer();
+
+function alertOne() {
+    alert("ONE");
+}
 
 function getElementWidth() {
     console.log(document.getElementById('container').offsetWidth);
