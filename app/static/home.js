@@ -12,7 +12,6 @@ function saveSet(id) {
     }
 }
 
-$('#points').hide();
 
 $(document).ready(function () {
 
