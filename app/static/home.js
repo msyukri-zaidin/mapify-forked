@@ -12,6 +12,8 @@ function saveSet(id) {
     }
 }
 
+$('#points').hide();
+
 $(document).ready(function () {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -31,6 +33,9 @@ $(document).ready(function () {
     // Function for when info is validifide and ready to move  into game
     $.fn.enterGame = function () {
         // Need to store all the information and guide to the next page
+        let link = 'quiz?questionsetID=' + setID;
+        window.location.href = link;
+        $('#points').show();
     }
     // Button pressing when starting the game
     $.fn.validateGame = function () {
@@ -47,8 +52,8 @@ $(document).ready(function () {
     }
     $('#start-button').click(function () {
         $.fn.validateGame();
-        let link = 'quiz?questionsetID=' + setID;
-        window.location.href = link;
+
+        // document.getElementById('points').style.display = 'inline-block';
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
