@@ -32,6 +32,8 @@ def register_anon():
 
 @app.route('/user-list', methods=['GET', 'POST'])
 def user_list():
+    if current_user.is_anonymous or current_user.user_type != 'admin':
+        return redirect(url_for('home'))
     return render_template('edit_user_page.html', userList = UserController.user_list())
 
 @app.route('/delete-user', methods=['POST'])
@@ -75,6 +77,8 @@ def generate_quiz():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    if current_user.is_anonymous or current_user.user_type != 'admin':
+        return redirect(url_for('home'))
 
     questionset_form = QuestionsetForm()
     form = QuestionForm()
