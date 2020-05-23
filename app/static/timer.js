@@ -39,9 +39,6 @@ document.getElementById("timer").innerHTML =
 
 startTimer();
 
-function alertOne() {
-    alert("ONE");
-}
 
 function getElementWidth() {
     console.log(document.getElementById('container').offsetWidth);
@@ -77,33 +74,29 @@ function startTimer() {
 //startTimer();
 
 function formatTime(time) {
-const minutes = Math.floor(time / 60);
-let seconds = time % 60;
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
 
-if (seconds < 10) {
+    if (seconds < 10) {
     seconds = `0${seconds}`;
-}
+    }
 
-return `${minutes}:${seconds}`;
+    return `${minutes}:${seconds}`;
 }
 
 function setRemainingPathColor(timeLeft) {
-const { alert, warning, info } = COLOR_CODES;
-if (timeLeft <= alert.threshold) {
-    document
-    .getElementById('timer_remaining').style.backgroundColor = alert.color;
-    // .classList.remove(warning.color);
-    // document
-    // .getElementById('timer_remaining')
-    // .classList.add(alert.color);
-} else if (timeLeft <= warning.threshold) {
-    document
-    .getElementById('timer_remaining').style.backgroundColor = warning.color;
-    // .classList.remove(info.color);
-    // document
-    // .getElementById('timer_remaining')
-    // .classList.add(warning.color);
-}
+    const { alert, warning, info } = COLOR_CODES;
+    if (timeLeft <= alert.threshold) {
+        document
+        .getElementById('timer_remaining').style.backgroundColor = alert.color;
+        // .classList.remove(warning.color);
+        // document
+        // .getElementById('timer_remaining')
+        // .classList.add(alert.color);
+    } else if (timeLeft <= warning.threshold) {
+        document
+        .getElementById('timer_remaining').style.backgroundColor = warning.color;
+    }
 }
 
 function calculateTimeFraction() {
