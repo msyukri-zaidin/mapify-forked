@@ -50,9 +50,8 @@ function onTimesUp() {
     clearInterval(timerInterval);
     document.getElementById('timer_remaining').style.width = '100%';
     document.getElementById('timer_remaining').style.marginLeft = '0%';
-    //console.log(document.getElementById("base-timer-path-remaining").setAttribute("d", `M 0 0 L 500 0`));
-    // console.log(document.querySelector('line[class="base-timer__path-elapsed"]').style.stroke);
-    // document.querySelector('line[class="base-timer__path-elapsed"]').style.stroke = 'red';
+    // Submit the quiz once the timer runs out
+    submitQuiz();
 }
 
 function startTimer() {
@@ -89,10 +88,6 @@ function setRemainingPathColor(timeLeft) {
     if (timeLeft <= alert.threshold) {
         document
         .getElementById('timer_remaining').style.backgroundColor = alert.color;
-        // .classList.remove(warning.color);
-        // document
-        // .getElementById('timer_remaining')
-        // .classList.add(alert.color);
     } else if (timeLeft <= warning.threshold) {
         document
         .getElementById('timer_remaining').style.backgroundColor = warning.color;

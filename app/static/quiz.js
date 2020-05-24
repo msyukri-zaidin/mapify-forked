@@ -145,9 +145,8 @@ function validateAns(qNum) {
     if (location == 'None') {
         location = answer;
     }
-    
 
-    // Check if the 
+    // Check if the answer field is empty and alter the user
     if (currentAns == '') {
         alert("Please enter your answer!");
         return;
@@ -159,54 +158,40 @@ function validateAns(qNum) {
         if (currentAns == answer.toLowerCase()) {
             getMapWithMarker(qNum, location, setZoom, setRadius);
             correctAns(qNum);
+            removeClassName(qNum);
             disableButton(qNum);
-            // go to next slide
-            // show map with a marker
         }
         else {
             if (numAttempts == MAX_ATTEMPTS) {
                 getMapWithMarker(qNum, location, setZoom, setRadius);
                 wrongAns(qNum, answer);
-                //disable button
                 disableButton(qNum);
-                return;
-                // show the map with a marker
-                // go to next slide
             }
             else {       
-
                 getMapWithRadius(qNum, location, setZoom, setRadius);
-                // initMap(lat, lng, zoom[numAttempts], radius[numAttempts], qNum);
-
                 wrongAttempt(qNum, numAttempts);
-
-            }
-            
-        }
-        
+                removeClassName(qNum);
+            }  
+        }   
     }
-// });
 }
 
-function showNextQ(qNum) {
-    // dont show next question if its the last question
-    // let button = document.getElementById();
-    // $(document).on
-    $(`#Q${parseInt(qNum)+1}Button`).click();
+function removeClassName(qNum) {
+    let element = document.getElementById(`Q${qNum}`).querySelector(".endOfDiv").classList;
+    element.remove('endOfDiv');
+}
 
+
+function showNextQ(qNum) {
+    $(`#Q${parseInt(qNum)+1}Button`).click();
 }
 
 function showPreviousQ(qNum) {
-    // dont show previous question if its the first question
     $(`#Q${parseInt(qNum)-1}Button`).click();
-
 }
 
 function submitQuiz() {
-    //implement the time bonus
-    var userPreference;
 
-    
     let timeLeft = convertStringToTime('timer_label');
     let totalTime = parseInt(document.getElementById('totalTime').innerHTML);
     let multiplier = (1+(timeLeft/totalTime)).toFixed(2);
@@ -238,16 +223,8 @@ function submitQuiz() {
             window.location.href = link;
         }
     })
-    
-    // var userPreference;
-    // if (confirm("Do you want to submit the quiz?") == true) {
-    //     // userPreference = "Quiz Submitted sucessfully!";
-    //     // alert(userPreference);
-    //     // window.location.href = "/";
-        
-    // }
-
 }
+
 function formatTime(time) {
     const minutes = Math.floor(time / 60);
     let seconds = time % 60;
@@ -257,7 +234,7 @@ function formatTime(time) {
     }
     
     return `${minutes}:${seconds}`;
-    }
+}
 
 function convertStringToTime(timeID) {
     let timer = document.getElementById(timeID).innerHTML;

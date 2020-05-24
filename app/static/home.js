@@ -1,6 +1,4 @@
 
-$('#points').hide();
-
 let setID; //The set ID that is currently selected
 function saveSet(id) {
     if(setID == undefined) {
@@ -25,22 +23,32 @@ $(document).ready(function () {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // For popping up logins and signups form
     $('#start-button').click(function () {
-        if (document.getElementById('username-input').value == '' && authenticated == 'False') {
-            alert("Please insert a username");
-            return '';
-        }
-        else if (setID == undefined) {
-            alert("Select a question set");
-            return '';
-        }
-        let myJSON = {
-            username: document.getElementById('username-input').value
-        }
+
         if (authenticated == 'True') {
-            let link = 'quiz?questionsetID=' + setID;
-            window.location.href = link;
+
+            if (setID == undefined) {
+                alert("Select a question set");
+                return '';
+            }
+            else {
+                let link = 'quiz?questionsetID=' + setID;
+                window.location.href = link;
+            }
         }
-        else {
+
+        else {  
+            if (document.getElementById('username-input').value == '') {
+                alert("Please insert a username");
+                return '';
+            }
+            
+            else if (setID == undefined) {
+                alert("Select a question set");
+                return '';
+            }
+            let myJSON = {
+                username: document.getElementById('username-input').value
+            }
             myJSON = JSON.stringify(myJSON);
             $.ajax({
                 type: "POST",
@@ -54,16 +62,19 @@ $(document).ready(function () {
                     let link = 'quiz?questionsetID=' + setID;
                     window.location.href = link;
                 }
-            })
+            });
         }
+
+
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // For name suggestions that users can choose from
     $.fn.createListOfNames = function () {
         // Currently this API can provide random name
-        // We would want to have a list of names that are less associative to poeple/human
+        // We would want to have a list of names that are less associative to people/human
         var randName = "";
+        
         for (let i = 0; i < 4; i++) {
             $.ajax({
                 url: "https://randomuser.me/api/",
@@ -76,6 +87,7 @@ $(document).ready(function () {
                 }
             });
         }
+        
     };
     $(document).on('click', '#suggestion', function () {
         var username = $('#username-input');

@@ -13,20 +13,20 @@
                 {{form.hidden_tag()}}
                 <!-- The login form Username Area -->
                 <!-- {{form.username.label(id="form-subhead")}}<br> -->
-                {{form.username(class="form-input", size=16, placeholder="Username")}}
+                {{form.username(class="form-input", size=16, placeholder="Username",id='username-field')}}
                 <br>
                 <!-- The login form Password Area -->
-                {{form.password(class="form-input",size=16, placeholder="Password")}}
+                {{form.password(id='password-field',class="form-input",size=16, placeholder="Password")}}
                 <p class="form-subtext">Don't have an account?<a href="register"> Sign up!</a></p>
                 <!-- The login form submit button -->
-                {{form.submit(class="form-submit clicky-button")}}
+                {{form.submit(id='submit-field',class="form-submit clicky-button")}}
                 <!-- <input id="login-username" type="username" placeholder="Name">
         <input id="login-password" type="password" placeholder="E-Mail"> -->
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 <ul class=flashes>
                     {% for message in messages %}
-                    <li>{{ message }}</li>
+                    <li id='message'>{{ message }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
