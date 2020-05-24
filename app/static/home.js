@@ -98,11 +98,11 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (data) {
                     randName = /* data.results[0].name.first +  */data.results[0].login.username;
-                    console.log(randName);
+                    //console.log(randName);
                     $('#username-list').append($('<div id="suggestion" class="hoverable">' + randName + '</div>'));
                 },
                 error: function (xhr, status, error) {
-                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
                 }
             });
         }
