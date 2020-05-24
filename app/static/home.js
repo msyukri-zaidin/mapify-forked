@@ -92,12 +92,13 @@ $(document).ready(function () {
         // Currently this API can provide random name
         // We would want to have a list of names that are less associative to poeple/human
         var randName = "";
+        /*
         for (let i = 0; i < 4; i++) {
             $.ajax({
                 url: "https://randomuser.me/api/",
                 dataType: "json",
                 success: function (data) {
-                    randName = /* data.results[0].name.first +  */data.results[0].login.username;
+                    randName = /* data.results[0].name.first +  data.results[0].login.username;
                     console.log(randName);
                     $('#username-list').append($('<div id="suggestion" class="hoverable">' + randName + '</div>'));
                 },
@@ -105,7 +106,8 @@ $(document).ready(function () {
                     alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
                 }
             });
-        }
+        }*/
+        
     };
     $(document).on('click', '#suggestion', function () {
         var username = $('#username-input');
