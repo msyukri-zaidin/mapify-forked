@@ -2,39 +2,40 @@
 
 {% block head %}
 <head>
-<title>Home | Mapify</title>
+    <title>Sign up | Mapify</title>
 </head>
 {% endblock %}
 {% block body %}
-
-<div class="form-container">
-    <form method="POST">
-        {{form.hidden_tag()}}
-        <!-- The login form Username Area -->
-        {{form.username.label}}<br>
-        {% if current_user.is_authenticated %}
-            {{form.username(size=16, value=current_user.username)}}
-        {% else %}
-            {{form.username(size=16)}}
-        {% endif %}
-        <br>
-        <!-- The login form Password Area -->
-        {{form.password.label}}<br>
-        {{form.password(size=16)}}
-
-        <!-- The login form submit button -->
-        {{form.submit()}}
-        <!-- <input id="login-username" type="username" placeholder="Name">
-        <input id="login-password" type="password" placeholder="E-Mail"> -->
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
+<div class="container">
+    <div class="home-box flex-display" style="margin-top: 5%;">
+        <img id="form-image" src="../static/css/images/adventurer.jpg">
+        <div class="form-container">
+            <h2 class="box-title">Sign Up</h2>
+            <form method="POST">
+                {{form.hidden_tag()}}
+                <!-- The signup form Username Area -->
+                {% if current_user.is_authenticated %}
+                {{form.username(class="form-input", size=16, placeholder="Username", value=current_user.username)}}
+                {% else %}
+                {{form.username(class="form-input", size=16, placeholder="Username", value=current_user.username)}}
+                {% endif %} 
+                <br>
+                <!-- The signup form Password Area -->
+                {{form.password(class="form-input",size=16, placeholder="Password")}}
+                <p class="form-subtext">Already have an account?<a href="login"> Log in!</a></p>
+                <!-- The signup form submit button -->
+                {{form.submit(class="form-submit clicky-button")}}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
                 <ul class=flashes>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
                 </ul>
-            {% endif %}
-        {% endwith %}
-    </form>
+                {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

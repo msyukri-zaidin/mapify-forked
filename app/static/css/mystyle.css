@@ -29,8 +29,9 @@ button:focus {
   background-color: rgba(0, 0, 0, 0.01);
   color: aliceblue;
   margin-left: 20px;
+  margin-top: 5px;
   float: left;
-  max-width: 170px;
+  max-width: 150px;
 }
 .tab-right {
   background-color: rgba(0, 0, 0, 0.01);
@@ -53,8 +54,8 @@ button:focus {
 }
 .container {
   margin: 50px 0px;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 .flex-display {
   display: flex;
@@ -152,10 +153,11 @@ button:focus {
   font-size: 1em;
   cursor: pointer;
   opacity: 0.9;
+  flex-wrap: wrap;
 }
 #game-sets {
   padding: 20px;
-  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .mini-card {
   margin: 30px 40px;
@@ -167,6 +169,7 @@ button:focus {
     -5px -5px 30px 7px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   opacity: 0.9;
+  flex-wrap: wrap;
 }
 .hoverable:hover {
   opacity: 1;
@@ -177,11 +180,10 @@ button:focus {
 }
 /* This removes underlining on anchor tag */
 .mini-card .card-title a {
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
-  }
-
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
 
 #load-more {
   border-top: solid 4px rgb(233, 145, 31);
@@ -201,38 +203,6 @@ button:focus {
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
-/* #difficulty-setting span {
-  width: 100%;
-  margin: 0px 10px;
-}
-#difficulty-setting span h2 {
-  padding: 20px 0;
-  font-size: 1.5em;
-  flex-grow: 2;
-}
-#difficulty-setting span button {
-  font-size: 1em;
-  padding: 20px 0;
-  width: 100%;
-}
-#difficulty-setting button:active {
-  box-shadow: none;
-  top: 7px;
-  margin-bottom: 0;
-  outline: 0;
-}
-#beginner-button {
-  box-shadow: 0 7px 0 0 #2a7c35;
-  background: #3ba849;
-}
-#medium-button {
-  box-shadow: 0 7px 0 0 #255db8;
-  background: #3678e4;
-}
-#expert-button {
-  box-shadow: 0 7px 0 0 #a81d1d;
-  background: #d62929;
-} */
 #home-start {
 }
 #home-start h2 {
@@ -250,7 +220,7 @@ button:focus {
 #rules ul {
   margin: 10px 40px;
 }
-#rules ul li{
+#rules ul li {
   padding-bottom: 15px;
   font-size: 1em;
 }
@@ -273,9 +243,9 @@ button:focus {
 }
 
 .leaderboard-row .time-taken {
-    position: relative;
-    display: inline-block;
-    width: 50%;
+  position: relative;
+  display: inline-block;
+  width: 50%;
 }
 
 .leaderboard-row .score {
@@ -283,55 +253,6 @@ button:focus {
   width: 25%;
   background-color: #255db8;
   float: right;
-}
-
-
-
-/* MODAL STARTS HERE */
-.login-modal {
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-.modal-contents {
-  height: 400px;
-  width: 500px;
-  background-color: rgb(31, 31, 31);
-  text-align: center;
-  padding: 20px;
-  position: relative;
-  border-radius: 10px;
-}
-.modal-contents h2 {
-  margin: 30px 0px;
-  font-size: 30px;
-}
-.modal-contents input {
-  margin: 20px auto;
-  display: block;
-  width: 80%;
-  padding: 8px;
-  border: 1px solid gray;
-  border-radius: 7px;
-  font-size: 15px;
-}
-#login-button {
-  font-size: 1em;
-}
-#exitLogInModal {
-  position: absolute;
-  top: 0;
-  right: 10px;
-  font-size: 42px;
-  color: #333;
-  transform: rotate(45deg);
-  cursor: pointer;
 }
 
 /* ------------------------------------------- */
@@ -354,7 +275,7 @@ button:focus {
   flex-basis: 0;
   right: 20px;
   background: white;
-  color: orange;
+  color: rgb(233, 145, 31);
   border-radius: 15px;
   padding: 0 50px;
   text-align: center;
@@ -378,37 +299,67 @@ button:focus {
 
 /* Login page */
 .form-container {
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 15%;
-    border: solid;
-    padding: 25px;
+  /*   margin-left: 50%;*/
+  border-radius: 10px;
+  padding: 20px 0 40px 40px;
+  width: 100%;
+}
+.form-container h2 {
+  font-size: 3em;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: rgb(233, 145, 31);
+}
+.form-subtext {
+  font-size: 1em;
+  margin: 20px 0;
+}
+.form-input {
+  width: 100%;
+  font-size: 2em;
+  padding: 5px 0;
+  margin-bottom: 40px;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 3px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+}
+.form-submit {
+  margin-top: 40px;
+  font-size: 1.5em;
+  width: 100%;
+  bottom:0%;
+}
+#form-image {
+  max-height: 600px;
+  max-width: 100%;
+  border-radius: 10px;
 }
 
-#anon-register a{
-    color: white;
+#anon-register a {
+  color: white;
 }
 
-#anon-register a:hover{
-    color: red;
+#anon-register a:hover {
+  color: red;
 }
-
-
- 
 
 /* ------------------------------------------- */
 /* Footer */
 /* Footer */
 footer {
-    color: aliceblue;
-    background-color: rgba(0, 0, 0, 0.4);
-    overflow: hidden; 
-    padding: 20px 0px;
-    text-align: center;
-    font-size: 17px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  padding: 20px 0px;
+  text-align: center;
+  font-size: 17px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 /*
@@ -419,17 +370,17 @@ footer {
     font-size: 0.9em;
   } */
 
-  .points {
-    display: inline-block;
-    margin: 10px 20px;
-    font-size: 25px;
-    color: aliceblue;
-  }
+.points {
+  display: inline-block;
+  margin: 10px 20px;
+  font-size: 25px;
+  color: aliceblue;
+}
 
-  .welcomeUser {
-    text-align: left;
-    display: inline-block;
-    margin: 20px 20px;
-    font-size: 25px;
-    color: aliceblue;
-  }
+.welcomeUser {
+  text-align: left;
+  display: inline-block;
+  margin: 20px 20px;
+  font-size: 25px;
+  color: aliceblue;
+}
