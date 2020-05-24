@@ -9,14 +9,14 @@
         {{form.hidden_tag()}}
         <!-- The login form Username Area -->
         {{form.username.label}}<br>
-        {{form.username(size=16)}}
+        {{form.username(size=16, id='username-field')}}
         <br>
         <!-- The login form Password Area -->
         {{form.password.label}}<br>
-        {{form.password(size=16)}}
+        {{form.password(size=16, id='password-field')}}
 
         <!-- The login form submit button -->
-        {{form.submit()}}
+        {{form.submit(id='submit-field')}}
         <!-- <input id="login-username" type="username" placeholder="Name">
         <input id="login-password" type="password" placeholder="E-Mail"> -->
         {% with messages = get_flashed_messages() %}
