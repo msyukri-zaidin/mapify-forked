@@ -137,7 +137,8 @@ Set the background image*/
     background-color: #f1f1f1;
     padding: 20px;
     border-radius: 25px 0 0 25px;
-    max-height: 800px;
+    min-height: 500px;
+    max-height: 500px;
     overflow-y: scroll;
 }
 
@@ -185,14 +186,18 @@ button:focus {outline:0;}
 
   /* Main column */
   .main {
-    max-height: 800px;
+    min-height: 500px;
+    max-height: 500px;
     overflow-y: scroll;
+    overflow-x: hidden;
     background-color: white;
     display: flex;
     flex: 85%;
     padding: 20px;
     border-radius: 0;
     display: none;
+    position: relative;
+
   }
   
   /* Defining all the different types of tags here */
@@ -225,6 +230,7 @@ button:focus {outline:0;}
     justify-content: center;
     align-items: center;
     padding: 20px;
+    flex-wrap: wrap;
 }
 
 .inputAns {
@@ -414,10 +420,16 @@ button:focus {outline:0;}
 
 .nextPrevious_container {
     display: flex;
-    padding: 25px 10px 10px 10px;
+    /* padding: 25px 10px 10px 10px; */
+    padding-top: 20px;
     justify-content: space-between;
-    /* align-self: flex-end; */
-    width: 100%;
+    width: 96%;
+    /* margin-right: 20px; */
+}
+
+.endOfDiv {
+    position: absolute;
+    bottom: 20px;
 }
 
 /*-----------------------------------------------------*/
