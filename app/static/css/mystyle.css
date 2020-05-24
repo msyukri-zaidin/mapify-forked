@@ -153,10 +153,11 @@ button:focus {
   font-size: 1em;
   cursor: pointer;
   opacity: 0.9;
+  flex-wrap: wrap;
 }
 #game-sets {
   padding: 20px;
-  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .mini-card {
   margin: 30px 40px;

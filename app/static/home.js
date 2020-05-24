@@ -6,7 +6,7 @@ $(document).ready(function () {
     // url for getting photos on pixabay = https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
     // For choosing the game set and loading more game set into the screen
     $(document).on('click', '#load-more', function () {
-        alert("load more button pressed");
+        $('#game-sets').slideToggle("slow");
     });
     let setID; //The set ID that is currently selected
     $.fn.saveSet = function (id) {
@@ -67,9 +67,7 @@ $(document).ready(function () {
                 url: "https://randomuser.me/api/",
                 dataType: "json",
                 success: function (data) {
-                    randName = /* data.results[0].name.first +  */data.results[0].login.username;
-                    console.log(randName);
-                    $('#username-list').append($('<div id="suggestion" class="hoverable">' + randName + '</div>'));
+                    randName = data.results[0].login.username; $('#username-list').append($('<div id="suggestion" class="hoverable">' + randName + '</div>'));
                 },
                 error: function (xhr, status, error) {
                     alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
@@ -79,9 +77,7 @@ $(document).ready(function () {
     };
     $(document).on('click', '#suggestion', function () {
         var username = $('#username-input');
-        var name1 = username.val()
-        var name2 = username.val($(this).text());
-        console.log(name1 + " will be change to " + name2);
+        username.val($(this).text());
     })
     $.fn.createListOfNames();
 });

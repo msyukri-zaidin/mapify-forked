@@ -48,24 +48,18 @@
     <div class="home-box">
         <!-- Select game set or difficulty -->
         <h2 class="box-title">Select a game set</h2>
-        <!-- The sure can select a game set using either:
-                        - a dropdown menu
-                        - list of famous ones, and can press a button that will load more game sets -->
         <section id="game-sets" class="flex-display">
             <!-- This random game set button should be special, everytime a person clink on it, a new game set will be choosen wihtout the user knows until the game starts -->
             <span class="mini-card hoverable">
                 <img>
                 <h3 id="random-game-set" class="card-title">Random</h3>
             </span>
-            {% for set in questionSet %}
-
             <span class="mini-card hoverable" id='{{ set.id }}' onclick='saveSet(this.id)'>
                 <img>
                 <h3 class="card-title">
                     {{ set }}
                 </h3>
             </span>
-            {% endfor %}
         </section>
         <div id="load-more">
             <button>Load More</button>
@@ -84,8 +78,10 @@
                         button.</li>
                     <li>You will be given a set of questions, and you are required to finish it within the given time
                         limit.</li>
-                    <li>Hints will be given if you do not get the correct answer, and each question will only allow five tries.</li>
-                    <li>For each correct answer, a score will be shown on the top bar, based on the time taken to complete each of them.</li>
+                    <li>Hints will be given if you do not get the correct answer, and each question will only allow five
+                        tries.</li>
+                    <li>For each correct answer, a score will be shown on the top bar, based on the time taken to
+                        complete each of them.</li>
                     <li>Once the game is finished, you will receive your total points and will be ranked with others who
                         have done that same game set.</li>
                     <li>Good luck trying to get to the top 5 in the scoreboard!</li>
