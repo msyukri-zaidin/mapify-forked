@@ -1,6 +1,19 @@
 
 $('#points').hide();
 
+let setID; //The set ID that is currently selected
+function saveSet(id) {
+    if(setID == undefined) {
+        document.getElementById(id).style.color = 'black';
+        setID = id;
+    }
+    else {
+        document.getElementById(setID).style.color = '';
+        document.getElementById(id).style.color = 'black';
+        setID = id;
+    }
+}
+
 $(document).ready(function () {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // url for getting photos on pixabay = https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
@@ -8,18 +21,7 @@ $(document).ready(function () {
     $(document).on('click', '#load-more', function () {
         $('#game-sets').slideToggle("slow");
     });
-    let setID; //The set ID that is currently selected
-    $.fn.saveSet = function (id) {
-        if (setID == undefined) {
-            $('#getElementById').css("color", "black");
-            setID = id;
-        }
-        else {
-            $('#setID').css("color", "");
-            $('#id').css("color", "black");
-            setID = id;
-        }
-    }
+    
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // For popping up logins and signups form
     $('#start-button').click(function () {

@@ -154,10 +154,12 @@ button:focus {
   cursor: pointer;
   opacity: 0.9;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 #game-sets {
   padding: 20px;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 .mini-card {
   margin: 30px 40px;
