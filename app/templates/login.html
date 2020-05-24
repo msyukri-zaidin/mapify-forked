@@ -1,33 +1,38 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Home | Mapify</title>
+<title>Log in | Mapify</title>
 {% endblock %}
 {% block body %}
-<div class="form-container">
-    <form method="POST">
-        {{form.hidden_tag()}}
-        <!-- The login form Username Area -->
-        {{form.username.label}}<br>
-        {{form.username(size=16)}}
-        <br>
-        <!-- The login form Password Area -->
-        {{form.password.label}}<br>
-        {{form.password(size=16)}}
-
-        <!-- The login form submit button -->
-        {{form.submit()}}
-        <!-- <input id="login-username" type="username" placeholder="Name">
+<div class="container">
+    <div class="home-box flex-display" style="margin-top: 5%;">
+        <img id="form-image" src="../static/css/images/pointingToMap.jpg">
+        <div class="form-container">
+            <h2 class="box-title">Login</h2>
+            <form method="POST">
+                {{form.hidden_tag()}}
+                <!-- The login form Username Area -->
+                <!-- {{form.username.label(id="form-subhead")}}<br> -->
+                {{form.username(class="form-input", size=16, placeholder="Username")}}
+                <br>
+                <!-- The login form Password Area -->
+                {{form.password(class="form-input",size=16, placeholder="Password")}}
+                <p class="form-subtext">Don't have an account?<a href="register"> Sign up!</a></p>
+                <!-- The login form submit button -->
+                {{form.submit(class="form-submit clicky-button")}}
+                <!-- <input id="login-username" type="username" placeholder="Name">
         <input id="login-password" type="password" placeholder="E-Mail"> -->
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class=flashes>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-    </form>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
