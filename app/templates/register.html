@@ -15,16 +15,16 @@
                 {{form.hidden_tag()}}
                 <!-- The signup form Username Area -->
                 {% if current_user.is_authenticated %}
-                {{form.username(class="form-input", size=16, placeholder="Username", value=current_user.username)}}
+                {{form.username(id='username-field',class="form-input", size=16, placeholder="Username", value=current_user.username)}}
                 {% else %}
-                {{form.username(class="form-input", size=16, placeholder="Username", value=current_user.username)}}
+                {{form.username(id='username-field',class="form-input", size=16, placeholder="Username", value=current_user.username)}}
                 {% endif %} 
                 <br>
                 <!-- The signup form Password Area -->
-                {{form.password(class="form-input",size=16, placeholder="Password")}}
+                {{form.password(id='password-field',class="form-input",size=16, placeholder="Password")}}
                 <p class="form-subtext">Already have an account?<a href="login"> Log in!</a></p>
                 <!-- The signup form submit button -->
-                {{form.submit(class="form-submit clicky-button")}}
+                {{form.submit(id='submit-field',class="form-submit clicky-button")}}
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 <ul class=flashes>
