@@ -1,15 +1,18 @@
 
 let setID; //The set ID that is currently selected
-let randomSetId;
+let randomSetId = null;
 function saveSet(id) {
     if (setID == undefined) {
         document.getElementById(id).style.color = 'black';
     }
     else {
         if (randomSetId != null) {
-            document.getElementById("random"+randomSetId).style.color = '';
+            document.getElementById("random" + randomSetId).style.color = '';
+            randomSetId = null;
         }
-        document.getElementById(setID).style.color = '';
+        else {
+            document.getElementById(setID).style.color = '';
+        }
         document.getElementById(id).style.color = 'black';
     }
     if (String(id).slice(0, 6) == "random") {
@@ -98,9 +101,6 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (data) {
                     randName = data.results[0].login.username; $('#username-list').append($('<div id="suggestion" class="hoverable">' + randName + '</div>'));
-                },
-                error: function (xhr, status, error) {
-                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
                 }
             });
         }
