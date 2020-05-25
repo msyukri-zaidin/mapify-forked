@@ -39,7 +39,6 @@
 <div class="container-nav">
     {{ form.short_answer.data }}
     <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">
-
         <div id="questionset-dropdown-name"><span id='q-span'>Question Set:</span> {{ currentSet.name }}</div>
         <i class="gg-chevron-down"></i>
     </div>
@@ -51,8 +50,6 @@
         {% endif %}
         {% endfor %}
     </div>
-
-
     <div id="more-dropdown-content">
         <div class="questionset-dropdown-option" id="new-questionset">New Question Set</div>
         <div class="questionset-dropdown-option" id="create-new-question">New Question</div>
@@ -61,7 +58,6 @@
     <div class="nav-item" id="more-options">
         <div>More</div><i class="gg-chevron-down"></i>
     </div>
-
 </div>
 
 <!-- Container is the main body of the page, holding both the pool of questions and question slots-->
@@ -240,9 +236,5 @@
     </div>
 </div>
 <script src="{{ url_for('static', filename='admin_page.js') }}"></script>
-{% for i in range(15) %}
-<br>
-{% endfor %}
-
 
 {% endblock %}

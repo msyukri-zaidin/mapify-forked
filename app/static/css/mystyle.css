@@ -1,3 +1,5 @@
+/* ------------------------------------------- */
+/* Website styling that can be implemented throughout the whole website */
 @import url("https://fonts.googleapis.com/css?family=Sniglet&display=swap");
 * {
   padding: 0;
@@ -10,7 +12,7 @@ body {
   background-color: #232233;
   color: rgb(255, 246, 238);
   position: relative;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 input:focus,
 textarea:focus,
@@ -18,6 +20,28 @@ select:focus,
 button:focus {
   outline: none;
 }
+.container {
+  margin: 50px 0px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.flex-display {
+  display: flex;
+  justify-content: space-between;
+}
+.home-box {
+  background-color: rgba(0, 0, 0, 0.185);
+  box-sizing: border-box;
+  border-radius: 7px;
+  padding: 30px;
+  margin: 30px 0;
+}
+.box-title {
+  flex: 0 0 100%;
+  margin-bottom: 20px;
+  font-size: 1.7em;
+}
+
 /* ------------------------------------------- */
 /* Header */
 .header {
@@ -52,50 +76,18 @@ button:focus {
   background-color: rgb(235, 138, 11);
   color: white;
 }
-.container {
-  margin: 50px 0px;
-  margin-left: 15%;
-  margin-right: 15%;
+.points {
+  display: inline-block;
+  margin: 10px 20px;
+  font-size: 25px;
+  color: aliceblue;
 }
-.flex-display {
-  display: flex;
-  justify-content: space-between;
-}
-.home-box {
-  background-color: rgba(0, 0, 0, 0.185);
-  box-sizing: border-box;
-  border-radius: 7px;
-  padding: 30px;
-  margin: 30px 0;
-}
-.box-title {
-  flex: 0 0 100%;
-  margin-bottom: 20px;
-  font-size: 1.7em;
-}
-
-/* ------------------------------------------- */
-/* Button */
-.clicky-button {
-  position: relative;
-  cursor: pointer;
-  box-shadow: 0 7px 0 0 #6b2a4a;
-  background: #a47;
-  color: #eee;
-  padding: 0.4em 3em;
-  border: 0;
-  font-size: 0.7em;
-  opacity: 0.9;
-  border-radius: 8px;
-}
-.clicky-button:hover {
-  opacity: 1;
-}
-.clicky-button:active {
-  box-shadow: none;
-  top: 7px;
-  margin-bottom: 0;
-  outline: 0;
+.welcomeUser {
+  text-align: left;
+  display: inline-block;
+  margin: 20px 40px 0 80px;
+  font-size: 30px;
+  color: aliceblue;
 }
 
 /* ------------------------------------------- */
@@ -105,7 +97,7 @@ button:focus {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 #home-intro #text {
   flex-grow: 3;
@@ -129,7 +121,6 @@ button:focus {
   padding: 0 40px;
 }
 #username-input {
-  /* border: none; */
   border-radius: 7px;
   box-sizing: border-box;
   background-color: transparent;
@@ -149,8 +140,8 @@ button:focus {
   background-color: rgb(233, 145, 31);
   border-radius: 10px;
   margin-right: 30px;
-  padding: 10px 30px;
-  font-size: 1em;
+  padding: 10px;
+  font-size: 0.9em;
   cursor: pointer;
   opacity: 0.9;
   flex-wrap: wrap;
@@ -167,18 +158,21 @@ button:focus {
   height: 150px;
   background-color: rgb(233, 145, 31);
   border-radius: 15px;
-  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.1),
-    -5px -5px 30px 7px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   opacity: 0.9;
   flex-wrap: wrap;
+}
+.random-set {
+  background-color: rgb(233, 122, 31);
 }
 .hoverable:hover {
   opacity: 1;
 }
 .mini-card .card-title {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 60px;
+  font-size: 1.1vw;
+  font-weight: bold;
 }
 /* This removes underlining on anchor tag */
 .mini-card .card-title a {
@@ -186,7 +180,6 @@ button:focus {
   color: inherit;
   font-weight: bold;
 }
-
 #load-more {
   border-top: solid 4px rgb(233, 145, 31);
   margin: 10px 0 50px 0;
@@ -205,14 +198,13 @@ button:focus {
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
-#home-start {
-}
 #home-start h2 {
   padding: 10px 0;
   font-size: 2em;
 }
 #start-button {
   font-size: 1.5em;
+  font-weight: bold;
 }
 #rules {
   border-top: solid 4px rgb(233, 145, 31);
@@ -238,27 +230,28 @@ button:focus {
   margin: 10px 0px;
   border-bottom: 1px solid #afafaf;
 }
+.leaderboard-title {
+  font-size: 1.5em;
+  padding-bottom: 20px;
+}
 .leaderboard-row .name {
   position: relative;
   display: inline-block;
   width: 75%;
 }
-
 .leaderboard-row .time-taken {
   position: relative;
   display: inline-block;
   width: 50%;
 }
-
 .leaderboard-row .score {
   position: relative;
   width: 25%;
-  background-color: #255db8;
   float: right;
 }
 
 /* ------------------------------------------- */
-/* Result Page Specific */
+/* Result Page */
 #result-msg {
   font-size: 4em;
 }
@@ -299,9 +292,9 @@ button:focus {
   flex-direction: column;
 }
 
-/* Login page */
+/* ------------------------------------------- */
+/* Login and Register Page */
 .form-container {
-  /*   margin-left: 50%;*/
   border-radius: 10px;
   padding: 20px 0 40px 40px;
   width: 100%;
@@ -333,24 +326,235 @@ button:focus {
   margin-top: 40px;
   font-size: 1.5em;
   width: 100%;
-  bottom:0%;
+  bottom: 0%;
 }
 #form-image {
   max-height: 600px;
-  max-width: 100%;
+  max-width: 500px;
+  width: 100%;
   border-radius: 10px;
 }
 
-#anon-register a {
-  color: white;
+/* ------------------------------------------- */
+/* Edit User Page */
+div.table-title {
+  display: block;
+  margin: auto;
+  max-width: 600px;
+  padding: 5px;
+  width: 100%;
 }
-
-#anon-register a:hover {
-  color: red;
+.table-title {
+  color: #fafafa;
+  font-size: 2em;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 3px solid rgb(255, 255, 255);
+}
+#edit-user-list {
+  padding: 30px 40px 0px 50px;
+}
+#edit-user-list li {
+  padding-bottom: 10px;
 }
 
 /* ------------------------------------------- */
-/* Footer */
+/*** Table Styles **/
+.table-fill {
+  background: white;
+  border-radius: 10px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 100%;
+  padding: 5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+th {
+  color: #d5dde5;
+  background: #1b1e24;
+  border-bottom: 4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size: 23px;
+  font-weight: 100;
+  padding: 24px;
+  text-align: left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+}
+th:first-child {
+  border-top-left-radius: 3px;
+}
+th:last-child {
+  border-top-right-radius: 3px;
+  border-right: none;
+}
+tr {
+  border-top: 1px solid #c1c3d1;
+  border-bottom: 1px solid #c1c3d1;
+  color: #666b85;
+  font-size: 16px;
+  font-weight: normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+tr:hover td {
+  background: #4e5066;
+  color: #ffffff;
+  border-top: 1px solid #22262e;
+}
+tr:first-child {
+  border-top: none;
+}
+tr:last-child {
+  border-bottom: none;
+}
+tr:nth-child(odd) td {
+  background: #ebebeb;
+}
+tr:nth-child(odd):hover td {
+  background: #4e5066;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 3px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 3px;
+}
+td {
+  background: #ffffff;
+  padding: 20px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #c1c3d1;
+}
+td:last-child {
+  border-right: 0px;
+}
+th.text-left {
+  text-align: left;
+}
+th.text-center {
+  text-align: center;
+}
+th.text-right {
+  text-align: right;
+}
+td.text-left {
+  text-align: left;
+}
+td.text-center {
+  text-align: center;
+}
+td.text-right {
+  text-align: right;
+}
+.gg-close {
+  color: #e62e2e;
+  cursor: pointer;
+}
+
+/* ------------------------------------------- */
+/* Modal pop-up in Edit Users page when wanting to delete a user */
+.modal {
+  font-family: "Arial";
+  display: none;
+  color: #333027;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+.modal .delete-popup {
+  position: relative;
+  font-size: 1em;
+  color: black;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 90px 40px 40px 40px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 500px;
+  height: 200px;
+  margin-top: 15%;
+  text-align: center;
+}
+.modal .delete-popup h2 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.modal .delete-popup p {
+  font-size: 1em;
+}
+.cancel-button {
+  font-size: 1.5em;
+  margin-right: 5px;
+  padding: 10px;
+  width: 150px;
+  background-color: rgb(54, 212, 54);
+  border: 2px solid rgb(31, 131, 31);
+  color: #fefefe;
+  border-radius: 7px;
+}
+.confirm-button {
+  font-size: 1.5em;
+  margin-left: 5px;
+  width: 150px;
+  background-color: rgb(200, 43, 43);
+  border: 2px solid rgb(131, 31, 31);
+  color: #fefefe;
+  border-radius: 7px;
+}
+.delete-popup .button-group {
+  position: absolute;
+  display: flex;
+  flex-flow: row;
+  bottom: 30px;
+  left: 23%;
+}
+.gg-chevron-double-up {
+  color: green;
+  cursor: pointer;
+}
+.gg-chevron-double-down {
+  color: red;
+  cursor: pointer;
+}
+
+/* ------------------------------------------- */
+/* Clicky Satisfying Button */
+/* Can be used in any page */
+.clicky-button {
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 7px 0 0 rgb(197, 115, 8);
+  background: rgb(223, 131, 12);
+  color: #eee;
+  padding: 0.4em 3em;
+  border: 0;
+  font-size: 1.3em;
+  opacity: 0.9;
+  border-radius: 8px;
+}
+.clicky-button:hover {
+  opacity: 1;
+}
+.clicky-button:active {
+  box-shadow: none;
+  top: 7px;
+  margin-bottom: 0;
+  outline: 0;
+}
+
+/* ------------------------------------------- */
 /* Footer */
 footer {
   color: aliceblue;
@@ -362,27 +566,4 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-/*
-  footer p {
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.01);
-    color: aliceblue;
-    font-size: 0.9em;
-  } */
-
-.points {
-  display: inline-block;
-  margin: 10px 20px;
-  font-size: 25px;
-  color: aliceblue;
-}
-
-.welcomeUser {
-  text-align: left;
-  display: inline-block;
-  margin: 20px 20px;
-  font-size: 25px;
-  color: aliceblue;
 }

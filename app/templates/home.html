@@ -46,17 +46,15 @@
     {% endif %}
 
     <div class="home-box">
-        <!-- Select game set or difficulty -->
+        <!-- Select game set -->
         <h2 class="box-title">Select a game set</h2>
         <section id="game-sets" class="flex-display">
             <!-- This random game set button should be special, everytime a person clink on it, a new game set will be choosen wihtout the user knows until the game starts -->
-            <span class="mini-card hoverable">
-                <img>
-                <h3 id="random-game-set" class="card-title">Random</h3>
+            <span class="mini-card hoverable random-set" id="{{ 'random' ~ range( 1, (questionSet|length) + 1) | random }}" onclick='saveSet(id)'>
+                <h3 class="card-title">Random</h3>
             </span>
             {% for set in questionSet %}
             <span class="mini-card hoverable" id='{{ set.id }}' onclick='saveSet(this.id)'>
-                <img>
                 <h3 class="card-title">
                     {{ set }}
                 </h3>
@@ -93,10 +91,10 @@
     </div>
     <div id="leaderboard-home" class="flex-display home-box">
         <h2 class="box-title">Scoreboard - {{ newestSet.name }}</h2>
-        <span class='leaderboard-row'>
-            <div class="name">Username</div>
-            <div class='time-taken'>Time Taken</div>
-            <div class="score">Score</div>
+        <span class='leaderboard-row' style="padding-bottom: 30px;">
+            <div class="name leaderboard-title">Username</div>
+            <div class="time-taken leaderboard-title">Time Taken</div>
+            <div class="score leaderboard-title">Score</div>
         </span>
         {% for score in scoreSorted %}
         {%  if loop.index < 6  %}
