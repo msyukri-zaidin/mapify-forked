@@ -74,7 +74,7 @@ $(document).ready(function () {
         // Currently this API can provide random name
         // We would want to have a list of names that are less associative to people/human
         var randName = "";
-        
+        /*
         for (let i = 0; i < 4; i++) {
             $.ajax({
                 url: "https://randomuser.me/api/",
@@ -87,7 +87,7 @@ $(document).ready(function () {
                 }
             });
         }
-        
+        */
     };
     $(document).on('click', '#suggestion', function () {
         var username = $('#username-input');
