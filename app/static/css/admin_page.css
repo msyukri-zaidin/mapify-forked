@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Sniglet&display=swap");
 
 
-
 body {
     font-family: 'Arial';
 }
@@ -175,7 +174,7 @@ h1 {
     max-width: 900px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
