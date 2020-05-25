@@ -3,222 +3,246 @@
 {% block head %}
 <title>Admin | Mapify</title>
 
-    <script>
-        var questionSetNumberOfQuestions = '{{ questionSetNumberOfQuestions }}';
-        var questionSetTotal = '{{ questionSetTotal }}';
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Link the script files for java script and for the google api-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
-    <script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
-    <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
+<script>
+    var questionSetNumberOfQuestions = '{{ questionSetNumberOfQuestions }}';
+    var questionSetTotal = '{{ questionSetTotal }}';
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Link the script files for java script and for the google api-->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
+<script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
+<link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
 
 
 {% endblock %}
 {% block body %}
-    <div class="header-box">
-        <h1>Edit Questions</h1>
-        <p>This is a place where you can edit questions! Simply drag and drop to the desired question number or create a new question and save changes!</p>
+<div class="container">
+    <div class="home-box">
+        <h1 class="table-title">Edit Questions</h1>
+        <p style="font-size:1.2em">This is a place where you can edit questions! Simply drag and drop to the desired
+            question number or create a
+            new question and save changes!</p>
+        <ul id="edit-user-list">
+            <li>Check the user id, type and username of all the users</li>
+            <li>Delete a user account from the database</li>
+            <li>Promote a regular user to an admin account</li>
+            <li>Demote a user with an admin status to a regular user</li>
+        </ul>
+    </div>
+</div>
+<div class="header-box">
+    <h1>Edit Questions</h1>
+    <p>This is a place where you can edit questions! Simply drag and drop to the desired question number or create a
+        new question and save changes!</p>
+</div>
+<!-- Container navigation bar -->
+<div class="container-nav">
+    {{ form.short_answer.data }}
+    <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">
+
+        <div id="questionset-dropdown-name"><span id='q-span'>Question Set:</span> {{ currentSet.name }}</div>
+        <i class="gg-chevron-down"></i>
+    </div>
+    <div class="questionset-dropdown-content" id="dropdown">
+        {% for i in range(0, questionSet|length) %}
+        {% if questionSet[i] != currentSet %}
+        <div class="questionset-dropdown-option" id="questionset-dropdown-option-{{ i }}"
+            value="{{ questionSet[i].id }}">{{ questionSet[i].name }}</div>
+        {% endif %}
+        {% endfor %}
     </div>
 
-    <!-- Container navigation bar -->
-    <div class="container-nav">
-        {{ form.short_answer.data }}
-        <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">
-            
-            <div id="questionset-dropdown-name"><span id='q-span'>Question Set:</span> {{ currentSet.name }}</div>
-            <i class="gg-chevron-down"></i>
-        </div>
-        <div class="questionset-dropdown-content"id= "dropdown" >
-            {% for i in range(0, questionSet|length) %}
-                {% if questionSet[i] != currentSet %}
-                    <div class="questionset-dropdown-option"  id="questionset-dropdown-option-{{ i }}" value="{{ questionSet[i].id }}">{{ questionSet[i].name }}</div>
-                {% endif %}
-            {% endfor %}
-        </div>
 
-
-        <div id="more-dropdown-content">
-            <div class="questionset-dropdown-option" id="new-questionset">New Question Set</div>
-            <div class="questionset-dropdown-option" id="create-new-question">New Question</div>
-            <div class="questionset-dropdown-option" id="delete-questionset">Delete Question Set</div>
-        </div>
-        <div class="nav-item" id="more-options"><div>More</div><i class="gg-chevron-down"></i></div>
-
+    <div id="more-dropdown-content">
+        <div class="questionset-dropdown-option" id="new-questionset">New Question Set</div>
+        <div class="questionset-dropdown-option" id="create-new-question">New Question</div>
+        <div class="questionset-dropdown-option" id="delete-questionset">Delete Question Set</div>
+    </div>
+    <div class="nav-item" id="more-options">
+        <div>More</div><i class="gg-chevron-down"></i>
     </div>
 
-    <!-- Container is the main body of the page, holding both the pool of questions and question slots-->
-    <div class="container" id="container">
-       
-        <div class="question-pool">
-            {% for question in questionPool %}
-                <div class="question-item" id="question-item-{{ question.id }}" value="{{ question.id }}" draggable="true" onmousedown="currentlySelected(this.id)">
-                    {{ question.id }}<br>
-                    {{ question }}<br>
-                    {{ question.question_type }}<br>
-                    {{ question.answer }}
-                    <div class="question-item-options">
-                        <button 
-                        type="button" 
-                        id="edit-button-{{ question.id }}"  
-                        onmousedown="editQuestion(this.id)" 
-                        value="{{ question.id }};{{ question.question }};{{ question.question_type }};{{ question.answer }};{{ question.reference_value}};{{ question.option_child|length }};{% for option in question.option_child %}{{ option.id }}:{{ option }};{% endfor %}">Edit</button>
-                        <button type="button" id="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+</div>
 
-        <div class="question-list">
+<!-- Container is the main body of the page, holding both the pool of questions and question slots-->
+<div class="container" id="container">
 
-            {% for question in currentQuestion %}
-                <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }} 
-                <!--If a question exists in that slot-->
-                {% if question.question_id != '' %}
-                <br><div class="question-slot-placeholder" id="placeholder-{{ question.question_number }}" style='display: none;'>(Drag question here) or <button class="create-new-question-in-list" id="slot-button-{{ question.question_number }}" value="{{ question.question_number }}" >Create Question</button></div>
-                    <div class="question-item" draggable="true" id="question-item-{{ question.question_id }}" value="{{ question.question_id }}" onmousedown="currentlySelected(this.id)">
-                        {{ question.question_id }}<br>
-                        {{ question.parent.question }}<br>
-                        {{ question.parent.question_type }}<br>
-                        {{ question.parent.answer}}
-                        <div class="question-item-options">
-                            <button type="button" class="move-button">&lt;&lt;&lt;</button>
-                            <button type="button" id="edit-button-{{ question.question_id }}" onmousedown="editQuestion(this.id)" value="{{ question.question_id }};{{ question.parent.question }};{{ question.parent.question_type }};{{ question.parent.answer }};{{ question.parent.reference_value}};{{ question.parent.option_child|length }};{% for option in question.parent.option_child %}{{ option.id }}:{{ option }};{% endfor %}">Edit</button>
-                            <button type="button" class="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
-                        </div>
-                    </div>
-               
-                {% else %}
-                <br><div class="question-slot-placeholder" id="placeholder-{{ question.question_number }}">(Drag question here) or <button class="create-new-question-in-list" id="slot-button-{{ question.question_number }}" value="{{ question.question_number }}" >Create Question</button></div>
-                        
-                    
-                {% endif %}
-
+    <div class="question-pool">
+        {% for question in questionPool %}
+        <div class="question-item" id="question-item-{{ question.id }}" value="{{ question.id }}" draggable="true"
+            onmousedown="currentlySelected(this.id)">
+            {{ question.id }}<br>
+            {{ question }}<br>
+            {{ question.question_type }}<br>
+            {{ question.answer }}
+            <div class="question-item-options">
+                <button type="button" id="edit-button-{{ question.id }}" onmousedown="editQuestion(this.id)"
+                    value="{{ question.id }};{{ question.question }};{{ question.question_type }};{{ question.answer }};{{ question.reference_value}};{{ question.option_child|length }};{% for option in question.option_child %}{{ option.id }}:{{ option }};{% endfor %}">Edit</button>
+                <button type="button" id="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
             </div>
-            {% endfor %}
-
         </div>
-        <div id="question-item-buttons">
-            <button type="button" id="reset-button" onclick="reset()">Reset</button>
-            <button type="button" id="save-button">Save Changes</button>
-        </div>
-
-
-    </div>
-    <!--    Container popup boxes   -->
-    <div id="deleteModal" class="modal">
-        <div class="delete-popup">
-            <p>Are you sure?</p><br>
-            <p>Deleting a question will remove it from all question sets</p>
-            <button class="cancel-button" id="question-cancel-button">Cancel</button>
-            <button class="confirm-button" id="question-confirm-button">Confirm</button>
-        </div>
+        {% endfor %}
     </div>
 
-    <div id="delete-set-modal" class="modal">
-        <div class="delete-popup">
-            <p>Are you sure?</p><br>
-            <p>You are deleting the current question set, '{{ currentSet.name }}'.</p>
+    <div class="question-list">
+
+        {% for question in currentQuestion %}
+        <div class="question-slot" id="Q{{ question.question_number }}">Q{{ question.question_number }}
+            <!--If a question exists in that slot-->
+            {% if question.question_id != '' %}
+            <br>
+            <div class="question-slot-placeholder" id="placeholder-{{ question.question_number }}"
+                style='display: none;'>(Drag question here) or <button class="create-new-question-in-list"
+                    id="slot-button-{{ question.question_number }}" value="{{ question.question_number }}">Create
+                    Question</button></div>
+            <div class="question-item" draggable="true" id="question-item-{{ question.question_id }}"
+                value="{{ question.question_id }}" onmousedown="currentlySelected(this.id)">
+                {{ question.question_id }}<br>
+                {{ question.parent.question }}<br>
+                {{ question.parent.question_type }}<br>
+                {{ question.parent.answer}}
+                <div class="question-item-options">
+                    <button type="button" class="move-button">&lt;&lt;&lt;</button>
+                    <button type="button" id="edit-button-{{ question.question_id }}"
+                        onmousedown="editQuestion(this.id)"
+                        value="{{ question.question_id }};{{ question.parent.question }};{{ question.parent.question_type }};{{ question.parent.answer }};{{ question.parent.reference_value}};{{ question.parent.option_child|length }};{% for option in question.parent.option_child %}{{ option.id }}:{{ option }};{% endfor %}">Edit</button>
+                    <button type="button" class="delete-button" onmousedown="questionDeletionPopup()">Delete</button>
+                </div>
+            </div>
+
+            {% else %}
+            <br>
+            <div class="question-slot-placeholder" id="placeholder-{{ question.question_number }}">(Drag question
+                here) or <button class="create-new-question-in-list" id="slot-button-{{ question.question_number }}"
+                    value="{{ question.question_number }}">Create Question</button></div>
+
+
+            {% endif %}
+
+        </div>
+        {% endfor %}
+
+    </div>
+    <div id="question-item-buttons">
+        <button type="button" id="reset-button" onclick="reset()">Reset</button>
+        <button type="button" id="save-button">Save Changes</button>
+    </div>
+
+
+</div>
+<!--    Container popup boxes   -->
+<div id="deleteModal" class="modal">
+    <div class="delete-popup">
+        <p>Are you sure?</p><br>
+        <p>Deleting a question will remove it from all question sets</p>
+        <button class="cancel-button" id="question-cancel-button">Cancel</button>
+        <button class="confirm-button" id="question-confirm-button">Confirm</button>
+    </div>
+</div>
+
+<div id="delete-set-modal" class="modal">
+    <div class="delete-popup">
+        <p>Are you sure?</p><br>
+        <p>You are deleting the current question set, '{{ currentSet.name }}'.</p>
+        <div class='button-group'>
+            <button class="cancel-button" id="set-cancel-button">Cancel</button>
+            <button class="confirm-button" id="set-confirm-button">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<div id="questionset-modal" class="modal">
+    <div id="new-questionset-form">
+        <form action="" method="POST">
+            {{ questionset_form.hidden_tag() }}
+
+            {{ questionset_form.name.label }}<br>
+            {{ questionset_form.name(class="form-input-box")}}<br>
+            <br>
+            {{ questionset_form.number_of_questions.label }}<br>
+            {{ questionset_form.number_of_questions }} <br>
             <div class='button-group'>
-                <button class="cancel-button"  id="set-cancel-button">Cancel</button>
-                <button class="confirm-button" id="set-confirm-button">Confirm</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="questionset-modal" class="modal">
-        <div id="new-questionset-form">
-            <form action="" method="POST">
-                {{ questionset_form.hidden_tag() }}
-
-                {{ questionset_form.name.label }}<br>
-                {{ questionset_form.name(class="form-input-box")}}<br>
-                <br>
-                {{ questionset_form.number_of_questions.label }}<br>
-                {{ questionset_form.number_of_questions }} <br>
-                <div class='button-group'>
-                    <button type='button' class="cancel-button" id="new-questionset-form-cancel">Cancel</button>
+                <button type='button' class="cancel-button" id="new-questionset-form-cancel">Cancel</button>
                 {{ questionset_form.submit(class='confirm-button',id="new-questionset-form-submit") }}
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
 
-    <div id="create-new-question-modal" class="modal">
-            <!-- Form for entering new questions -->
-        <div class="form-input">
-            <form id="question-form" action="" method="POST">
-                {{ form.csrf_token() }}
-                <!-- This is where the Question will go-->
-                {{ form.question.label }} <br>
-                {{ form.question(rows="4", cols="50", id="question-input", class="question-input-box")}}
+<div id="create-new-question-modal" class="modal">
+    <!-- Form for entering new questions -->
+    <div class="form-input">
+        <form id="question-form" action="" method="POST">
+            {{ form.csrf_token() }}
+            <!-- This is where the Question will go-->
+            {{ form.question.label }} <br>
+            {{ form.question(rows="4", cols="50", id="question-input", class="question-input-box")}}
+            <br>
+            <br>
+            <!-- This is where the question type will go-->
+            {% for subfield in form.questionType %}
+            <tr>
+                <td>{{ subfield(class="questionType", onclick="showAnswerField()") }}</td>
+                <td>{{ subfield.label }}</td><br>
+            </tr>
+            {% endfor %}
+            <br>
+            <!-- If short answer was selected, the following HTML handles the structure for that-->
+            <div id="form-short-answer">
+                {{ form.short_answer.label }} <br>
+                {{ form.short_answer(id="form-question-short-answer-input", class="answer-input-box") }}<br>
                 <br>
-                <br>
-                <!-- This is where the question type will go-->
-                {% for subfield in form.questionType %}
-                    <tr>
-                        <td >{{ subfield(class="questionType", onclick="showAnswerField()") }}</td>
-                        <td>{{ subfield.label }}</td><br>
-                    </tr>
-                {% endfor %}
-                <br>
-                <!-- If short answer was selected, the following HTML handles the structure for that-->
-                <div id="form-short-answer">
-                    {{ form.short_answer.label }} <br>
-                    {{ form.short_answer(id="form-question-short-answer-input", class="answer-input-box") }}<br>
-                    <br>
-                    {{ form.reference_value.label }}<br>
-                    {{ form.reference_value(id='form-reference-value',class="answer-input-box") }}
-                    <button onclick="createFormMap()" type='button'>Check location</button>
-                    <div id="map0" class="map-container"></div>
+                {{ form.reference_value.label }}<br>
+                {{ form.reference_value(id='form-reference-value',class="answer-input-box") }}
+                <button onclick="createFormMap()" type='button'>Check location</button>
+                <div id="map0" class="map-container"></div>
+            </div>
+
+            <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
+            <div id="form-multiple-choice-answer">
+                Choices
+                <div class="multiple-choice-number">
+                    <i class="gg-remove" onclick="deductNum()"></i>
+                    <pre>     </pre>
+                    <pre id="multiple-choice-num">2</pre>
+                    <pre>     </pre>
+                    <i class="gg-add" onclick="addNum()"></i>
                 </div>
 
-                <!-- If multiple-choice was selected, the following HTML handles the structure for that-->
-                <div id="form-multiple-choice-answer">
-                    Choices
-                    <div class="multiple-choice-number">
-                        <i class="gg-remove" onclick="deductNum()"></i>
-                        <pre>     </pre><pre id="multiple-choice-num">2</pre><pre>     </pre> 
-                        <i class="gg-add" onclick="addNum()"></i>
+                <br>
+                <div id="multiple-choice-option-list">
+                    <div class="multiple-choice-option" id="multiple-choice-correct-option">
+                        {{ form.multiple_choice_answer.label }}{{ form.multiple_choice_answer(class="option-input")}}<br><br>
+                        <div class="multiple-choice-option" id="multiple-choice-option-1">Possible
+                            Option{{ form.option_value_1(class="option-input")}}</div><br>
+                        <div class="multiple-choice-option" id="multiple-choice-option-2">Possible
+                            Option{{ form.option_value_2(class="option-input")}}</div><br>
+                        <div class="multiple-choice-option" id="multiple-choice-option-3">Possible
+                            Option{{ form.option_value_3(class="option-input")}}</div><br>
+                        <div class="multiple-choice-option" id="multiple-choice-option-4">Possible
+                            Option{{ form.option_value_4(class="option-input")}}</div>
                     </div>
-                
-                    <br>
-                    <div id="multiple-choice-option-list">
-                        <div class= "multiple-choice-option" id="multiple-choice-correct-option">{{ form.multiple_choice_answer.label }}{{ form.multiple_choice_answer(class="option-input")}}<br><br>
-                            <div class= "multiple-choice-option" id="multiple-choice-option-1">Possible Option{{ form.option_value_1(class="option-input")}}</div><br>
-                            <div class= "multiple-choice-option" id="multiple-choice-option-2">Possible Option{{ form.option_value_2(class="option-input")}}</div><br>
-                            <div class= "multiple-choice-option" id="multiple-choice-option-3">Possible Option{{ form.option_value_3(class="option-input")}}</div><br>
-                            <div class= "multiple-choice-option" id="multiple-choice-option-4">Possible Option{{ form.option_value_4(class="option-input")}}</div>
-                         </div>
-                    </div>
+                </div>
                 {{ form.id_list(id="id-list") }}
-                </div>
-                <br>
+            </div>
+            <br>
 
-                <div style="margin-top: 20px" class='button-group'>
-                    <button type='button' class='cancel-button' onclick="hideMap()" id="form-question-cancel">Cancel</button>
-                    <button type='button' class='confirm-button' id="form-question-edit">Submit Edit</button>
-                    {{ form.submit(class='confirm-button', id="form-question-submit") }}
-                </div>
-                
-                
-            </form>
+            <div style="margin-top: 20px" class='button-group'>
+                <button type='button' class='cancel-button' onclick="hideMap()"
+                    id="form-question-cancel">Cancel</button>
+                <button type='button' class='confirm-button' id="form-question-edit">Submit Edit</button>
+                {{ form.submit(class='confirm-button', id="form-question-submit") }}
+            </div>
 
-        </div>
+
+        </form>
+
     </div>
-
-
-
-
-
-
-
-
-    <script src="{{ url_for('static', filename='admin_page.js') }}"></script>
-
-    {% for i in range(15) %}
-        <br>
-    {% endfor %}
+</div>
+<script src="{{ url_for('static', filename='admin_page.js') }}"></script>
+{% for i in range(15) %}
+<br>
+{% endfor %}
 
 
 {% endblock %}
