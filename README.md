@@ -9,9 +9,19 @@ Firstly, ensure you have the most recent version of Python (3.8.2) and have a vi
 python -m venv venv
 ```
 
+The virtual environment must then be activated. In Linux/OSX,
+```
+source venv/bin/activate
+```
+
+In Windows,
+```
+venv/Scripts/Activate.ps1
+```
+
 ### Installing
 
-Use the package manager pip to install all the plugins contained in requirements.txt
+While still in the virtual environment, use the package manager pip to install all the plugins contained in requirements.txt
 
 ```
 pip install -r requirements.txt
@@ -47,7 +57,7 @@ python -m Tests.system
 
 Pull requests are welcome. Below is the database schema used for the web app
 
-![alt text](https://github.com/msyukri-zaidin/CITS3403-Project-1/tree/master/images/schema.jpg?raw=true)
+![alt text](https://github.com/msyukri-zaidin/CITS3403-Project-1/blob/master/images/schema.png?raw=true)
 ## Authors
 
 * **Syukri Zainal**
