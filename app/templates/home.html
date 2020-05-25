@@ -58,9 +58,6 @@
         <h2 class="box-title">Select a game set</h2>
         <section id="game-sets" class="flex-display">
             <!-- This random game set button should be special, everytime a person clink on it, a new game set will be choosen wihtout the user knows until the game starts -->
-            <span class="mini-card hoverable random-set" id="{{ 'random' ~ range( 1, (questionSet|length) + 1) | random }}" onclick='saveSet(id)'>
-                <h3 class="card-title">Random</h3>
-            </span>
             {% for set in questionSet %}
             <span class="mini-card hoverable" id='{{ set.id }}' onclick='saveSet(this.id)'>
                 <h3 class="card-title">
