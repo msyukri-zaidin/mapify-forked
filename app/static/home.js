@@ -2,12 +2,12 @@
 let setID; //The set ID that is currently selected
 function saveSet(id) {
     if(setID == undefined) {
-        document.getElementById(id).style.color = 'black';
+        document.getElementById(id).style.color = '#232233';
         setID = id;
     }
     else {
         document.getElementById(setID).style.color = '';
-        document.getElementById(id).style.color = 'black';
+        document.getElementById(id).style.color = '#232233';
         setID = id;
     }
 }

@@ -12,14 +12,17 @@ class SystemTest(unittest.TestCase):
         if not self.driver:
             self.skipTest
         else:
-            db.init_app(app)
+            db.init_app(app) #initialises the flask app
             db.create_all()
-            db.session.query(User).delete()
+            # clearing the rows of the tables in the databse test.db
+            # test.db has the same structure
+            db.session.query(User).delete() 
             db.session.query(Question).delete()
             db.session.query(CurrentQuestion).delete()
             db.session.query(QuestionSet).delete()
             db.session.query(Option).delete()
             db.session.query(Score).delete()
+            # initialize the table row object
             u = User(id=1, username = 'Bob', user_type = 'regular')
             qs = QuestionSet(id = 1, name = 'test-set-1', number_of_questions = 5)
 
@@ -27,8 +30,8 @@ class SystemTest(unittest.TestCase):
             db.session.add(u)
             db.session.add(qs)
             db.session.commit()
-            self.driver.maximize_window()
-            self.driver.get('http://localhost:5000/login')
+            self.driver.maximize_window() # maxise window
+            self.driver.get('http://localhost:5000/login') #
 
     def tearDown(self):
         if self.driver: #If test ran
@@ -39,15 +42,17 @@ class SystemTest(unittest.TestCase):
             db.session.query(QuestionSet).delete()
             db.session.query(Option).delete()
             db.session.query(Score).delete()
-            db.session.commit()
+            db.session.commit() # saving it / writing the changes
             db.session.remove()
 
+    # Testing basci login
     def test_login(self):
         self.driver.get('http://localhost:5000/login')
         time.sleep(1)
         user_field = self.driver.find_element_by_id('username-field')
         password_field = self.driver.find_element_by_id('password-field')
         submit = self.driver.find_element_by_id('submit-field')
+
 
         user_field.send_keys('Bob')
         password_field.send_keys('pw')
@@ -57,6 +62,7 @@ class SystemTest(unittest.TestCase):
         welcome = self.driver.find_element_by_id('welcome-user').get_attribute('innerHTML')
         self.assertEqual(welcome, 'Welcome Bob!')
 
+    #Testing logout
     def test_logout(self):
         self.driver.get('http://localhost:5000/login')
         time.sleep(1)
@@ -76,6 +82,7 @@ class SystemTest(unittest.TestCase):
         loginButton = self.driver.find_element_by_id('header-login-button').get_attribute('innerHTML')
         self.assertEqual(loginButton, 'Log In')
 
+    #Testing registration
     def test_register(self):
         self.driver.get('http://localhost:5000/register')
         time.sleep(1)

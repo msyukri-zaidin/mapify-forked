@@ -70,6 +70,10 @@ def home():
     scoreSorted = Score.query.filter_by(questionset_id=newestSet.id).order_by(Score.score.desc()).all()
     return render_template('home.html', questionSet = questionSet, newestSet = newestSet, scoreSorted = scoreSorted)
 
+@app.route('/profile', methods = ['GET','POST'])
+def userProfile():
+    return UserController.getUserProfile()
+
 @app.route('/quiz', methods = ['GET','POST'])
 def generate_quiz():
     return QuizController.generate_quiz()

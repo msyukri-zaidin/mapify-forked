@@ -24,6 +24,7 @@
                 <div class="points" id="points">
                     <p>Points : <b>0</b></p>
                 </div>
+                <a href='profile'><button id="header-logout-button" class="tablinks">Profile</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
         {% elif current_user.is_authenticated and current_user.user_type == 'admin' %}
@@ -32,6 +33,7 @@
                 <div class="points" id="points">
                     <p>Points : <b>0</b></p>
                 </div>
+                <a href='profile'><button id="header-logout-button" class="tablinks">Profile</button></a>
                 <a href='user-list'><button id="header-user-button" class="tablinks">Edit Users</button></a>
                 <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
@@ -72,7 +74,6 @@
             more details.</p>
     </footer>
 </body>
-
 
 
 </html>
