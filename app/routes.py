@@ -12,8 +12,6 @@ from app.controllers import UserController, QuestionController, QuestionSetContr
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated: #If authenticated, redirect to home
-        print(current_user.is_active)
-        print(current_user.is_anonymous)
         return redirect(url_for('home'))
     #Else, login
     return UserController.login()
@@ -67,7 +65,7 @@ def submit_results():
 def home():
     questionSet = QuestionSet.query.all()
     newestSet = QuestionSet.query.all()[-1]
-    scoreSorted = Score.query.filter_by(questionset_id=newestSet.id).order_by(Score.score.desc()).all()
+    scoreSorted = Score.query.filter_by(questionset_id=newestSet.id).order_by(Score.score.desc()).all() #Order by descending
     return render_template('home.html', questionSet = questionSet, newestSet = newestSet, scoreSorted = scoreSorted)
 
 @app.route('/profile', methods = ['GET','POST'])
@@ -80,22 +78,20 @@ def generate_quiz():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    #Redirect to home if anonymous user or user type whose type is not of admin, tries to access admin page
     if current_user.is_anonymous or current_user.user_type != 'admin':
         return redirect(url_for('home'))
 
+    #Initialise forms
     questionset_form = QuestionsetForm()
     form = QuestionForm()
 
-
-    
     questionsetID = request.args.get('questionsetID')
     #questionsetID will be true only if function was called by questionset()
     if questionsetID:
         questionsetID = int(questionsetID)
     else: 
         questionsetID = QuestionSet.query.first().id
-
-    #print(form.errors)
 
     QuestionController.create_question(form)
     QuestionSetController.create_questionset(questionset_form)
@@ -105,22 +101,6 @@ def admin():
     form.short_answer.data = ''
     form.reference_value.data = ''
     form.questionType.data = None
-
-    #These 3 if statements are temporary. Only used when database is initally empty
-    """if len(Question.query.all()) == 0:
-        q = Question(question = 'What is the capital of Australia', question_type = 'Short-Answer', answer = 'Canberra')
-        db.session.add(q)
-        db.session.commit()
-    if len(CurrentQuestion.query.all()) == 0:
-        for i in range(1, 6):
-            q = CurrentQuestion(question_id = '', questionset_id = 1, question_number = i)
-            db.session.add(q)
-        db.session.commit()
-    if len(QuestionSet.query.all()) == 0:
-        q = QuestionSet(name = 'Test', number_of_questions = 5)
-        db.session.add(q)
-        db.session.commit()"""
-
 
     #Declare variables and initalise them with all values from the tables
     questionPool = Question.query.all()
@@ -138,12 +118,12 @@ def admin():
     for cQuestion in currentQuestion:
         for pQuestion in questionPool:
             if cQuestion.question_id == pQuestion.id:
-                #print(cQuestion.question_id) #To check what question IDs are in question slots
                 filterList.remove(cQuestion.question_id)
 
     #The line where filtering occurs
     questionPool = Question.query.filter(Question.id.in_(filterList)).all()
 
+    #Get number of questions in question set
     questionset_number_of_questions = QuestionSet.query.filter_by(id=questionsetID).first().number_of_questions
     return render_template(
         'admin_page.html', 
@@ -152,15 +132,13 @@ def admin():
         form = form,
         currentQuestion = currentQuestion, 
         questionSet = questionSet, 
-        currentSet = QuestionSet.query.filter_by(id=questionsetID).first(),                         #ID deducted by 1 to get position
+        currentSet = QuestionSet.query.filter_by(id=questionsetID).first(),
         questionSetNumberOfQuestions = questionset_number_of_questions, #Number of questions in the question set
         questionSetTotal = len(questionSet))                            #Total number of question sets
 
 #Test function
 @app.route('/base')
 def base():
-
-    #return render_template('base.html')
     return redirect(url_for('admin', questionsetID = 2))
 
 #Function that is initiated by an AJAX call that comes from saving changes to the question arrangement
@@ -168,7 +146,6 @@ def base():
 def get_question_data():
     return QuestionController.question_arrangement()
 
-#INCOMPLETE: Function for deleting a question
 @app.route('/deletequestion', methods = ['POST'])
 def delete_question():
     return QuestionController.delete_question()

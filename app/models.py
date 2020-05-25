@@ -31,10 +31,9 @@ class CurrentQuestion(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
     questionset_id = db.Column(db.Integer, db.ForeignKey('questionset.id'))
     question_number = db.Column(db.Integer)
-    #Print current question
-    '''
+
     def __repr__(self):
-        return self.question'''
+        return self.question
 
 class QuestionSet(db.Model):
     __tablename__ = 'questionset'
@@ -78,4 +77,3 @@ class Score(db.Model):
     questionset_id = db.Column(db.Integer, db.ForeignKey('questionset.id'))
     score = db.Column(db.Integer)
     time_taken = db.Column(db.Time)
-    feedback = db.Column(db.String(128))

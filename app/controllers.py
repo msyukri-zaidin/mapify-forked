@@ -38,7 +38,6 @@ class UserController():
             user = User.query.filter_by(username=form.username.data).all()
             if user is not None and len(user) > 0:
                 if user[0].user_type =='regular': #Users have to be of type regular in order to be sure its taken
-                    #Username already taken
                     flash('Username already taken')
                     return redirect(url_for('register'))
             #If statement validates to true if current user is an anon registering after submission of quiz
@@ -167,8 +166,6 @@ class QuestionController():
                 question_type = form.questionType.data,
                 reference_value = form.reference_value.data)
 
-            #print("OPTION VALUE LIST: ", option_value_list)
-
             db.session.add(q)
             db.session.commit()
 
@@ -178,7 +175,6 @@ class QuestionController():
             #If form was submitted from active question list
             if(form.id_list.data):
                 idDict = json.loads(form.id_list.data)
-                #print(idDict)
                 CurrentQuestion.query.filter_by(question_number=idDict['questionNumber'],questionset_id=idDict['setID']).first().question_id = questionID
                 questionsetID = idDict['setID']
 
@@ -211,7 +207,6 @@ class QuestionController():
                 optionValue = option.split(':')[1] #Value
                 Option.query.filter_by(id = optionID).first().option_value = optionValue
             
-        #elif questionType == 'short-answer':
         Question.query.filter_by(id=questionID).first().question = question
         Question.query.filter_by(id=questionID).first().answer = questionAnswer
         Question.query.filter_by(id=questionID).first().reference_value = referenceValue
@@ -221,7 +216,6 @@ class QuestionController():
     def delete_question():
         questionDict = request.get_json(force=True)
         questionID = questionDict['questionID']
-        #print("Server has: ", questionDict['questionID'])
 
         #Deletes the question in Question table
         Question.query.filter_by(id=questionID).delete()
@@ -299,7 +293,6 @@ class QuestionSetController():
 class QuizController():
     def generate_quiz():
         questionsetID = request.args.get('questionsetID')
-        #questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
 
         questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
         myJSON = []
