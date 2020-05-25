@@ -1,231 +1,231 @@
-d45e497 was mazza, 2 minutes ago, message: Fixed
-72eecb1 was Darren Crack, 4 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-18660fa was Darren Crack, 6 minutes ago, message: final edit
-4f30a3b was ahbarsakib, 13 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-0c6ecd7 was ahbarsakib, 14 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-4dd31e0 was mazza, 15 minutes ago, message: Remove test sets
-a571328 was mazza, 17 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-2929739 was Darren Crack, 18 minutes ago, message: last edit
-aaab22e was mazza, 18 minutes ago, message: Fix register bug
-9eab222 was mazza, 18 minutes ago, message: Add temp account parameters
-64ef29f was mazza, 19 minutes ago, message: Remove 'container-top'
-3a7f0df was mazza, 19 minutes ago, message: Minor style changes
-9b3dea2 was mazza, 20 minutes ago, message: Minor style changes
-66a4af4 was mazza, 20 minutes ago, message: Remove redundant code, add comments
-df8ea22 was mazza, 22 minutes ago, message: Remove feedback column
-465d943 was ahbarsakib, 22 minutes ago, message: Implemented a profile page and added routes, and updated the controllers file
-ca87145 was mazza, 22 minutes ago, message: Remove commented code
-cc0e8f2 was mazza, 23 minutes ago, message: Add better question sets
-35fb1e6 was mazza, 23 minutes ago, message: Remove print statements
-eba67ba was mazza, 23 minutes ago, message: Add anon registration test
+d45e497 was Syukri Zainal, 2 minutes ago, message: Fixed
+72eecb1 was Danish Firdaus, 4 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+18660fa was Danish Firdaus, 6 minutes ago, message: final edit
+4f30a3b was Ahbar Sakib, 13 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+0c6ecd7 was Ahbar Sakib, 14 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+4dd31e0 was Syukri Zainal, 15 minutes ago, message: Remove test sets
+a571328 was Syukri Zainal, 17 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+2929739 was Danish Firdaus, 18 minutes ago, message: last edit
+aaab22e was Syukri Zainal, 18 minutes ago, message: Fix register bug
+9eab222 was Syukri Zainal, 18 minutes ago, message: Add temp account parameters
+64ef29f was Syukri Zainal, 19 minutes ago, message: Remove 'container-top'
+3a7f0df was Syukri Zainal, 19 minutes ago, message: Minor style changes
+9b3dea2 was Syukri Zainal, 20 minutes ago, message: Minor style changes
+66a4af4 was Syukri Zainal, 20 minutes ago, message: Remove redundant code, add comments
+df8ea22 was Syukri Zainal, 22 minutes ago, message: Remove feedback column
+465d943 was Ahbar Sakib, 22 minutes ago, message: Implemented a profile page and added routes, and updated the controllers file
+ca87145 was Syukri Zainal, 22 minutes ago, message: Remove commented code
+cc0e8f2 was Syukri Zainal, 23 minutes ago, message: Add better question sets
+35fb1e6 was Syukri Zainal, 23 minutes ago, message: Remove print statements
+eba67ba was Syukri Zainal, 23 minutes ago, message: Add anon registration test
 4d2a561 was Syukri, 43 minutes ago, message: Update README.md
 2392d47 was Syukri, 51 minutes ago, message: Update README.md
 2d7642e was Syukri, 53 minutes ago, message: Update README.md
-3b1f376 was mazza, 53 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-1d18f5c was mazza, 54 minutes ago, message: Initial commit
+3b1f376 was Syukri Zainal, 53 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+1d18f5c was Syukri Zainal, 54 minutes ago, message: Initial commit
 703b3d5 was Syukri, 54 minutes ago, message: Update README.md
-2e0e42a was mazza, 61 minutes ago, message: Add descriptions
-c858d05 was mazza, 84 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-284e1c5 was mazza, 84 minutes ago, message: Add info
-793639c was Darren Crack, 3 hours ago, message: fix random
-95e0676 was Darren Crack, 3 hours ago, message: new saveset
-47285a4 was mazza, 4 hours ago, message: Merge and fix conflicts
-9255135 was mazza, 4 hours ago, message: Remove test sets, add actual sets
-056fccf was mazza, 4 hours ago, message: Fix styles for question form, was too big
-938e5fc was mazza, 4 hours ago, message: Remove console log
-8f21059 was mazza, 4 hours ago, message: Fix query bug
-0432782 was Darren Crack, 4 hours ago, message: merging all the CSS files, only the admin.css and quiz.css are not in yet
-2546d15 was Darren Crack, 6 hours ago, message: random game set and minor appearance changes
-42400c1 was mazza, 7 hours ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-90188dd was mazza, 7 hours ago, message: Add code to aid in testing
-13cbc52 was mazza, 7 hours ago, message: Add wrong pw test and register used name test
-2820f69 was ahbarsakib, 11 hours ago, message: Merge branch 'master' into ahbar_branch
-47dadb3 was ahbarsakib, 12 hours ago, message: Added some changes to the git ignore file and init.py file for sellenium testing
-b367cf9 was Darren Crack, 23 hours ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-7580578 was Darren Crack, 23 hours ago, message: updated look of edituser page
-6c3f254 was mazza, 27 hours ago, message: Fixed missing image
-44a8c98 was ahbarsakib, 31 hours ago, message: Merge with ahbar_branch and syukri_branch
-bed00a4 was ahbarsakib, 31 hours ago, message: Fixed bug with authentication and entering question sets
-433f38e was mazza, 32 hours ago, message: Add selenium
-869ba56 was mazza, 32 hours ago, message: Merge and fix conflicts
-26f7b0a was mazza, 32 hours ago, message: Migration changes
-45eeaf5 was mazza, 32 hours ago, message: Add test config
-1c55df7 was mazza, 32 hours ago, message: Add IDs for selenium testing
-afdd422 was mazza, 32 hours ago, message: Commented out username generator API due to causing errors
-0c3ae7f was mazza, 32 hours ago, message: No change
-82e06be was mazza, 32 hours ago, message: Add geckodriver log and migrations folder
-d2eabdc was ahbarsakib, 32 hours ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-e91d9fe was ahbarsakib, 33 hours ago, message: Fixed minor bugs including (submitting quiz when timer is up, making the body have a fixed height for the quiz page, making the next previous buttons lower)
-e828e89 was Darren Crack, 34 hours ago, message: reverse saveSet
-4881256 was Darren Crack, 34 hours ago, message: updated looks
-a440e55 was Darren Crack, 34 hours ago, message: Update home.html
-adebf61 was Darren Crack, 34 hours ago, message: toggle add in game set
-c224f2a was ahbarsakib, 35 hours ago, message: Some minor changes
-09ed801 was ahbarsakib, 2 days ago, message: Changed the scoring system and now user gets 0 points if they get question wrong
-a017864 was ahbarsakib, 2 days ago, message: Removed unecessary code
-1cf4802 was ahbarsakib, 2 days ago, message: Fixed bug for points showing up on other pages except the quiz page
-a2d13f0 was Darren Crack, 2 days ago, message: Update on how to play
-faa01a2 was Darren Crack, 2 days ago, message: Updated the look of login and signup page
-25a0d34 was mazza, 2 days ago, message: Revert "Merge branch 'master' into danish_branch"
-3583e8a was Darren Crack, 2 days ago, message: Merge branch 'danish_branch'
-0cbe04c was Darren Crack, 2 days ago, message: Merge branch 'master' into danish_branch
-24579b4 was mazza, 2 days ago, message: Fix header
-2363510 was Darren Crack, 2 days ago, message: login banner differ from default
-92ca8f8 was mazza, 2 days ago, message: No significant changes
-ebc8614 was mazza, 2 days ago, message: Merge branch 'syukri_branch'
-509a1a3 was mazza, 2 days ago, message: Delete redundant files
-3af5391 was mazza, 2 days ago, message: Add user and question set ID variables
-36d2dde was mazza, 2 days ago, message: Add authenticated variable
-8a77b67 was mazza, 2 days ago, message: Add submit quiz backend logic
-7a26a46 was mazza, 2 days ago, message: Fix anon registration
-5b867a5 was mazza, 2 days ago, message: Add submit results route
-928dcfc was mazza, 2 days ago, message: Add submit results method
-f3c578e was mazza, 2 days ago, message: No significant changes
-5a93d57 was ahbarsakib, 2 days ago, message: Merge branch 'ahbar_branch'
-fae920a was ahbarsakib, 2 days ago, message: Added ahbar as a user
-c7d1115 was ahbarsakib, 2 days ago, message: Implemented footer to stop bleeding over the page width
-748f5e6 was ahbarsakib, 2 days ago, message: Implemented points system and styled welcome user message to be inline with the mapify logo
-fef6cdb was ahbarsakib, 2 days ago, message: Implemented footer to be at the bottom at all times regardless of page size
-be5bcab was mazza, 2 days ago, message: Merge remote-tracking branch 'origin/master' into syukri_branch
-5f97dff was mazza, 2 days ago, message: Remove promote/demote button for self
-4eb6193 was mazza, 2 days ago, message: Add administrator checks for admin-level pages
-90836da was mazza, 2 days ago, message: Fix user registration
-64e473e was mazza, 2 days ago, message: No significant changes
-d82a620 was ahbarsakib, 2 days ago, message: merged with ahbar_branch and pull from origin/master
-e515fa0 was ahbarsakib, 2 days ago, message: Implemented points system with time bonus
-f415dca was ahbarsakib, 2 days ago, message: Fixed issue of random user api running on all webpages instead of only running on home page
-7c0ed23 was mazza, 2 days ago, message: Replace header and footer with base template, add scoreboard
-558dc43 was mazza, 2 days ago, message: Add flash messages
-660b974 was mazza, 2 days ago, message: Add flash messages
-c05e7fc was mazza, 2 days ago, message: Add scoreboard
-16d0d23 was mazza, 2 days ago, message: Made it so you cannot delete yourself
-bf106f0 was mazza, 2 days ago, message: Add header links for unregistered user
-7734e2a was mazza, 2 days ago, message: Add AJAX for registering anon user
-5aee651 was mazza, 2 days ago, message: Minor style changes
-5b5b211 was mazza, 2 days ago, message: Add new routes
-0be64a1 was mazza, 2 days ago, message: Add time_taken column
-f4894d9 was mazza, 2 days ago, message: Add anonymous user registration
-0d510cf was mazza, 2 days ago, message: Add time_taken column
-9ebdc30 was Darren Crack, 3 days ago, message: Merge remote-tracking branch 'origin/master' into danish_branch
-79e8d75 was mazza, 3 days ago, message: Improve set ID link
-becfb65 was mazza, 3 days ago, message: Add handling for reference_value
-8c7fefc was mazza, 3 days ago, message: Improve set ID link
-debc15e was mazza, 3 days ago, message: Add handling for reference_value
-90b56b3 was mazza, 3 days ago, message: Add handling for reference_value
-91c1473 was mazza, 3 days ago, message: Add Wonders of the World question set
-259ef37 was ahbarsakib, 3 days ago, message: Merge issues solved
-c3923d7 was ahbarsakib, 3 days ago, message: Merged ahbar_branch and solved merge conflicts
-fa0f675 was ahbarsakib, 3 days ago, message: Implemented reference value feature within the quiz page
-a9d6d74 was ahbarsakib, 3 days ago, message: Implemented googleMap on form for create/edit question to check the location
-11bc111 was ahbarsakib, 3 days ago, message: Added styling for the map inside the edit/create question form
-eebdc60 was mazza, 3 days ago, message: Add links for game set
-cba99d1 was mazza, 3 days ago, message: Add saveSet function
-dafbd19 was mazza, 3 days ago, message: ::
-97097d7 was Darren Crack, 3 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1 into danish_branch
-6bd6cfe was ahbarsakib, 3 days ago, message: Merged with the master
-aeac1e9 was mazza, 3 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-76aecd2 was mazza, 3 days ago, message: Add score table
-f9d169a was ahbarsakib, 3 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-13fa635 was ahbarsakib, 3 days ago, message: Implemented timer to work dynamically with respective to the amount of MCQ and short answer questions
-97a6de3 was mazza, 3 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-5b87989 was mazza, 3 days ago, message: Merge branch 'syukri_branch'
-0d7706a was mazza, 3 days ago, message: Add reference_value field for QuestionForm
-3949e6d was mazza, 3 days ago, message: Minor style changes. Organise styles around for better readability
-01bdcb6 was mazza, 3 days ago, message: Minor comment changes
-2e17ada was mazza, 3 days ago, message: Add reference_value field for QuestionForm
-d7932af was mazza, 3 days ago, message: Add reference_value field for QuestionForm
-6e76e28 was mazza, 3 days ago, message: Add reference_value field for QuestionForm
-22302e1 was mazza, 3 days ago, message: Add new column reference value
-c30afce was ahbarsakib, 3 days ago, message: No major change to the database
-b57dd01 was ahbarsakib, 3 days ago, message: Changed some styling to fit the base.html page
-e867973 was ahbarsakib, 3 days ago, message: Integrated quizPage with uniform header and footer styling
-1b247e0 was ahbarsakib, 3 days ago, message: Added language specification and meta tags in head
-79c68ef was Darren Crack, 3 days ago, message: Side comments
-28a0363 was mazza, 3 days ago, message: Merge remote-tracking branch 'origin/master' into syukri_branch
-5d1be72 was mazza, 3 days ago, message: No major changes
-79a183c was mazza, 3 days ago, message: Merge branch 'syukri_branch'
-587bd72 was mazza, 3 days ago, message: Initial commits for edit user page
-c6c6513 was mazza, 3 days ago, message: No change
-305d1f9 was mazza, 3 days ago, message: Add link for edit user page
-1418afe was mazza, 3 days ago, message: Move modals around
-69d5671 was mazza, 3 days ago, message: Add button styles
-08e7aef was mazza, 3 days ago, message: Add move button
-d18e5b2 was mazza, 3 days ago, message: Add routes to UserController
-1b5f147 was mazza, 3 days ago, message: Add reference value column
-7645865 was mazza, 3 days ago, message: Add routes to UserController
-78603bf was mazza, 3 days ago, message: Add methods for UserController
-b7dbc7b was mazza, 3 days ago, message: Add new column to question table
-5f82ad8 was mazza, 4 days ago, message: Add flask-login
-1d1ea37 was ahbarsakib, 4 days ago, message: Merge branch 'ahbar_branch'
-1b9392f was ahbarsakib, 4 days ago, message: Implemented next-question. previous-question and finish buttons to make it more interactive
-54d4353 was mazza, 4 days ago, message: Merge branch 'syukri_branch'
-01c52ba was mazza, 4 days ago, message: Add structure for login, sign up buttons and remove login modal
-88c6cab was mazza, 4 days ago, message: Remove header tags to include block section instead to be more in line with global style
-d4862bb was mazza, 4 days ago, message: Add style for login and registration page
-0b376bc was mazza, 4 days ago, message: Add style for login and registration page
-493a6c7 was mazza, 4 days ago, message: Add login-related routes and move logic handling to controllers.py
-4b9847c was mazza, 4 days ago, message: Adds login handler, User table
-5bd4f3f was mazza, 4 days ago, message: Add RegistrationForm
-25dd0f3 was mazza, 4 days ago, message: Add Login Manager
-9291ec4 was mazza, 4 days ago, message: Add User table
-d51c1ae was mazza, 4 days ago, message: Initial commit for controllers. Majority of logic now handled in this file instead of routes.py
-4b7e2ee was mazza, 4 days ago, message: Initial commit for login and registration page
-752e92d was ahbarsakib, 4 days ago, message: Implemented timer functionality which counts down a clock for the quiz webPage
-56596cc was ahbarsakib, 4 days ago, message: Linked up homepage to the appropriate quiz page and added some styling on card-title anchor tag
-0522416 was ahbarsakib, 4 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-ba3ea85 was ahbarsakib, 4 days ago, message: Merged master to local repo
-5820ca2 was ahbarsakib, 4 days ago, message: Merge branch 'ahbar_branch'
-9fc2955 was mazza, 4 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-0352a28 was mazza, 4 days ago, message: Add structure for question set deletion popup, add button values
-e8c02c3 was mazza, 4 days ago, message: Change modal elements
-06fd3bf was mazza, 4 days ago, message: Add functionality for question set deletion
-0c9ec44 was mazza, 4 days ago, message: Change variable initialisation to scale better, add deleteset route
-e986253 was mazza, 4 days ago, message: Add new import
-d0cde13 was mazza, 4 days ago, message: Change number_of_questions field to dropdown select field
-4621e37 was mazza, 4 days ago, message: Add Wonders of the World set - might be used as actual set
+2e0e42a was Syukri Zainal, 61 minutes ago, message: Add descriptions
+c858d05 was Syukri Zainal, 84 minutes ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+284e1c5 was Syukri Zainal, 84 minutes ago, message: Add info
+793639c was Danish Firdaus, 3 hours ago, message: fix random
+95e0676 was Danish Firdaus, 3 hours ago, message: new saveset
+47285a4 was Syukri Zainal, 4 hours ago, message: Merge and fix conflicts
+9255135 was Syukri Zainal, 4 hours ago, message: Remove test sets, add actual sets
+056fccf was Syukri Zainal, 4 hours ago, message: Fix styles for question form, was too big
+938e5fc was Syukri Zainal, 4 hours ago, message: Remove console log
+8f21059 was Syukri Zainal, 4 hours ago, message: Fix query bug
+0432782 was Danish Firdaus, 4 hours ago, message: merging all the CSS files, only the admin.css and quiz.css are not in yet
+2546d15 was Danish Firdaus, 6 hours ago, message: random game set and minor appearance changes
+42400c1 was Syukri Zainal, 7 hours ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+90188dd was Syukri Zainal, 7 hours ago, message: Add code to aid in testing
+13cbc52 was Syukri Zainal, 7 hours ago, message: Add wrong pw test and register used name test
+2820f69 was Ahbar Sakib, 11 hours ago, message: Merge branch 'master' into ahbar_branch
+47dadb3 was Ahbar Sakib, 12 hours ago, message: Added some changes to the git ignore file and init.py file for sellenium testing
+b367cf9 was Danish Firdaus, 23 hours ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+7580578 was Danish Firdaus, 23 hours ago, message: updated look of edituser page
+6c3f254 was Syukri Zainal, 27 hours ago, message: Fixed missing image
+44a8c98 was Ahbar Sakib, 31 hours ago, message: Merge with ahbar_branch and syukri_branch
+bed00a4 was Ahbar Sakib, 31 hours ago, message: Fixed bug with authentication and entering question sets
+433f38e was Syukri Zainal, 32 hours ago, message: Add selenium
+869ba56 was Syukri Zainal, 32 hours ago, message: Merge and fix conflicts
+26f7b0a was Syukri Zainal, 32 hours ago, message: Migration changes
+45eeaf5 was Syukri Zainal, 32 hours ago, message: Add test config
+1c55df7 was Syukri Zainal, 32 hours ago, message: Add IDs for selenium testing
+afdd422 was Syukri Zainal, 32 hours ago, message: Commented out username generator API due to causing errors
+0c3ae7f was Syukri Zainal, 32 hours ago, message: No change
+82e06be was Syukri Zainal, 32 hours ago, message: Add geckodriver log and migrations folder
+d2eabdc was Ahbar Sakib, 32 hours ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+e91d9fe was Ahbar Sakib, 33 hours ago, message: Fixed minor bugs including (submitting quiz when timer is up, making the body have a fixed height for the quiz page, making the next previous buttons lower)
+e828e89 was Danish Firdaus, 34 hours ago, message: reverse saveSet
+4881256 was Danish Firdaus, 34 hours ago, message: updated looks
+a440e55 was Danish Firdaus, 34 hours ago, message: Update home.html
+adebf61 was Danish Firdaus, 34 hours ago, message: toggle add in game set
+c224f2a was Ahbar Sakib, 35 hours ago, message: Some minor changes
+09ed801 was Ahbar Sakib, 2 days ago, message: Changed the scoring system and now user gets 0 points if they get question wrong
+a017864 was Ahbar Sakib, 2 days ago, message: Removed unecessary code
+1cf4802 was Ahbar Sakib, 2 days ago, message: Fixed bug for points showing up on other pages except the quiz page
+a2d13f0 was Danish Firdaus, 2 days ago, message: Update on how to play
+faa01a2 was Danish Firdaus, 2 days ago, message: Updated the look of login and signup page
+25a0d34 was Syukri Zainal, 2 days ago, message: Revert "Merge branch 'master' into danish_branch"
+3583e8a was Danish Firdaus, 2 days ago, message: Merge branch 'danish_branch'
+0cbe04c was Danish Firdaus, 2 days ago, message: Merge branch 'master' into danish_branch
+24579b4 was Syukri Zainal, 2 days ago, message: Fix header
+2363510 was Danish Firdaus, 2 days ago, message: login banner differ from default
+92ca8f8 was Syukri Zainal, 2 days ago, message: No significant changes
+ebc8614 was Syukri Zainal, 2 days ago, message: Merge branch 'syukri_branch'
+509a1a3 was Syukri Zainal, 2 days ago, message: Delete redundant files
+3af5391 was Syukri Zainal, 2 days ago, message: Add user and question set ID variables
+36d2dde was Syukri Zainal, 2 days ago, message: Add authenticated variable
+8a77b67 was Syukri Zainal, 2 days ago, message: Add submit quiz backend logic
+7a26a46 was Syukri Zainal, 2 days ago, message: Fix anon registration
+5b867a5 was Syukri Zainal, 2 days ago, message: Add submit results route
+928dcfc was Syukri Zainal, 2 days ago, message: Add submit results method
+f3c578e was Syukri Zainal, 2 days ago, message: No significant changes
+5a93d57 was Ahbar Sakib, 2 days ago, message: Merge branch 'ahbar_branch'
+fae920a was Ahbar Sakib, 2 days ago, message: Added ahbar as a user
+c7d1115 was Ahbar Sakib, 2 days ago, message: Implemented footer to stop bleeding over the page width
+748f5e6 was Ahbar Sakib, 2 days ago, message: Implemented points system and styled welcome user message to be inline with the mapify logo
+fef6cdb was Ahbar Sakib, 2 days ago, message: Implemented footer to be at the bottom at all times regardless of page size
+be5bcab was Syukri Zainal, 2 days ago, message: Merge remote-tracking branch 'origin/master' into syukri_branch
+5f97dff was Syukri Zainal, 2 days ago, message: Remove promote/demote button for self
+4eb6193 was Syukri Zainal, 2 days ago, message: Add administrator checks for admin-level pages
+90836da was Syukri Zainal, 2 days ago, message: Fix user registration
+64e473e was Syukri Zainal, 2 days ago, message: No significant changes
+d82a620 was Ahbar Sakib, 2 days ago, message: merged with ahbar_branch and pull from origin/master
+e515fa0 was Ahbar Sakib, 2 days ago, message: Implemented points system with time bonus
+f415dca was Ahbar Sakib, 2 days ago, message: Fixed issue of random user api running on all webpages instead of only running on home page
+7c0ed23 was Syukri Zainal, 2 days ago, message: Replace header and footer with base template, add scoreboard
+558dc43 was Syukri Zainal, 2 days ago, message: Add flash messages
+660b974 was Syukri Zainal, 2 days ago, message: Add flash messages
+c05e7fc was Syukri Zainal, 2 days ago, message: Add scoreboard
+16d0d23 was Syukri Zainal, 2 days ago, message: Made it so you cannot delete yourself
+bf106f0 was Syukri Zainal, 2 days ago, message: Add header links for unregistered user
+7734e2a was Syukri Zainal, 2 days ago, message: Add AJAX for registering anon user
+5aee651 was Syukri Zainal, 2 days ago, message: Minor style changes
+5b5b211 was Syukri Zainal, 2 days ago, message: Add new routes
+0be64a1 was Syukri Zainal, 2 days ago, message: Add time_taken column
+f4894d9 was Syukri Zainal, 2 days ago, message: Add anonymous user registration
+0d510cf was Syukri Zainal, 2 days ago, message: Add time_taken column
+9ebdc30 was Danish Firdaus, 3 days ago, message: Merge remote-tracking branch 'origin/master' into danish_branch
+79e8d75 was Syukri Zainal, 3 days ago, message: Improve set ID link
+becfb65 was Syukri Zainal, 3 days ago, message: Add handling for reference_value
+8c7fefc was Syukri Zainal, 3 days ago, message: Improve set ID link
+debc15e was Syukri Zainal, 3 days ago, message: Add handling for reference_value
+90b56b3 was Syukri Zainal, 3 days ago, message: Add handling for reference_value
+91c1473 was Syukri Zainal, 3 days ago, message: Add Wonders of the World question set
+259ef37 was Ahbar Sakib, 3 days ago, message: Merge issues solved
+c3923d7 was Ahbar Sakib, 3 days ago, message: Merged ahbar_branch and solved merge conflicts
+fa0f675 was Ahbar Sakib, 3 days ago, message: Implemented reference value feature within the quiz page
+a9d6d74 was Ahbar Sakib, 3 days ago, message: Implemented googleMap on form for create/edit question to check the location
+11bc111 was Ahbar Sakib, 3 days ago, message: Added styling for the map inside the edit/create question form
+eebdc60 was Syukri Zainal, 3 days ago, message: Add links for game set
+cba99d1 was Syukri Zainal, 3 days ago, message: Add saveSet function
+dafbd19 was Syukri Zainal, 3 days ago, message: ::
+97097d7 was Danish Firdaus, 3 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1 into danish_branch
+6bd6cfe was Ahbar Sakib, 3 days ago, message: Merged with the master
+aeac1e9 was Syukri Zainal, 3 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+76aecd2 was Syukri Zainal, 3 days ago, message: Add score table
+f9d169a was Ahbar Sakib, 3 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+13fa635 was Ahbar Sakib, 3 days ago, message: Implemented timer to work dynamically with respective to the amount of MCQ and short answer questions
+97a6de3 was Syukri Zainal, 3 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+5b87989 was Syukri Zainal, 3 days ago, message: Merge branch 'syukri_branch'
+0d7706a was Syukri Zainal, 3 days ago, message: Add reference_value field for QuestionForm
+3949e6d was Syukri Zainal, 3 days ago, message: Minor style changes. Organise styles around for better readability
+01bdcb6 was Syukri Zainal, 3 days ago, message: Minor comment changes
+2e17ada was Syukri Zainal, 3 days ago, message: Add reference_value field for QuestionForm
+d7932af was Syukri Zainal, 3 days ago, message: Add reference_value field for QuestionForm
+6e76e28 was Syukri Zainal, 3 days ago, message: Add reference_value field for QuestionForm
+22302e1 was Syukri Zainal, 3 days ago, message: Add new column reference value
+c30afce was Ahbar Sakib, 3 days ago, message: No major change to the database
+b57dd01 was Ahbar Sakib, 3 days ago, message: Changed some styling to fit the base.html page
+e867973 was Ahbar Sakib, 3 days ago, message: Integrated quizPage with uniform header and footer styling
+1b247e0 was Ahbar Sakib, 3 days ago, message: Added language specification and meta tags in head
+79c68ef was Danish Firdaus, 3 days ago, message: Side comments
+28a0363 was Syukri Zainal, 3 days ago, message: Merge remote-tracking branch 'origin/master' into syukri_branch
+5d1be72 was Syukri Zainal, 3 days ago, message: No major changes
+79a183c was Syukri Zainal, 3 days ago, message: Merge branch 'syukri_branch'
+587bd72 was Syukri Zainal, 3 days ago, message: Initial commits for edit user page
+c6c6513 was Syukri Zainal, 3 days ago, message: No change
+305d1f9 was Syukri Zainal, 3 days ago, message: Add link for edit user page
+1418afe was Syukri Zainal, 3 days ago, message: Move modals around
+69d5671 was Syukri Zainal, 3 days ago, message: Add button styles
+08e7aef was Syukri Zainal, 3 days ago, message: Add move button
+d18e5b2 was Syukri Zainal, 3 days ago, message: Add routes to UserController
+1b5f147 was Syukri Zainal, 3 days ago, message: Add reference value column
+7645865 was Syukri Zainal, 3 days ago, message: Add routes to UserController
+78603bf was Syukri Zainal, 3 days ago, message: Add methods for UserController
+b7dbc7b was Syukri Zainal, 3 days ago, message: Add new column to question table
+5f82ad8 was Syukri Zainal, 4 days ago, message: Add flask-login
+1d1ea37 was Ahbar Sakib, 4 days ago, message: Merge branch 'ahbar_branch'
+1b9392f was Ahbar Sakib, 4 days ago, message: Implemented next-question. previous-question and finish buttons to make it more interactive
+54d4353 was Syukri Zainal, 4 days ago, message: Merge branch 'syukri_branch'
+01c52ba was Syukri Zainal, 4 days ago, message: Add structure for login, sign up buttons and remove login modal
+88c6cab was Syukri Zainal, 4 days ago, message: Remove header tags to include block section instead to be more in line with global style
+d4862bb was Syukri Zainal, 4 days ago, message: Add style for login and registration page
+0b376bc was Syukri Zainal, 4 days ago, message: Add style for login and registration page
+493a6c7 was Syukri Zainal, 4 days ago, message: Add login-related routes and move logic handling to controllers.py
+4b9847c was Syukri Zainal, 4 days ago, message: Adds login handler, User table
+5bd4f3f was Syukri Zainal, 4 days ago, message: Add RegistrationForm
+25dd0f3 was Syukri Zainal, 4 days ago, message: Add Login Manager
+9291ec4 was Syukri Zainal, 4 days ago, message: Add User table
+d51c1ae was Syukri Zainal, 4 days ago, message: Initial commit for controllers. Majority of logic now handled in this file instead of routes.py
+4b7e2ee was Syukri Zainal, 4 days ago, message: Initial commit for login and registration page
+752e92d was Ahbar Sakib, 4 days ago, message: Implemented timer functionality which counts down a clock for the quiz webPage
+56596cc was Ahbar Sakib, 4 days ago, message: Linked up homepage to the appropriate quiz page and added some styling on card-title anchor tag
+0522416 was Ahbar Sakib, 4 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+ba3ea85 was Ahbar Sakib, 4 days ago, message: Merged master to local repo
+5820ca2 was Ahbar Sakib, 4 days ago, message: Merge branch 'ahbar_branch'
+9fc2955 was Syukri Zainal, 4 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+0352a28 was Syukri Zainal, 4 days ago, message: Add structure for question set deletion popup, add button values
+e8c02c3 was Syukri Zainal, 4 days ago, message: Change modal elements
+06fd3bf was Syukri Zainal, 4 days ago, message: Add functionality for question set deletion
+0c9ec44 was Syukri Zainal, 4 days ago, message: Change variable initialisation to scale better, add deleteset route
+e986253 was Syukri Zainal, 4 days ago, message: Add new import
+d0cde13 was Syukri Zainal, 4 days ago, message: Change number_of_questions field to dropdown select field
+4621e37 was Syukri Zainal, 4 days ago, message: Add Wonders of the World set - might be used as actual set
 82e89f5 was Syukri, 5 days ago, message: Merge pull request #13 from msyukri-zaidin/danish_branch
 54e5d41 was Syukri, 5 days ago, message: Merge branch 'master' into danish_branch
-1ea870f was Darren Crack, 5 days ago, message: mini-home-update
+1ea870f was Danish Firdaus, 5 days ago, message: mini-home-update
 cab98fd was Syukri, 5 days ago, message: Merge pull request #12 from msyukri-zaidin/syukri_branch
-b6ebcc3 was mazza, 5 days ago, message: Fix drag & drop and submission from active question list
-bd81d84 was Darren Crack, 5 days ago, message: Started on home page form
-054006b was ahbarsakib, 5 days ago, message: Cleaned up the quiz.js file
-4c09e23 was mazza, 5 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-e79d569 was mazza, 5 days ago, message: Merge branch 'syukri_branch'
-5c652cd was mazza, 5 days ago, message: Change token for question form, add placeholder divs and change structure of container nav bar
-dddffdb was mazza, 5 days ago, message: Change css for container nav bar
-6301d15 was mazza, 5 days ago, message: Add placeholder div in empty question slot and modify container navigation bar
-d632d2a was mazza, 5 days ago, message: Remove deprecated function and add more question form handling
-29ea7c7 was mazza, 5 days ago, message: Add hidden field
-73c1dfa was mazza, 5 days ago, message: No significant changes
-6e301cd was ahbarsakib, 5 days ago, message: Merge branch 'ahbar_branch'
-ad8c76c was ahbarsakib, 5 days ago, message: Databse modified
-3119e10 was ahbarsakib, 5 days ago, message: Tested multiple choice questions implementation with this database
-2e974fb was ahbarsakib, 5 days ago, message: Changed the webpage to support rendering of multiple choice questions
-04ce30f was ahbarsakib, 5 days ago, message: Implemented functionality to support and validate multiple choice answers
-979ff0a was ahbarsakib, 5 days ago, message: Added some styling to the radio button in mulitle choice questions
+b6ebcc3 was Syukri Zainal, 5 days ago, message: Fix drag & drop and submission from active question list
+bd81d84 was Danish Firdaus, 5 days ago, message: Started on home page form
+054006b was Ahbar Sakib, 5 days ago, message: Cleaned up the quiz.js file
+4c09e23 was Syukri Zainal, 5 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+e79d569 was Syukri Zainal, 5 days ago, message: Merge branch 'syukri_branch'
+5c652cd was Syukri Zainal, 5 days ago, message: Change token for question form, add placeholder divs and change structure of container nav bar
+dddffdb was Syukri Zainal, 5 days ago, message: Change css for container nav bar
+6301d15 was Syukri Zainal, 5 days ago, message: Add placeholder div in empty question slot and modify container navigation bar
+d632d2a was Syukri Zainal, 5 days ago, message: Remove deprecated function and add more question form handling
+29ea7c7 was Syukri Zainal, 5 days ago, message: Add hidden field
+73c1dfa was Syukri Zainal, 5 days ago, message: No significant changes
+6e301cd was Ahbar Sakib, 5 days ago, message: Merge branch 'ahbar_branch'
+ad8c76c was Ahbar Sakib, 5 days ago, message: Databse modified
+3119e10 was Ahbar Sakib, 5 days ago, message: Tested multiple choice questions implementation with this database
+2e974fb was Ahbar Sakib, 5 days ago, message: Changed the webpage to support rendering of multiple choice questions
+04ce30f was Ahbar Sakib, 5 days ago, message: Implemented functionality to support and validate multiple choice answers
+979ff0a was Ahbar Sakib, 5 days ago, message: Added some styling to the radio button in mulitle choice questions
 64e026f was danish3r, 5 days ago, message: Moved Result.js to app/static folder
 58e444f was danish3r, 5 days ago, message: Moved Home.js to app/static folder
 ce67897 was danish3r, 5 days ago, message: Moved Home and Result CSS to app/static/css folder
-2348f45 was ahbarsakib, 5 days ago, message: Merge branch 'ahbar_branch'
-abb9e33 was ahbarsakib, 5 days ago, message: Added MCQ question to question 5 on questionSet1-Test
-b4cad6f was ahbarsakib, 5 days ago, message: Added functionality in the routes file to support multiple choice questions and removed loadQuiz route due to redundancy
+2348f45 was Ahbar Sakib, 5 days ago, message: Merge branch 'ahbar_branch'
+abb9e33 was Ahbar Sakib, 5 days ago, message: Added MCQ question to question 5 on questionSet1-Test
+b4cad6f was Ahbar Sakib, 5 days ago, message: Added functionality in the routes file to support multiple choice questions and removed loadQuiz route due to redundancy
 c55c8cc was danish3r, 5 days ago, message: Move result.html to app/templates folder
 6645be7 was danish3r, 5 days ago, message: Moved home.html to app/template folder
-62f1ab1 was mazza, 5 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-c1fb8a7 was mazza, 5 days ago, message: Replace faulty file
+62f1ab1 was Syukri Zainal, 5 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+c1fb8a7 was Syukri Zainal, 5 days ago, message: Replace faulty file
 e19c112 was Syukri, 5 days ago, message: Merge pull request #10 from msyukri-zaidin/syukri_branch
-1c0e339 was mazza, 5 days ago, message: Replace faulty file
-feb4a24 was mazza, 5 days ago, message: No significant changes
-37e9516 was mazza, 5 days ago, message: Remove unnecessary files
+1c0e339 was Syukri Zainal, 5 days ago, message: Replace faulty file
+feb4a24 was Syukri Zainal, 5 days ago, message: No significant changes
+37e9516 was Syukri Zainal, 5 days ago, message: Remove unnecessary files
 b42f2b5 was Syukri, 5 days ago, message: Merge pull request #9 from msyukri-zaidin/danish_branch
-43021a8 was Darren Crack, 5 days ago, message: Merge branch 'master' into danish_branch
-0b213c1 was Darren Crack, 5 days ago, message: footer in
-0e040ef was mazza, 5 days ago, message: No significant changes
-7063d73 was mazza, 5 days ago, message: Move 'reset' and 'save changes' button, change edit button
-bac88ca was mazza, 5 days ago, message: Minor changes to make site more dynamic based on page size
-562da7a was mazza, 5 days ago, message: Add AJAX call for edit question
-3db47b1 was mazza, 5 days ago, message: Add edit question route
+43021a8 was Danish Firdaus, 5 days ago, message: Merge branch 'master' into danish_branch
+0b213c1 was Danish Firdaus, 5 days ago, message: footer in
+0e040ef was Syukri Zainal, 5 days ago, message: No significant changes
+7063d73 was Syukri Zainal, 5 days ago, message: Move 'reset' and 'save changes' button, change edit button
+bac88ca was Syukri Zainal, 5 days ago, message: Minor changes to make site more dynamic based on page size
+562da7a was Syukri Zainal, 5 days ago, message: Add AJAX call for edit question
+3db47b1 was Syukri Zainal, 5 days ago, message: Add edit question route
 745d5b2 was Syukri, 6 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
 9a133ed was Syukri, 6 days ago, message: Merge branch 'syukri_branch'
 06fa1d6 was Syukri, 6 days ago, message: Move question form into a popup div
@@ -233,96 +233,96 @@ bac88ca was mazza, 5 days ago, message: Minor changes to make site more dynamic 
 422a55a was Syukri, 6 days ago, message: Add delete question functionality and move question form
 6944c9a was Syukri, 6 days ago, message: Add delete questionmethod
 d081162 was Syukri, 6 days ago, message: No major changes
-c485a6d was ahbarsakib, 6 days ago, message: Fixed the bug for querySelectorAll
-69f1d32 was ahbarsakib, 6 days ago, message: Added querySelectorAll to get the number of attempts
-61f9754 was ahbarsakib, 6 days ago, message: Added app/__init__.pyc to ignore this file
-e136e0c was ahbarsakib, 6 days ago, message: Cleaned up the code to flow better
-98fb20d was ahbarsakib, 6 days ago, message: Implemented the JS to initialise the map with a marker if they get a question correct or use all the attempts
-c9ff238 was ahbarsakib, 6 days ago, message: Added some styling for the Info Window marker
-02297a8 was ahbarsakib, 6 days ago, message: Added maximum height to side bar for scrolling purposes
-57b567f was ahbarsakib, 6 days ago, message: Removed print-line statements and the last of AJAX requests
-65c7430 was ahbarsakib, 6 days ago, message: Merge branch 'ahbar_branch'
-b56491f was ahbarsakib, 6 days ago, message: Removed functionality of quizPage being rendered using JS and calling from the database everytime
-c1be0ea was ahbarsakib, 6 days ago, message: Added a new question set
-839e15c was ahbarsakib, 6 days ago, message: Redesigned Quiz Page to be rendered using Jinja
-064c2a9 was ahbarsakib, 6 days ago, message: Removed functionality to render QuizPage from the JS and allowed it to be rendered by Jinja
-6c3dfbd was ahbarsakib, 6 days ago, message: Implemented the route for the quiz page
-cc6f823 was ahbarsakib, 6 days ago, message: Added a new Question set (QuestionSet1)
-2c2987a was ahbarsakib, 7 days ago, message: Merge branch 'ahbar_branch'
-4463e2a was ahbarsakib, 7 days ago, message: Implemented lower case implementation as it will compare user answer to the answer in database
-c182394 was ahbarsakib, 7 days ago, message: Removed some changes intially added
-b7565f2 was ahbarsakib, 7 days ago, message: Integrated the database backend with the front end and checks for correct answer
-a83a541 was ahbarsakib, 7 days ago, message: Added head icon and resolved the incoming changes
-a75476b was ahbarsakib, 7 days ago, message: Merged master to ahbar_branch
-ffd33d8 was ahbarsakib, 7 days ago, message: Implemented message features which lets the user know whether they got a question right and how many attempts they have remaining
+c485a6d was Ahbar Sakib, 6 days ago, message: Fixed the bug for querySelectorAll
+69f1d32 was Ahbar Sakib, 6 days ago, message: Added querySelectorAll to get the number of attempts
+61f9754 was Ahbar Sakib, 6 days ago, message: Added app/__init__.pyc to ignore this file
+e136e0c was Ahbar Sakib, 6 days ago, message: Cleaned up the code to flow better
+98fb20d was Ahbar Sakib, 6 days ago, message: Implemented the JS to initialise the map with a marker if they get a question correct or use all the attempts
+c9ff238 was Ahbar Sakib, 6 days ago, message: Added some styling for the Info Window marker
+02297a8 was Ahbar Sakib, 6 days ago, message: Added maximum height to side bar for scrolling purposes
+57b567f was Ahbar Sakib, 6 days ago, message: Removed print-line statements and the last of AJAX requests
+65c7430 was Ahbar Sakib, 6 days ago, message: Merge branch 'ahbar_branch'
+b56491f was Ahbar Sakib, 6 days ago, message: Removed functionality of quizPage being rendered using JS and calling from the database everytime
+c1be0ea was Ahbar Sakib, 6 days ago, message: Added a new question set
+839e15c was Ahbar Sakib, 6 days ago, message: Redesigned Quiz Page to be rendered using Jinja
+064c2a9 was Ahbar Sakib, 6 days ago, message: Removed functionality to render QuizPage from the JS and allowed it to be rendered by Jinja
+6c3dfbd was Ahbar Sakib, 6 days ago, message: Implemented the route for the quiz page
+cc6f823 was Ahbar Sakib, 6 days ago, message: Added a new Question set (QuestionSet1)
+2c2987a was Ahbar Sakib, 7 days ago, message: Merge branch 'ahbar_branch'
+4463e2a was Ahbar Sakib, 7 days ago, message: Implemented lower case implementation as it will compare user answer to the answer in database
+c182394 was Ahbar Sakib, 7 days ago, message: Removed some changes intially added
+b7565f2 was Ahbar Sakib, 7 days ago, message: Integrated the database backend with the front end and checks for correct answer
+a83a541 was Ahbar Sakib, 7 days ago, message: Added head icon and resolved the incoming changes
+a75476b was Ahbar Sakib, 7 days ago, message: Merged master to ahbar_branch
+ffd33d8 was Ahbar Sakib, 7 days ago, message: Implemented message features which lets the user know whether they got a question right and how many attempts they have remaining
 fa7a19b was Syukri, 7 days ago, message: Merge pull request #7 from msyukri-zaidin/syukri_branch
-7d01ae9 was mazza, 7 days ago, message: No significant changes
-eaaaee0 was mazza, 7 days ago, message: Make temporary home page
-92cd767 was mazza, 7 days ago, message: Add link to home page
-1421843 was mazza, 7 days ago, message: Add AJAX for get requests to retrieve questions
-3cb9668 was mazza, 7 days ago, message: Add routes for home and quizpages
-c63d3a0 was mazza, 7 days ago, message: No significant changes
-05c3c42 was ahbarsakib, 7 days ago, message: Moved quiz.html into the templates folder
-396670b was ahbarsakib, 7 days ago, message: Moved files to the appropriate folders
-f88c49f was mazza, 7 days ago, message: Move to static/css
-6c6b1d4 was ahbarsakib, 7 days ago, message: Deleted deprecated files and have been transformed into other files (quiz.html and quiz.js)
-2dd1b41 was mazza, 7 days ago, message: Move to templates folder
-2dbc2e1 was mazza, 7 days ago, message: Moved to static folder
+7d01ae9 was Syukri Zainal, 7 days ago, message: No significant changes
+eaaaee0 was Syukri Zainal, 7 days ago, message: Make temporary home page
+92cd767 was Syukri Zainal, 7 days ago, message: Add link to home page
+1421843 was Syukri Zainal, 7 days ago, message: Add AJAX for get requests to retrieve questions
+3cb9668 was Syukri Zainal, 7 days ago, message: Add routes for home and quizpages
+c63d3a0 was Syukri Zainal, 7 days ago, message: No significant changes
+05c3c42 was Ahbar Sakib, 7 days ago, message: Moved quiz.html into the templates folder
+396670b was Ahbar Sakib, 7 days ago, message: Moved files to the appropriate folders
+f88c49f was Syukri Zainal, 7 days ago, message: Move to static/css
+6c6b1d4 was Ahbar Sakib, 7 days ago, message: Deleted deprecated files and have been transformed into other files (quiz.html and quiz.js)
+2dd1b41 was Syukri Zainal, 7 days ago, message: Move to templates folder
+2dbc2e1 was Syukri Zainal, 7 days ago, message: Moved to static folder
 b6dc51d was Syukri, 7 days ago, message: Merge pull request #6 from msyukri-zaidin/syukri_branch
 7916852 was Syukri, 7 days ago, message: Merge branch 'master' into syukri_branch
-c933d5c was mazza, 7 days ago, message: Add styling for modals
-dbb9153 was mazza, 7 days ago, message: Add modals and changed multiple choice form
-c33ff3a was mazza, 7 days ago, message: Add javascript for new buttons, improve previous button functionality
-22deef3 was mazza, 7 days ago, message: Add functionality for question forms and commented code
-a46722b was mazza, 7 days ago, message: Add Option table schema
-24bd905 was mazza, 7 days ago, message: Add option fields for multiple-choice
-da3b969 was mazza, 7 days ago, message: Add option table
-07c3a41 was mazza, 8 days ago, message: Update tables for testing
-ccbc0c2 was ahbarsakib, 8 days ago, message: Implemented variable zooms and radius bubbles on the map with multiple attempts
-7fdc404 was mazza, 8 days ago, message: Revert "Revert "Improved question creation form, improved container navigation bar, added reset button and save changes button for question slots""
-33ab76d was mazza, 8 days ago, message: Add webpage redirect functionality and popup logic
-df6f787 was mazza, 8 days ago, message: Add migration files
-ac7393a was mazza, 8 days ago, message: Revert "Improved question creation form, improved container navigation bar, added reset button and save changes button for question slots"
-489e17b was mazza, 8 days ago, message: Add styling for new elements
-7e4aeca was mazza, 8 days ago, message: Improved question creation form, improved container navigation bar, added reset button and save changes button for question slots
-0d1f08d was mazza, 8 days ago, message: Improved logic for postquestion method, added load question set method, added question set form processing
-2d365e4 was mazza, 8 days ago, message: Added question set table and created relationships
-713a493 was mazza, 8 days ago, message: Added Question set form
-d134440 was ahbarsakib, 8 days ago, message: Test commit
-d231f6e was ahbarsakib, 8 days ago, message: No major changes (Added and removed)
-78e5e04 was ahbarsakib, 8 days ago, message: Commented the googleMaps JS API to display how it is used in the quiz webpage
-5742b9a was ahbarsakib, 8 days ago, message: Modified the element class names
-7e8e569 was ahbarsakib, 8 days ago, message: Implemented JS to render the quiz page and googleMaps
-3e7223d was ahbarsakib, 8 days ago, message: Removed unecessary scripts from the quiz html page
-968c2d2 was ahbarsakib, 8 days ago, message: Webpage rendered by quiz.js
-2ef6e34 was ahbarsakib, 8 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
-22b0469 was ahbarsakib, 8 days ago, message: Modified the stylesheet to add some classes and change attributes
-02997e6 was mazza, 10 days ago, message: Added HTML for container nav bar and new form inputs, changed element names to follow naming conventions
-333800e was mazza, 10 days ago, message: Added styling for container nav bar and form inputs, changed element names to follow naming conventions
-4324cb2 was mazza, 10 days ago, message: Added logic for dropdown menu form inputs
-ddc6190 was mazza, 10 days ago, message: Improved question assignment
-90b5b08 was mazza, 10 days ago, message: Added question type field
-b7a9770 was mazza, 11 days ago, message: Replaced multiple divs with jinja and removed unused code
-0c5d0ae was mazza, 11 days ago, message: Removed unused styles
-fffe603 was mazza, 11 days ago, message: Improved code for drag & drop functionality, added post method for sending question data to flask app and added comments
-24ad0a8 was mazza, 11 days ago, message: Removed print statements, added route for getting new question data and added code for filtering current questions from questionPool table
-cb8e304 was mazza, 11 days ago, message: Removed difficulty column and added CurrentQuestion table
-eed464a was mazza, 11 days ago, message: Removed difficulty column
-714c8e5 was mazza, 11 days ago, message: Updated database with CurrentQuestion table
-12c0b92 was Darren Crack, 12 days ago, message: mostly js functinality for home page
-14a2f4a was Darren Crack, 13 days ago, message: Updated home page on 13 May
-2f3271a was Darren Crack, 2 weeks ago, message: added in welcome banner
+c933d5c was Syukri Zainal, 7 days ago, message: Add styling for modals
+dbb9153 was Syukri Zainal, 7 days ago, message: Add modals and changed multiple choice form
+c33ff3a was Syukri Zainal, 7 days ago, message: Add javascript for new buttons, improve previous button functionality
+22deef3 was Syukri Zainal, 7 days ago, message: Add functionality for question forms and commented code
+a46722b was Syukri Zainal, 7 days ago, message: Add Option table schema
+24bd905 was Syukri Zainal, 7 days ago, message: Add option fields for multiple-choice
+da3b969 was Syukri Zainal, 7 days ago, message: Add option table
+07c3a41 was Syukri Zainal, 8 days ago, message: Update tables for testing
+ccbc0c2 was Ahbar Sakib, 8 days ago, message: Implemented variable zooms and radius bubbles on the map with multiple attempts
+7fdc404 was Syukri Zainal, 8 days ago, message: Revert "Revert "Improved question creation form, improved container navigation bar, added reset button and save changes button for question slots""
+33ab76d was Syukri Zainal, 8 days ago, message: Add webpage redirect functionality and popup logic
+df6f787 was Syukri Zainal, 8 days ago, message: Add migration files
+ac7393a was Syukri Zainal, 8 days ago, message: Revert "Improved question creation form, improved container navigation bar, added reset button and save changes button for question slots"
+489e17b was Syukri Zainal, 8 days ago, message: Add styling for new elements
+7e4aeca was Syukri Zainal, 8 days ago, message: Improved question creation form, improved container navigation bar, added reset button and save changes button for question slots
+0d1f08d was Syukri Zainal, 8 days ago, message: Improved logic for postquestion method, added load question set method, added question set form processing
+2d365e4 was Syukri Zainal, 8 days ago, message: Added question set table and created relationships
+713a493 was Syukri Zainal, 8 days ago, message: Added Question set form
+d134440 was Ahbar Sakib, 8 days ago, message: Test commit
+d231f6e was Ahbar Sakib, 8 days ago, message: No major changes (Added and removed)
+78e5e04 was Ahbar Sakib, 8 days ago, message: Commented the googleMaps JS API to display how it is used in the quiz webpage
+5742b9a was Ahbar Sakib, 8 days ago, message: Modified the element class names
+7e8e569 was Ahbar Sakib, 8 days ago, message: Implemented JS to render the quiz page and googleMaps
+3e7223d was Ahbar Sakib, 8 days ago, message: Removed unecessary scripts from the quiz html page
+968c2d2 was Ahbar Sakib, 8 days ago, message: Webpage rendered by quiz.js
+2ef6e34 was Ahbar Sakib, 8 days ago, message: Merge branch 'master' of https://github.com/msyukri-zaidin/CITS3403-Project-1
+22b0469 was Ahbar Sakib, 8 days ago, message: Modified the stylesheet to add some classes and change attributes
+02997e6 was Syukri Zainal, 10 days ago, message: Added HTML for container nav bar and new form inputs, changed element names to follow naming conventions
+333800e was Syukri Zainal, 10 days ago, message: Added styling for container nav bar and form inputs, changed element names to follow naming conventions
+4324cb2 was Syukri Zainal, 10 days ago, message: Added logic for dropdown menu form inputs
+ddc6190 was Syukri Zainal, 10 days ago, message: Improved question assignment
+90b5b08 was Syukri Zainal, 10 days ago, message: Added question type field
+b7a9770 was Syukri Zainal, 11 days ago, message: Replaced multiple divs with jinja and removed unused code
+0c5d0ae was Syukri Zainal, 11 days ago, message: Removed unused styles
+fffe603 was Syukri Zainal, 11 days ago, message: Improved code for drag & drop functionality, added post method for sending question data to flask app and added comments
+24ad0a8 was Syukri Zainal, 11 days ago, message: Removed print statements, added route for getting new question data and added code for filtering current questions from questionPool table
+cb8e304 was Syukri Zainal, 11 days ago, message: Removed difficulty column and added CurrentQuestion table
+eed464a was Syukri Zainal, 11 days ago, message: Removed difficulty column
+714c8e5 was Syukri Zainal, 11 days ago, message: Updated database with CurrentQuestion table
+12c0b92 was Danish Firdaus, 12 days ago, message: mostly js functinality for home page
+14a2f4a was Danish Firdaus, 13 days ago, message: Updated home page on 13 May
+2f3271a was Danish Firdaus, 2 weeks ago, message: added in welcome banner
 043c4f7 was Syukri, 2 weeks ago, message: Added more files to ignore
 b0ab401 was Syukri, 2 weeks ago, message: Initial commit
 eb3a16e was Syukri, 2 weeks ago, message: Initial commit
 33411b4 was Syukri, 2 weeks ago, message: Added a line to set environment variable
 ed91ee3 was Syukri, 2 weeks ago, message: Removed virtual environment files
-a2c0fb9 was ahbarsakib, 3 weeks ago, message: Merge pull request #5 from msyukri-zaidin/ahbar_branch
-c1373b1 was ahbarsakib, 3 weeks ago, message: Deleted the test text file
-4435b9a was mazza, 3 weeks ago, message: From merge
-5f4f3b5 was mazza, 3 weeks ago, message: Merge branch 'danish_branch'
+a2c0fb9 was Ahbar Sakib, 3 weeks ago, message: Merge pull request #5 from msyukri-zaidin/ahbar_branch
+c1373b1 was Ahbar Sakib, 3 weeks ago, message: Deleted the test text file
+4435b9a was Syukri Zainal, 3 weeks ago, message: From merge
+5f4f3b5 was Syukri Zainal, 3 weeks ago, message: Merge branch 'danish_branch'
 d994393 was Syukri, 3 weeks ago, message: Merge pull request #3 from msyukri-zaidin/syukri_branch
-7bc6d66 was Darren Crack, 3 weeks ago, message: Update result.js
+7bc6d66 was Danish Firdaus, 3 weeks ago, message: Update result.js
 c0a3348 was danish3r, 3 weeks ago, message: Delete home.html
 418c86a was danish3r, 3 weeks ago, message: Delete home.js
 e68695b was danish3r, 3 weeks ago, message: Delete mapify-2.png
@@ -334,33 +334,33 @@ ae3d3ed was danish3r, 3 weeks ago, message: Delete mystyle.css
 cadd695 was danish3r, 3 weeks ago, message: Delete pointingToMap.jpg
 59f0310 was danish3r, 3 weeks ago, message: Delete worldMapSample.jpg
 2756144 was danish3r, 3 weeks ago, message: Delete header.html
-dd3302a was Darren Crack, 3 weeks ago, message: Update result.js
-ef94488 was Darren Crack, 3 weeks ago, message: 4may
-91c45a5 was Darren Crack, 3 weeks ago, message: Create result.js
-2d84067 was ahbarsakib, 3 weeks ago, message: Adding the website logo
-ef21ee4 was ahbarsakib, 3 weeks ago, message: Adding JavaScript for the google maps API request and with Jquery
-cdd9a88 was ahbarsakib, 3 weeks ago, message: Added the css stylesheet for the quiz page
-13da473 was mazza, 3 weeks ago, message: Moved files
-af25b55 was mazza, 3 weeks ago, message: Initial commit
-deab6c2 was ahbarsakib, 3 weeks ago, message: New layout for the quiz webpage
-71f4bf4 was ahbarsakib, 3 weeks ago, message: Testing with googleMap API
-289ca17 was mazza, 3 weeks ago, message: Renamed file
-dacb7d2 was mazza, 3 weeks ago, message: Renamed file
-cb433ec was mazza, 3 weeks ago, message: Renamed file
-d46c0cf was mazza, 3 weeks ago, message: Initial commit
-b7622a5 was mazza, 3 weeks ago, message: Moved jQuery code from the html file to this file
-4bc5d77 was mazza, 3 weeks ago, message: Added more styling
-284451a was mazza, 3 weeks ago, message: Improved markup structure and removed JavaScript code
-254c47a was Darren Crack, 4 weeks ago, message: update on 29/4/2020
-9acc4f7 was mazza, 7 weeks ago, message: First commit
-cbce053 was ahbarsakib, 8 weeks ago, message: Google map showing the latitude and longitude of an input and an example of the location
-7f1fcf5 was mazza, 9 weeks ago, message: TRY
-58fc31f was ahbarsakib, 9 weeks ago, message: Updated txt file
+dd3302a was Danish Firdaus, 3 weeks ago, message: Update result.js
+ef94488 was Danish Firdaus, 3 weeks ago, message: 4may
+91c45a5 was Danish Firdaus, 3 weeks ago, message: Create result.js
+2d84067 was Ahbar Sakib, 3 weeks ago, message: Adding the website logo
+ef21ee4 was Ahbar Sakib, 3 weeks ago, message: Adding JavaScript for the google maps API request and with Jquery
+cdd9a88 was Ahbar Sakib, 3 weeks ago, message: Added the css stylesheet for the quiz page
+13da473 was Syukri Zainal, 3 weeks ago, message: Moved files
+af25b55 was Syukri Zainal, 3 weeks ago, message: Initial commit
+deab6c2 was Ahbar Sakib, 3 weeks ago, message: New layout for the quiz webpage
+71f4bf4 was Ahbar Sakib, 3 weeks ago, message: Testing with googleMap API
+289ca17 was Syukri Zainal, 3 weeks ago, message: Renamed file
+dacb7d2 was Syukri Zainal, 3 weeks ago, message: Renamed file
+cb433ec was Syukri Zainal, 3 weeks ago, message: Renamed file
+d46c0cf was Syukri Zainal, 3 weeks ago, message: Initial commit
+b7622a5 was Syukri Zainal, 3 weeks ago, message: Moved jQuery code from the html file to this file
+4bc5d77 was Syukri Zainal, 3 weeks ago, message: Added more styling
+284451a was Syukri Zainal, 3 weeks ago, message: Improved markup structure and removed JavaScript code
+254c47a was Danish Firdaus, 4 weeks ago, message: update on 29/4/2020
+9acc4f7 was Syukri Zainal, 7 weeks ago, message: First commit
+cbce053 was Ahbar Sakib, 8 weeks ago, message: Google map showing the latitude and longitude of an input and an example of the location
+7f1fcf5 was Syukri Zainal, 9 weeks ago, message: TRY
+58fc31f was Ahbar Sakib, 9 weeks ago, message: Updated txt file
 63f92e3 was danish3r, 9 weeks ago, message: Merge pull request #2 from danish3r/danish-branch
-2697443 was Darren Crack, 9 weeks ago, message: Create helloz.txt
-4d145bd was ahbarsakib, 9 weeks ago, message: This is a test txt file
-fb0dfeb was Darren Crack, 9 weeks ago, message: Update index.html
-ab92496 was mazza, 9 weeks ago, message: First Commit
+2697443 was Danish Firdaus, 9 weeks ago, message: Create helloz.txt
+4d145bd was Ahbar Sakib, 9 weeks ago, message: This is a test txt file
+fb0dfeb was Danish Firdaus, 9 weeks ago, message: Update index.html
+ab92496 was Syukri Zainal, 9 weeks ago, message: First Commit
 5452ee5 was Syukri, 9 weeks ago, message: Delete index.html
-723b3be was mazza, 9 weeks ago, message: First commit
-cd1152a was mazza, 9 weeks ago, message: First commit
+723b3be was Syukri Zainal, 9 weeks ago, message: First commit
+cd1152a was Syukri Zainal, 9 weeks ago, message: First commit
