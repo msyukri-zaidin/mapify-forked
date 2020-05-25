@@ -170,7 +170,9 @@ function validateAns(qNum) {
             else {       
                 getMapWithRadius(qNum, location, setZoom, setRadius);
                 wrongAttempt(qNum, numAttempts);
-                removeClassName(qNum);
+                if (numAttempts == 1) {
+                    removeClassName(qNum);
+                }
             }  
         }   
     }
