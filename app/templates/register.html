@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<head>
     <title>Sign up | Mapify</title>
+</head>
 {% endblock %}
 {% block body %}
 <div class="container">
@@ -13,6 +15,8 @@
                 {{form.hidden_tag()}}
                 <!-- The signup form Username Area -->
                 {% if current_user.is_authenticated %}
+                {{form.username(id='username-field',class="form-input", size=16, placeholder="Username", value=current_user.username)}}
+                {% else %}
                 {{form.username(id='username-field',class="form-input", size=16, placeholder="Username", value=current_user.username)}}
                 {% endif %} 
                 <br>

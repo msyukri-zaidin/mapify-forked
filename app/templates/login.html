@@ -21,11 +21,9 @@
                 {{form.submit(id='submit-field',class="form-submit clicky-button")}}
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
-                <ul class=flashes>
-                    {% for message in messages %}
-                    <li id='message'>{{ message }}</li>
-                    {% endfor %}
-                </ul>
+                {% for message in messages %}
+                <p id='form-error'>{{ message }}</p>
+                {% endfor %}
                 {% endif %}
                 {% endwith %}
             </form>

@@ -1,4 +1,4 @@
-const container = document.querySelectorAll('.container');
+const container = document.querySelectorAll('.admin-container');
 const question_slot = document.querySelectorAll('.question-slot');
 
 let draggedItem = null;

@@ -1,9 +1,12 @@
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
 /* Website styling that can be implemented throughout the whole website */
 @import url("https://fonts.googleapis.com/css?family=Sniglet&display=swap");
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  font-size: 100%;
+  text-decoration: none;
 }
 body {
   min-height: 100vh;
@@ -42,8 +45,9 @@ button:focus {
   font-size: 1.7em;
 }
 
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
 /* Header */
+/*-----------------------------------------------------*/
 .header {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
@@ -90,8 +94,9 @@ button:focus {
   color: aliceblue;
 }
 
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
 /* Home Page Specific */
+/*-----------------------------------------------------*/
 #home-intro {
   background-image: url("../css/images/background.jpg");
   background-repeat: no-repeat;
@@ -180,24 +185,6 @@ button:focus {
   color: inherit;
   font-weight: bold;
 }
-#load-more {
-  border-top: solid 4px rgb(233, 145, 31);
-  margin: 10px 0 50px 0;
-}
-#load-more button {
-  background-color: rgb(233, 145, 31);
-  color: #fff;
-  border: none;
-  border-radius: 15px;
-  margin-top: 40px;
-  padding: 10px 20px;
-  font-size: 0.7em;
-  text-align: center;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
 #home-start h2 {
   padding: 10px 0;
   font-size: 2em;
@@ -250,10 +237,11 @@ button:focus {
   float: right;
 }
 
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
 /* Result Page */
+/*-----------------------------------------------------*/
 #result-msg {
-  font-size: 4em;
+  font-size: 3em;
 }
 #score-msg {
   display: flex;
@@ -263,10 +251,10 @@ button:focus {
   margin: 20px 0;
 }
 #result-username {
-  color: red;
+  color: rgb(35, 214, 205);
 }
 #user-score {
-  font-size: 12em;
+  font-size: 11em;
   flex-basis: 0;
   right: 20px;
   background: white;
@@ -284,31 +272,41 @@ button:focus {
   margin: 20px 0px;
   width: 80%;
 }
-#stat-box {
-  flex-direction: row;
-  justify-content: space-between;
+#stat-title {
+  font-size: 2em;
 }
-#question-review {
-  flex-direction: column;
+#result-time {
+  font-size: 2em;
+  flex-basis: 0;
+  right: 20px;
+  background: white;
+  color: rgb(233, 145, 31);
+  border-radius: 15px;
+  padding: 0 50px;
+  text-align: center;
+}
+#anon-register {
+  text-align: center;
+  font-size: 1.3em;
+  width: 100%;
 }
 
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
 /* Login and Register Page */
+/*-----------------------------------------------------*/
 .form-container {
   border-radius: 10px;
-  padding: 20px 0 40px 40px;
+  padding: 20px 0 0 40px;
   width: 100%;
 }
 .form-container h2 {
   font-size: 3em;
-  padding-bottom: 30px;
-  margin-bottom: 40px;
   text-align: center;
   color: rgb(233, 145, 31);
 }
 .form-subtext {
   font-size: 1em;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 .form-input {
   width: 100%;
@@ -334,9 +332,19 @@ button:focus {
   width: 100%;
   border-radius: 10px;
 }
+#form-error {
+  border: 2px solid #9b2626;
+  border-radius: 10px;
+  background-color: #ebebeb;
+  color: #9b2626;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
 
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
 /* Edit User Page */
+/*-----------------------------------------------------*/
 div.table-title {
   display: block;
   margin: auto;
@@ -358,8 +366,8 @@ div.table-title {
   padding-bottom: 10px;
 }
 
-/* ------------------------------------------- */
-/*** Table Styles **/
+/*-----------------------------------------------------*/
+/* Table Styles */
 .table-fill {
   background: white;
   border-radius: 10px;
@@ -458,7 +466,7 @@ td.text-right {
   cursor: pointer;
 }
 
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
 /* Modal pop-up in Edit Users page when wanting to delete a user */
 .modal {
   font-family: "Arial";
@@ -499,26 +507,29 @@ td.text-right {
   margin-right: 5px;
   padding: 10px;
   width: 150px;
-  background-color: rgb(54, 212, 54);
-  border: 2px solid rgb(31, 131, 31);
+  background-color: rgb(200, 43, 43);
+  border: 2px solid rgb(131, 31, 31);
   color: #fefefe;
   border-radius: 7px;
 }
 .confirm-button {
   font-size: 1.5em;
   margin-left: 5px;
+  padding: 10px;
   width: 150px;
-  background-color: rgb(200, 43, 43);
-  border: 2px solid rgb(131, 31, 31);
+  background-color: rgb(88, 211, 88);
+  border: 2px solid rgb(31, 131, 31);
   color: #fefefe;
   border-radius: 7px;
 }
-.delete-popup .button-group {
+.button-group {
   position: absolute;
   display: flex;
   flex-flow: row;
+  height: 30px;
   bottom: 30px;
   left: 23%;
+  margin: auto;
 }
 .gg-chevron-double-up {
   color: green;
@@ -529,9 +540,663 @@ td.text-right {
   cursor: pointer;
 }
 
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
+/* Admin Page styling */
+/*-----------------------------------------------------*/
+.header-box {
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 16px;
+  background-color: #282a38;
+  box-shadow: 0 4px 8px 0 #282a38, 0 6px 20px 0 #282a38;
+  max-width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 10px 10px 10px;
+}
+.container-nav {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  background-color: #333;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-width: 600px;
+  max-width: 900px;
+}
+.container-nav .nav-item {
+  float: left;
+  display: block;
+  color: whitesmoke;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color: inherit;
+}
+.container-nav .questionset-dropdown-content {
+  display: none;
+  position: absolute;
+  left: 115px;
+  top: 60px;
+  background-color: whitesmoke;
+  width: 180px;
+  z-index: 1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.container-nav #more-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 60px;
+  background-color: whitesmoke;
+  width: 180px;
+  z-index: 1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.questionset-dropdown-option {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+}
+.questionset-dropdown-option:hover {
+  background-color: blue;
+  color: white;
+}
+.container-nav .questionset-dropdown {
+  float: left;
+  display: block;
+  color: whitesmoke;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-flow: row;
+  width: 250px;
+  border: solid;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+#questionset-dropdown-name {
+  color: inherit;
+  background-color: inherit;
+}
+.container-nav .questionset-dropdown:hover {
+  background-color: whitesmoke;
+  color: #444;
+}
+.container-nav .nav-item {
+  float: left;
+  display: block;
+  color: whitesmoke;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-flow: row;
+  border: solid;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+.container-nav .nav-item:last-of-type {
+  margin-left: auto;
+}
+#q-span {
+  color: grey;
+  background-color: inherit;
+}
+.nav-item div {
+  background-color: inherit;
+}
+.nav-item:hover {
+  background-color: whitesmoke;
+  color: #444;
+}
+.header-box h1 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background: none;
+  color: white;
+  font-size: 40px;
+}
+
+/*-----------------------------------------------------*/
+/* Admin Specific Container */
+.admin-container {
+  font-size: 14px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  background-color: #333;
+  min-width: 600px;
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.question-pool {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  width: 100%;
+  min-width: 250px;
+  max-width: 350px;
+  height: 500px;
+  background-color: #232233;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 2px;
+  margin: 20px;
+  margin-top: 75px;
+  padding: 8px;
+  padding-bottom: 100px;
+  transition: all 0.2s linear;
+  overflow-y: scroll;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
+}
+.question-pool .question-item {
+  margin: 10px 0px;
+}
+.question-slot {
+  background-color: #eb8034;
+  color: white;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 4px 0px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  word-wrap: break-word;
+  user-select: none;
+}
+.question-slot .question-slot-placeholder {
+  background-color: inherit;
+}
+.question-slot .question-slot-placeholder .create-new-question-in-list {
+  border: solid;
+  border-radius: 8px;
+  padding: 5px;
+}
+.question-slot .question-slot-placeholder .create-new-question-in-list:hover {
+  color: whitesmoke;
+  background-color: black;
+  cursor: pointer;
+}
+.question-item {
+  position: relative;
+  background-color: rgb(233, 145, 31);
+  color: #f5f3f0;
+  border-color: #cccac8;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 4px 0px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  word-wrap: break-word;
+}
+.question-item:hover {
+  color: black;
+}
+.question-item .question-item-options {
+  background-color: inherit;
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.question-list {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  width: 100%;
+  min-width: 250px;
+  max-width: 350px;
+  height: 100%;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #232233;
+  margin: 20px;
+  margin-top: 75px;
+  padding: 8px;
+  transition: all 0.2s linear;
+}
+
+/*-----------------------------------------------------*/
+/* Modal styles */
+.gg-add {
+  cursor: pointer;
+}
+.gg-add:active {
+  color: red;
+}
+.gg-remove {
+  cursor: pointer;
+}
+.gg-remove:active {
+  color: red;
+}
+.gg-chevron-down {
+  color: inherit;
+  background-color: inherit;
+  display: inline-block;
+}
+.gg-chevron-down:hover {
+  color: inherit;
+  background-color: inherit;
+}
+
+/*-----------------------------------------------------*/
+/* Form for adding new questions */
+.admin-form-input {
+  position: relative;
+  background-color: #333;
+  color: #cccac8;
+  margin: auto;
+  width: 50%;
+  height: 80%;
+  padding: 20px;
+  border: 1px solid #888;
+  top: 10%;
+  min-width: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.question-input-box {
+  font-size: 16px;
+  width: 90%;
+}
+.answer-input-box {
+  font-size: 16px;
+  width: 50%;
+}
+#form-short-answer {
+  display: none;
+}
+.multiple-choice-number {
+  display: flex;
+  flex-flow: row;
+}
+#multiple-choice-option-2 {
+  display: none;
+}
+#multiple-choice-option-3 {
+  display: none;
+}
+#multiple-choice-option-4 {
+  display: none;
+}
+#form-question-submit {
+  display: none;
+  font-size: 18px;
+}
+#form-question-edit {
+  display: none;
+}
+#form-multiple-choice-answer {
+  display: none;
+}
+.option-input {
+  position: absolute;
+  left: 200px;
+  font-size: 16px;
+}
+
+/*-----------------------------------------------------*/
+/* Question set form */
+#new-questionset-form {
+  position: relative;
+  font-size: 20px;
+  color: #cccac8;
+  background-color: #333;
+  padding: 20px;
+  border: 1px solid #888;
+  height: 30%;
+  width: 50%;
+  top: 10%;
+  margin: auto;
+  min-width: 400px;
+  max-width: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#new-questionset-form form {
+  height: 100%;
+}
+#question-item-buttons {
+  position: absolute;
+  display: flex;
+  flex-flow: row;
+  background-color: inherit;
+  justify-content: space-between;
+  top: 0;
+  min-width: 500px;
+  max-width: 500px;
+}
+#reset-button {
+  position: relative;
+  background-color: red;
+  color: white;
+  padding: auto;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-grow: 1;
+  border-width: 2px;
+  height: 40px;
+  font-size: 20px;
+}
+#reset-button:hover {
+  background-color: #ff5c77;
+}
+#save-button {
+  background-color: #52bf57;
+  color: white;
+  padding: auto;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  flex-grow: 1;
+  border-width: 2px;
+  height: 40px;
+  font-size: 20px;
+}
+#save-button:hover {
+  background-color: #6bed71;
+}
+.map-container {
+  padding-top: 10px;
+  height: 250px;
+}
+
+/*-----------------------------------------------------*/
+/* Quiz Page */
+/*-----------------------------------------------------*/
+.quiz-body-container {
+  padding-bottom: 50px;
+  margin: 0 auto;
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.side {
+  justify-content: left;
+  flex-direction: column;
+  flex: 15%;
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 25px 0 0 25px;
+  min-height: 500px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+.side > div.buttons {
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+}
+.myBtn {
+  width: 100%;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 25px;
+}
+.myBtn.unclicked:hover {
+  color: whitesmoke;
+  background-color: rgb(68, 114, 116);
+}
+.myBtn.unclicked {
+  background-color: #aaa;
+  color: whitesmoke;
+}
+.myBtn.clicked {
+  background-color: rgb(95, 158, 160);
+  color: whitesmoke;
+}
+.myBtn.clicked:hover {
+  background-color: rgb(95, 158, 160, 0.5);
+  color: whitesmoke;
+}
+
+/*-----------------------------------------------------*/
+/* Main column */
+/* Serves as the container for displaying the quiz questions */
+.main {
+  min-height: 500px;
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: white;
+  display: flex;
+  flex: 85%;
+  padding: 20px;
+  border-radius: 0;
+  display: none;
+  position: relative;
+}
+/* Defining all the different types of tags here */
+.main h1 {
+  color: #1abc9c;
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 0px;
+}
+.main h2 {
+  font-weight: 300;
+  display: none;
+  font-size: 20px;
+  text-align: center;
+  padding: 0px 10px;
+}
+.main p {
+  color: #232233;
+  font-size: 25px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+/*-----------------------------------------------------*/
+/* Input Container, area putting in your answers */
+.input_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+.inputAns {
+  padding: 10px;
+  text-align: center;
+  border: solid 2px #1aa4bc;
+  font-size: 20px;
+}
+.submitQ:hover {
+  filter: brightness(80%);
+  color: whitesmoke;
+}
+.submitQ {
+  margin: 0px 20px;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 30px;
+  background-color: #1abc9c;
+  color: white;
+  text-decoration: none;
+  transition: 0.6s ease;
+}
+
+/*-----------------------------------------------------*/
+/* Google map specification */
+.map_container {
+  display: none;
+  margin: 0;
+  width: 100%;
+  height: 300px;
+  text-align: center;
+}
+.googleMap {
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  border-radius: 15px;
+}
+.infoMarker {
+  font-size: 15px;
+  text-align: center;
+  color: #f56161;
+}
+
+/*-----------------------------------------------------*/
+/* Custom radio button for MCQ questions */
+/* Using example from W3Schools */
+.mcqContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+.mcqContainer label:nth-last-child(2) {
+  padding-bottom: 20px;
+}
+.radioContainer {
+  display: block;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Hide the browser's default radio button */
+.radioContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+/* On mouse-over, add a grey background color */
+.radioContainer:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+/* When the radio button is checked, add a blue background */
+.radioContainer input:checked ~ .checkmark {
+  background-color: #1aa4bc;
+}
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the indicator (dot/circle) when checked */
+.radioContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+/* Style the indicator (dot/circle) */
+.radioContainer .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+/*-----------------------------------------------------*/
+/* Timer styling */
+#timer {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.timerBar_container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  height: 30px;
+  width: 100%;
+}
+#timer_total,
+#timer_remaining {
+  border-radius: 14px;
+  width: 100%;
+  height: 100%;
+  background-color: #aaa;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#timer_remaining {
+  height: 100%;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0;
+  background-color: #1abc9c;
+  z-index: 10;
+  /* One second aligns with the speed of the countdown timer */
+  transition: 1s linear all;
+}
+.timer_label {
+  padding: 10px;
+  display: flex;
+  font-size: 45px;
+  color: white;
+}
+
+/*-----------------------------------------------------*/
+.nextPrevious_container {
+  display: flex;
+  padding-top: 20px;
+  justify-content: space-between;
+  width: 96%;
+}
+.endOfDiv {
+  position: absolute;
+  bottom: 20px;
+}
+
+/*-----------------------------------------------------*/
 /* Clicky Satisfying Button */
-/* Can be used in any page */
+/*-----------------------------------------------------*/
 .clicky-button {
   position: relative;
   cursor: pointer;
@@ -554,8 +1219,9 @@ td.text-right {
   outline: 0;
 }
 
-/* ------------------------------------------- */
+/*-----------------------------------------------------*/
 /* Footer */
+/*-----------------------------------------------------*/
 footer {
   color: aliceblue;
   background-color: rgba(0, 0, 0, 0.4);

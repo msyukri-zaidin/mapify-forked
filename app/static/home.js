@@ -26,26 +26,9 @@ function saveSet(id) {
 }
 $(document).ready(function () {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    /* $(document).on('click', '#load-more', function () {
-        $('#game-sets').slideToggle("slow");
-    }); */
-    $(function () {
-        $(document).on(".card-title").slice(0, 4).show();
-        $(document).on('click', '#load-more', function (e) {
-            e.preventDefault();
-            $(".card-title:hidden").slice(0, 4).slideDown();
-            if ($(document).on(".card-title:hidden").length == 0) {
-                $("#load-more").fadeOut('slow');
-            }
-        });
-    });
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // For popping up logins and signups form
     $('#start-button').click(function () {
-
         if (authenticated == 'True') {
-
             if (setID == undefined) {
                 alert("Select a question set");
                 return '';
@@ -55,13 +38,11 @@ $(document).ready(function () {
                 window.location.href = link;
             }
         }
-
         else {
             if (document.getElementById('username-input').value == '') {
                 alert("Please insert a username");
                 return '';
             }
-
             else if (setID == undefined) {
                 alert("Select a question set");
                 return '';
@@ -84,8 +65,6 @@ $(document).ready(function () {
                 }
             });
         }
-
-
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -104,7 +83,6 @@ $(document).ready(function () {
                 }
             });
         }
-
     };
     $(document).on('click', '#suggestion', function () {
         var username = $('#username-input');
