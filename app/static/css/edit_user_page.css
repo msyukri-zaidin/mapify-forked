@@ -1,4 +1,5 @@
-/*Edit User Page */
+/* ------------------------------------------- */
+/* Edit User Page */
 div.table-title {
   display: block;
   margin: auto;
@@ -6,7 +7,6 @@ div.table-title {
   padding: 5px;
   width: 100%;
 }
-
 .table-title {
   color: #fafafa;
   font-size: 2em;
@@ -14,7 +14,6 @@ div.table-title {
   margin-bottom: 30px;
   border-bottom: 3px solid rgb(255, 255, 255);
 }
-
 #edit-user-list {
   padding: 30px 40px 0px 50px;
 }
@@ -22,8 +21,8 @@ div.table-title {
   padding-bottom: 10px;
 }
 
+/* ------------------------------------------- */
 /*** Table Styles **/
-
 .table-fill {
   background: white;
   border-radius: 10px;
@@ -36,7 +35,6 @@ div.table-title {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
 }
-
 th {
   color: #d5dde5;
   background: #1b1e24;
@@ -49,16 +47,13 @@ th {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align: middle;
 }
-
 th:first-child {
   border-top-left-radius: 3px;
 }
-
 th:last-child {
   border-top-right-radius: 3px;
   border-right: none;
 }
-
 tr {
   border-top: 1px solid #c1c3d1;
   border-bottom: 1px solid #c1c3d1;
@@ -67,37 +62,29 @@ tr {
   font-weight: normal;
   text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
 }
-
 tr:hover td {
   background: #4e5066;
   color: #ffffff;
   border-top: 1px solid #22262e;
 }
-
 tr:first-child {
   border-top: none;
 }
-
 tr:last-child {
   border-bottom: none;
 }
-
 tr:nth-child(odd) td {
   background: #ebebeb;
 }
-
 tr:nth-child(odd):hover td {
   background: #4e5066;
 }
-
 tr:last-child td:first-child {
   border-bottom-left-radius: 3px;
 }
-
 tr:last-child td:last-child {
   border-bottom-right-radius: 3px;
 }
-
 td {
   background: #ffffff;
   padding: 20px;
@@ -108,43 +95,36 @@ td {
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-right: 1px solid #c1c3d1;
 }
-
 td:last-child {
   border-right: 0px;
 }
-
 th.text-left {
   text-align: left;
 }
-
 th.text-center {
   text-align: center;
 }
-
 th.text-right {
   text-align: right;
 }
-
 td.text-left {
   text-align: left;
 }
-
 td.text-center {
   text-align: center;
 }
-
 td.text-right {
   text-align: right;
 }
-
 .gg-close {
   color: #e62e2e;
   cursor: pointer;
 }
 
+/* ------------------------------------------- */
+/* Modal pop-up in Edit Users page when wanting to delete a user */
 .modal {
   font-family: "Arial";
-  display: none;
   color: #333027;
   position: fixed;
   z-index: 10;
@@ -152,41 +132,56 @@ td.text-right {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
 }
-
 .modal .delete-popup {
   position: relative;
-  font-size: 20px;
+  font-size: 1em;
   color: black;
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 90px 40px 40px 40px;
   border: 1px solid #888;
-  width: 200px;
+  border-radius: 10px;
+  width: 500px;
   height: 200px;
-  margin-top: 10%;
+  margin-top: 15%;
   text-align: center;
 }
-
+.modal .delete-popup h2 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.modal .delete-popup p {
+  font-size: 1em;
+}
 .cancel-button {
-  font-size: 18px;
+  font-size: 1.5em;
   margin-right: 5px;
+  padding: 10px;
+  width: 150px;
+  background-color: rgb(54, 212, 54);
+  border: 2px solid rgb(31, 131, 31);
+  color: #fefefe;
+  border-radius: 7px;
 }
 
 .confirm-button {
-  font-size: 18px;
+  font-size: 1.5em;
   margin-left: 5px;
+  width: 150px;
+  background-color: rgb(200, 43, 43);
+  border: 2px solid rgb(131, 31, 31);
+  color: #fefefe;
+  border-radius: 7px;
 }
-
-.button-group {
+.delete-popup .button-group {
   position: absolute;
   display: flex;
   flex-flow: row;
-  height: 30px;
-  bottom: 10px;
-  left: 50px;
+  bottom: 30px;
+  left: 23%;
 }
 
 .gg-chevron-double-up {
