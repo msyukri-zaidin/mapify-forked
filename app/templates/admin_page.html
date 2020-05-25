@@ -48,8 +48,7 @@
 </div>
 
 <!-- Container is the main body of the page, holding both the pool of questions and question slots-->
-<div class="container" id="container">
-
+<div class="admin-container">
     <div class="question-pool">
         {% for question in questionPool %}
         <div class="question-item" id="question-item-{{ question.id }}" value="{{ question.id }}" draggable="true"
@@ -116,10 +115,12 @@
 <!--    Container popup boxes   -->
 <div id="deleteModal" class="modal">
     <div class="delete-popup">
-        <p>Are you sure?</p><br>
+        <h2>Are you sure?</h2>
         <p>Deleting a question will remove it from all question sets</p>
-        <button class="cancel-button" id="question-cancel-button">Cancel</button>
-        <button class="confirm-button" id="question-confirm-button">Confirm</button>
+        <div class="button-group">
+            <button class="cancel-button" id="question-cancel-button">Cancel</button>
+            <button class="confirm-button" id="question-confirm-button">Confirm</button>
+        </div>
     </div>
 </div>
 
@@ -154,7 +155,7 @@
 
 <div id="create-new-question-modal" class="modal">
     <!-- Form for entering new questions -->
-    <div class="form-input-question">
+    <div class="admin-form-input">
         <form id="question-form" action="" method="POST">
             {{ form.csrf_token() }}
             <!-- This is where the Question will go-->
