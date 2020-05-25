@@ -179,6 +179,21 @@ h1 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.container-top {
+    font-size: 14px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    background-color: #333;
+    min-width: 600px;
+    max-width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .question-pool {
     display: flex;
     flex-flow: column;
@@ -374,7 +389,7 @@ table, th, td {
 /*Form styles */
 /* Question Form */
 
-.form-input {
+.form-input-question {
     position: relative;
     background-color: #333;
     color: #cccac8;
@@ -546,4 +561,8 @@ button[type=button] {
     text-align: center;
     color: #f56161;
 
+}
+
+.form-labels {
+    font-size: 16px;
 }
