@@ -155,8 +155,6 @@ function editQuestion(questionID) {
     //Multiple choice
     //[4] is number of options, [5] onwards are the options
     else if ( questionContent[2] == 'multiple-choice') {
-        console.log('multiple-choice');
-        console.log(questionContent);
         document.getElementById('questionType-0').checked = true; //Check appropriate button
         document.getElementById('questionType-1').disabled = true; //Disable radio buttons
         document.getElementById('questionType-0').disabled = true;
@@ -180,7 +178,7 @@ function editQuestion(questionID) {
             let optionList = [];
             for(let i = 1; i < parseInt(document.getElementById('multiple-choice-num').innerHTML, 10); i++)
                 optionList.push(questionContent[i+5].split(':')[0] + ':' + document.getElementById('option_value_' + i).value);
-            //console.log(optionList);
+
             
             let myJSON = {
                 questionID:questionContent[0],
@@ -227,7 +225,6 @@ for( let i = 0; i < container[0].children.length; i++) {
         if(typeof item == 'undefined') {
             continue;
         }
-        
 
         item.setAttribute('draggable', true);
         item.addEventListener('dragstart', function(e) {
@@ -238,7 +235,7 @@ for( let i = 0; i < container[0].children.length; i++) {
                     dragIndex = m;
                 }
             }
-            //console.log("Drag source: " + dragIndex);
+
         })
 
 
@@ -249,7 +246,7 @@ for( let i = 0; i < container[0].children.length; i++) {
             for( let m = 0; m < item.parentNode.children.length; m++) {
                 if(item.parentNode.children[m] == item) {
                     replaceIndex = m;
-                    //console.log("Replacing to: " + replaceIndex);
+
                 }
             }
 
@@ -338,6 +335,7 @@ for( let i = 0; i < container[0].children.length; i++) {
                 }
                 //Adds question item to EMPTY question slot
                 else {
+
                     if(draggedItem.parentNode.className == 'question-slot') {
                         draggedItem.parentNode.children[1].style.display ='block'; //Enable placeholder again
                     }
@@ -403,10 +401,10 @@ $(document).ready(function(){
             setID:setID,
             questionNumber:questionNumber
         }
-        //console.log(document.getElementById('id-list').getAttribute('value'));
+
         myJSON = JSON.stringify(myJSON);
         document.getElementById('id-list').value = myJSON;
-        //console.log(document.getElementById('id-list').value);
+
     });
     $('#form-question-cancel').click(function() {
         let modal = document.getElementById("create-new-question-modal");
@@ -429,7 +427,7 @@ $(document).ready(function(){
     })
 
     $("#question-confirm-button").click(function() {
-        console.log(previousItem.getAttribute('value'));
+
         
         let myJSON = {
             questionID:previousItem.getAttribute('value')
@@ -504,7 +502,7 @@ $(document).ready(function(){
                 questionSetID:0
             }
         }
-        console.log(questionSetNumberOfQuestions);
+
         //This for loop looks at each of the question slots and checks if there is any question in it
         for(let i = 1; i <= questionSetNumberOfQuestions; i++) { 
             let questionNumber = "Q" + i;
