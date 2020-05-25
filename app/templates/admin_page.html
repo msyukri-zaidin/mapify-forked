@@ -16,7 +16,7 @@
 
 {% endblock %}
 {% block body %}
-<div class="container">
+<div class="container-top">
     <div class="home-box">
         <h1 class="table-title">Edit Questions</h1>
         <p style="font-size:1.2em">This is a place where you can edit questions! Simply drag and drop to the desired
@@ -39,7 +39,6 @@
 <div class="container-nav">
     {{ form.short_answer.data }}
     <div class="questionset-dropdown" id="questionset-name" onclick="dropdown()" value="{{ currentSet.id }}">
-
         <div id="questionset-dropdown-name"><span id='q-span'>Question Set:</span> {{ currentSet.name }}</div>
         <i class="gg-chevron-down"></i>
     </div>
@@ -51,8 +50,6 @@
         {% endif %}
         {% endfor %}
     </div>
-
-
     <div id="more-dropdown-content">
         <div class="questionset-dropdown-option" id="new-questionset">New Question Set</div>
         <div class="questionset-dropdown-option" id="create-new-question">New Question</div>
@@ -61,7 +58,6 @@
     <div class="nav-item" id="more-options">
         <div>More</div><i class="gg-chevron-down"></i>
     </div>
-
 </div>
 
 <!-- Container is the main body of the page, holding both the pool of questions and question slots-->
@@ -171,11 +167,11 @@
 
 <div id="create-new-question-modal" class="modal">
     <!-- Form for entering new questions -->
-    <div class="form-input">
+    <div class="form-input-question">
         <form id="question-form" action="" method="POST">
             {{ form.csrf_token() }}
             <!-- This is where the Question will go-->
-            {{ form.question.label }} <br>
+            {{ form.question.label(class='form-label') }} <br>
             {{ form.question(rows="4", cols="50", id="question-input", class="question-input-box")}}
             <br>
             <br>
@@ -183,16 +179,16 @@
             {% for subfield in form.questionType %}
             <tr>
                 <td>{{ subfield(class="questionType", onclick="showAnswerField()") }}</td>
-                <td>{{ subfield.label }}</td><br>
+                <td>{{ subfield.label(class='form-label') }}</td><br>
             </tr>
             {% endfor %}
             <br>
             <!-- If short answer was selected, the following HTML handles the structure for that-->
             <div id="form-short-answer">
-                {{ form.short_answer.label }} <br>
+                {{ form.short_answer.label(class='form-label') }} <br>
                 {{ form.short_answer(id="form-question-short-answer-input", class="answer-input-box") }}<br>
                 <br>
-                {{ form.reference_value.label }}<br>
+                {{ form.reference_value.label(class='form-label') }}<br>
                 {{ form.reference_value(id='form-reference-value',class="answer-input-box") }}
                 <button onclick="createFormMap()" type='button'>Check location</button>
                 <div id="map0" class="map-container"></div>
@@ -240,9 +236,5 @@
     </div>
 </div>
 <script src="{{ url_for('static', filename='admin_page.js') }}"></script>
-{% for i in range(15) %}
-<br>
-{% endfor %}
-
 
 {% endblock %}

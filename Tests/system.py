@@ -48,7 +48,7 @@ class SystemTest(unittest.TestCase):
     # Testing basci login
     def test_login(self):
         self.driver.get('http://localhost:5000/login')
-        time.sleep(1)
+
         user_field = self.driver.find_element_by_id('username-field')
         password_field = self.driver.find_element_by_id('password-field')
         submit = self.driver.find_element_by_id('submit-field')
@@ -57,15 +57,29 @@ class SystemTest(unittest.TestCase):
         user_field.send_keys('Bob')
         password_field.send_keys('pw')
         submit.click()
-        time.sleep(1)
+
 
         welcome = self.driver.find_element_by_id('welcome-user').get_attribute('innerHTML')
         self.assertEqual(welcome, 'Welcome Bob!')
+    
+    def test_wrong_password(self):
+        self.driver.get('http://localhost:5000/login')
+
+        user_field = self.driver.find_element_by_id('username-field')
+        password_field = self.driver.find_element_by_id('password-field')
+        submit = self.driver.find_element_by_id('submit-field')
+        user_field.send_keys('Bob')
+        password_field.send_keys('pw123')
+        submit.click()
+
+
+        message = self.driver.find_element_by_id('message').get_attribute('innerHTML')
+        self.assertEqual(message, 'invalid username or password')
 
     #Testing logout
     def test_logout(self):
         self.driver.get('http://localhost:5000/login')
-        time.sleep(1)
+
         user_field = self.driver.find_element_by_id('username-field')
         password_field = self.driver.find_element_by_id('password-field')
         submit = self.driver.find_element_by_id('submit-field')
@@ -74,10 +88,10 @@ class SystemTest(unittest.TestCase):
         password_field.send_keys('pw')
         submit.click()
         
-        time.sleep(1)
+
         logout = self.driver.find_element_by_id('header-logout-button')
         logout.click()
-        time.sleep(1)
+
 
         loginButton = self.driver.find_element_by_id('header-login-button').get_attribute('innerHTML')
         self.assertEqual(loginButton, 'Log In')
@@ -85,7 +99,7 @@ class SystemTest(unittest.TestCase):
     #Testing registration
     def test_register(self):
         self.driver.get('http://localhost:5000/register')
-        time.sleep(1)
+
         user_field = self.driver.find_element_by_id('username-field')
         password_field = self.driver.find_element_by_id('password-field')
         submit = self.driver.find_element_by_id('submit-field')
@@ -93,11 +107,24 @@ class SystemTest(unittest.TestCase):
         user_field.send_keys('john')
         password_field.send_keys('hunter2')
         submit.click()
-        time.sleep(1)
 
         welcome = self.driver.find_element_by_id('welcome-user').get_attribute('innerHTML')
         self.assertEqual(welcome, 'Welcome john!')
 
+    def test_register_used_name(self):
+        self.driver.get('http://localhost:5000/register')
+
+        user_field = self.driver.find_element_by_id('username-field')
+        password_field = self.driver.find_element_by_id('password-field')
+        submit = self.driver.find_element_by_id('submit-field')
+
+        user_field.send_keys('Bob')
+        password_field.send_keys('hunter2')
+        submit.click()
+
+
+        message = self.driver.find_element_by_id('message').get_attribute('innerHTML')
+        self.assertEqual(message, 'Username already taken')
 
 
 

@@ -152,7 +152,7 @@ class QuestionController():
                 form.option_value_3.data,
                 form.option_value_4.data,
             ]
-            questionsetID = 1 #Default question set ID to return to at redirect
+            questionsetID = questionsetID = QuestionSet.query.first().id #Default question set ID to return to at redirect
 
             #As the answer field for multiple choice and short answer are different, the following if-else statement takes that into account
             if form.questionType.data == 'short-answer':

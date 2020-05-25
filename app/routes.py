@@ -93,7 +93,7 @@ def admin():
     if questionsetID:
         questionsetID = int(questionsetID)
     else: 
-        questionsetID = 1
+        questionsetID = QuestionSet.query.first().id
 
     #print(form.errors)
 
