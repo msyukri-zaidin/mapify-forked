@@ -21,6 +21,14 @@
             <h2>Welcome {{ current_user.username }}!</h2>
         </span>
     </div>
+    {% elif current_user.is_authenticated and current_user.user_type == 'temp' %}
+    <!-- Welcome banner for Admin Users -->
+    <div id="home-user" class="flex-display home-box">
+        <span id="text">
+            <h2>Welcome {{ current_user.username }}!</h2>
+            <p>You are using a temporary account. <a href='/register'>Sign up</a> to save your progress!</p>
+        </span>
+    </div>
     {% else %}
     <!-- Part where explains what Mapify is, for those that does not have personal account -->
     <div id="home-intro" class="flex-display home-box">
