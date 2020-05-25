@@ -119,6 +119,20 @@ class SystemTest(unittest.TestCase):
         message = self.driver.find_element_by_id('message').get_attribute('innerHTML')
         self.assertEqual(message, 'Username already taken')
 
+    def test_register_anon(self):
+        self.driver.get('http://localhost:5000/')
+
+        user_field = self.driver.find_element_by_id('username-input')
+        select_set = self.driver.find_element_by_id('1') #The test set
+        submit = self.driver.find_element_by_id('start-button')
+
+        user_field.send_keys('Anon-guy')
+        select_set.click()
+        submit.click()
+
+        welcome = self.driver.find_element_by_id('welcome-user').get_attribute('innerHTML')
+        self.assertEqual(welcome, 'Welcome Anon-guy!')
+
 
 
 if __name__ == '__main__':
