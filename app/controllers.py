@@ -7,6 +7,7 @@ from app import db, login
 import random
 import json
 from datetime import time
+from datetime import datetime
 
 class UserController():
     def login():
@@ -125,6 +126,20 @@ class UserController():
         db.session.commit()
         
         return redirect(url_for('result'))
+
+
+    def getUserProfile():
+        myJSON = []
+        totalScore = 0
+        userScores = Score.query.filter_by(user_id=current_user.id).all()
+        print(userScores)
+        for score in userScores:
+            myJSON.append({'questionet': score.questionset_id})
+            totalScore+=score.score
+            
+
+        return render_template('userProfile.html', score=totalScore, userScore = userScores)
+
 
 class QuestionController():
     def create_question(form):

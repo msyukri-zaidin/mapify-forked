@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Profile | Mapify</title>
+<link rel="stylesheet" type="text/css" href="../static/css/edit_user_page.css">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <!-- Welcome banner for Regular Users -->
+    <div style="border-bottom: solid 4px rgb(233, 145, 31);" id="home-user" class="flex-display home-box">
+        <span id="text">
+            <h2 >Profile - {{ current_user.username }}</h2>
+        </span>
+    </div>
+
+    <!-- User stats -->
+    <div style="border-bottom: solid 4px rgb(233, 145, 31);" class=" home-box">
+        <h2 class="box-title">Summary</h2>
+        <div class="flex-display">
+            <span class="flex-display" style="flex-grow: 3; justify-content: space-around;">
+                <p>Total points : </p>
+                <p  style="color: #1abc9c;">{{ score }}</p>
+            </span>
+            <span id="box-vertical-line" style="flex-grow: 0.7"></span>
+            <!-- <span class="flex-display" style="flex-grow: 3; justify-content: space-around;">
+                <p>Time Spent : </p>
+                <p>...</p>
+                <p>%</p>
+            </span> -->
+        </div>
+    </div>
+
+
+    <div style="border-bottom: solid 4px rgb(233, 145, 31); flex-wrap: wrap;" id="home-user" class="flex-display home-box">
+        <span id="text">
+            <h2 >Match History</h2>
+        </span>
+        <table style="margin-top: 30px;" class="table-fill">
+            <thead>
+                <tr>
+                    <th class="text-left">Question Set</th>
+                    <th class="text-left">Score</th>
+                    <th class="text-left">Time Taken</th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                {% for score in userScore %}
+                <tr>
+                    <td class="text-left">{{ score.questionset_parent.name }}</td>
+                    <td class="text-left">{{ score.score }}</td>
+                    <td class="text-left">{{ score.time_taken }}</td>
+                    </td>
+                </tr>
+                {% endfor %}
+    
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+{% endblock %}

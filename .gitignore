@@ -1,8 +1,10 @@
 venv/*
+venvWin/*
 *.db
 *.sql
 .vscode/*
 app/__pycache__
+Tests/__pycache__
 __pycache__/*
 migrations/*
 app/__init__.pyc
