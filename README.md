@@ -47,7 +47,7 @@ python -m Tests.system
 
 Pull requests are welcome. Below is the database schema used for the web app
 
-![alt text](https://github.com/msyukri-zaidin/CITS3403-Project-1/blob/master/images/schema.jpg?raw=true)
+![alt text](https://github.com/msyukri-zaidin/CITS3403-Project-1/blob/master/images/schema.png?raw=true)
 ## Authors
 
 * **Syukri Zainal**
