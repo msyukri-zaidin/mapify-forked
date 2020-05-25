@@ -497,10 +497,11 @@ td.text-right {
 .cancel-button {
   font-size: 1.5em;
   margin-right: 5px;
+  background-color: rgb(200, 43, 43);
+  border: 2px solid rgb(131, 31, 31);
   padding: 10px;
   width: 150px;
-  background-color: rgb(54, 212, 54);
-  border: 2px solid rgb(31, 131, 31);
+
   color: #fefefe;
   border-radius: 7px;
 }
@@ -508,8 +509,9 @@ td.text-right {
   font-size: 1.5em;
   margin-left: 5px;
   width: 150px;
-  background-color: rgb(200, 43, 43);
-  border: 2px solid rgb(131, 31, 31);
+
+  background-color: rgb(54, 212, 54);
+  border: 2px solid rgb(31, 131, 31);
   color: #fefefe;
   border-radius: 7px;
 }
