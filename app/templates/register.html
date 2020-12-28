@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<head>
+    <title>Sign up | Mapify</title>
+</head>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="home-box flex-display" style="margin-top: 5%;">
+        <img id="form-image" src="../static/css/images/adventurer.jpg">
+        <div class="form-container">
+            <h2 class="box-title">Sign Up</h2>
+            <form method="POST">
+                {{form.hidden_tag()}}
+                <!-- The signup form Username Area -->
+                {% if current_user.is_authenticated %}
+                {{form.username(id='username-field',class="form-input", size=16, placeholder="Username", value=current_user.username)}}
+                {% else %}
+                {{form.username(id='username-field',class="form-input", size=16, placeholder="Username", value=current_user.username)}}
+                {% endif %} 
+                <br>
+                <!-- The signup form Password Area -->
+                {{form.password(id='password-field',class="form-input",size=16, placeholder="Password")}}
+                <p class="form-subtext">Already have an account?<a href="login"> Log in!</a></p>
+                <!-- The signup form submit button -->
+                {{form.submit(id='submit-field',class="form-submit clicky-button")}}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <li id='message'>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

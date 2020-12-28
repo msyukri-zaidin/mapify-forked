@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Your Result! | Mapify</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <!-- Result Sign -->
+    <div id="result-box" class="flex-display home-box">
+        <span style="flex-grow: 1">
+            <h2 id="result-msg" class="box-title">Your result</h2>
+            <span id="score-msg">
+                <h3 id="result-username">{{ current_user.username }}, &nbsp;&nbsp;</h3>
+                <h3>you got a score of</h3>
+            </span>
+            <a href='/'><button id="restart-button" class="clicky-button">Restart</button></a>
+        </span>
+        <!-- <span id="box-vertical-line" style="flex-grow: 1"></span> -->
+        <span style="flex-grow: 2; flex-basis:  0;">
+            <!-- Where the score value be placed -->
+            <h2 id="user-score">{{ latestScore.score }}</h2>
+        </span>
+    </div>
+    <!-- User stats -->
+    <div class="home-box flex-display" style="justify-content: space-evenly;">
+        <h2 id="stat-title">You took</h2>
+        <p id="result-time">{{ latestScore.time_taken }}</p>
+        <h2 id="stat-title">to finish the quiz.</h2>
+    </div>
+    <!-- Leaderboard/Rank -->
+    <div id="leaderboard-home" class="flex-display home-box">
+        <h2 class="box-title">Scoreboard - {{ latestScore.questionset_parent.name }}</h2>
+        <span class='leaderboard-row' style="padding-bottom: 30px;">
+            <div class="name leaderboard-title">Username</div>
+            <div class="time-taken leaderboard-title">Time Taken</div>
+            <div class="score leaderboard-title">Score</div>
+        </span>
+        {% for score in scoreSorted %}
+        {%  if loop.index < 6  %}
+        <span class='leaderboard-row'>
+            {% if current_user.id == score.user_parent.id %}
+            <div class="name">{{ score.user_parent.username }} (You)</div>
+            {% else %}
+            <div class="name">{{ score.user_parent.username }}</div>
+            {% endif %}
+            <div class='time-taken'>{{ score.time_taken }}</div>
+            <div class="score">{{ score.score }}</div>
+        </span>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% if current_user.user_type == 'temp' %}
+    <div id="anon-register" class="">
+        <button class="clicky-button" onclick="location.href='./register'" type="button">Register to save your
+            progress!</button>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
