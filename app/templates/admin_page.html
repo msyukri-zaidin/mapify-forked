@@ -9,7 +9,7 @@
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Link the script files for java script and for the google api-->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}"></script>
 <script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
 <link rel="stylesheet" href="{{url_for('static',filename='css/admin_page.css')}}" />
 
@@ -214,7 +214,7 @@
             <div style="margin-top: 20px" class='button-group'>
                 <button type='button' class='cancel-button' onclick="hideMap()"
                     id="form-question-cancel">Cancel</button>
-                <button type='button' class='confirm-button' id="form-question-edit">Submit Edit</button>
+                <button type='button' class='confirm-button' id="form-question-edit">Submit</button>
                 {{ form.submit(class='confirm-button', id="form-question-submit") }}
             </div>
 

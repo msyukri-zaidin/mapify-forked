@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/mystyle.css')}}">
 
 <!-- Link the script files for java script and for the google api-->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvnjoJLy00CxiGcW7HCovKHPQSvnuFMOo"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
 <script async type="text/javascript" src="{{ url_for('static', filename='timer.js') }}"></script>
@@ -22,7 +22,13 @@
 {% endblock %}
 
 {% block body %}
+<form id="finish-form" method="POST">
+{{ form.hidden_tag() }}
 <div id="quiz" class="quiz-body-container">
+    
+    <div class="points" id="points">
+        <p>Points : <b>0</b></p>
+    </div>
     <!-- This part of the webpage is rendered by a quiz.js file -->
     <div id="timer"></div>
 
@@ -30,14 +36,17 @@
         <div class="buttons">
             <!-- Generates the side buttons for the coresponding questions -->
             {% for questionNum in range(1, (questions|length)+1) %}
-            <button class="myBtn unclicked" id="Q{{ questionNum }}Button">Q{{ questionNum }}</button><br><br>
+            <button type="button" class="myBtn unclicked" id="Q{{ questionNum }}Button">Q{{ questionNum }}</button><br><br>
             {% endfor %}
         </div>
     </div>
+    
+    
 
     <!-- Generates the divs for the questions -->
     {% for questionNum in range(questions|length) %}
     <div id="Q{{ questionNum+1 }}" class="main">
+        
         <h1>Question {{ questionNum+1 }}</h1>
         <p>
             {{questions[questionNum].question}}
@@ -49,15 +58,15 @@
             <div id="map{{ questionNum+1 }}" class="googleMap"></div>
         </div>
 
-        <div id="ans{{ questionNum+1 }}" class="input_container">
 
-            <input class="inputAns" type="text">
-            <!-- button used to validate answer and generate the map of the location if incorrect -->
-            <button class="submitQ" type="button" onclick="validateAns('{{ questionNum+1 }}');">
-                Enter
-            </button>
 
-        </div>
+        <input class="inputAns" type="text" autocomplete="off">
+        <!-- button used to validate answer and generate the map of the location if incorrect -->
+        <button class="submitQ" type="button" onclick="validateAns('{{ questionNum+1 }}', this);">
+            Enter
+        </button>
+
+  
 
         {% elif questions[questionNum].qType == 'multiple' %}
         <div id="mcq{{ questionNum+1 }}" class="mcqContainer">
@@ -87,41 +96,46 @@
         <h2 id="msg{{ questionNum+1 }}"></h2>
 
         <!-- <div id="nextPrevious{{ questionNum+1 }}" class="test"> -->
-
+        
         {% if questionNum == 0 %}
-        <div style="justify-content: flex-end;" class="nextPrevious_container endOfDiv">
-            <button class="submitQ" type="button" onclick="showNextQ('{{ questionNum+1 }}')">
+        <!--<div style="justify-content: flex-end;" class="nextPrevious_container endOfDiv">-->
+            <button class="nextQ" type="button" onclick="showNextQ('{{ questionNum+1 }}')">
                 Next →
             </button>
-        </div>
+        <!--</div>-->
         {% elif questionNum == questions|length -1 %}
-        <div class="nextPrevious_container endOfDiv">
-            <button class="submitQ" type="button" onclick="showPreviousQ('{{ questionNum+1 }}')">
+        <!--<div class="nextPrevious_container endOfDiv">-->
+            <button class="previousQ" type="button" onclick="showPreviousQ('{{ questionNum+1 }}')">
                 ← Previous
             </button>
-            <button onclick="submitQuiz()" class="submitQ" type="button">
+            <button id="finish-button" onclick="submitQuiz()" class="submitQ" type="button">
                 Finish
             </button>
-        </div>
+        <!--</div>-->
         {% else %}
-        <div class="nextPrevious_container endOfDiv">
-            <button class="submitQ" type="button" onclick="showPreviousQ('{{ questionNum+1 }}')">
+            <button class="previousQ" type="button" onclick="showPreviousQ('{{ questionNum+1 }}')">
                 ← Previous
             </button>
 
-            <button class="submitQ" type="button" onclick="showNextQ('{{ questionNum+1 }}')">
+            <button class="nextQ" type="button" onclick="showNextQ('{{ questionNum+1 }}')">
                 Next →
             </button>
-        </div>
         {% endif %}
-
+        
 
         <!-- </div> -->
     </div>
     {% endfor %}
     <p>{{count}}</p>
+    
+        
 
 </div>
+{{ form.userID(id='quiz-form-userID') }}
+    {{ form.question_set_id(id='quiz-form-setID') }}
+    {{ form.score(id='quiz-form-score') }}
+    {{ form.time_taken(id='quiz-form-time-taken') }}
+    </form>
 
 <script>
     var userID = '{{ current_user.id }}'

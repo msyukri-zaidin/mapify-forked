@@ -36,3 +36,14 @@ class RegistrationForm(FlaskForm):
     username = StringField("Username", validators = [DataRequired()])
     password = PasswordField("Password", validators = [DataRequired()])
     submit = SubmitField('Sign Up')
+
+class RegistrationAnonForm(FlaskForm):
+    username = StringField("Username", validators = [DataRequired()])
+    question_set_id = StringField("setID", validators = [DataRequired()])
+    submit = SubmitField('Enter Game')
+
+class SubmitResultsForm(FlaskForm):
+    userID = StringField("UserID", validators = [DataRequired()])
+    question_set_id = StringField("setID", validators = [DataRequired()])
+    score = StringField("Score", validators = [DataRequired()])
+    time_taken = StringField("TimeTaken", validators = [DataRequired()])

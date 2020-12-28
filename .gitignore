@@ -10,3 +10,5 @@ migrations/*
 app/__init__.pyc
 geckodriver.log
 migrations/*
+.env
+Dockerfile

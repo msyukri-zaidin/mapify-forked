@@ -10,11 +10,11 @@
     <div id="result-box" class="flex-display home-box">
         <span style="flex-grow: 1">
             <h2 id="result-msg" class="box-title">Your result</h2>
-            <span id="score-msg">
+            <span class="score-msg">
                 <h3 id="result-username">{{ current_user.username }}, &nbsp;&nbsp;</h3>
-                <h3>you got a score of</h3>
             </span>
-            <a href='/'><button id="restart-button" class="clicky-button">Restart</button></a>
+            <span class="score-msg"><h3>you got a score of</h3></span>
+            <a href='/mapify/'><button id="restart-button" class="clicky-button">Restart</button></a>
         </span>
         <!-- <span id="box-vertical-line" style="flex-grow: 1"></span> -->
         <span style="flex-grow: 2; flex-basis:  0;">
@@ -51,12 +51,6 @@
         {% endif %}
         {% endfor %}
     </div>
-    {% if current_user.user_type == 'temp' %}
-    <div id="anon-register" class="">
-        <button class="clicky-button" onclick="location.href='./register'" type="button">Register to save your
-            progress!</button>
-    </div>
-    {% endif %}
 </div>
 
 {% endblock %}

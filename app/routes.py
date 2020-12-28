@@ -2,29 +2,38 @@ from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app
 from app import db
 from app.models import Question, CurrentQuestion, QuestionSet, Option, User, Score
-from app.forms import QuestionForm, QuestionsetForm, LoginForm, RegistrationForm
+from app.forms import QuestionForm, QuestionsetForm, LoginForm, RegistrationForm, RegistrationAnonForm
 import sys
 import json
 import random
 from flask_login import current_user, login_user, logout_user, login_required
 from app.controllers import UserController, QuestionController, QuestionSetController, QuizController
+from flask_cors import CORS, cross_origin
+from flask import current_app
+from flask import Flask
+import os
 
-@app.route('/login', methods=['GET', 'POST'])
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+#Phased out for this web application
+'''@app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated: #If authenticated, redirect to home
         return redirect(url_for('home'))
     #Else, login
-    return UserController.login()
+    return UserController.login()'''
 
 @app.route('/logout')
 def logout():
     return UserController.logout()
 
-@app.route('/register', methods=['GET', 'POST'])
+#Phased out for this web app version
+'''@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return UserController.register()
+    return UserController.register()'''
 
-@app.route('/register-anon', methods=['POST'])
+@app.route('/register-anon/', methods=['POST'])
 def register_anon():
     return UserController.register_anon()
 
@@ -47,6 +56,17 @@ def demote_user():
     return UserController.demote_user()
 
 @app.route('/result', methods=['GET'])
+def result_dev():
+    latestScore = Score.query.filter_by(user_id=current_user.id).all()[-1]
+    questionsetID = latestScore.questionset_id
+    scoreSorted = Score.query.filter_by(questionset_id=questionsetID).order_by(Score.score.desc()).all()
+    return render_template(
+        'result.html',
+        latestScore = latestScore,
+        scoreSorted = scoreSorted
+    )
+
+@app.route('/mapify/result', methods=['GET'])
 def result():
     latestScore = Score.query.filter_by(user_id=current_user.id).all()[-1]
     questionsetID = latestScore.questionset_id
@@ -61,18 +81,46 @@ def result():
 def submit_results():
     return UserController.submit_results()
 
+
 @app.route('/', methods = ['GET','POST'])
+@cross_origin()
 def home():
+    form = RegistrationAnonForm()
+    if form.validate_on_submit():
+        #anonDict = request.get_json(force=True)
+        #username = anonDict['username']
+        username = form.username.data
+        questionsetID = form.question_set_id.data
+        #Register temporary user
+        user = User(
+            user_type = 'temp',
+            username = username
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user, remember=False)
+        environment = os.getenv('FLASK_ENV')
+        if environment == 'production':
+            return redirect(url_for('generate_quiz', questionsetID=questionsetID))
+        elif environment == 'development':
+            return redirect(url_for('generate_quiz_dev', questionsetID=questionsetID))
+        #return redirect(url_for('generate_quiz', questionsetID=questionsetID))
+
     questionSet = QuestionSet.query.all()
     newestSet = QuestionSet.query.all()[-1]
     scoreSorted = Score.query.filter_by(questionset_id=newestSet.id).order_by(Score.score.desc()).all() #Order by descending
-    return render_template('home.html', questionSet = questionSet, newestSet = newestSet, scoreSorted = scoreSorted)
+
+    return render_template('home.html', questionSet = questionSet, newestSet = newestSet, scoreSorted = scoreSorted, form=form)
 
 @app.route('/profile', methods = ['GET','POST'])
 def userProfile():
     return UserController.getUserProfile()
 
 @app.route('/quiz', methods = ['GET','POST'])
+def generate_quiz_dev():
+    return QuizController.generate_quiz()
+
+@app.route('/mapify/quiz', methods = ['GET','POST'])
 def generate_quiz():
     return QuizController.generate_quiz()
 
@@ -125,6 +173,9 @@ def admin():
 
     #Get number of questions in question set
     questionset_number_of_questions = QuestionSet.query.filter_by(id=questionsetID).first().number_of_questions
+
+    #Google api key
+    GOOGLE_API_KEY = current_app.config['GOOGLE_API_KEY']
     return render_template(
         'admin_page.html', 
         questionPool = questionPool, 
@@ -134,8 +185,8 @@ def admin():
         questionSet = questionSet, 
         currentSet = QuestionSet.query.filter_by(id=questionsetID).first(),
         questionSetNumberOfQuestions = questionset_number_of_questions, #Number of questions in the question set
-        questionSetTotal = len(questionSet))                            #Total number of question sets
-
+        questionSetTotal = len(questionSet),                            #Total number of question sets
+        GOOGLE_API_KEY = GOOGLE_API_KEY)
 #Test function
 @app.route('/base')
 def base():

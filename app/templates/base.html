@@ -17,50 +17,28 @@
 
 <body>
     <div class="header">
-        <a href="/"><img id="logo" src="../static/css/images/mapify-2.png"></a>
+        <a href="/mapify/"><img id="logo" src="../static/css/images/mapify-2.png"></a>
+        <nav class="tab-left">
+            <a href='/'><button id="msz-a" class="tablinks">Back to msz-a</button></a>
+        </nav>
         {% if current_user.is_authenticated and current_user.user_type == 'regular' %}
-            <div class="welcomeUser" id='welcome-user'>Welcome {{ current_user.username }}!</div>
             <nav class="tab-right">
-                <div class="points" id="points">
-                    <p>Points : <b>0</b></p>
-                </div>
                 <a href='profile'><button id="header-logout-button" class="tablinks">Profile</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
         {% elif current_user.is_authenticated and current_user.user_type == 'admin' %}
-            <div class="welcomeUser" id='welcome-user'>Welcome {{ current_user.username }}!</div>
             <nav class="tab-right">
-                <div class="points" id="points">
-                    <p>Points : <b>0</b></p>
-                </div>
                 <a href='profile'><button id="header-logout-button" class="tablinks">Profile</button></a>
                 <a href='user-list'><button id="header-user-button" class="tablinks">Edit Users</button></a>
                 <a href='admin'><button id="header-admin-button" class="tablinks">Edit Sets</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
         {% elif current_user.is_authenticated and current_user.user_type == 'temp' %}
-            <div class="welcomeUser" id='welcome-user'>Welcome {{ current_user.username }}!</div>
             <nav class="tab-right">
-                <div class="points" id="points">
-                    <p>Points : <b>0</b></p>
-                </div>
-                <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
                 <a href='logout'><button id="header-logout-button" class="tablinks">Log Out</button></a>
             </nav>
-        {% else %}
-        <nav class="tab-right">
-            <div class="points" id="points">
-                <p>Points : <b>0</b></p>
-            </div>
-            <a href='register'><button id="header-signup-button" class="tablinks">Sign Up</button></a>
-            <a href='login'><button id="header-login-button" class="tablinks">Log In</button></a>
-        </nav>
         {% endif %}
     </div>
-
-    <script>
-        document.getElementById('points').style.display = 'none';
-    </script>
     
     {% block body %}{% endblock %}
 

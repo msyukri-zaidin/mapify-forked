@@ -107,14 +107,16 @@ function incrementAttempts(qNum) {
 }
 
 function disableButton(qNum) {
-    let button = document.getElementById('ans'+qNum).querySelector('button');
+    //let button = document.getElementById('ans'+qNum).querySelector('button');
+    let button = document.getElementsByClassName('submitQ')[qNum-1]
     button.style.display = 'none';
 
 }
 
 
 function disableMCQButton(qNum) {
-    document.getElementById('mcq'+qNum).querySelector('button').style.display = 'none';
+    //document.getElementById('mcq'+qNum).querySelector('button').style.display = 'none';
+    document.getElementsByClassName('inputAns')[qNum-1].style.display = 'none';
 }
 
 function validateMCQ(qNum) {
@@ -136,10 +138,12 @@ function validateMCQ(qNum) {
  * Function to validate the user input and check the answer
  * @param {String} qNum - Question Number 
  */
-function validateAns(qNum) {
+function validateAns(qNum, enter_button) {
     // $.get('/loadquiz?questionsetID=' + questionsetID, function(questions, status) {
     // Gets the user input for the question
-    let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
+    
+    let currentAns = document.getElementsByClassName('inputAns')[qNum-1].value.toLowerCase();
+    //let currentAns = document.getElementById('ans'+qNum).querySelector('input').value.toLowerCase();
     let answer = document.getElementById('answer'+qNum).innerHTML;
     let location = document.getElementById('reference'+qNum).innerHTML;
     if (location == 'None') {
@@ -158,20 +162,23 @@ function validateAns(qNum) {
         if (currentAns == answer.toLowerCase()) {
             getMapWithMarker(qNum, location, setZoom, setRadius);
             correctAns(qNum);
-            removeClassName(qNum);
+            //enter_button.style.display = 'none'
+            //removeClassName(qNum);
             disableButton(qNum);
         }
         else {
             if (numAttempts == MAX_ATTEMPTS) {
                 getMapWithMarker(qNum, location, setZoom, setRadius);
                 wrongAns(qNum, answer);
-                disableButton(qNum);
+                
+                enter_button.style.display = 'none'
+                //disableButton(qNum);
             }
             else {       
                 getMapWithRadius(qNum, location, setZoom, setRadius);
                 wrongAttempt(qNum, numAttempts);
                 if (numAttempts == 1) {
-                    removeClassName(qNum);
+                    //removeClassName(qNum);
                 }
             }  
         }   
@@ -191,7 +198,45 @@ function showNextQ(qNum) {
 function showPreviousQ(qNum) {
     $(`#Q${parseInt(qNum)-1}Button`).click();
 }
+/*
+$(document).ready(function () {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    // For popping up logins and signups form
+    $('#submit-field').click(function () {
+        let timeLeft = convertStringToTime('timer_label');
+        let totalTime = parseInt(document.getElementById('totalTime').innerHTML);
+        let multiplier = (1+(timeLeft/totalTime)).toFixed(2);
 
+        let points = document.getElementById('points').querySelector('b');
+        points.innerHTML = parseInt(parseInt(points.innerHTML) * parseFloat(multiplier));
+    
+        timeTaken = totalTime - timeLeft;
+
+        document.getElementById('quiz-form-userID').value = userID
+        document.getElementById('quiz-form-setID').value = questionsetID
+        document.getElementById('quiz-form-score').value = points.innerHTML
+        document.getElementById('quiz-form-time-taken').value = formatTime(timeTaken)
+    });
+});
+*/
+function submitQuiz() {
+    let timeLeft = convertStringToTime('timer_label');
+    let totalTime = parseInt(document.getElementById('totalTime').innerHTML);
+    let multiplier = (1+(timeLeft/totalTime)).toFixed(2);
+
+    let points = document.getElementById('points').querySelector('b');
+    points.innerHTML = parseInt(parseInt(points.innerHTML) * parseFloat(multiplier));
+
+    timeTaken = totalTime - timeLeft;
+
+    document.getElementById('quiz-form-userID').value = userID
+    document.getElementById('quiz-form-setID').value = questionsetID
+    document.getElementById('quiz-form-score').value = points.innerHTML
+    document.getElementById('quiz-form-time-taken').value = formatTime(timeTaken)
+    document.getElementById('finish-form').submit()
+}
+
+/*
 function submitQuiz() {
 
     let timeLeft = convertStringToTime('timer_label');
@@ -226,7 +271,7 @@ function submitQuiz() {
         }
     })
 }
-
+*/
 function formatTime(time) {
     const minutes = Math.floor(time / 60);
     let seconds = time % 60;

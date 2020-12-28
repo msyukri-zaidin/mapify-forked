@@ -1,4 +1,4 @@
-from app.forms import QuestionForm, QuestionsetForm, LoginForm, RegistrationForm
+from app.forms import QuestionForm, QuestionsetForm, LoginForm, RegistrationForm, RegistrationAnonForm, SubmitResultsForm
 from app.models import load_user
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from app.models import Question, CurrentQuestion, QuestionSet, Option, User, Score
@@ -8,6 +8,8 @@ import random
 import json
 from datetime import time
 from datetime import datetime
+from flask import current_app
+import os
 
 class UserController():
     def login():
@@ -64,17 +66,20 @@ class UserController():
         return render_template('register.html', title='Register', form=form)
 
     def register_anon():
-        anonDict = request.get_json(force=True)
-        username = anonDict['username']
-        #Register temporary user
-        user = User(
-            user_type = 'temp',
-            username = username
-        )
-        db.session.add(user)
-        db.session.commit()
-        login_user(user, remember=False)
-        return redirect(url_for('home'))
+        form = RegistrationAnonForm()
+        if form.validate_on_submit():
+
+            anonDict = request.get_json(force=True)
+            username = anonDict['username']
+            #Register temporary user
+            user = User(
+                user_type = 'temp',
+                username = username
+            )
+            db.session.add(user)
+            db.session.commit()
+            login_user(user, remember=False)
+            return redirect(url_for('home'))
 
     def user_list():
         userList = User.query.all()
@@ -104,28 +109,6 @@ class UserController():
         User.query.filter_by(id=userID).first().user_type = 'regular'
         db.session.commit()
         return redirect(url_for('user_list'))   
-
-    def submit_results():
-
-        resultDict = request.get_json(force=True)
-        userID = int(resultDict['userID'])
-        questionsetID = resultDict['questionsetID']
-        score = resultDict['score']
-        seconds = resultDict['timeTaken']
-        time_obj = seconds.split(':')
-        timeTaken = time(minute = int(time_obj[0]), second = int(time_obj[1]))
-        
-        s = Score(
-            user_id = userID,
-            questionset_id = questionsetID,
-            score = score,
-            time_taken = timeTaken
-        )
-        
-        db.session.add(s)
-        db.session.commit()
-        
-        return redirect(url_for('result'))
 
 
     def getUserProfile():
@@ -292,6 +275,31 @@ class QuestionSetController():
 
 class QuizController():
     def generate_quiz():
+        form = SubmitResultsForm()
+        if form.validate_on_submit():
+            #UserController.submit_results(form)
+            userID = form.userID.data
+            questionsetID = form.question_set_id.data
+            score = form.score.data
+            time_taken = form.time_taken.data
+            time_obj = time_taken.split(':')
+            timeTaken = time(minute = int(time_obj[0]), second = int(time_obj[1]))
+
+            s = Score(
+                user_id = userID,
+                questionset_id = questionsetID,
+                score = score,
+                time_taken = timeTaken
+            )
+            
+            db.session.add(s)
+            db.session.commit()
+            environment = os.getenv('FLASK_ENV')
+            if environment == 'production':
+                return redirect(url_for('result'))
+            elif environment == 'development':
+                return redirect(url_for('result_dev'))
+
         questionsetID = request.args.get('questionsetID')
 
         questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
@@ -321,4 +329,6 @@ class QuizController():
                                 'answerOptions': answerOptions,
                                 'answer':questionList[i].parent.answer})
                     totalTime += 15
-        return render_template('quizPage.html', questions = myJSON, timer = totalTime, questionsetID = questionsetID)
+        
+        GOOGLE_API_KEY = current_app.config['GOOGLE_API_KEY']
+        return render_template('quizPage.html', questions = myJSON, timer = totalTime, questionsetID = questionsetID, form=form, GOOGLE_API_KEY=GOOGLE_API_KEY)

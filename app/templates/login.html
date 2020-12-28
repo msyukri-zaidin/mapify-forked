@@ -12,11 +12,10 @@
             <form method="POST">
                 {{form.hidden_tag()}}
                 <!-- The login form Username Area -->
-                {{form.username(class="form-input", size=16, placeholder="Username",id='username-field')}}
+                {{form.username(class="form-input", size=16, placeholder="Username",id='username-field', autocomplete='off')}}
                 <br>
                 <!-- The login form Password Area -->
                 {{form.password(id='password-field',class="form-input",size=16, placeholder="Password")}}
-                <p class="form-subtext">Don't have an account?<a href="register"> Sign up!</a></p>
                 <!-- The login form submit button -->
                 {{form.submit(id='submit-field',class="form-submit clicky-button")}}
                 {% with messages = get_flashed_messages() %}

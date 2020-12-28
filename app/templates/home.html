@@ -6,6 +6,12 @@
 
 {% block body %}
 <div class="container">
+    {% if current_user.is_authenticated %}
+        <form method="GET" action="/mapify/mapify/quiz">
+    {% else %}
+        <form method="POST">
+        {{form.hidden_tag()}}
+    {% endif %}
     {% if current_user.is_authenticated and current_user.user_type == 'regular' %}
     <!-- Welcome banner for Regular Users -->
     <div id="home-user" class="flex-display home-box">
@@ -26,14 +32,12 @@
     <div id="home-user" class="flex-display home-box">
         <span id="text">
             <h2>Welcome {{ current_user.username }}!</h2>
-            <p>You are using a temporary account. <a href='/register'>Sign up</a> to save your progress!</p>
         </span>
     </div>
     {% else %}
     <!-- Part where explains what Mapify is, for those that does not have personal account -->
     <div id="home-intro" class="flex-display home-box">
         <span id="text">
-            <p>Welcome to</p>
             <h2 id="mapify-slogan" class="">Mapify</h2>
             <p>Mapify is a geography quiz that will test your ability of mapping a location based on the snapshot
                 given as the clue.
@@ -42,17 +46,12 @@
     </div>
     <!-- Area for where the user can put in their desired username for the game -->
     <div id="home-username" class="flex-display home-box">
-        <h2 class="box-title">Choose a username</h2>
-        <form>
-            <input type="text" id="username-input" value="" placeholder="eg: Tim Winton" />
-        </form>
-        <!-- This area gives teh viewer some suggestions for game username-->
-        <span id="username-list" class="flex-display">
-            <p style="font-size: 1.2em;">Suggestions: &nbsp; &nbsp;</p>
-        </span>
+        <h2 class="box-title">Generate a username</h2>
+            <div id='random-username-field'></div>
+            {{form.username(placeholder="Username",id='username-input')}}
+            <button type="button" id="generate-random" class="clicky-button">Generate Random Username</button>
     </div>
     {% endif %}
-
     <div class="home-box">
         <!-- Select game set -->
         <h2 class="box-title">Select a game set</h2>
@@ -63,14 +62,25 @@
                 <h3 class="card-title">
                     {{ set }}
                 </h3>
+               
             </span>
             {% endfor %}
+            {% if current_user.is_authenticated %}
+                <input type="text" name="questionsetID" id="setID-form">
+            {% else %}
+                {{ form.question_set_id(id='setID-form') }}
+            {% endif %}
         </section>
     </div>
     <div class="home-box">
         <div id="home-start" class="flex-display">
             <h2>Click here to start a game:</h2>
-            <button id="start-button" class="clicky-button">Enter Game!</button>
+            {% if current_user.is_authenticated %}
+                <input type="submit" class="clicky-button" value="Enter Game"></input>
+            {% else %}
+                {{form.submit(id='submit-field',class="form-submit clicky-button")}}
+            <!--<button id="start-button" class="clicky-button">Enter Game!</button>-->
+            {% endif %}
         </div>
         <div id="rules" class="">
             <span>
@@ -109,6 +119,7 @@
         {% endif %}
         {% endfor %}
     </div>
+    </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
